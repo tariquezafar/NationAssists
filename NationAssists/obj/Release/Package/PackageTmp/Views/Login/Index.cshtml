@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="whtBg pt60 pb60"
+     style="background: url(images/login_bg.jpg) no-repeat center top; background-size: cover;">
+    <div class="container">
+        <div class="loginBox">
+            <div class="flexBox spacebetween">
+                <div class="mainHd">Login</div>
+            </div>
+            <div>
+                <ul class="form flexBox">
+                    <li class="fullWidth">
+                        <span class="fieldHd">Email Address</span>
+                        <input type="text" class="formInput">
+                    </li>
+                    <li class="fullWidth">
+                        <span class="fieldHd">Password</span>
+                        <input type="password" class="formInput">
+                    </li>
+                    <li class="fullWidth flexBox spacebetween">
+                        <div><label class="rem"><input type="checkbox" class="checkInpt"> Remmember Me</label></div>
+                        <div><a href="#" class="fp">Forgot Password</a></div>
+                    </li>
+                </ul>
+                <div class="tac"><button class="formBtn" id="btnLogin">Login</button></div>
+            </div>
+            <div class="assBey">...assistance and beyond</div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/function.js"></script>
+<script src="js/slick.min.js"></script>
+<script>
+    $('.testimonialSlider').slick({
+        dots: true,
+        speed: 600,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        autoplay: false,
+    });
+
+    $("#btnLogin").click(function () {
+
+        window.location.href ="/admin/dashboard"
+
+    });
+</script>

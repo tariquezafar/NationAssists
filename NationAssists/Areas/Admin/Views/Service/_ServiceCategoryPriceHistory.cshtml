@@ -1,0 +1,59 @@
+﻿
+@model IEnumerable<DataEngine.ServiceSubCategoryPrice>
+
+<div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">Price History</h4>
+    </div>
+    @if (Model != null)
+    {
+        int i = 0;
+
+
+
+        <table>
+            <thead>
+
+
+                <tr>
+
+                    <th>SNo.</th>
+
+                    <th>Sub Category Name</th>
+
+                    <th>Price</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Created Date</th>
+
+                </tr>
+            </thead>
+            <tbody id="tblServicePriceList">
+                @foreach (DataEngine.ServiceSubCategoryPrice item in Model)
+                {
+                    i = i + 1;
+                    string strtDate = item.StartDate != null ? Convert.ToDateTime(item.StartDate).ToString("yyyy-MM-ddThh:mm") : Convert.ToString(item.StartDate);
+                    string EndDate = item.EndDate != null ? Convert.ToDateTime(item.EndDate).ToString("yyyy-MM-ddThh:mm") : Convert.ToString(item.EndDate);
+                    <tr>
+                        <td>@i</td>
+
+
+                        <td>@item.SubCategoryName  </td>
+
+                        <td> @item.Price</td>
+                        <td>@strtDate</td>
+                        <td>@EndDate</td>
+                        <td>@Convert.ToDateTime(item.Created_Date).ToString("dd-MM-yyy")</td>
+
+                    </tr>
+                }
+            </tbody>
+
+
+            <!-- Pagination -->
+        </table>
+
+    }
+    </div>
+    <!-- /Pagination Index -->

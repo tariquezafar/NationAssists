@@ -1,0 +1,58 @@
+G:\tariq work\ICardPrinter\DbOperation\obj\Debug\DbOperation.csprojResolveAssemblyReference.cache
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\DbOperation.dll
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\DbOperation.pdb
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\DataEngine.dll
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\EntityFramework.dll
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\DataEngine.pdb
+G:\tariq work\ICardPrinter\DbOperation\obj\Debug\DbOperation.dll
+G:\tariq work\ICardPrinter\DbOperation\obj\Debug\DbOperation.pdb
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\EntityFramework.xml
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\Utility.dll
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.Mvc.dll
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.Razor.dll
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.Razor.dll
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.dll
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.Deployment.dll
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\Utility.pdb
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.Mvc.xml
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.Razor.xml
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.Razor.xml
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.xml
+G:\tariq work\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\DbOperation.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\DbOperation.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\DataEngine.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\EntityFramework.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\Utility.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.Mvc.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.Razor.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\DataEngine.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\DataEngine.dll.config
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\Utility.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\EntityFramework.xml
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.Mvc.xml
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.Razor.xml
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.xml
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\obj\Debug\DbOperation.csprojAssemblyReference.cache
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\obj\Debug\DbOperation.csproj.CoreCompileInputs.cache
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\obj\Debug\DbOperation.csproj.CopyComplete
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\obj\Debug\DbOperation.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DbOperation\obj\Debug\DbOperation.pdb
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Debug\DbOperation.dll
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Debug\DbOperation.pdb
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Debug\DataEngine.dll
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Debug\Utility.dll
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Debug\DataEngine.pdb
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Debug\DataEngine.dll.config
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Debug\Utility.pdb
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Debug\DbOperation.csprojAssemblyReference.cache
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Debug\DbOperation.csproj.CoreCompileInputs.cache
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Debug\DbOperation.csproj.CopyComplete
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Debug\DbOperation.dll
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Debug\DbOperation.pdb

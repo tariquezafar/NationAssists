@@ -1,0 +1,63 @@
+﻿@model NationAssists.Areas.Admin.Models.mServiceProviderPrice
+
+@{
+    ViewBag.Title = "ManageServiceProviderPrice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboardCon transition">
+    <div class="mainHd">Manage Service Provider Price</div>
+    <ul class="dbForm flexBox">
+        <li class="oneThird">
+            <span class="fieldHd" id="lblService">Service Provider </span>
+            @Html.DropDownListFor(m => m.ServiceProviderId, Model.GetAllServiceProvider(), "--select-", new { @class = "formInput", @onchange = "GetAllServices()" })
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblService">Service </span>
+            @Html.DropDownListFor(m => m.ServiceId,
+           new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceId", "ServiceName"),
+                  "Select Service", new { @class = "formInput", @onchange = "BindServiceSubCategoryPriceList()" })
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd">Pricing Option</span>
+            <div class="optBox flexBox">
+                <label><input type="radio" name="PricingOption" class="radioInpt" disabled="disabled" value="PB"> Package Based</label>
+                <label><input type="radio" name="PricingOption" class="radioInpt" disabled="disabled" checked="checked" value="SB"> Service Based</label>
+            </div>
+        </li>
+        <li class="oneThird pb" style="display:none;">
+            <span class="fieldHd" id="lblServicePrice">Price </span>
+            <input type="number" class="formInput" id="txtPrice" placeholder="Price">
+        </li>
+        <li class="oneThird pb" style="display:none;">
+            <span class="fieldHd" id="lblStartDate">Start Date </span>
+            <input type="datetime-local" class="formInput" id="txtStartDate">
+        </li>
+        <li class="oneThird pb" style="display:none;">
+            <span class="fieldHd" id="lblEndDate">End Date </span>
+            <input type="datetime-local" class="formInput" id="txtEndDate">
+        </li>
+    </ul>
+   
+    <div>
+
+        <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveServiceProviderPrice();">Save</button>
+        <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Service/ManageServiceProviderPrice/'">Reset</button>
+
+    </div>
+    <div class="dbTable" id="tblPriceList">
+
+    </div>
+</div>
+<script src="~/Areas/Admin/JS/ServiceProviderPrice.js" type="text/javascript"></script>
+   
+
+
+
+  
+
+
+
+            <script type="text/javascript" src="~/Areas/Admin/JS/ServiceProviderPrice.js"></script>
+
+

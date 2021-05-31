@@ -1,0 +1,96 @@
+﻿@model NationAssists.Areas.Admin.Models.mUser
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main" style="min-height:50px;">
+    <!---- start main---->
+    <div class="titll">
+        <div class="titll1 icon-48-article">
+            Manage Users
+        </div>
+    </div>
+    <div class="add-cms-page">
+        <form name="add_events" method="post" enctype="multipart/form-data">
+            <table width="100%" class="cms-pagetbl" border="0" cellpadding="4" cellspacing="0">
+                <tr>
+                    <td class="cms1">@Html.Label("lblUserType", "User Type")</td>
+                    <td class="cms1">
+                        <select id="UserTypeId">
+                            <option value="">--Select--</option>
+                            <option value="1">Employee</option>
+                            <option value="2">Agent</option>
+                            <option value="3">Insurance Company</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cms1">@Html.Label("lblUserName", "Name")</td>
+                    <td class="cms1">
+                        @Html.TextBox("txtUserName", Model.Name, new { @class = "cmstext", @id = "txtUserName", maxlength = 100, style = "width:200px; Font-size: 20px;" })
+                    </td>
+
+                    <td class="cms1">@Html.Label("lblPassword", "Password")</td>
+                    <td class="cms1">
+                        @Html.TextBox("txtPassword", Model.Password, new { type = "password", @class = "cmstext", @id = "txtPassword", maxlength = 100, style = "width:200px; Font-size: 20px;" })
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td class="cms1">@Html.Label("lblEmailId", "EmailId")</td>
+                    <td class="cms1">
+                        @Html.TextBox("txtEmailId", Model.EmailId, new { @class = "cmstext", @id = "txtEmailId", maxlength = 100, style = "width:200px; Font-size: 20px;" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="cms1">@Html.Label("lblMobileNo", "Mobile No")</td>
+                    <td class="cms1">
+                        @Html.TextBox("txtMobileNo", Model.PhoneNo, new { @class = "cmstext", @id = "txtMobileNo",style = "width:200px; Font-size: 20px;" ,@maxlength = "10", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);",@type="number" })
+                    </td>
+                    <td class="cms1">@Html.Label("lblPhoneNo", "Phone No")</td>
+                    <td class="cms1">
+                        @Html.TextBox("txtPhoneNo", Model.EmailId, new { @class = "cmstext", @id = "txtPhoneNo", style = "width:200px; Font-size: 20px;", @maxlength = "15", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @type = "number" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="cms1">@Html.Label("lblUser", "Role")</td>
+                    <td class="cms1">
+                        @Html.DropDownListFor(m => m.RoleId, Model.GetAllRoles(), "--Select-")
+                    </td>
+                    <td class="cms1">@Html.Label("lblUser", "Branch")</td>
+                    <td class="cms1">
+                        @Html.DropDownListFor(m => m.BranchId, Model.GetAllBranches(), "--Select-")
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td class="cms1">@Html.Label("lblActive", "Status")</td>
+                    <td class="cms1">
+                        @Html.CheckBox("chkIsActive", Model.IsActive, new { @id = "chkIsActive", style = "width:50px; Font-size: 20px;" })
+                        @*@Html.CheckBox("chkIsActive", Model.IsActive, new { @checked = Model.IsActive ,@id="chkIsActive", style = "width:50px; Font-size: 20px;" })*@ Is Active
+                        @*<input type="checkbox" id="chkIsActive" name="active" style="width:50px;" checked="@Model.IsActive" /> Is Active*@
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cms1"></td>
+                    <td class="cms1">
+                        <input type="hidden" id="hdnUserId" value="@Model.UserId" />
+                        <button type="button" id="btnAdd" value="Submit" name="cms-save" onclick="return SaveUsers();" class="btn"><strong>Save</strong></button> &nbsp;
+                        @*<button type="submit" value="Submit" id="cmsupdate" name="cms-update" style="display:none;" class="btn"><strong>update</strong></button> &nbsp;*@
+                        <input type="button" class="btn" name="reset" value="Cancel" onclick="window.location.href = '/admin/User/AddUser/'" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div>
+    @Html.Partial("~/Areas/Admin/Views/User/_UserList.cshtml", Model);
+</div>
+<script type="text/javascript" src="~/Areas/Admin/JS/User.js"></script>
+
+

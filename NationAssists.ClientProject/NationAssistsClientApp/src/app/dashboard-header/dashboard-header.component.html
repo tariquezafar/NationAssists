@@ -1,0 +1,13 @@
+<header fxLayout="row" fxLayoutAlign="end center" class="transition">
+    
+    <div fxLayout="row" fxLayoutAlign="end center">
+        
+        <div class="setting">
+            <button mat-button [matMenuTriggerFor]="menu"><img src="../../assets/images/user_img.jpg" alt=""> Issac </button>
+            <mat-menu #menu="matMenu" class="userPopup" xPosition="before">
+                <div mat-menu-item class="menuLink">My Profile</div>
+                <div mat-menu-item class="menuLink">Logout</div>
+            </mat-menu>
+        </div>
+    </div>
+</header>

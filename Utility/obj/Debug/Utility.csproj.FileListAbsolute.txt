@@ -1,0 +1,39 @@
+G:\tariq work\ICardPrinter\Utility\bin\Debug\Utility.dll
+G:\tariq work\ICardPrinter\Utility\bin\Debug\Utility.pdb
+G:\tariq work\ICardPrinter\Utility\obj\Debug\Utility.csprojResolveAssemblyReference.cache
+G:\tariq work\ICardPrinter\Utility\obj\Debug\Utility.dll
+G:\tariq work\ICardPrinter\Utility\obj\Debug\Utility.pdb
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.Mvc.dll
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.Razor.dll
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.Razor.dll
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.dll
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.Deployment.dll
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.Mvc.xml
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.Razor.xml
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.Razor.xml
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.xml
+G:\tariq work\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\Utility.dll
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\Utility.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.Mvc.dll
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.Razor.dll
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.dll
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.Mvc.xml
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.Razor.xml
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.xml
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\obj\Debug\Utility.csproj.CopyComplete
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\obj\Debug\Utility.dll
+D:\Tarique\ICardPrinter\ICardPrinter\Utility\obj\Debug\Utility.pdb
+D:\Tarique\NationAssists\NationAssists\Utility\bin\Debug\Utility.dll
+D:\Tarique\NationAssists\NationAssists\Utility\bin\Debug\Utility.pdb
+D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
+D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.dll
+D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.pdb

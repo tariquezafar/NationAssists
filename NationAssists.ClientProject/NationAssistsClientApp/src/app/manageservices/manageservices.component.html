@@ -1,0 +1,91 @@
+<div class="dashboardCon transition">
+  <div class="mainHd">Manage Service SubCategory</div>
+  <ul class="form" fxLayout="row wrap" fxLayoutAlign=" none">
+    <li fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33">
+      <div class="inner">
+        <label class="fieldHd">Login Id </label>
+        <mat-form-field>
+          <input type="text" matInput placeholder="">
+        </mat-form-field>
+      </div>
+    </li>
+    <li fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33">
+      <div class="inner">
+        <label class="fieldHd">Name </label>
+        <mat-form-field>
+          <input type="text" matInput placeholder="">
+        </mat-form-field>
+      </div>
+    </li>
+    <li fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33">
+      <div class="inner">
+        <label class="fieldHd">Phone</label>
+        <mat-form-field>
+          <input type="text" matInput placeholder="">
+        </mat-form-field>
+      </div>
+    </li>
+    <li fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33">
+      <div class="inner">
+        <label class="fieldHd">Email </label>
+        <mat-form-field>
+          <input type="text" matInput placeholder="">
+        </mat-form-field>
+      </div>
+    </li>
+    <li fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33">
+      <div class="inner">
+        <label class="fieldHd">Password (*)</label>
+        <mat-form-field>
+          <input type="password" matInput placeholder="">
+        </mat-form-field>
+      </div>
+    </li>
+    <li fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33">
+      <div class="inner">
+        <label class="fieldHd">Confirm Password (*)</label>
+        <mat-form-field>
+          <input type="password" matInput placeholder="">
+        </mat-form-field>
+      </div>
+    </li>
+    <li fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33">
+      <div class="inner">
+        <label class="fieldHd">Role </label>
+        <mat-form-field>
+          <mat-select placeholder="Select Role">
+            <mat-option value="Role 1">Role 1</mat-option>
+            <mat-option value="Role 2">Role 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </li>
+    <li fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33">
+      <div class="inner">
+        <label class="fieldHd">User Expiry Date (*)</label>
+        <mat-form-field class="calenderInput">
+          <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </li>
+    <li fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33.33">
+      <div class="inner">
+        <label class="fieldHd">Company Branch (*)</label>
+        <mat-form-field>
+          <mat-select placeholder="Select Company Branch">
+            <mat-option value="Company Branch 1">Company Branch 1</mat-option>
+            <mat-option value="Company Branch 2">Company Branch 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </li>
+  </ul>
+  <div class="mt30">
+    <button type="button" mat-button class="saveBtn formBtn mr10">Save</button>
+    <button type="button" mat-button class="resetBtn formBtn mr10">Reset</button>
+    <button type="button" mat-button class="searchBtn formBtn">Search</button>
+  </div>
+  
+</div>

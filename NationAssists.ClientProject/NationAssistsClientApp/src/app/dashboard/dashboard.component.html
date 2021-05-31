@@ -1,0 +1,80 @@
+<div class="dashboardCon transition">
+    <div class="mainHd">Dashboard</div>
+    <div class="dashboardTop">
+        <ul fxLayout="row wrap" fxLayoutAlign=" none">
+            <li fxFlex="50" fxFlex.gt-sm="25">
+                <div class="inner">
+                    1500
+                    <span>Total No of Users</span>
+                </div>
+            </li>
+            <li fxFlex="50" fxFlex.gt-sm="25">
+                <div class="inner">
+                    225
+                    <span>Total No of Agents/Broker</span>
+                </div>
+            </li>
+            <li fxFlex="50" fxFlex.gt-sm="25">
+                <div class="inner">
+                    3000
+                    <span>Total No of Customer</span>
+                </div>
+            </li>
+            <li fxFlex="50" fxFlex.gt-sm="25">
+                <div class="inner">
+                    20
+                    <span>Total No of Service Requests</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul class="graphList" fxLayout="row wrap" fxLayoutAlign=" none">
+            <li fxFlex="100">
+                <div class="inner">
+                    <div class="sortBy" fxLayout="row" fxLayoutAlign="end center">
+                        <div class="hd">Sort by</div>
+                        <mat-form-field>
+                            <mat-select placeholder="Select">
+                                <mat-option value="Year">Year</mat-option>
+                                <mat-option value="Month">Month</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <!--<div><img src="../../assets/images/graph1.jpg" alt=""></div>-->
+                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType"
+                        [colors]="chartColors">
+                    </canvas>
+                </div>
+            </li>
+            <li fxFlex="100" fxFlex.gt-xs="33.33">
+                <div class="inner">
+                    <div class="chartHd">Roadside Assistance</div>
+                    <!-- <div><img src="../../assets/images/graph2.jpg" alt=""></div> -->
+                    <canvas width="6" height="5" baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                        [options]="pieChartOption" [plugins]="pieChartPlugins" [legend]="pieChartLegend" [colors]="chartColors2">
+                    </canvas>
+                </div>
+            </li>
+            <li fxFlex="100" fxFlex.gt-xs="33.33">
+                <div class="inner">
+                    <div class="chartHd">Roadside Assistance + Car Replacement</div>
+                    <!-- <div><img src="../../assets/images/graph3.jpg" alt=""></div> -->
+                    <canvas width="6" height="5" baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                        [options]="pieChartOption" [plugins]="pieChartPlugins" [legend]="pieChartLegend" [colors]="chartColors3">
+                    </canvas>
+                </div>
+            </li>
+            <li fxFlex="100" fxFlex.gt-xs="33.33">
+                <div class="inner">
+                    <div class="chartHd">Home Assistance</div>
+                    <!-- <div><img src="../../assets/images/graph4.jpg" alt=""></div> -->
+                    <canvas width="6" height="5" baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                        [options]="pieChartOption" [plugins]="pieChartPlugins" [legend]="pieChartLegend" [colors]="chartColors4">
+                    </canvas>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

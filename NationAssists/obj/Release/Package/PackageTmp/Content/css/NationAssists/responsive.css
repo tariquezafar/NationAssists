@@ -1,0 +1,197 @@
+
+@media only screen and (max-width: 1169px) {
+    .menuBox {margin-left: 0; position: absolute; right: 15px; top: 13px;}
+    a.showMobMenu {display: block; background: #01095c; width: 38px; height: 30px; border-radius: 4px; padding-top: 7px; z-index: 102; position: relative;}
+    a.showMobMenu i {background: #fff; width: 22px; height: 2px; display: block; margin: 0 auto 4px auto; transition:ease-in-out .5s;}
+
+    a.showMobMenu.active {background: #fff;}
+    a.showMobMenu.active i {background:#01095c;}
+    a.showMobMenu.active i:nth-child(3) {display: none;}
+    a.showMobMenu.active i:nth-child(1) {transform: rotate(45deg); margin: 7px auto 0 auto;}
+    a.showMobMenu.active i:nth-child(2) {transform: rotate(-45deg); margin:-1px auto 0 auto;}
+
+    .menu {position: fixed; width: 300px; max-height: 100%; right: 0; top: -100%; background: #000; display: block; z-index: 101; padding-top: 56px; transition:ease-in-out .5s;}
+    .menu.active {top: 0;}
+    .menu > li {padding: 0; width: 100%; border-top: 1px solid #333;}
+    .menu > li > a {display: block; height: auto; line-height:normal; padding: 15px 20px; color: #fff;}
+    .menu > li > a:before {display: none;}
+    .menu > li > a:after {display: none;}
+
+    .serviceMenu {position: static; padding: 0;}
+    .serviceMenu ul {margin: 0;}
+    .serviceMenu ul li {width: 100%; padding:0px; text-align: left; border-bottom: 1px solid #eee;}
+    .serviceMenu ul li a {display: block; padding: 12px 20px;}
+    .serviceMenu ul li a .hd {margin-top: 0;}
+    .serviceMenu ul li a .img {display: none;}
+    .serviceMenu ul li a br {display: none;}
+
+    .headerRgt {padding-right: 55px;}
+    .bannerCon .container {height: 450px;}
+    .topBox {margin: -60px -5px 0 -5px;}
+    .topBox li {padding: 5px;}
+    .topBox li > a {padding: 15px;}
+    .topBox li .hd {font-size: 20px; padding: 10px 0; line-height: 22px;}
+    .mainHd {font-size: 28px; line-height: 30px;}
+    .whyText {font-size: 15px;}
+    .stepList li {padding: 20px; font-size: 16px; line-height: 22px;}
+
+    .tmLeft {width: 400px;}
+    .tmRight .text {background-size: 40px; font-size: 16px; padding:10px 0 20px 50px;}
+    .downloadApp .screenImg {margin: 0 30px;}
+    .downloadApp .det {width: calc(100% - 386px);  padding: 20px 30px;}
+    .footerBot  {padding-bottom: 40px;}
+    .whtasup img {width: 40px;}
+    .phone img {width: 40px;}
+    .popupLinks {right: 0;}
+    .popupLinks .arrow {display: block; margin-top: 15px; width: 32px; height: 28px; background: #ccc; border-radius: 3px 0 0 3px; position: relative;}
+    .popupLinks .arrow:after {content: ''; background: url(../images/dwn_arrow.png); width: 9px; height: 6px; transform: rotate(90deg); position: absolute; left: 12px; top: 11px;}
+    .popupLinks .arrow.active:after {transform: rotate(270deg);}
+    .popupLinks .inner {display: none; background: #ccc;}
+
+    .aboutLft {width:260px;}
+    .aboutLink li a {font-size: 20px;}
+    .aboutRgt {width:calc(100% - 260px); padding: 0 0 0 30px;}
+    .aboutHd {font-size: 32px;}
+    .aboutText {font-size: 16px; line-height: 22px;}
+    .dbForm {margin: -10px;}
+    .dbForm li {padding:10px;}
+}
+
+
+@media only screen and (max-width: 999px) {
+    .pt60 {padding-top: 40px;}
+    .pb60 {padding-bottom: 40px;}
+    .topBox li > a .img img {width: 60px;}
+    .tmLeft {width: 300px;}
+    .tmRight {width: calc(100% - 300px); padding: 0 0 0 20px;}
+    .tmRight .text .name {font-size: 21px; padding: 15px 0 0 0;}
+    .testimonialSlider .slick-dots {padding: 0 0 0 370px;}
+    .downloadApp .screenImg {width: 260px;}
+    .downloadApp .det {height: 300px; padding: 20px; width: calc(100% - 320px);}
+    .downloadApp .det .hd {font-size: 40px;}
+    .downloadApp .det .text {font-size: 20px; padding-bottom: 25px;}
+    .aboutList > li  {width: 50%;}
+    .contactLft {width: 300px; padding: 20px;}
+    .contactRgt {padding: 20px; width: calc(100% - 300px);}
+    .serviceLft {width: 260px;}
+    .serviceRgt {width: calc(100% - 260px); padding: 0 0 0 20px; font-size: 15px; line-height: 22px;}
+    .serviceRgt .large {font-size: 18px; line-height: 28px;}
+    .regBox {padding:20px 20px;}
+    .form {margin: -10px;}
+    .form li {padding:10px;}
+    .loginBox {padding: 20px;}
+
+    .dbCon .dbHeader {width: 100%;}
+    .dbCon .dbLeft {left: -240px;}
+    .dbCon .dashboardCon {padding: 80px 15px 15px 15px;}    
+    .dbCon.active .dbLeft {left: 0;}
+    .dbCon.active .dashboardCon {padding: 80px 15px 15px 15px;}
+}
+
+@media only screen and (max-width: 767px) {
+    .logo img {width: 150px;}
+    .menuBox {top: 10px;}
+    .headerRgt {padding: 0 50px 0 0; justify-content: space-between;}
+    .search {margin-right: 10px;}
+    .call {margin-right: 10px;}
+    .moreLinkPopup {top: 25px;}
+    .bannerCon .container {min-height: 280px; height: auto;}
+    .bannerInfo {padding: 30px 0 70px 0;}    
+    .bannerHd {font-size: 20px; padding-bottom: 20px;}
+    .bannerHd span {font-size: 32px; padding-top: 15px; line-height: 34px;}
+    .topBox {margin: -30px -5px 0 -5px;}
+    .topBox li {width: 50%;}
+    .mainHd {padding-bottom: 10px;}
+    .whyBox .lft {width: 100%; max-width: 100%; padding: 0 0 20px 0;}
+    .stepList li {padding: 10px; font-size: 15px; line-height: 20px;}
+    .whyBox .rgt {width: 100%; max-width: 100%;}
+    .tmLeft {width: 100%;}
+    .tmRight {width: 100%; padding: 20px 0 0 0;}
+    .testimonialSlider .slick-dots {padding: 0 0 0 42px;}
+    .tmRight .text {background-size: 30px; font-size: 15px; padding: 0px 0 20px 40px; line-height: 22px;}
+    .footerTop {margin: 0 -10px;}
+    .footerColumn {padding: 20px 10px 0 10px;}
+    .footerHd {font-size: 20px;}
+    .footerColumn.column1 {width: 100%;}
+    .footerText {padding: 10px 0 0 0; line-height: 20px;}
+    .footerColumn.column2 {width: 100%;}
+    .footerLink {display: flex; flex-wrap: wrap;}
+    .footerLink li {width: 50%;}
+    .footerColumn.column3 {width: 100%;}
+    .footerColumn.column4 {width: 100%; padding-bottom: 20px;}
+    .address {margin-bottom: 10px;}
+    .copy {width: 100%; text-align: center;}
+    .footerSocial {width: 100%; text-align: center; padding-top: 0; justify-content: center;}
+    .footerSocial li {margin: 0 10px;}
+    .footerBot {padding-bottom: 0;}
+    .menu {width: 100%;}
+    .innerBanner {font-size: 30px;}
+    .innerBanner .container {min-height: 110px;}
+    .aboutLft {width: 100%;}
+    .aboutLink {margin: -5px; padding-top: 20px; display: flex; justify-content: space-between;}
+    .aboutLink li {padding: 5px; width: 100%;}
+    .aboutLink li a {font-size: 18px; padding: 10px;}
+    .aboutRgt {width:100%; padding:20px 0 0 0;}
+    .aboutHd {font-size: 28px;}
+    .aboutHd img {width: 42px;}
+    .aboutList > li > .inner {padding: 15px;}
+    .aboutList li .det {font-size: 14px;}
+    .aboutList li .det span {font-size: 17px;}
+    .contactLft {width: 100%; padding: 20px;}
+    .contactInfo li {margin-top: 25px; padding: 0 0 0 35px;}
+    .contactInfo li img  {width: 22px;}
+    .contactInfo li.emailContact img {top: 2px;}
+    .contactInfo li.phoneContact img {top: -2px;}
+    .contactInfo li.webContact img {top: -1px;}
+    .contactInfo li.locationContact img {top: 0;}
+    .contactRgt {padding: 20px; width:100%;}
+    .contactInput {font-size: 17px; padding: 10px 0;}
+    .contactSelect {font-size: 17px; padding: 11px 0;}
+    .goBtn {width: 55px; height: 55px; top: -45px;}
+    .goBtn img {width: 30px;}
+    .idpBanner {padding-bottom: 80px;}
+    .underConstruction {margin-top: -110px; padding: 30px;}
+    .ucText {font-size: 22px; padding-top: 40px;}
+    .ucText span {font-size: 44px; line-height: 42px; padding-top: 15px;}
+    .regBox {padding: 15px;}
+    .regTab li {display: none;}
+    .regTab li.active {display: block;}
+    .form {margin: -5px;}
+    .form li {width: 100%; padding: 5px;}
+    .form li.oneThird {width: 50%;}
+    .fieldHd {font-size: 13px;}
+    .formInput {padding: 9px 12px; font-size: 15px;}
+    .formSelect {padding: 10px 12px; font-size: 15px;}
+    .loginBox {padding: 15px;}
+    .rem {font-size: 15px;}
+    a.fp {font-size: 15px;}
+    .assBey {font-size: 16px; padding: 15px 0 0 0;}
+
+    .dashboardTop ul {margin: -5px;}
+    .dashboardTop ul li {padding: 5px; width: 50%;}
+    .dashboardTop ul li .inner {height: 110px; font-size: 28px; padding: 15px;}
+    .dashboardTop ul li .inner span {padding: 15px; font-size: 14px;}
+    .graphList {padding: 20px 0 0 0; margin: -10px;}
+    .graphList li {padding: 10px; width: 100%;}
+    .graphList li .inner {padding: 10px;}
+    .dbCon.active .dbLogo {padding-right: 35px;}
+    .dbCon.active .dbMenu {left: 200px;}
+    .dbCon.active .dbMenu i {background: #333;}
+    
+    .dbForm {margin: -5px;}
+    .dbForm li {padding:5px; width: 50%;}
+    .dbformBtn {padding: 10px 15px;}
+}
+
+@media only screen and (max-width: 479px) {
+    .topBox li {width: 100%;}
+    .downloadApp {flex-direction: column-reverse;}
+    .downloadApp .screenImg {width: 220px; margin: auto; padding: 0;}
+    .downloadApp .det {width: 100%; height: auto; text-align: center;}
+    .downloadApp .det .hd {font-size: 32px; padding-bottom: 5px;}
+    .aboutList > li {width: 100%;}
+    .contactForm li.half {width: 100%;}
+    .serviceLft {width: 100%; text-align: center;}
+    .serviceRgt {width: 100%; padding: 20px 0 0 0;}
+
+}

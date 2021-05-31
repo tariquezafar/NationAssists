@@ -1,0 +1,67 @@
+﻿@model NationAssists.Areas.Admin.Models.mServicePrice
+
+    @if (Model.ServicePriceList != null)
+    {
+        int i = 0;
+        
+            if (Model.ServicePriceList.Count > 0)
+            {
+                <table>
+                    <thead>
+
+
+                        <tr>
+
+                            <th>SNo.</th>
+                            <th>Service Name</th>
+                            <th>Price</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                            
+
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataEngine.ServicePrice item in Model.ServicePriceList)
+                        {
+                            i = i + 1;
+
+                        <tr>
+                            <td>@i</td>
+
+                            <td>@item.ServiceName</td>
+                            <td>@item.Prices</td>
+                            <td>@Convert.ToDateTime(item.StartDate).ToString("dd-MM-yyyy")</td>
+                            <td>@Convert.ToDateTime(item.EndDate).ToString("dd-MM-yyyy")</td>
+                            <td>@(item.IsActive? "Active":"InActive")</td>
+
+                        </tr>
+                        }
+                    </tbody>
+
+
+                    <!-- Pagination -->
+                </table>
+            }
+            <!-- /Pagination Index -->
+   
+    }
+
+    else
+    {
+        <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+    }
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#tblServicePriceList").DataTable();
+    });
+
+</script>
+

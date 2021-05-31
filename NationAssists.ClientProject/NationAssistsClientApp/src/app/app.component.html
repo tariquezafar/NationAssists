@@ -1,0 +1,7 @@
+
+<div class="mainCon" [ngClass]="{active: toggle }">
+  <app-dashboard-header></app-dashboard-header>
+  <app-dashboard-menu (valueChangestep1)="toggle = !toggle"></app-dashboard-menu>
+  <router-outlet></router-outlet>
+</div>
+

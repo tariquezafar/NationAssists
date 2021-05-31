@@ -1,0 +1,70 @@
+﻿@model NationAssists.Areas.Admin.Models.mUser
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboardCon transition">
+    <div class="mainHd">Manage User</div>
+    <ul class="dbForm flexBox">
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserType">User Type </span>
+            <select id="UserTypeId" class="formInput">
+                <option value="">--Select--</option>
+                <option value="1">Employee</option>
+                <option value="2">Agent</option>
+                <option value="3">Insurance Company</option>
+            </select>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">Name </span>
+            <input type="text" class="formInput" id="txtUserName" placeholder="Name">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblPassword">Password </span>
+            <input type="password" class="formInput" id="txtPassword">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblEmailId">Email ID </span>
+            <input type="text" class="formInput" id="txtEmailId">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblMobileNo">Mobile No </span>
+            <input type="text" class="formInput" id="txtMobileNo">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblPhoneNo">Phone No </span>
+            <input type="text" class="formInput" id="txtPhoneNo">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblRole">Role </span>
+            @Html.DropDownListFor(m => m.RoleId, Model.GetAllRoles(), "--Select-", new { @class = "formInput" })
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblBranch">Branch </span>
+            @Html.DropDownListFor(m => m.BranchId, Model.GetAllBranches(), "--Select-", new { @class = "formInput" })
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd">Status</span>
+            <div class="optBox flexBox">
+
+                <label><input type="checkbox" class="checkInpt" id="chkIsActive"> Is Active</label>
+
+            </div>
+        </li>
+    </ul>
+    <div>
+        <input type="hidden" id="hdnUserId" value="@Model.UserId" />
+        <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveUsers();">Save</button>
+        <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/User/AddUser/'">Reset</button>
+
+    </div>
+    <div class="dbTable">
+        @Html.Partial("~/Areas/Admin/Views/User/_UserList.cshtml", Model);
+    </div>
+</div>
+        
+      
+        <script type="text/javascript" src="~/Areas/Admin/JS/User.js"></script>
+
+

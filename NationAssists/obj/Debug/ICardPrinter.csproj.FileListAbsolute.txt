@@ -1,0 +1,129 @@
+G:\tariq work\ICardPrinter\ICardPrinter\obj\Debug\ICardPrinter.csprojResolveAssemblyReference.cache
+G:\tariq work\ICardPrinter\ICardPrinter\bin\ICardPrinter.dll.config
+G:\tariq work\ICardPrinter\ICardPrinter\bin\ICardPrinter.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\ICardPrinter.pdb
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Antlr3.Runtime.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\DataEngine.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\DataServices.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\EntityFramework.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\EntityFramework.SqlServer.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.Core.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.Owin.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Host.SystemWeb.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Cookies.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Facebook.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Google.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.OAuth.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Twitter.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Web.Infrastructure.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Newtonsoft.Json.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Owin.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.Helpers.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.Mvc.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.Optimization.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.Razor.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.Deployment.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.Razor.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Utility.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\WebGrease.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\DbOperation.dll
+G:\tariq work\ICardPrinter\ICardPrinter\bin\DataEngine.pdb
+G:\tariq work\ICardPrinter\ICardPrinter\bin\DataServices.pdb
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Utility.pdb
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.Helpers.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.Mvc.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.Optimization.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.Razor.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.Deployment.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.Razor.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Newtonsoft.Json.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Antlr3.Runtime.pdb
+G:\tariq work\ICardPrinter\ICardPrinter\bin\EntityFramework.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\EntityFramework.SqlServer.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.Core.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.Owin.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Host.SystemWeb.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Facebook.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Cookies.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.OAuth.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Google.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Twitter.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+G:\tariq work\ICardPrinter\ICardPrinter\bin\DbOperation.pdb
+G:\tariq work\ICardPrinter\ICardPrinter\obj\Debug\ICardPrinter.dll
+G:\tariq work\ICardPrinter\ICardPrinter\obj\Debug\ICardPrinter.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\ICardPrinter.dll.config
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\ICardPrinter.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\ICardPrinter.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Antlr3.Runtime.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\DataEngine.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\DataServices.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\EntityFramework.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\EntityFramework.SqlServer.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Google.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Web.Infrastructure.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Newtonsoft.Json.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Owin.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.Helpers.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.Mvc.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.Optimization.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.Razor.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.Deployment.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.Razor.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Utility.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\WebGrease.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\DbOperation.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\DataEngine.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\DataEngine.dll.config
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\DataServices.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Utility.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.Helpers.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.Mvc.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.Optimization.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.Razor.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.Deployment.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\System.Web.WebPages.Razor.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Newtonsoft.Json.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Antlr3.Runtime.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\EntityFramework.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\EntityFramework.SqlServer.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Google.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\bin\DbOperation.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\obj\Debug\ICardPrinter.csprojAssemblyReference.cache
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\obj\Debug\ICardPrinter.csproj.CoreCompileInputs.cache
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\obj\Debug\ICardPrinter.csproj.CopyComplete
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\obj\Debug\ICardPrinter.dll
+D:\Tarique\ICardPrinter\ICardPrinter\ICardPrinter\obj\Debug\ICardPrinter.pdb

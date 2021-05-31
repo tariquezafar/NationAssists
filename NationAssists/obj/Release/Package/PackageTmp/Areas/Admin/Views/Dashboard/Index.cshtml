@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboardCon transition">
+    <div class="mainHd">Dashboard</div>
+    <div class="dashboardTop">
+        <ul class="flexBox">
+            <li>
+                <div class="inner">
+                    1500
+                    <span>Total No of Users</span>
+                </div>
+            </li>
+            <li>
+                <div class="inner">
+                    225
+                    <span>Total No of Agents/Broker</span>
+                </div>
+            </li>
+            <li>
+                <div class="inner">
+                    3000
+                    <span>Total No of Customer</span>
+                </div>
+            </li>
+            <li>
+                <div class="inner">
+                    20
+                    <span>Total No of Service Requests</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul class="graphList flexBox">
+            <li class="fullWidth">
+                <div class="inner">
+                    <div class="sortBy">
+                        <span class="hd">Sort by</span>
+                        <select class="formSelect">
+                            <option value="Year">Year</option>
+                            <option value="Month">Month</option>
+                            <select>
+                    </div>
+                    <!--<div><img src="../../assets/images/graph1.jpg" alt=""></div>-->
+                    <div id="chart"></div>
+                </div>
+            </li>
+            <li>
+                <div class="inner">
+                    <div class="chartHd">Roadside Assistance</div>
+                    <!-- <div><img src="../../assets/images/graph2.jpg" alt=""></div> -->
+                    <div id="chart2"></div>
+                </div>
+            </li>
+            <li>
+                <div class="inner">
+                    <div class="chartHd">Roadside Assistance + Car Replacement</div>
+                    <!-- <div><img src="../../assets/images/graph3.jpg" alt=""></div> -->
+                    <div id="chart3"></div>
+                </div>
+            </li>
+            <li>
+                <div class="inner">
+                    <div class="chartHd">Home Assistance</div>
+                    <!-- <div><img src="../../assets/images/graph4.jpg" alt=""></div> -->
+                    <div id="chart4"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+    </div>
+

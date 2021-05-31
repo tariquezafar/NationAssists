@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    @Html.Partial("_AdminHeader")
+    @RenderBody();
+    @Html.Partial("_AdminFooter")
+</body>
+<link href="/content/css/adminstyle.css" rel="stylesheet" type="text/css" />
+@*<script src="/Content/js/jquery-1.9.1.js"></script>
+    <script src="/Content/js/jquery-1.11.0.min.js"></script>*@
+<link href="~/css/datatable.min.css" rel="stylesheet" />
+<script type="text/javascript" src="/content/js/admindropdown_menu.js"></script>
+<script type="text/javascript" src="/content/js/jquery.min.js"></script>
+@*Gridview paging and Sorting Css*@
+<link href="~/css/TableSorter.css" rel="stylesheet" type="text/css" />
+<link href="~/css/jquery.tablesorter.pager.css" rel="stylesheet" type="text/css" />
+
+@*Gridview paging and Sorting Js*@
+<script src="@Url.Content("~/js/sorter/jquery.tablesorter.js")" type="text/javascript"></script>
+<script src="~/js/sorter/jquery.tablesorter.pager.js" type="text/javascript"></script>
+
+<script src="~/js/datatbales.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    cssdropdown.startchrome("chromemenu")
+</script>
+</html>

@@ -1,0 +1,46 @@
+﻿@model NationAssists.Areas.Admin.Models.mServicePrice
+
+@{
+    ViewBag.Title = "ManageServicePrice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="dashboardCon transition">
+    <div class="mainHd">Manage Service Provider</div>
+    <ul class="dbForm flexBox">
+        <li class="oneThird">
+            <span class="fieldHd" id="lblService">Service </span>
+            @Html.DropDownListFor(m => m.ServiceId, Model.GetAllServices(), "--select-", new { @class = "formInput", @onchange = "BindServicePriceList()" })
+        </li>
+
+        <li class="oneThird">
+            <span class="fieldHd" id="lblServicePrice">Price </span>
+            <input type="number" class="formInput" id="txtPrice" placeholder="Price">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblStartDate">Start Date </span>
+            <input type="datetime-local" class="formInput" id="txtStartDate">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblEndDate">End Date </span>
+            <input type="datetime-local" class="formInput" id="txtEndDate">
+        </li>
+    </ul>
+    <div>
+
+        <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveServicePrice();">Save</button>
+        <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Service/ManageServicePrice/'">Reset</button>
+
+    </div>
+    <div class="dbTable" id="tblPriceList">
+
+
+    </div>
+</div>
+
+
+
+        
+
+        <script type="text/javascript" src="~/Areas/Admin/JS/ServicePrice.js"></script>

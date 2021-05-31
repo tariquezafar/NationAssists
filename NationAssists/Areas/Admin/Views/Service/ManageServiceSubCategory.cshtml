@@ -1,0 +1,47 @@
+﻿@model NationAssists.Areas.Admin.Models.mServiceSubCategory
+
+@{
+    ViewBag.Title = "AddServiceSubCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboardCon transition">
+    <div class="mainHd">Manage Service SubCategory</div>
+    <ul class="dbForm flexBox">
+        <li class="oneThird">
+            <span class="fieldHd" id="lblService">Service </span>
+            @*<input type="text" class="formInput">*@
+            @Html.DropDownListFor(m => m.ServiceId, Model.GetAllServices(), "--select-", new { @class = "formInput" })
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblSubCategoryName">Sub Category Name </span>
+            @*<input type="text" class="formInput">*@
+            @Html.TextBox("txtSubCategoryName", Model.Name, new { @class = "formInput", @id = "txtSubCategoryName", maxlength = 100, style = "width:200px; Font-size: 20px;" })
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd">Status</span>
+            <div class="optBox flexBox">
+
+                <label><input type="checkbox" class="checkInpt" id="chkIsActive"> Is Active</label>
+
+            </div>
+        </li>
+
+
+    </ul>
+
+    <div>
+        <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveServiceSubCategory();">Save</button>
+        <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Service/AddServiceSubCategory/'">Reset</button>
+
+    </div>
+
+
+    <div class="dbTable">
+
+        @Html.Partial("~/Areas/Admin/Views/Service/_ServiceSubCategoryList.cshtml", Model);
+    </div>
+    </div>
+    <script type="text/javascript" src="~/Areas/Admin/JS/ServiceSubCategory.js"></script>
+
+

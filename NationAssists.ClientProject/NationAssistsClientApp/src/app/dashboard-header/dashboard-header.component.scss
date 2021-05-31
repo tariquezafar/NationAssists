@@ -1,0 +1,9 @@
+@import '../scss/mixin.scss';
+header {width: calc(100% - 240px); height: 60px; position: fixed; right: 0; top: 0; z-index: 12; padding: 0 20px; background: #00bbfe; background: -moz-linear-gradient(left,  #00bbfe 0%, #0008ff 100%); background: -webkit-linear-gradient(left,  #00bbfe 0%,#0008ff 100%); background: linear-gradient(to right,  #00bbfe 0%,#0008ff 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00bbfe', endColorstr='#0008ff',GradientType=1 ); box-shadow: 0 0 15px rgba(0,0,0,.4);
+    @include respond-to (media-xs) {width: 100%;}
+}
+.setting {position: relative;
+    button {height: 40px; background: url(../../assets/images/menu_arrow.png) no-repeat right center; font-size: 16px; padding: 0 25px 0 0; position: relative; color: #fff; font-size: 20px;
+        img {width: 25px; height: 25px; border-radius: 100%; margin: 0 2px 4px 0;}
+    }
+}

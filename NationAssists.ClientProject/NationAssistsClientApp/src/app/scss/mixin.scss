@@ -1,0 +1,29 @@
+$myColor:#28b27d;
+$myfontFamily:  'Roboto', "Helvetica Neue", sans-serif;
+
+/*Media Query Mixing*/
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == "media-xs" {
+      @media (max-width: 599px) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == "media-md" {
+      @media (max-width: 959px) {
+        @content;
+      }
+    }
+  
+    @else if $breakpoint == "media-lg" {
+      @media (max-width: 1279px) {
+        @content;
+      }
+    }
+    @else if $breakpoint == "media-xl" {
+        @media (max-width:1919px) {
+            @content;
+        }
+    }
+  }
+  

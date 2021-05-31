@@ -1,0 +1,12 @@
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Release\DbOperation.csprojAssemblyReference.cache
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Release\DbOperation.csproj.CoreCompileInputs.cache
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Release\DbOperation.dll
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Release\DbOperation.pdb
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Release\DataEngine.dll
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Release\Utility.dll
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Release\DataEngine.pdb
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Release\DataEngine.dll.config
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Release\DbOperation.csproj.CopyComplete
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Release\DbOperation.dll
+D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Release\DbOperation.pdb
+D:\Tarique\NationAssists\NationAssists\DbOperation\bin\Release\Utility.pdb

@@ -1,0 +1,75 @@
+﻿@model NationAssists.Areas.Admin.Models.mUser
+<div>
+
+    @if (Model.UsersList != null)
+    {
+        int i = 0;
+        <div class="manage-cms">
+            @if (Model.UsersList.Count > 0)
+            {
+                <table class="table table-message tablesorter display" id="tblUsersList" cellspacing="0" cellpadding="0" border="0">
+                    <thead>
+
+
+                        <tr class="module-head" align="center" style="background-color: #29b7d3">
+
+                            <th class="heading" style="color:white;">SNo.</th>
+                            <th class="heading" style="color:white;">User Type</th>
+                            <th class="heading" style="color:white;" >Name</th>
+                            <th class="heading" style="color:white;" >Mobile No</th>
+                            <th class="heading" style="color:white;" >EmailId</th>
+                            <th class="heading" style="color:white;" >Branch</th>
+                            <th class="heading" style="color:white;" >Role</th>
+                            <th class="heading" style="color:white;" >Status</th>
+
+                            <th class="heading" colspan="2" style="width: 5%; color: white;">Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataEngine.Users item in Model.UsersList)
+                        {
+                            i = i + 1;
+                        <tr align="center">
+                            <td class="vcms">@i</td>
+
+                            <td style="height:10px;">@item.UserTypeName</td>
+                            <td style="height:10px;">@item.Name</td>
+                            <td style="height:10px;">@item.MobileNo</td>
+                            <td style="height:10px;">@item.EmailId</td>
+                            <td style="height:10px;">@item.BranchName</td>
+                            <td style="height:10px;">@item.Role</td>
+                            <td style="height:10px;">@(item.IsActive? "Active":"InActive")</td>
+                            <td style="height:10px;">
+                                <input type="hidden" value="@item.IsActive.ToString()" />
+                                <a data-id="@item.UserId" userType-id="@item.UserTypeId" branch_id="@item.BranchId" role_id="@item.RoleId" subCat_isActive="@item.IsActive.ToString()" onclick="EditUser(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+                                &nbsp; <a data-id="@item.UserId" onclick="DeleteUsers(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
+                            </td>
+
+                        </tr>
+                        }
+                    </tbody>
+
+
+                    <!-- Pagination -->
+                </table>
+            }
+            <!-- /Pagination Index -->
+        </div>
+    }
+
+    else
+    {
+        <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+    }
+
+
+</div>
+<script src="~/Areas/Admin/JS/CardPrinter.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#tblUsersList").DataTable();
+    });
+
+</script>

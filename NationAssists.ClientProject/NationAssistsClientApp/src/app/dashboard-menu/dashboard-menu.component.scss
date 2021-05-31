@@ -1,0 +1,39 @@
+@import '../scss/mixin.scss';
+.leftPart {background: #004fff; box-shadow: 0 0 15px rgba(0,0,0,.4); background: -moz-linear-gradient(left,  #004fff 0%, #00b9fe 100%); background: -webkit-linear-gradient(left,  #004fff 0%,#00b9fe 100%); background: linear-gradient(to right,  #004fff 0%,#00b9fe 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004fff', endColorstr='#00b9fe',GradientType=1 ); width: 240px; height: 100%; position: fixed; left: 0; top: 0; z-index: 12;
+    @include respond-to (media-xs) {left: -240px;}
+}
+
+.menu {width: 30px; height: 40px; position: absolute; left: 260px; top: 18px; cursor: pointer;
+    i {display: block; width: 28px; height: 3px; background: #FFF; margin: 0 auto 6px auto;}
+}
+
+.dbLogo {background: #fff; height: 60px; text-align: center;
+    @include respond-to (media-xs) {text-align: left; padding: 0 20px;}
+}
+.leftMenu {padding: 10px 15px 10px 0; margin: 0; height: calc(100vh - 110px); overflow: auto; font-family:$myfontFamily;
+    
+    li {margin-bottom: 1px; position: relative; border-radius: 0 8px 8px 0;
+        &:hover, &.active {background: #0848d4; background: -moz-linear-gradient(left,  #0848d4 0%, #0898d3 100%); background: -webkit-linear-gradient(left,  #0848d4 0%,#0898d3 100%); background: linear-gradient(to right,  #0848d4 0%,#0898d3 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0848d4', endColorstr='#0898d3',GradientType=1 ); }
+        a.link {display: block; height: 46px; cursor: pointer; line-height: 46px; padding: 0 10px 0 25px; color: #fff; font-weight: 700;}
+        .dwnArrow {position: absolute; right: 10px; top: 22px; width: 12px; height: 7px; background: url(../../assets/images/menu_arrow.png);}
+        &.active {
+            .subLink {display: block;}
+            .dwnArrow {color: #5a7eff; transform: rotate(180deg);}
+        }
+
+        .subLink {padding: 0 0 10px 30px; display: none;
+            li {padding: 3px 0; position: relative;
+               &:hover {background: none;}
+                a {font-size: 13px; color: rgba(255,255,255,.5); cursor: pointer; display: inline-block; padding-left: 12px;
+                    &:after {content: ''; background: rgba(255,255,255,.5); width: 4px; height:4px; position: absolute; left: 0; top:11px; border-radius: 100%;}
+                    &:hover, &.active {color: #fff;
+                        &:after {background: #fff;}
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+.leftBot {height: 50px; width: 230px; color: #fff; padding: 5px 20px; font-size: 13px;}

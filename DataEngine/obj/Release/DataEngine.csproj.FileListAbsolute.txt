@@ -1,0 +1,12 @@
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Release\DataEngine.dll.config
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Release\DataEngine.dll
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Release\DataEngine.pdb
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Release\EntityFramework.dll
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Release\EntityFramework.SqlServer.dll
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Release\EntityFramework.xml
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Release\EntityFramework.SqlServer.xml
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Release\DataEngine.csprojAssemblyReference.cache
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Release\DataEngine.csproj.CoreCompileInputs.cache
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Release\DataEngine.csproj.CopyComplete
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Release\DataEngine.dll
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Release\DataEngine.pdb

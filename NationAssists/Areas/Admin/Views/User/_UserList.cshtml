@@ -1,0 +1,75 @@
+﻿@model NationAssists.Areas.Admin.Models.mUser
+
+
+    @if (Model.UsersList != null)
+    {
+        int i = 0;
+        
+            if (Model.UsersList.Count > 0)
+            {
+                <table >
+                    <thead>
+
+
+                        <tr>
+
+                            <th>SNo.</th>
+                            <th>User Type</th>
+                            <th>Name</th>
+                            <th>Mobile No</th>
+                            <th>EmailId</th>
+                            <th>Branch</th>
+                            <th>Role</th>
+                            <th>Status</th>
+
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataEngine.Users item in Model.UsersList)
+                        {
+                            i = i + 1;
+                        <tr>
+                            <td >@i</td>
+
+                            <td>@item.UserTypeName</td>
+                            <td>@item.Name</td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.EmailId</td>
+                            <td>@item.BranchName</td>
+                            <td>@item.Role</td>
+                            <td>@(item.IsActive? "Active":"InActive")</td>
+                            <td>
+                                <input type="hidden" value="@item.IsActive.ToString()" />
+                                <a data-id="@item.UserId" userType-id="@item.UserTypeId" branch_id="@item.BranchId" role_id="@item.RoleId" subCat_isActive="@item.IsActive.ToString()" onclick="EditUser(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+                                &nbsp; <a data-id="@item.UserId" onclick="DeleteUsers(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
+                            </td>
+
+                        </tr>
+                        }
+                    </tbody>
+
+
+                    <!-- Pagination -->
+                </table>
+            }
+            <!-- /Pagination Index -->
+      
+    }
+
+    else
+    {
+        <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+    }
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#tblUsersList").DataTable();
+    });
+
+</script>

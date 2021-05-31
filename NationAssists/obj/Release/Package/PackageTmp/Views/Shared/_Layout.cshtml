@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Nation Assist</title>
+    <!--[if IE]>
+    <script src="js/html5.js"></script>
+    <![endif]-->
+    <link href="css/slick.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="css/responsive.css" type="text/css">
+
+</head>
+
+<body>
+    <div class="mainCon">
+        @Html.Partial("_Header")
+        @RenderBody();
+        @Html.Partial("_Footer")
+    </div>
+  
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/function.js"></script>
+    <script src="js/slick.min.js"></script>
+    @*<script>
+        $('.testimonialSlider').slick({
+            dots: true,
+            speed: 600,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            autoplay: false,
+        });
+        $('.bannerSlider').slick({
+            dots: false,
+            speed: 600,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            autoplay: true,
+        });
+
+
+
+    </script>*@
+</body>
+
+</html>

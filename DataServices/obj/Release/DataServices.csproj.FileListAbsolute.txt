@@ -1,0 +1,14 @@
+D:\Tarique\NationAssists\NationAssists\DataServices\obj\Release\DataServices.csprojAssemblyReference.cache
+D:\Tarique\NationAssists\NationAssists\DataServices\obj\Release\DataServices.csproj.CoreCompileInputs.cache
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\DataServices.dll
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\DataServices.pdb
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\DataEngine.dll
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\DbOperation.dll
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\Utility.dll
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\DataEngine.pdb
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\DataEngine.dll.config
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\DbOperation.pdb
+D:\Tarique\NationAssists\NationAssists\DataServices\obj\Release\DataServices.csproj.CopyComplete
+D:\Tarique\NationAssists\NationAssists\DataServices\obj\Release\DataServices.dll
+D:\Tarique\NationAssists\NationAssists\DataServices\obj\Release\DataServices.pdb
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\Utility.pdb

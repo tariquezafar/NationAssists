@@ -1,0 +1,78 @@
+﻿@model NationAssists.Areas.Admin.Models.mServiceSubCategory
+@*<div>*@
+
+    @if (Model.ServiceSubCategroyList != null)
+    {
+        int i = 0;
+        
+        if (Model.ServiceSubCategroyList.Count > 0)
+        {
+<table>
+    @*<table class="table table-message tablesorter display" id="tblServiceSubCategoryList" cellspacing="0" cellpadding="0" border="0">*@
+    @*<thead>
+
+
+            <tr class="module-head" align="center" style="background-color: #29b7d3">
+
+                <th class="heading" style="width:5%;color:white;">SNo.</th>
+                <th class="heading" style="width: 25%; color: white;">Service Name</th>
+                <th class="heading" style="width: 25%; color: white;">Sub Category Name</th>
+                <th class="heading" style="width: 25%; color: white;">Status</th>
+
+                <th class="heading" colspan="2" style="width: 5%; color: white;">Operation</th>
+            </tr>
+        </thead>*@
+    <thead>
+        <tr>
+            <th>SNo.</th>
+            <th>Service Name</th>
+            <th>Sub Category Name</th>
+            <th>Status</th>
+            <th>Operation</th>
+           
+        </tr>
+    <thead>
+    <tbody>
+        @foreach (DataEngine.ServiceSubCategory item in Model.ServiceSubCategroyList)
+        {
+            i = i + 1;
+          
+
+            <tr>
+                <td><span class="blueClr">@i</span></td>
+                <td>@item.ServiceName</td>
+                <td>>@item.Name</td>
+                <td>@(item.IsActive? "Active":"InActive")</td>
+                <td>
+                    <input type="hidden" value="@item.IsActive.ToString()" />
+                    <a data-id="@item.ServiceSubCategoryId" service-id="@item.ServiceId" subCate-Name="@item.Name" subCat_isActive="@item.IsActive.ToString()" onclick="EditServiceSubCategory(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+                    &nbsp; <a data-id="@item.ServiceSubCategoryId" onclick="DeleteServiceSubCategory(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
+                </td>
+             
+            </tr>
+        }
+    </tbody>
+
+
+    
+</table>
+        }
+      
+    }
+
+    else
+    {
+        <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+    }
+
+
+@*</div>*@
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#tblServiceSubCategoryList").DataTable();
+    });
+
+</script>

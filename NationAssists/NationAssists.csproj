@@ -1,0 +1,633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BD2DB754-38AE-42B5-AF35-58DCD7744FAB}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ICardPrinter</RootNamespace>
+    <AssemblyName>ICardPrinter</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\mServicePrice.cs" />
+    <Compile Include="Areas\Admin\Models\mServiceProvider.cs" />
+    <Compile Include="Areas\Admin\Models\mServiceSubCategory.cs" />
+    <Compile Include="Areas\Admin\Models\mServiceProviderPrice.cs" />
+    <Compile Include="Areas\Admin\Models\mUser.cs" />
+    <Compile Include="Areas\Admin\Models\SqlOutput.cs" />
+    <Compile Include="Areas\Biometric\BiometricAreaRegistration.cs" />
+    <Compile Include="Areas\CardPrinters\CardPrintersAreaRegistration.cs" />
+    <Compile Include="Areas\Card\CardAreaRegistration.cs" />
+    <Compile Include="Areas\Software\SoftwareAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.css" />
+    <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.js" />
+    <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.min.css" />
+    <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.min.js" />
+    <Content Include="Areas\Admin\JS\ServicePrice.js" />
+    <Content Include="Areas\Admin\JS\ServiceProvider.js" />
+    <Content Include="Areas\Admin\JS\ServiceProviderPrice.js" />
+    <Content Include="Areas\Admin\JS\ServiceSubCategory.js" />
+    <Content Include="Areas\Admin\JS\CardPrinter.js" />
+    <Content Include="Areas\Admin\JS\User.js" />
+    <Content Include="Areas\CardPrinters\Js\crdPrinter.js" />
+    <Content Include="contact-us.html" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\adminstyle.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\blog.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\grabbing.html" />
+    <Content Include="Content\css\images\NationAssists\about_banner.jpg" />
+    <Content Include="Content\css\images\NationAssists\about_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\app_store.png" />
+    <Content Include="Content\css\images\NationAssists\app_store_large.png" />
+    <Content Include="Content\css\images\NationAssists\banner_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\banner_img2.jpg" />
+    <Content Include="Content\css\images\NationAssists\banner_img3.jpg" />
+    <Content Include="Content\css\images\NationAssists\calender_icon.png" />
+    <Content Include="Content\css\images\NationAssists\client_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\commitment_employees.png" />
+    <Content Include="Content\css\images\NationAssists\customer_satisfaction.png" />
+    <Content Include="Content\css\images\NationAssists\customer_service.png" />
+    <Content Include="Content\css\images\NationAssists\dependibility.png" />
+    <Content Include="Content\css\images\NationAssists\download_bg.jpg" />
+    <Content Include="Content\css\images\NationAssists\dwn_arrow.png" />
+    <Content Include="Content\css\images\NationAssists\email_contact.png" />
+    <Content Include="Content\css\images\NationAssists\email_icon.png" />
+    <Content Include="Content\css\images\NationAssists\facebook_wht.png" />
+    <Content Include="Content\css\images\NationAssists\footer_logo.png" />
+    <Content Include="Content\css\images\NationAssists\google_play.png" />
+    <Content Include="Content\css\images\NationAssists\google_play_large.png" />
+    <Content Include="Content\css\images\NationAssists\go_icon.png" />
+    <Content Include="Content\css\images\NationAssists\graph1.jpg" />
+    <Content Include="Content\css\images\NationAssists\graph2.jpg" />
+    <Content Include="Content\css\images\NationAssists\graph3.jpg" />
+    <Content Include="Content\css\images\NationAssists\graph4.jpg" />
+    <Content Include="Content\css\images\NationAssists\home_assistance.png" />
+    <Content Include="Content\css\images\NationAssists\home_assistance_banner.png" />
+    <Content Include="Content\css\images\NationAssists\home_assistance_banner_bg.jpg" />
+    <Content Include="Content\css\images\NationAssists\home_assistance_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\home_assistance_ro.png" />
+    <Content Include="Content\css\images\NationAssists\home_icon.png" />
+    <Content Include="Content\css\images\NationAssists\innovation.png" />
+    <Content Include="Content\css\images\NationAssists\insurance_document.png" />
+    <Content Include="Content\css\images\NationAssists\insurance_document_banner.png" />
+    <Content Include="Content\css\images\NationAssists\insurance_document_banner_bg.jpg" />
+    <Content Include="Content\css\images\NationAssists\insurance_document_ro.png" />
+    <Content Include="Content\css\images\NationAssists\integrity.png" />
+    <Content Include="Content\css\images\NationAssists\linkedin_wht.png" />
+    <Content Include="Content\css\images\NationAssists\link_arrow.png" />
+    <Content Include="Content\css\images\NationAssists\location_contact.png" />
+    <Content Include="Content\css\images\NationAssists\login_bg.jpg" />
+    <Content Include="Content\css\images\NationAssists\logo.png" />
+    <Content Include="Content\css\images\NationAssists\menu_arrow.png" />
+    <Content Include="Content\css\images\NationAssists\mission.jpg" />
+    <Content Include="Content\css\images\NationAssists\mission_banner.jpg" />
+    <Content Include="Content\css\images\NationAssists\mission_icon.png" />
+    <Content Include="Content\css\images\NationAssists\mission_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\mobile_screen.png" />
+    <Content Include="Content\css\images\NationAssists\phone.png" />
+    <Content Include="Content\css\images\NationAssists\phone_contact.png" />
+    <Content Include="Content\css\images\NationAssists\phone_icon.png" />
+    <Content Include="Content\css\images\NationAssists\play_icon.png" />
+    <Content Include="Content\css\images\NationAssists\quote_icon.png" />
+    <Content Include="Content\css\images\NationAssists\replacement_car.png" />
+    <Content Include="Content\css\images\NationAssists\replacement_car_banner.png" />
+    <Content Include="Content\css\images\NationAssists\replacement_car_banner_bg.jpg" />
+    <Content Include="Content\css\images\NationAssists\replacement_car_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\replacement_car_ro.png" />
+    <Content Include="Content\css\images\NationAssists\roadside_assistance.png" />
+    <Content Include="Content\css\images\NationAssists\roadside_assistance_banner.png" />
+    <Content Include="Content\css\images\NationAssists\roadside_assistance_banner_bg.jpg" />
+    <Content Include="Content\css\images\NationAssists\roadside_assistance_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\roadside_assistance_ro.png" />
+    <Content Include="Content\css\images\NationAssists\search.png" />
+    <Content Include="Content\css\images\NationAssists\selectArrow.png" />
+    <Content Include="Content\css\images\NationAssists\select_arrow.png" />
+    <Content Include="Content\css\images\NationAssists\social_responsibility.png" />
+    <Content Include="Content\css\images\NationAssists\stake_holders.png" />
+    <Content Include="Content\css\images\NationAssists\team_work.png" />
+    <Content Include="Content\css\images\NationAssists\transparency.png" />
+    <Content Include="Content\css\images\NationAssists\twitter_wht.png" />
+    <Content Include="Content\css\images\NationAssists\underConstruction_img.png" />
+    <Content Include="Content\css\images\NationAssists\user_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\value.jpg" />
+    <Content Include="Content\css\images\NationAssists\value_banner.jpg" />
+    <Content Include="Content\css\images\NationAssists\value_icon.png" />
+    <Content Include="Content\css\images\NationAssists\value_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\video_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\video_img2.jpg" />
+    <Content Include="Content\css\images\NationAssists\video_img3.jpg" />
+    <Content Include="Content\css\images\NationAssists\vision.jpg" />
+    <Content Include="Content\css\images\NationAssists\vision_banner.jpg" />
+    <Content Include="Content\css\images\NationAssists\vision_icon.png" />
+    <Content Include="Content\css\images\NationAssists\vision_img.jpg" />
+    <Content Include="Content\css\images\NationAssists\web_contact.png" />
+    <Content Include="Content\css\images\NationAssists\whatsapp.png" />
+    <Content Include="Content\css\images\ui-bg_diagonals-thick_18_b81900_40x40.html" />
+    <Content Include="Content\css\images\ui-bg_diagonals-thick_20_666666_40x40.html" />
+    <Content Include="Content\css\images\ui-bg_flat_10_000000_40x100.html" />
+    <Content Include="Content\css\images\ui-bg_glass_100_f6f6f6_1x400.html" />
+    <Content Include="Content\css\images\ui-bg_glass_100_fdf5ce_1x400.html" />
+    <Content Include="Content\css\images\ui-bg_glass_65_ffffff_1x400.html" />
+    <Content Include="Content\css\images\ui-bg_gloss-wave_35_f6a828_500x100.html" />
+    <Content Include="Content\css\images\ui-bg_highlight-soft_100_eeeeee_1x100.html" />
+    <Content Include="Content\css\images\ui-bg_highlight-soft_75_ffe45c_1x100.html" />
+    <Content Include="Content\css\images\ui-icons_222222_256x240.html" />
+    <Content Include="Content\css\images\ui-icons_228ef1_256x240.html" />
+    <Content Include="Content\css\images\ui-icons_ef8c08_256x240.html" />
+    <Content Include="Content\css\images\ui-icons_ffd27a_256x240.html" />
+    <Content Include="Content\css\images\ui-icons_ffffff_256x240.html" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\css\NationAssists\jquery.datetimepicker.css" />
+    <Content Include="Content\css\NationAssists\responsive.css" />
+    <Content Include="Content\css\NationAssists\slick.css" />
+    <Content Include="Content\css\NationAssists\stylesheet.css" />
+    <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\owl.transitions.css" />
+    <Content Include="Content\css\quick_view_popup.css" />
+    <Content Include="Content\css\responsive.css" />
+    <Content Include="Content\css\revolution-slider.css" />
+    <Content Include="Content\css\simple-line-icons.css" />
+    <Content Include="Content\css\slick.min.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\js\admindropdown_menu.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\cloud-zoom.js" />
+    <Content Include="Content\js\countdown.js" />
+    <Content Include="Content\js\jquery-1.11.0.min.js" />
+    <Content Include="Content\js\jquery-1.9.1.js" />
+    <Content Include="Content\js\jquery-ui.js" />
+    <Content Include="Content\js\jquery.bxslider.js" />
+    <Content Include="Content\js\jquery.flexslider.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\magnific-popup.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\megamenu.js" />
+    <Content Include="Content\js\mobile-menu.js" />
+    <Content Include="Content\js\NationAssists\apexcharts.js" />
+    <Content Include="Content\js\NationAssists\function.js" />
+    <Content Include="Content\js\NationAssists\html5.js" />
+    <Content Include="Content\js\NationAssists\jquery.datetimepicker.full.js" />
+    <Content Include="Content\js\NationAssists\jquery.min.js" />
+    <Content Include="Content\js\NationAssists\slick.min.js" />
+    <Content Include="Content\js\owl.carousel.min.js" />
+    <Content Include="Content\js\revolution-slider.js" />
+    <Content Include="Content\style.css" />
+    <Content Include="css\datatable.min.css" />
+    <Content Include="css\jquery.tablesorter.pager.css" />
+    <Content Include="css\responsive.css" />
+    <Content Include="css\slick.css" />
+    <Content Include="css\stylesheet.css" />
+    <Content Include="css\TableSorter.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont5b62.html" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.html" />
+    <Content Include="fonts\font-awesome\fontawesome-webfont5b62.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.html" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="home-assistance.html" />
+    <Content Include="images\about_banner.jpg" />
+    <Content Include="images\about_img.jpg" />
+    <Content Include="images\app_store.png" />
+    <Content Include="images\app_store_large.png" />
+    <Content Include="images\banner_img.jpg" />
+    <Content Include="images\banner_img2.jpg" />
+    <Content Include="images\banner_img3.jpg" />
+    <Content Include="images\client_img.jpg" />
+    <Content Include="images\commitment_employees.png" />
+    <Content Include="images\customer_satisfaction.png" />
+    <Content Include="images\customer_service.png" />
+    <Content Include="images\dependibility.png" />
+    <Content Include="images\download_bg.jpg" />
+    <Content Include="images\dwn_arrow.png" />
+    <Content Include="images\email_contact.png" />
+    <Content Include="images\email_icon.png" />
+    <Content Include="images\facebook_wht.png" />
+    <Content Include="images\footer_logo.png" />
+    <Content Include="images\google_play.png" />
+    <Content Include="images\google_play_large.png" />
+    <Content Include="images\go_icon.png" />
+    <Content Include="images\home_assistance.png" />
+    <Content Include="images\home_assistance_banner.png" />
+    <Content Include="images\home_assistance_banner_bg.jpg" />
+    <Content Include="images\home_assistance_img.jpg" />
+    <Content Include="images\home_assistance_ro.png" />
+    <Content Include="images\home_icon.png" />
+    <Content Include="images\innovation.png" />
+    <Content Include="images\insurance_document.png" />
+    <Content Include="images\insurance_document_banner.png" />
+    <Content Include="images\insurance_document_banner_bg.jpg" />
+    <Content Include="images\insurance_document_ro.png" />
+    <Content Include="images\integrity.png" />
+    <Content Include="images\linkedin_wht.png" />
+    <Content Include="images\link_arrow.png" />
+    <Content Include="images\location_contact.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\mission_banner.jpg" />
+    <Content Include="images\mission_icon.png" />
+    <Content Include="images\mission_img.jpg" />
+    <Content Include="images\mobile_screen.png" />
+    <Content Include="images\phone.png" />
+    <Content Include="images\phone_contact.png" />
+    <Content Include="images\phone_icon.png" />
+    <Content Include="images\play_icon.png" />
+    <Content Include="images\quote_icon.png" />
+    <Content Include="images\replacement_car.png" />
+    <Content Include="images\replacement_car_banner.png" />
+    <Content Include="images\replacement_car_banner_bg.jpg" />
+    <Content Include="images\replacement_car_img.jpg" />
+    <Content Include="images\replacement_car_ro.png" />
+    <Content Include="images\roadside_assistance.png" />
+    <Content Include="images\roadside_assistance_banner.png" />
+    <Content Include="images\roadside_assistance_banner_bg.jpg" />
+    <Content Include="images\roadside_assistance_img.jpg" />
+    <Content Include="images\roadside_assistance_ro.png" />
+    <Content Include="images\search.png" />
+    <Content Include="images\select_arrow.png" />
+    <Content Include="images\social_responsibility.png" />
+    <Content Include="images\stake_holders.png" />
+    <Content Include="images\team_work.png" />
+    <Content Include="images\transparency.png" />
+    <Content Include="images\twitter_wht.png" />
+    <Content Include="images\underConstruction_img.png" />
+    <Content Include="images\value_banner.jpg" />
+    <Content Include="images\value_icon.png" />
+    <Content Include="images\value_img.jpg" />
+    <Content Include="images\video_img.jpg" />
+    <Content Include="images\video_img2.jpg" />
+    <Content Include="images\video_img3.jpg" />
+    <Content Include="images\vision_banner.jpg" />
+    <Content Include="images\vision_icon.png" />
+    <Content Include="images\vision_img.jpg" />
+    <Content Include="images\web_contact.png" />
+    <Content Include="images\whatsapp.png" />
+    <Content Include="insurance-document.html" />
+    <Content Include="js\function.js" />
+    <Content Include="js\html5.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\slick.min.js" />
+    <Content Include="mission.html" />
+    <Content Include="roadside-assistance-replacement-car.html" />
+    <Content Include="roadside-assistance.html" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Software\Views\web.config" />
+    <Content Include="Areas\Card\Views\web.config" />
+    <Content Include="Areas\Biometric\Views\web.config" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont5b62.eot" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont5b62.svg" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont5b62.ttf" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfont5b62.woff" />
+    <Content Include="Content\fonts\font-awesome\fontawesome-webfontd41d.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Content\fonts\montserrat\IQHow_FEYlDC4Gzy_m8fcgFhaRv2pGgT5Kf0An0s4MM.woff" />
+    <Content Include="Content\fonts\montserrat\zhcz-_WihjSQC0oHJ9TCYBsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="Content\fonts\poppins\57TQ-anwthzkETEIO4jESBsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="Content\fonts\poppins\D2gN9uyZ9Ucx1fJ1Fhb7sxsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="Content\fonts\poppins\SFusu2OSFiUt40t5QNWvnA.woff" />
+    <Content Include="Content\fonts\poppins\yQWaOD4iNU5NTY0apN-qjxsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="Content\fonts\poppins\zO07Oxe3SOlw0l2YX2sdIRsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="Content\fonts\simple-line-icons\Simple-Line-Icons.eot" />
+    <Content Include="Content\fonts\simple-line-icons\Simple-Line-Icons.svg" />
+    <Content Include="Content\fonts\simple-line-icons\Simple-Line-Icons.ttf" />
+    <Content Include="Content\fonts\simple-line-icons\Simple-Line-Icons.woff" />
+    <Content Include="Content\fonts\simple-line-icons\Simple-Line-Iconsd41d.eot" />
+    <Content Include="Areas\CardPrinters\Views\web.config" />
+    <Content Include="fonts\font-awesome\fontawesome-webfont5b62.eot" />
+    <Content Include="fonts\font-awesome\fontawesome-webfont5b62.svg" />
+    <Content Include="fonts\font-awesome\fontawesome-webfont5b62.ttf" />
+    <Content Include="fonts\font-awesome\fontawesome-webfont5b62.woff" />
+    <Content Include="fonts\font-awesome\fontawesome-webfontd41d.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="fonts\montserrat\IQHow_FEYlDC4Gzy_m8fcgFhaRv2pGgT5Kf0An0s4MM.woff" />
+    <Content Include="fonts\montserrat\zhcz-_WihjSQC0oHJ9TCYBsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="fonts\poppins\57TQ-anwthzkETEIO4jESBsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="fonts\poppins\D2gN9uyZ9Ucx1fJ1Fhb7sxsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="fonts\poppins\SFusu2OSFiUt40t5QNWvnA.woff" />
+    <Content Include="fonts\poppins\yQWaOD4iNU5NTY0apN-qjxsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="fonts\poppins\zO07Oxe3SOlw0l2YX2sdIRsxEYwM7FgeyaSgU71cLG0.woff" />
+    <Content Include="fonts\simple-line-icons\Simple-Line-Icons.eot" />
+    <Content Include="fonts\simple-line-icons\Simple-Line-Icons.svg" />
+    <Content Include="fonts\simple-line-icons\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\simple-line-icons\Simple-Line-Icons.woff" />
+    <Content Include="fonts\simple-line-icons\Simple-Line-Iconsd41d.eot" />
+    <Content Include="Areas\Admin\Views\Service\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\_ServiceSubCategoryList.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\ManageServiceSubCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\ManageServiceProvider.cshtml" />
+    <Content Include="Areas\Admin\Views\User\AddUser.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_UserList.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\_ServiceProviderList.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\ManageServiceProviderPrice.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\_ServiceSubCategoryPriceList.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\ManageServicePrice.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\_ServicePriceList.cshtml" />
+    <Content Include="Content\css\NationAssists\Calibri-Bold.woff" />
+    <Content Include="Content\css\NationAssists\Calibri-Bold.woff2" />
+    <Content Include="Content\css\NationAssists\Calibri.woff" />
+    <Content Include="Content\css\NationAssists\Calibri.woff2" />
+    <Content Include="css\Calibri-Bold.woff" />
+    <Content Include="css\Calibri-Bold.woff2" />
+    <Content Include="css\Calibri.woff" />
+    <Content Include="css\Calibri.woff2" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\_ServiceCategoryPriceHistory.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="values.html" />
+    <Content Include="vision.html" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_AdminHeader.cshtml" />
+    <Content Include="Views\Shared\_AdminFooter.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout_bkp.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Biometric\Controllers\" />
+    <Folder Include="Areas\Biometric\Models\" />
+    <Folder Include="Areas\Biometric\Views\Shared\" />
+    <Folder Include="Areas\CardPrinters\Controllers\" />
+    <Folder Include="Areas\CardPrinters\Models\" />
+    <Folder Include="Areas\CardPrinters\Views\Shared\" />
+    <Folder Include="Areas\Card\Controllers\" />
+    <Folder Include="Areas\Card\Models\" />
+    <Folder Include="Areas\Card\Views\Shared\" />
+    <Folder Include="Areas\ServiceProviderDocument\" />
+    <Folder Include="Areas\Software\Controllers\" />
+    <Folder Include="Areas\Software\Models\" />
+    <Folder Include="Areas\Software\Views\Shared\" />
+    <Folder Include="PrinterSuppliesImage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataEngine\DataEngine.csproj">
+      <Project>{8118eedb-05a5-43c5-92b1-c439c783daef}</Project>
+      <Name>DataEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataServices\DataServices.csproj">
+      <Project>{51a46ae7-5093-4277-b9bc-c7053bba245c}</Project>
+      <Name>DataServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{32e8c1ed-f775-45ee-87c8-85bba5ff3508}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3352</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3352/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

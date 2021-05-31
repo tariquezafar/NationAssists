@@ -1,0 +1,34 @@
+G:\tariq work\ICardPrinter\DataEngine\bin\Debug\DataEngine.dll.config
+G:\tariq work\ICardPrinter\DataEngine\bin\Debug\DataEngine.dll
+G:\tariq work\ICardPrinter\DataEngine\bin\Debug\DataEngine.pdb
+G:\tariq work\ICardPrinter\DataEngine\bin\Debug\EntityFramework.dll
+G:\tariq work\ICardPrinter\DataEngine\bin\Debug\EntityFramework.SqlServer.dll
+G:\tariq work\ICardPrinter\DataEngine\bin\Debug\EntityFramework.xml
+G:\tariq work\ICardPrinter\DataEngine\bin\Debug\EntityFramework.SqlServer.xml
+G:\tariq work\ICardPrinter\DataEngine\obj\Debug\DataEngine.dll
+G:\tariq work\ICardPrinter\DataEngine\obj\Debug\DataEngine.pdb
+G:\tariq work\ICardPrinter\DataEngine\obj\Debug\DataEngine.csprojResolveAssemblyReference.cache
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\bin\Debug\DataEngine.dll.config
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\bin\Debug\DataEngine.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\bin\Debug\DataEngine.pdb
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\bin\Debug\EntityFramework.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\bin\Debug\EntityFramework.SqlServer.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\bin\Debug\EntityFramework.xml
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\bin\Debug\EntityFramework.SqlServer.xml
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\obj\Debug\DataEngine.csprojAssemblyReference.cache
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\obj\Debug\DataEngine.csproj.CoreCompileInputs.cache
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\obj\Debug\DataEngine.csproj.CopyComplete
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\obj\Debug\DataEngine.dll
+D:\Tarique\ICardPrinter\ICardPrinter\DataEngine\obj\Debug\DataEngine.pdb
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\DataEngine.dll.config
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\DataEngine.dll
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\DataEngine.pdb
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\EntityFramework.dll
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\EntityFramework.SqlServer.dll
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\EntityFramework.xml
+D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\EntityFramework.SqlServer.xml
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.csprojAssemblyReference.cache
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.csproj.CoreCompileInputs.cache
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.csproj.CopyComplete
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.dll
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.pdb

@@ -1,0 +1,62 @@
+﻿@model NationAssists.Areas.Admin.Models.mServiceProvider
+
+
+    @if (Model.ServiceProviderList != null)
+    {
+        int i = 0;
+       
+            if (Model.ServiceProviderList.Count > 0)
+            {
+                <table>
+                    <thead>
+
+
+                        <tr >
+
+                            <th>SNo.</th>
+                            <th>Name</th>
+                            <th>EmailID</th>
+                            <th>Mobile No</th>
+                            <th>CR Number</th>
+                            <th>Aggreement Start Date</th>
+                            <th>Aggreement End Date</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataEngine.ServiceProvider item in Model.ServiceProviderList)
+                        {
+                            i = i + 1;
+                        <tr>
+                            <td> <span class="blueClr">@i </span></td>
+
+                            <td>@(item.FirstName +" "+ Convert.ToString(item.MiddleName)+ " "+ Convert.ToString(item.LastName))</td>
+                            <td>@item.EmailId</td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.CRNumber</td>
+                            <td>@(Convert.ToDateTime( item.ServiceProviderAgreementFromDate).ToString("dd-MMM-yyyy"))</td>
+                            <td>@(Convert.ToDateTime( item.ServiceProviderAgreementToDate).ToString("dd-MMM-yyyy"))</td>
+                            <td>
+                                
+                                <a data-id="@item.ServiceProviderId" onclick="EditServiceProvider(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+                                &nbsp; <a data-id="@item.ServiceProviderId" onclick="DeleteServiceProvider(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
+                            </td>
+
+                        </tr>
+                        }
+                    </tbody>
+
+
+                 
+                </table>
+            }
+         
+        
+    }
+
+    else
+    {
+        <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+    }
+
+

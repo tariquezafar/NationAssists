@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Broker.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="MethodOutput.cs" />

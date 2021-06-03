@@ -109,7 +109,7 @@ namespace DbOperation
 
                 objListSqlParam[15] = new SqlParameter();
                 objListSqlParam[15].ParameterName = "@EscalationPersonName";
-                objListSqlParam[15].Value = objServiceProvider.CRNumber;
+                objListSqlParam[15].Value = objServiceProvider.EscalationPersonName;
 
                 objListSqlParam[16] = new SqlParameter();
                 objListSqlParam[16].ParameterName = "@ServiceProviderServiceOptedXml";

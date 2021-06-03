@@ -10,7 +10,8 @@
             UserTypeId: $("#UserTypeId").val(),
             IsActive: $("#chkIsActive").prop("checked"),
             MobileNo: $("#txtMobileNo").val(),
-            BranchId: $("#BranchId").val()
+            BranchId: $("#BranchId").val(),
+            UserReferenceId: $("#UserReferenceId").val()
         };
         var pUrl = "/Admin/User/SaveUsers/";
         $.ajax({
@@ -79,6 +80,8 @@ function DeleteUsers(e) {
 function ValidateForm() {
     var IsValid = true;
     var strErrMsg = "";
+    var UserType = $("#UserTypeId").val() == "2" ? 'AG' : ($("#UserTypeId").val() == "3" ? 'IC' : ($("#UserTypeId").val() == "4" ? 'SP' : ''));
+
 
     if ($("#UserTypeId").val() == "") {
 
@@ -116,12 +119,26 @@ function ValidateForm() {
         IsValid = false;
         strErrMsg += "Please select Role. \n";
     }
-    if ($("#BranchId").val() == "") {
+    if ($("#UserTypeId").val()=="1" &&  $("#BranchId").val() == "") {
+
+        IsValid = false;
+        strErrMsg += "Please select Branch. \n";
+    }
+
+    if ($("#UserTypeId").val() != "" && $("#UserTypeId").val() == "1" && $("#BranchId").val() == "") {
 
         IsValid = false;
         strErrMsg += "Please select Branch. \n";
     }
   
+    
+
+    if ($("#UserTypeId").val() != "" && $("#UserTypeId").val() != "1" && $("#UserReferenceId").val() == "0") {
+
+        var UserTypeName = UserType == "SP" ? "Service Provider" : (UserType == "AG" ? "Agent" : "Insurance Company");
+        IsValid = false;
+        strErrMsg += "Please select "+UserTypeName+". \n";
+    }
 
     if (IsValid) {
         return true;
@@ -157,11 +174,62 @@ function EditUser(e) {
             $("#UserTypeId").val(Jdata.UserTypeId);
             $("#chkIsActive").prop("checked", Jdata.IsActive);
             $("#txtMobileNo").val(Jdata.MobileNo);
-            $("#BranchId").val(Jdata.BranchId);
+            if (Jdata.UserReferenceId != null && Jdata.UserReferenceId != 0) {
+                BindUserTypeDetail();
+               
+                $("#UserReferenceId").val(Jdata.UserReferenceId);
+            }
+            else {
+                $("#BranchId").val(Jdata.BranchId);
+               
+            }
+           
             $("#btnAdd").html("<strong>Update</strong>");
         },
         error: function (data) {
         }
     });
 
+}
+
+
+function BindUserTypeDetail() {
+    if ($("#UserTypeId").val() != "") {
+        var UserTypeId = $("#UserTypeId").val();
+        var UserType = $("#UserTypeId").val() == "2" ? 'AG' : ($("#UserTypeId").val() == "3" ? 'IC' : ($("#UserTypeId").val() == "4" ? 'SP' : ''));
+
+        if (UserTypeId != "1") {
+            var pUrl = "/Admin/User/BindUserTypeDetail?UserType=" + UserType;
+            $.ajax({
+                type: "Get",
+                url: pUrl,
+                data: {},
+                dataType: 'html',
+                contentType: false,
+                processData: false,
+                async: false,
+                success: function (data) {
+
+                    $("#UserReferenceId").html(""); // clear before appending new list
+                    var jData = JSON.parse(data);
+                    if (jData != null && jData.length > 0) {
+                        $("#UserReferenceId").append($('<option></option>').val(0).html("--Select--"));
+                        $.each(jData, function (i, service) {
+                            $("#UserReferenceId").append(
+                                $('<option></option>').val(service.ServiceProviderId).html(service.FirstName));
+                        });
+                        $('#liBranch').hide();
+                        $("#liUserType").show();
+                        $("#BranchId").val('');
+                        $("#lblUserDetail").html(UserType == "SP" ? "Service Provider" : (UserType=="AG"? "Agent" :"Insurance Company"));
+                    }
+                }
+            });
+        }
+        else {
+            $('#liBranch').show();
+            $("#liUserType").hide();
+            $("#UserReferenceId").val('');
+        }
+    }
 }

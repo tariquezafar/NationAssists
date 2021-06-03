@@ -1,5 +1,5 @@
 ﻿
-var frmPrinter = new FormData();
+var frmBroker = new FormData();
 function SaveServiceProvider() {
 
     if (ValidateForm()) {
@@ -9,23 +9,23 @@ function SaveServiceProvider() {
             strServices = strServices + $(e).val() + ","
         });
         
-        frmPrinter.append("ServiceProviderId", $("#hdnServiceProviderID").val())
-        frmPrinter.append("FirstName", $("#txtFirstName").val());
-        frmPrinter.append("MiddleName", $("#txtMiddleName").val());
-        frmPrinter.append("LastName", $("#txtLastName").val());
-        frmPrinter.append("MobileNo", $("#txtMobileNo").val());
-        frmPrinter.append("PhoneNo", $("#txtPhoneNo").val());
-        frmPrinter.append("ContactPersonName", $("#txtContactPersonName").val());
-        frmPrinter.append("ContactPersonNo", $("#txtContactPersonNo").val());
-        frmPrinter.append("EscalationPersonName", $("#txtEscalationPersonName").val());
-        frmPrinter.append("EscalationPersonContactNo", $("#txtEscalationPersonContactNo").val());
-        frmPrinter.append("EmailId", $("#txtEmailId").val());
-        frmPrinter.append("CRNumber", $("#txtCRNumber").val());
-        frmPrinter.append("OfficeLocationAddress", $("#txtOfficeAddress").val());
-        frmPrinter.append("ServiceProviderAgreementFromDate", $("#txtAggreementStartDate").val());
-        frmPrinter.append("ServiceProviderAgreementToDate", $("#txtAggreementEndDate").val());
-        frmPrinter.append("SelectedServiceOpted", strServices.substring(0, strServices.length - 1));
-        frmPrinter.append("PriceOption", $('input[type="radio"][name="PricingOption"]:checked').val());
+        frmBroker.append("ServiceProviderId", $("#hdnServiceProviderID").val())
+        frmBroker.append("FirstName", $("#txtFirstName").val());
+        frmBroker.append("MiddleName", $("#txtMiddleName").val());
+        frmBroker.append("LastName", $("#txtLastName").val());
+        frmBroker.append("MobileNo", $("#txtMobileNo").val());
+        frmBroker.append("PhoneNo", $("#txtPhoneNo").val());
+        frmBroker.append("ContactPersonName", $("#txtContactPersonName").val());
+        frmBroker.append("ContactPersonNo", $("#txtContactPersonNo").val());
+        frmBroker.append("EscalationPersonName", $("#txtEscalationPersonName").val());
+        frmBroker.append("EscalationPersonContactNo", $("#txtEscalationPersonContactNo").val());
+        frmBroker.append("EmailId", $("#txtEmailId").val());
+        frmBroker.append("CRNumber", $("#txtCRNumber").val());
+        frmBroker.append("OfficeLocationAddress", $("#txtOfficeAddress").val());
+        frmBroker.append("ServiceProviderAgreementFromDate", $("#txtAggreementStartDate").val());
+        frmBroker.append("ServiceProviderAgreementToDate", $("#txtAggreementEndDate").val());
+        frmBroker.append("SelectedServiceOpted", strServices.substring(0, strServices.length - 1));
+        frmBroker.append("PriceOption", $('input[type="radio"][name="PricingOption"]:checked').val());
        // frmPrinter.append("Image1", document.getElementById("fileUpload1").value != "" ? document.getElementById("fileUpload1").files[0] : $("#hdnImage1").val());
 
 
@@ -33,7 +33,7 @@ function SaveServiceProvider() {
         $.ajax({
             type: "POST",
             url: pUrl,
-            data: frmPrinter,
+            data: frmBroker,
             dataType: 'html',
             contentType: false,
             processData: false,
@@ -200,7 +200,7 @@ $("#fileInput").on("change", function () {
         var sfilename = fileInput.files[i].name;
         let srandomid = Math.random().toString(36).substring(7);
 
-        frmPrinter.append(sfilename, fileInput.files[i]);
+        frmBroker.append(sfilename, fileInput.files[i]);
 
         var markup = "<tr align='center' id='" + srandomid + "'><td style='height: 10px;'>" + sfilename + "</td><td style='height: 10px;'><a href='#' onclick='DeleteFile(\"" + srandomid + "\",\"" + sfilename +
             "\")'><img src='../../images/icon-delete.gif'  /></a></td></tr>"; // Binding the file name  
@@ -212,7 +212,7 @@ $("#fileInput").on("change", function () {
 });  
 
 function DeleteFile(Fileid, FileName) {
-    frmPrinter.delete(FileName)
+    frmBroker.delete(FileName)
     $("#" + Fileid).remove();
     chkatchtbl();
 }

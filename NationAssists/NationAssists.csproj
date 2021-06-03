@@ -163,9 +163,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrokersController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\mBroker.cs" />
     <Compile Include="Areas\Admin\Models\mServicePrice.cs" />
     <Compile Include="Areas\Admin\Models\mServiceProvider.cs" />
     <Compile Include="Areas\Admin\Models\mServiceSubCategory.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\JS\Broker.js" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.css" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.js" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.min.css" />
@@ -511,6 +514,8 @@
     <Content Include="css\Calibri.woff2" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Service\_ServiceCategoryPriceHistory.cshtml" />
+    <Content Include="Areas\Admin\Views\Brokers\ManageBroker.cshtml" />
+    <Content Include="Areas\Admin\Views\Brokers\_BrokerList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -523,6 +528,12 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="ServiceProviderDocument\132661622655875710_avatar.png" />
+    <Content Include="ServiceProviderDocument\132661622681949718_brand1.png" />
+    <Content Include="ServiceProviderDocument\132661625551209072_arrow-d.png" />
+    <Content Include="ServiceProviderDocument\132661625575689773_brand1.png" />
+    <Content Include="ServiceProviderDocument\132661710926680219_add-slide3.jpg" />
+    <Content Include="ServiceProviderDocument\132661710927236061_avatar.png" />
     <Content Include="values.html" />
     <Content Include="vision.html" />
     <Content Include="Web.config" />
@@ -572,6 +583,7 @@
     <Folder Include="Areas\Software\Controllers\" />
     <Folder Include="Areas\Software\Models\" />
     <Folder Include="Areas\Software\Views\Shared\" />
+    <Folder Include="BrokerDocument\" />
     <Folder Include="PrinterSuppliesImage\" />
   </ItemGroup>
   <ItemGroup>

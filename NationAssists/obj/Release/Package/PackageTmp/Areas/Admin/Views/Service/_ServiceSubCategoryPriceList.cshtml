@@ -28,9 +28,11 @@
                     </tr>
                 </thead>
                 <tbody id="tblServicePriceList">
-                    @foreach (DataEngine.ServiceSubCategoryPrice item in Model.ServiceSubCategoryPriceList)
+                    @{ var ActivePriceList = Model.ServiceSubCategoryPriceList.Where(x => x.IsActive == true).ToList();}
+                    @foreach (DataEngine.ServiceSubCategoryPrice item in ActivePriceList)
                     {
                         i = i + 1;
+                        var PriceHistory = Model.ServiceSubCategoryPriceList.Where(x => x.ServiceSubCategoryId == item.ServiceSubCategoryId && x.IsActive == false).ToList(); ;
                         string strtDate = item.StartDate != null ? Convert.ToDateTime(item.StartDate).ToString("yyyy-MM-ddThh:mm") : Convert.ToString(item.StartDate);
                         string EndDate = item.EndDate != null ? Convert.ToDateTime(item.EndDate).ToString("yyyy-MM-ddThh:mm") : Convert.ToString(item.EndDate);
                         <tr>
@@ -44,7 +46,9 @@
                             <td>@Html.TextBox("txtStartDate", strtDate, new { @class = "cmstext", @id = "txtStartDate_" + i, maxlength = 255, style = "width:200px; Font-size: 15px;", @placeholder = "Start Date", @type = "datetime-local" }) &nbsp;</td>
                             <td>@Html.TextBox("txtEndDate", EndDate, new { @class = "cmstext", @id = "txtEndDate_" + i, maxlength = 255, style = "width:200px; Font-size: 15px;", @placeholder = "End Date", @type = "datetime-local" }) &nbsp;</td>
 
-
+                            @*<td>
+                                <a href="javascript:void(0);" class="anchorDetail"  category-id="@item.ServiceSubCategoryId"  service-provider-id="@item.ServiceProviderId"  onclick="ViewPriceHistory(this)">Details</a>
+                            </td>*@
                         </tr>
                     }
                 </tbody>

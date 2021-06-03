@@ -21,6 +21,12 @@ namespace NationAssists.Areas.Admin.Models
 
         public List<Users> UsersList { get; set; }
 
+        public List<UserType> UserTypeList { get; set; }
+
+        public int UserTypeId { get; set; }
+
+        public int UserReferenceId { get; set; }
+
         public SelectList GetAllUsers()
         {
             CommonServices objCS = new CommonServices();
@@ -40,6 +46,13 @@ namespace NationAssists.Areas.Admin.Models
             CommonServices objCS = new CommonServices();
             IEnumerable<SelectListItem> lstDist = objCS.BindBranches().Data.OrderBy(s => s.BranchName).ToList().Select(m => new SelectListItem() { Text = m.BranchName, Value = m.BranchId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", UserId);
+        }
+
+        public SelectList GetAllUserType()
+        {
+            CommonServices objCS = new CommonServices();
+            IEnumerable<SelectListItem> lstDist = objCS.BindUserType().Data.OrderBy(s => s.UserTypeName).ToList().Select(m => new SelectListItem() { Text = m.UserTypeName, Value = m.UserTypeId.ToString() }).OrderBy(s => s.Text).ToList();
+            return new SelectList(lstDist, "Value", "Text", UserTypeId);
         }
     }
 }

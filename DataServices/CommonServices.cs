@@ -42,10 +42,10 @@ namespace DataServices
             return objCommon.BindServiceSubCategory();
         }
 
-        public MethodOutput<ServiceProvider> BindServiceProvider()
+        public MethodOutput<ServiceProvider> BindServiceProvider(string UserTye="")
         {
             OpCommon objCommon = new OpCommon();
-            return objCommon.BindServiceProvider();
+            return objCommon.BindServiceProvider(UserTye);
         }
 
 
@@ -55,6 +55,12 @@ namespace DataServices
             return objCommon.BindServiceOptedByServiceProviderId(ServiceProviderId);
 
 
+        }
+
+        public MethodOutput<UserType> BindUserType()
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindUserType();
         }
 
     }

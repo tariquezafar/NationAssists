@@ -68,6 +68,10 @@ namespace DbOperation
                 objListSqlParam[10].ParameterName = "@MobileNo";
                 objListSqlParam[10].Value = objUsers.MobileNo;
 
+                objListSqlParam[11] = new SqlParameter();
+                objListSqlParam[11].ParameterName = "@UserReferenceId";
+                objListSqlParam[11].Value = objUsers.UserReferenceId;
+
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveUsers", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
@@ -111,7 +115,8 @@ namespace DbOperation
                         BranchName= x.Field<string>("BranchName"),
                         MobileNo= x.Field<string>("MobileNo"),
                         UserTypeId= x.Field<int>("UserTypeId"),
-                        Password=x.Field<string>("Password")
+                        Password=x.Field<string>("Password"),
+                        UserReferenceId= x.Field<int>("UserReferenceId")
                     }).ToList();
 
                     output.Data = objLst;

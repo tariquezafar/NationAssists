@@ -72,6 +72,34 @@ namespace DbOperation
             return objOutput;
         }
 
+        public MethodOutput<UserType> BindUserType()
+        {
+            MethodOutput<UserType> objOutput = new MethodOutput<UserType>();
+            List<UserType> objLstRole = new List<UserType>();
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllUserType").Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstRole = dt.AsEnumerable().Select(x => new UserType
+                    {
+                        UserTypeId = x.Field<int>("UserTypeId"),
+                        UserTypeName = x.Field<string>("UserType"),
+                        IsActive = x.Field<bool>("IsActive")
+                    }).ToList();
+
+                    objOutput.Data = objLstRole;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+            }
+            return objOutput;
+        }
+
         public MethodOutput<Branch> BindBranch()
         {
             MethodOutput<Branch> objOutput = new MethodOutput<Branch>();
@@ -170,14 +198,18 @@ namespace DbOperation
         }
 
 
-        public MethodOutput<ServiceProvider> BindServiceProvider()
+        public MethodOutput<ServiceProvider> BindServiceProvider(string UserType="")
         {
             MethodOutput<ServiceProvider> objOutput = new MethodOutput<ServiceProvider>();
             List<ServiceProvider> objLstServiceProvider = new List<ServiceProvider>();
             try
             {
                 DataTable dt = new DataTable();
-                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllServiceProvider").Tables[0];
+                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@UserType";
+                objListSqlParam[0].Value = UserType;   
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllServiceProvider", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
                     objLstServiceProvider = dt.AsEnumerable().Select(x => new ServiceProvider

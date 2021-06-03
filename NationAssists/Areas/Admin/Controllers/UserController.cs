@@ -103,5 +103,14 @@ namespace NationAssists.Areas.Admin.Controllers
             }
             return Json(new { Result = IsSaved, Msg = strMsg }, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        public ActionResult BindUserTypeDetail(string UserType)
+        {
+            CommonServices objComm = new CommonServices();
+            UserType = UserType == "SP" ? "" : UserType;
+            return Json(objComm.BindServiceProvider(UserType).Data, JsonRequestBehavior.AllowGet);
+        }
     }
 }

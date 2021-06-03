@@ -20,11 +20,38 @@
                 else {
                    
                     var JData = JSON.parse(data);
-                    if (JData.Error != "") {
+                    if (JData.Error == "") {
 
                         var objServiceCategoryPrice = JData.ServiceProviderPrice;
                         $("input[type=radio][name=PricingOption][value=" + objServiceCategoryPrice.PriceOption + "]").prop("checked", true);
                         $('.pb').show()
+
+                        if (JData.ServiceProviderPrice.ServiceSubCategoryPriceList != null && JData.ServiceProviderPrice.ServiceSubCategoryPriceList.length > 0) {
+
+                            var table = "<table> <thead> <tr> <th>SNo.</th> <th>Price</th> <th> Start Date</th> <th>End Date</th> <th>Created Date </th> <th>Status</th> </tr> </thead>";
+
+                            table += "<tbody>";
+                            JData.ServiceProviderPrice.ServiceSubCategoryPriceList.forEach(function ( e,i) {
+                                var tbody = "<tr>";
+                                var StarDate = formatDate(parseFloat(e.StartDate.substring(e.StartDate.indexOf('(') + 1, e.StartDate.indexOf(')'))));
+                                var EndDate = formatDate(parseFloat(e.EndDate.substring(e.EndDate.indexOf('(') + 1, e.EndDate.indexOf(')'))));
+                                var CreatedDate = formatDate(parseFloat(e.Created_Date.substring(e.Created_Date.indexOf('(') + 1, e.Created_Date.indexOf(')'))));
+                                tbody += "<td>" + (i + 1) + "</td>";
+                              
+                                tbody += "<td>" + e.Price + "</td>";
+                                tbody += "<td>" + StarDate + "</td>";
+                                tbody += "<td>" + EndDate + "</td>";
+                                tbody += "<td>" + CreatedDate + "</td>";
+                                tbody += "<td>" + (e.IsActive ==true ? "Active" :"In Active") + "</td>";
+                                tbody += "</tr>";
+
+                                table += tbody;
+
+                            });
+
+                            $('#tblPriceList').html(table);
+
+                        }
 
                     }
                     
@@ -35,6 +62,31 @@
     }
 }
 
+
+function formatDate(dateVal) {
+    var newDate = new Date(dateVal);
+
+    var sMonth = padValue(newDate.getMonth() + 1);
+    var sDay = padValue(newDate.getDate());
+    var sYear = newDate.getFullYear();
+    var sHour = newDate.getHours();
+    var sMinute = padValue(newDate.getMinutes());
+    var sAMPM = "AM";
+
+    var iHourCheck = parseInt(sHour);
+
+    if (iHourCheck > 12) {
+        sAMPM = "PM";
+        sHour = iHourCheck - 12;
+    }
+    else if (iHourCheck === 0) {
+        sHour = "12";
+    }
+
+    sHour = padValue(sHour);
+
+    return sMonth + "-" + sDay + "-" + sYear + " " + sHour + ":" + sMinute + " " + sAMPM;
+}
 function GetAllServices() {
 
     if ($("#ServiceProviderId").val() != "") {
@@ -72,6 +124,7 @@ function SaveServiceProviderPrice() {
     if (ValidateForm()) {
 
         var SubCategoryPriceList = [];
+        if ($("input[type=radio][name=PricingOption]:checked").val() == "SB")
         $("#tblServicePriceList tr").each(function (i, e) {
             var ServiceSubCategoryPrice = {
                 ServiceSubCategoryId: $(e).find('input[id="SubCategoryId"]').val(),
@@ -83,7 +136,16 @@ function SaveServiceProviderPrice() {
             SubCategoryPriceList.push(ServiceSubCategoryPrice);
 
         });
+        else {
+            SubCategoryPriceList.push({
+               
+                Price: $("#txtPrice").val(),
+                StartDate: $("#txtStartDate").val(),
+                EndDate: $("#txtEndDate").val()
+            });
+        }
 
+       
         var objServiceSubCategoryPrice = {
             ServiceProviderId: $("#ServiceProviderId").val(),
             ServiceId: $("#ServiceId").val(),
@@ -194,5 +256,11 @@ function IsJsonString(str) {
     }
     return true;
 }
+function padValue(value) {
+    return (value < 10) ? "0" + value : value;
+}
+
+
+
 
 

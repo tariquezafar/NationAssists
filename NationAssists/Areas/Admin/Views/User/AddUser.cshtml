@@ -9,12 +9,17 @@
     <ul class="dbForm flexBox">
         <li class="oneThird">
             <span class="fieldHd" id="lblUserType">User Type </span>
-            <select id="UserTypeId" class="formInput">
-                <option value="">--Select--</option>
-                <option value="1">Employee</option>
-                <option value="2">Agent</option>
-                <option value="3">Insurance Company</option>
-            </select>
+            @Html.DropDownListFor(m => m.UserTypeId, Model.GetAllUserType(), "--Select-", new { @class = "formInput", @onchange = "BindUserTypeDetail()" })
+        </li>
+        <li class="oneThird" style="display:none;" id="liUserType">
+            <span class="fieldHd" id="lblUserDetail">User Type </span>
+            @Html.DropDownListFor(m => m.UserReferenceId,
+           new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceProviderId", "SERVICE_PROVIDER_NAME"),
+                  "Select Service", new { @class = "formInput"})
+        </li>
+        <li class="oneThird" id="liBranch">
+            <span class="fieldHd" id="lblBranch">Branch </span>
+            @Html.DropDownListFor(m => m.BranchId, Model.GetAllBranches(), "--Select-", new { @class = "formInput" })
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblUserName">Name </span>
@@ -40,10 +45,7 @@
             <span class="fieldHd" id="lblRole">Role </span>
             @Html.DropDownListFor(m => m.RoleId, Model.GetAllRoles(), "--Select-", new { @class = "formInput" })
         </li>
-        <li class="oneThird">
-            <span class="fieldHd" id="lblBranch">Branch </span>
-            @Html.DropDownListFor(m => m.BranchId, Model.GetAllBranches(), "--Select-", new { @class = "formInput" })
-        </li>
+
         <li class="oneThird">
             <span class="fieldHd">Status</span>
             <div class="optBox flexBox">

@@ -28,6 +28,17 @@ namespace DataEngine
 
         public string BranchName { get; set; }
 
+        public List<UserType> UserTypeList { get; set; }
 
+        public int UserReferenceId { get; set; }
+
+
+    }
+
+    public class UserType
+    {
+      public int  UserTypeId    {get;set;}
+      public string  UserTypeName      {get;set;}
+      public bool IsActive { get; set; }
     }
 }

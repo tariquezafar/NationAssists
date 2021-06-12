@@ -25,7 +25,7 @@ function SaveServiceSubCategory() {
                
                 if (data.Result) {
                     alert("Service SubCategory  is successfully " + ($("#hdnServiceSubCategoryID").val() == "0" ? "added." : "updated."));
-                    window.location.href = "/admin/Service/AddServiceSubCategory/";
+                    window.location.href = "/admin/Service/ManageServiceSubCategory/";
                 }
                 else {
                     alert("Opps! some error occured.");

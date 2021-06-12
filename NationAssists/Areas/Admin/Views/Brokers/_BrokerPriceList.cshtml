@@ -1,0 +1,67 @@
+﻿@model ICardPrinter.Areas.Admin.Models.mBrokerPrice
+@if (Model.BrokerPriceList != null)
+{
+    int i = 0;
+
+    if (Model.BrokerPriceList.Count > 0)
+    {
+
+        <table>
+            <thead>
+
+
+                <tr>
+
+                    <th>SNo.</th>
+                    @if (Model.PriceOption == "SB")
+                    {
+                        <th>Sub Category Name</th>
+                    }
+                    <th>Price</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+
+
+                </tr>
+            </thead>
+            <tbody id="tblServicePriceList">
+                @{ var ActivePriceList = Model.BrokerPriceList.Where(x => x.IsActive == true).ToList();}
+                @foreach (DataEngine.BrokerPrice item in ActivePriceList)
+                {
+                    i = i + 1;
+                    var PriceHistory = Model.BrokerPriceList.Where(x => x.SubCategoryId == item.SubCategoryId && x.IsActive == false).ToList(); ;
+                    string strtDate = item.StartDate != null ? Convert.ToDateTime(item.StartDate).ToString("yyyy-MM-ddThh:mm") : Convert.ToString(item.StartDate);
+                    string EndDate = item.EndDate != null ? Convert.ToDateTime(item.EndDate).ToString("yyyy-MM-ddThh:mm") : Convert.ToString(item.EndDate);
+                    <tr>
+                        <td>@i</td>
+
+                        @if (Model.PriceOption == "SB")
+                        {
+                            <td>@item.SubCategoryName  <input type="hidden" id="SubCategoryId" value="@item.SubCategoryId" /></td>
+                        }
+                        <td>  @Html.TextBox("txtPrice", item.Price, new { @class = "cmstext", @id = "txtPrice_" + i, @name = "Price", maxlength = 100, style = "width:200px; Font-size: 20px;", @type = "number" })</td>
+                        <td>@Html.TextBox("txtStartDate", strtDate, new { @class = "cmstext", @id = "txtStartDate_" + i, maxlength = 255, style = "width:200px; Font-size: 15px;", @placeholder = "Start Date", @type = "datetime-local" }) &nbsp;</td>
+                        <td>@Html.TextBox("txtEndDate", EndDate, new { @class = "cmstext", @id = "txtEndDate_" + i, maxlength = 255, style = "width:200px; Font-size: 15px;", @placeholder = "End Date", @type = "datetime-local" }) &nbsp;</td>
+
+                        @*<td>
+                                <a href="javascript:void(0);" class="anchorDetail"  category-id="@item.ServiceSubCategoryId"  service-provider-id="@item.ServiceProviderId"  onclick="ViewPriceHistory(this)">Details</a>
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+
+
+            <!-- Pagination -->
+        </table>
+
+    }
+    <!-- /Pagination Index -->
+
+}
+
+else
+{
+    <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+}
+
+

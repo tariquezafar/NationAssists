@@ -392,6 +392,14 @@ namespace NationAssists.Areas.Admin.Controllers
         }
 
         #endregion
+
+        #region Service Provider Service Area
+
+        public ActionResult ManageServiceProvierServiceArea()
+        {
+            return View();
+        }
+        #endregion
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

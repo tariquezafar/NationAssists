@@ -168,6 +168,8 @@
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\mBroker.cs" />
+    <Compile Include="Areas\Admin\Models\mBrokerPrice.cs" />
+    <Compile Include="Areas\Admin\Models\mServiceProvoiderServiceArea.cs" />
     <Compile Include="Areas\Admin\Models\mServicePrice.cs" />
     <Compile Include="Areas\Admin\Models\mServiceProvider.cs" />
     <Compile Include="Areas\Admin\Models\mServiceSubCategory.cs" />
@@ -191,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\JS\Broker.js" />
+    <Content Include="Areas\Admin\JS\BrokerPrice.js" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.css" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.js" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.min.css" />
@@ -365,6 +368,7 @@
     <Content Include="home-assistance.html" />
     <Content Include="images\about_banner.jpg" />
     <Content Include="images\about_img.jpg" />
+    <Content Include="images\animation loader.gif" />
     <Content Include="images\app_store.png" />
     <Content Include="images\app_store_large.png" />
     <Content Include="images\banner_img.jpg" />
@@ -439,6 +443,7 @@
     <Content Include="images\web_contact.png" />
     <Content Include="images\whatsapp.png" />
     <Content Include="insurance-document.html" />
+    <Content Include="js\Common.js" />
     <Content Include="js\function.js" />
     <Content Include="js\html5.js" />
     <Content Include="js\jquery.min.js" />
@@ -516,6 +521,9 @@
     <Content Include="Areas\Admin\Views\Service\_ServiceCategoryPriceHistory.cshtml" />
     <Content Include="Areas\Admin\Views\Brokers\ManageBroker.cshtml" />
     <Content Include="Areas\Admin\Views\Brokers\_BrokerList.cshtml" />
+    <Content Include="Areas\Admin\Views\Brokers\ManageBrokerPrice.cshtml" />
+    <Content Include="Areas\Admin\Views\Brokers\_BrokerPriceList.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\ManageServiceProvierServiceArea.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

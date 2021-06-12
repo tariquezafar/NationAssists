@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -10,13 +11,41 @@
     <!--[if IE]>
     <script src="js/html5.js"></script>
     <![endif]-->
+    <script src="~/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/Common.js"></script>
     <link rel="stylesheet" href="/content/css/NationAssists/stylesheet.css" type="text/css">
     <link rel="stylesheet" href="/content/css/NationAssists/responsive.css" type="text/css">
     <link rel="stylesheet" href="/content/css/NationAssists/jquery.datetimepicker.css" type="text/css">
 
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1050;
+            display: none;
+            overflow: hidden;
+            outline: 0;
+        }
+    </style>
+    <script type="text/javascript">
+
+
+
+    </script>
 </head>
 
 <body>
+    <div id="progress" class="modal" style="display: none;">
+        <div class="center" style="width: 100%;">
+
+            <img src="~/images/animation loader.gif">
+
+
+        </div>
+    </div>
     <div class="dbCon">
         <div class="dbHeader transition">
             <div class="dbHeaderInner flexBox">
@@ -144,5 +173,6 @@
     </script>
 
 </body>
+
 
 </html>

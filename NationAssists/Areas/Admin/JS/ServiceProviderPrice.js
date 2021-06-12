@@ -33,9 +33,9 @@
                             table += "<tbody>";
                             JData.ServiceProviderPrice.ServiceSubCategoryPriceList.forEach(function ( e,i) {
                                 var tbody = "<tr>";
-                                var StarDate = formatDate(parseFloat(e.StartDate.substring(e.StartDate.indexOf('(') + 1, e.StartDate.indexOf(')'))));
-                                var EndDate = formatDate(parseFloat(e.EndDate.substring(e.EndDate.indexOf('(') + 1, e.EndDate.indexOf(')'))));
-                                var CreatedDate = formatDate(parseFloat(e.Created_Date.substring(e.Created_Date.indexOf('(') + 1, e.Created_Date.indexOf(')'))));
+                                var StarDate = formatDateWithAMPM(parseFloat(e.StartDate.substring(e.StartDate.indexOf('(') + 1, e.StartDate.indexOf(')'))));
+                                var EndDate = formatDateWithAMPM(parseFloat(e.EndDate.substring(e.EndDate.indexOf('(') + 1, e.EndDate.indexOf(')'))));
+                                var CreatedDate = formatDateWithAMPM(parseFloat(e.Created_Date.substring(e.Created_Date.indexOf('(') + 1, e.Created_Date.indexOf(')'))));
                                 tbody += "<td>" + (i + 1) + "</td>";
                               
                                 tbody += "<td>" + e.Price + "</td>";
@@ -63,30 +63,7 @@
 }
 
 
-function formatDate(dateVal) {
-    var newDate = new Date(dateVal);
 
-    var sMonth = padValue(newDate.getMonth() + 1);
-    var sDay = padValue(newDate.getDate());
-    var sYear = newDate.getFullYear();
-    var sHour = newDate.getHours();
-    var sMinute = padValue(newDate.getMinutes());
-    var sAMPM = "AM";
-
-    var iHourCheck = parseInt(sHour);
-
-    if (iHourCheck > 12) {
-        sAMPM = "PM";
-        sHour = iHourCheck - 12;
-    }
-    else if (iHourCheck === 0) {
-        sHour = "12";
-    }
-
-    sHour = padValue(sHour);
-
-    return sMonth + "-" + sDay + "-" + sYear + " " + sHour + ":" + sMinute + " " + sAMPM;
-}
 function GetAllServices() {
 
     if ($("#ServiceProviderId").val() != "") {
@@ -248,17 +225,6 @@ function ValidateForm() {
     }
 }
 
-function IsJsonString(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
-function padValue(value) {
-    return (value < 10) ? "0" + value : value;
-}
 
 
 

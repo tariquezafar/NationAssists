@@ -21,6 +21,7 @@ namespace DbOperation
             {
                 string strServiceOptedXML = string.Empty;
                 string strBrokerDocsXML = string.Empty;
+                string strBrokerCommissionXML = string.Empty;
                 #region Generate XML For ServcieOpted
                 if (!String.IsNullOrEmpty(objBroker.SelectedServiceOpted))
                 {
@@ -45,10 +46,26 @@ namespace DbOperation
                     strBrokerDocsXML += "</Broker>";
 
                 }
+
+                if (objBroker.lstBrokerServiceCommissionPayable != null && objBroker.lstBrokerServiceCommissionPayable.Any())
+                {
+                    strBrokerCommissionXML += "<Broker>";
+                    foreach (BrokerServiceCommissionPayable item in objBroker.lstBrokerServiceCommissionPayable)
+                    {
+                        strBrokerCommissionXML += "<CommissionPayable>";
+                        strBrokerCommissionXML += "<ServiceId>" + item.ServiceId + "</ServiceId>";
+                        strBrokerCommissionXML += "<Commission_Paybable>" + item.Commission_Paybable.ToString() + "</Commission_Paybable>";
+                        strBrokerCommissionXML += "<Commission_StartDate>" + item.Commission_StartDate.ToString() + "</Commission_StartDate>";
+                        strBrokerCommissionXML += "<Commission_EndDate>" + item.Commission_EndDate.ToString() + "</Commission_EndDate>";
+                        strBrokerCommissionXML += "</CommissionPayable>";
+                    }
+                    strBrokerCommissionXML += "</Broker>";
+                }
+
                 #endregion
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[22];
+                SqlParameter[] objListSqlParam = new SqlParameter[30];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@BrokerId";
                 objListSqlParam[0].Value = objBroker.BrokerId;
@@ -102,36 +119,68 @@ namespace DbOperation
                 objListSqlParam[12].Value = objBroker.Agreement_End_Date;
 
                 objListSqlParam[13] = new SqlParameter();
-                objListSqlParam[13].ParameterName = "@Commission_Paybable";
-                objListSqlParam[13].Value = objBroker.Commission_Paybable;
+                objListSqlParam[13].ParameterName = "@Estimated_Business_In_A_Year";
+                objListSqlParam[13].Value = objBroker.Estimated_Business_In_A_Year;
 
                 objListSqlParam[14] = new SqlParameter();
-                objListSqlParam[14].ParameterName = "@Estimated_Business_In_A_Year";
-                objListSqlParam[14].Value = objBroker.Estimated_Business_In_A_Year;
+                objListSqlParam[14].ParameterName = "@Payment_Terms_Credit_Terms";
+                objListSqlParam[14].Value = objBroker.Payment_Terms_Credit_Terms;
 
                 objListSqlParam[15] = new SqlParameter();
-                objListSqlParam[15].ParameterName = "@Payment_Terms_Credit_Terms";
-                objListSqlParam[15].Value = objBroker.Payment_Terms_Credit_Terms;
+                objListSqlParam[15].ParameterName = "@BrokerServiceOptedXML";
+                objListSqlParam[15].Value = strServiceOptedXML;
 
                 objListSqlParam[16] = new SqlParameter();
-                objListSqlParam[16].ParameterName = "@BrokerServiceOptedXML";
-                objListSqlParam[16].Value = strServiceOptedXML;
+                objListSqlParam[16].ParameterName = "@Remarks";
+                objListSqlParam[16].Value = objBroker.Remarks;
 
                 objListSqlParam[17] = new SqlParameter();
-                objListSqlParam[17].ParameterName = "@Remarks";
-                objListSqlParam[17].Value = objBroker.Remarks;
+                objListSqlParam[17].ParameterName = "@BrokerDocumentsXML";
+                objListSqlParam[17].Value = strBrokerDocsXML;
 
                 objListSqlParam[18] = new SqlParameter();
-                objListSqlParam[18].ParameterName = "@BrokerDocumentsXML";
-                objListSqlParam[18].Value = strBrokerDocsXML;
+                objListSqlParam[18].ParameterName = "@Price_Option";
+                objListSqlParam[18].Value = objBroker.Price_Option;
 
                 objListSqlParam[19] = new SqlParameter();
-                objListSqlParam[19].ParameterName = "@Price_Option";
-                objListSqlParam[19].Value = objBroker.Price_Option;
+                objListSqlParam[19].ParameterName = "@IsActive";
+                objListSqlParam[19].Value = objBroker.IsActive;
 
                 objListSqlParam[20] = new SqlParameter();
-                objListSqlParam[20].ParameterName = "@IsActive";
-                objListSqlParam[20].Value = objBroker.IsActive;
+                objListSqlParam[20].ParameterName = "@CRNumber";
+                objListSqlParam[20].Value = objBroker.CRNumber;
+
+                objListSqlParam[21] = new SqlParameter();
+                objListSqlParam[21].ParameterName = "@CRExpiryDate";
+                objListSqlParam[21].Value = objBroker.CRExpiryDate;
+
+                objListSqlParam[22] = new SqlParameter();
+                objListSqlParam[22].ParameterName = "@VATRegistrationNumber";
+                objListSqlParam[22].Value = objBroker.VATRegistrationNumber;
+
+                objListSqlParam[23] = new SqlParameter();
+                objListSqlParam[23].ParameterName = "@Landline";
+                objListSqlParam[23].Value = objBroker.Landline;
+
+                objListSqlParam[24] = new SqlParameter();
+                objListSqlParam[24].ParameterName = "@EscalationLandlineNo";
+                objListSqlParam[24].Value = objBroker.EscalationLandlineNo;
+
+                objListSqlParam[25] = new SqlParameter();
+                objListSqlParam[25].ParameterName = "@DeclarationPeriod";
+                objListSqlParam[25].Value = objBroker.DeclarationPeriod;
+
+                objListSqlParam[26] = new SqlParameter();
+                objListSqlParam[26].ParameterName = "@BrokerServiceCommissionXml";
+                objListSqlParam[26].Value = strBrokerCommissionXML;
+
+                objListSqlParam[27] = new SqlParameter();
+                objListSqlParam[27].ParameterName = "@BranchLocation";
+                objListSqlParam[27].Value = objBroker.BranchLocation;
+
+                objListSqlParam[28] = new SqlParameter();
+                objListSqlParam[28].ParameterName = "@Escalation_Person_EmailId";
+                objListSqlParam[28].Value = objBroker.Escalation_Person_EmailId;
 
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveBroker", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
@@ -166,13 +215,18 @@ namespace DbOperation
                 objListSqlParam[1] = new SqlParameter();
                 objListSqlParam[1].ParameterName = "@BrokerType";
                 objListSqlParam[1].Value = BrokerType;
+                DataSet ds = new DataSet();
+                DataTable dtCommission = new DataTable();
+                ds = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_showAllBroker", objListSqlParam);
+                dt =ds!=null && ds.Tables.Count>0 ?ds.Tables[0] :new DataTable();
+                dtCommission = ds != null && ds.Tables.Count > 1 ? ds.Tables[1] : new DataTable();
 
-                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_showAllBroker", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
                     objLst = dt.AsEnumerable().Select(x => new Broker
                     {
-                Contact_Person_Name         = x.Field<string>("Contact_Person_Name"),
+                        BrokerCode= x.Field<string>("BrokerCode"),
+                        Contact_Person_Name = x.Field<string>("Contact_Person_Name"),
                         Contact_Person_Contact_No = x.Field<string>("Contact_Person_Contact_No"),
                         Remarks = x.Field<string>("Remarks"),
                         EmailId = x.Field<string>("EmailId"),
@@ -194,10 +248,24 @@ namespace DbOperation
                             BrokerId = x.Field<int>("BrokerId"),
                         }).ToList() : null,
                         Price_Option = x.Field<string>("Price_Option"),
-                        Commission_Paybable= x.Field<decimal>("Commission_Paybable"),
-                        CreatedDate= x.Field<DateTime>("CreatedDate"),
-                        Payment_Terms_Credit_Terms= x.Field<string>("Payment_Terms_Credit_Terms"),
-                        IsActive= x.Field<bool>("IsActive")
+                        CreatedDate = x.Field<DateTime>("CreatedDate"),
+                        Payment_Terms_Credit_Terms = x.Field<string>("Payment_Terms_Credit_Terms"),
+                        IsActive = x.Field<bool>("IsActive"),
+                        CRNumber = x.Field<string>("CRNumber"),
+                        CRExpiryDate = x.Field<DateTime?>("CRExpiryDate"),
+                        VATRegistrationNumber = x.Field<string>("VATRegistrationNumber"),
+                        Landline = x.Field<string>("Landline"),
+                        EscalationLandlineNo = x.Field<string>("EscalationLandlineNo"),
+                        DeclarationPeriod = x.Field<int?>("DeclarationPeriod"),
+                        BranchLocation = x.Field<string>("BranchLocation"),
+                        lstBrokerServiceCommissionPayable = dtCommission.Rows.Count > 0 ? dtCommission.AsEnumerable().Select(y => new BrokerServiceCommissionPayable
+                        {
+                            BrokerId = y.Field<int>("BrokerId"),
+                            Commission_EndDate = y.Field<DateTime>("Commission_EndDate"),
+                            Commission_StartDate = y.Field<DateTime>("Commission_StartDate"),
+                            Commission_Paybable = y.Field<decimal>("Commission_Paybable"),
+                            ServiceId= y.Field<int>("ServiceId"),
+                        }).ToList() : new List<BrokerServiceCommissionPayable>()
                     }).ToList();
 
                     output.Data = objLst;

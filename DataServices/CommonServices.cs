@@ -57,6 +57,12 @@ namespace DataServices
 
         }
 
+        public MethodOutput<Service> BindServiceOptedByBrokerId(int? BrokerId)
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindServiceOptedByBrokerId(BrokerId);
+        }
+
         public MethodOutput<UserType> BindUserType()
         {
             OpCommon objCommon = new OpCommon();

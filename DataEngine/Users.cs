@@ -32,6 +32,23 @@ namespace DataEngine
 
         public int UserReferenceId { get; set; }
 
+        public string CPRNumber { get; set; }
+        public DateTime? CPRExpiryDate { get; set; }
+        public string PassportNumber { get; set; }
+        public DateTime? PassportExpiryDate { get; set; }
+        public string VisaNumber { get; set; }
+        public string ContactAddressHomeCountry { get; set; }
+        public string ContactAddressLocal { get; set; }
+        public string MobileNumberLocal { get; set; }
+        public string EmergencyContactPersonName { get; set; }
+        public DateTime? DateOfJoining { get; set; }
+        public string Remarks { get; set; }
+
+        public string Reference_Code { get; set; }
+
+        public string UserCode { get; set; }
+
+        public string SourceName { get; set; }
 
     }
 

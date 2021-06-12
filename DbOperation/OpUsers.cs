@@ -18,7 +18,7 @@ namespace DbOperation
             try
             {
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[15];
+                SqlParameter[] objListSqlParam = new SqlParameter[25];
 
                 //objListSqlParam[0] = new SqlParameter();
                 //objListSqlParam[0].ParameterName = "@UserId";
@@ -72,6 +72,58 @@ namespace DbOperation
                 objListSqlParam[11].ParameterName = "@UserReferenceId";
                 objListSqlParam[11].Value = objUsers.UserReferenceId;
 
+                objListSqlParam[12] = new SqlParameter();
+                objListSqlParam[12].ParameterName = "@CPRNumber";
+                objListSqlParam[12].Value = objUsers.CPRNumber;
+
+                objListSqlParam[13] = new SqlParameter();
+                objListSqlParam[13].ParameterName = "@CPRExpiryDate";
+                objListSqlParam[13].Value = objUsers.CPRExpiryDate;
+
+                objListSqlParam[14] = new SqlParameter();
+                objListSqlParam[14].ParameterName = "@PassportNumber";
+                objListSqlParam[14].Value = objUsers.PassportNumber;
+
+                objListSqlParam[15] = new SqlParameter();
+                objListSqlParam[15].ParameterName = "@PassportExpiryDate";
+                objListSqlParam[15].Value = objUsers.PassportExpiryDate;
+
+                objListSqlParam[16] = new SqlParameter();
+                objListSqlParam[16].ParameterName = "@VisaNumber";
+                objListSqlParam[16].Value = objUsers.VisaNumber;
+
+
+                objListSqlParam[17] = new SqlParameter();
+                objListSqlParam[17].ParameterName = "@ContactAddressHomeCountry";
+                objListSqlParam[17].Value = objUsers.ContactAddressHomeCountry;
+
+                objListSqlParam[18] = new SqlParameter();
+                objListSqlParam[18].ParameterName = "@ContactAddressLocal";
+                objListSqlParam[18].Value = objUsers.ContactAddressLocal;
+
+                objListSqlParam[19] = new SqlParameter();
+                objListSqlParam[19].ParameterName = "@MobileNumberLocal";
+                objListSqlParam[19].Value = objUsers.MobileNumberLocal;
+
+
+                objListSqlParam[20] = new SqlParameter();
+                objListSqlParam[20].ParameterName = "@EmergencyContactPersonName";
+                objListSqlParam[20].Value = objUsers.EmergencyContactPersonName;
+
+                objListSqlParam[21] = new SqlParameter();
+                objListSqlParam[21].ParameterName = "@DateOfJoining";
+                objListSqlParam[21].Value = objUsers.DateOfJoining;
+
+                objListSqlParam[22] = new SqlParameter();
+                objListSqlParam[22].ParameterName = "@Remarks";
+                objListSqlParam[22].Value = objUsers.Remarks;
+
+                objListSqlParam[23] = new SqlParameter();
+                objListSqlParam[23].ParameterName = "@Reference_Code";
+                objListSqlParam[23].Value = objUsers.Reference_Code;
+
+
+
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveUsers", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
@@ -116,7 +168,21 @@ namespace DbOperation
                         MobileNo= x.Field<string>("MobileNo"),
                         UserTypeId= x.Field<int>("UserTypeId"),
                         Password=x.Field<string>("Password"),
-                        UserReferenceId= x.Field<int>("UserReferenceId")
+                        UserReferenceId= x.Field<int>("UserReferenceId"),
+                        CPRExpiryDate = x.Field<DateTime?>("CPRExpiryDate"),
+                        PassportExpiryDate = x.Field<DateTime?>("PassportExpiryDate"),
+                        DateOfJoining = x.Field<DateTime?>("DateOfJoining"),
+                        CPRNumber = x.Field<string>("CPRNumber"),
+                        PassportNumber = x.Field<string>("PassportNumber"),
+                        VisaNumber = x.Field<string>("VisaNumber"),
+                        ContactAddressHomeCountry = x.Field<string>("ContactAddressHomeCountry"),
+                        ContactAddressLocal = x.Field<string>("ContactAddressLocal"),
+                        MobileNumberLocal = x.Field<string>("MobileNumberLocal"),
+                        EmergencyContactPersonName = x.Field<string>("EmergencyContactPersonName"),
+                        Remarks = x.Field<string>("Remarks"),
+                        UserCode = x.Field<string>("UserCode"),
+                        SourceName=x.Field<string>("SourceName")
+
                     }).ToList();
 
                     output.Data = objLst;

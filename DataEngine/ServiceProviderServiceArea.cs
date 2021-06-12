@@ -9,6 +9,7 @@ namespace DataEngine
    public class ServiceProviderServiceArea
     {
         public Int64 ServiceProviderServiceAreaId { get; set; }
+        public string AreaType { get; set; }
 
         public int                ServiceProviderId         {get;set;}
         public int                ServiceId                 {get;set;}

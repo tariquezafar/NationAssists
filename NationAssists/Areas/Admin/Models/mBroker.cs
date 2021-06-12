@@ -40,6 +40,8 @@ namespace ICardPrinter.Areas.Admin.Models
 
         public List<Broker> BrokerList { get; set; }
 
+        public List<BrokerServiceCommissionPayable> BrokerServiceCommissionPayableList { get; set; }
+        public string BranchLocation { get; set; }
         public List<BrokerOptedService> GetAllServices()
         {
             CommonServices objCS = new CommonServices();

@@ -31,6 +31,8 @@ namespace DataEngine
 
         public string EscalationPersonContactNo { get; set; }
 
+        public string Escalation_Person_EmailId { get; set; }
+
         public DateTime ServiceProviderAgreementFromDate { get; set; }
 
         public DateTime ServiceProviderAgreementToDate { get; set; }
@@ -44,6 +46,10 @@ namespace DataEngine
         public List<ServiceProviderDocument> ServiceProviderDocuments { get; set; }
 
         public string PriceOption { get; set; }
+
+        public string ServiceProviderCode { get; set; }
+
+        public string EscalationLandlineNo { get; set; }
 
     }
 }

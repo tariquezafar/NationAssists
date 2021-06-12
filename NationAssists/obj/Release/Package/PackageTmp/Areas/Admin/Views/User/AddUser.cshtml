@@ -15,35 +15,80 @@
             <span class="fieldHd" id="lblUserDetail">User Type </span>
             @Html.DropDownListFor(m => m.UserReferenceId,
            new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceProviderId", "SERVICE_PROVIDER_NAME"),
-                  "Select Service", new { @class = "formInput"})
+                  "Select Service", new { @class = "formInput" })
         </li>
         <li class="oneThird" id="liBranch">
             <span class="fieldHd" id="lblBranch">Branch </span>
             @Html.DropDownListFor(m => m.BranchId, Model.GetAllBranches(), "--Select-", new { @class = "formInput" })
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblUserName">Name </span>
+            <span class="fieldHd" id="lblUserName">Employee Name </span>
             <input type="text" class="formInput" id="txtUserName" placeholder="Name">
         </li>
         <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">CPR Number </span>
+            <input type="text" class="formInput" id="txtCPRNumber" placeholder="CPR Number">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">CPR Expiry Date </span>
+            <input type="date" class="formInput" id="txtCPRExpiryDate" />
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">Passport Number </span>
+            <input type="text" class="formInput" id="txtPassportNumber" placeholder="Passport Number">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">Passport Expiry Date </span>
+            <input type="date" class="formInput" id="txtPassportExpiryDate" />
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">Contact Address (Home Country) </span>
+            <textarea type="text" class="formInput" id="txtContactAddressHomeCountry" placeholder="Contact Address (Home Country)"></textarea>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">Contact Address (Local) </span>
+            <textarea type="text" class="formInput" id="txtContactAddressLocal" placeholder="Contact Address (Local)"></textarea>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">Visa Number </span>
+            <input type="text" class="formInput" id="txtVisaNumber" placeholder="Visa Number">
+        </li>
+        <li class="oneThird">
             <span class="fieldHd" id="lblPassword">Password </span>
-            <input type="password" class="formInput" id="txtPassword">
+            <input type="password" class="formInput" id="txtPassword" minlength="8">
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblEmailId">Email ID </span>
-            <input type="text" class="formInput" id="txtEmailId">
+            <input type="email" class="formInput" id="txtEmailId">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblMobileNo">Mobile No </span>
-            <input type="text" class="formInput" id="txtMobileNo">
+            <span class="fieldHd" id="lblMobileNo">Employee Mobile Number (Home Country) </span>
+            <input type="number" class="formInput" id="txtMobileNo"  maxlength="15" minlength="8" onclick="RestrictAlphabetAndSpace('txtMobileNo')">
         </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblMobileNo">Employee Mobile Number (Local) </span>
+            <input type="text" class="formInput" id="txtMobileNoLocal" maxlength="15" minlength="8" onclick="RestrictAlphabetAndSpace('txtMobileNoLocal')">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">Emergency Contact Person Name </span>
+            <input type="text" class="formInput" id="txtEmergencyContactPersonName" placeholder="Emergency Contact Person Name">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">Date of Joining </span>
+            <input type="date" class="formInput" id="txtDateOfJoining">
+        </li>
+
         <li class="oneThird">
             <span class="fieldHd" id="lblPhoneNo">Phone No </span>
-            <input type="text" class="formInput" id="txtPhoneNo">
+            <input type="text" class="formInput" id="txtPhoneNo"  maxlength="15" minlength="8" onclick="RestrictAlphabetAndSpace('txtPhoneNo')">
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblRole">Role </span>
             @Html.DropDownListFor(m => m.RoleId, Model.GetAllRoles(), "--Select-", new { @class = "formInput" })
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserName">Remarks </span>
+            <textarea type="text" class="formInput" id="txtRemarks" placeholder="Remarks"></textarea>
         </li>
 
         <li class="oneThird">
@@ -57,7 +102,7 @@
     </ul>
     <div>
         <input type="hidden" id="hdnUserId" value="@Model.UserId" />
-        <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveUsers();">Save</button>
+        <button type="submit" class="btnSave dbformBtn mr10" onclick="return SaveUsers();">Save</button>
         <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/User/AddUser/'">Reset</button>
 
     </div>

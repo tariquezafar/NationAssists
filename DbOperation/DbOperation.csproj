@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OpBroker.cs" />
+    <Compile Include="OpBrokerPrice.cs" />
     <Compile Include="OpCommon.cs" />
+    <Compile Include="OpEmail.cs" />
     <Compile Include="OpServiceCategory.cs" />
     <Compile Include="OpServicePrice.cs" />
     <Compile Include="OpServiceProvider.cs" />

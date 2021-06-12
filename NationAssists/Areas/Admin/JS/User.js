@@ -1,5 +1,6 @@
 ﻿function SaveUsers() {
     if (ValidateForm()) {
+        var Reference = $("#UserReferenceId option:selected").text();
         var objUsers = {
             UserId: $("#hdnUserId").val(),
            PhoneNo: $("#txtPhoneNo").val(),
@@ -11,7 +12,19 @@
             IsActive: $("#chkIsActive").prop("checked"),
             MobileNo: $("#txtMobileNo").val(),
             BranchId: $("#BranchId").val(),
-            UserReferenceId: $("#UserReferenceId").val()
+            UserReferenceId: $("#UserReferenceId").val(),
+            CPRNumber: $("#txtCPRNumber").val(),
+            CPRExpiryDate: $("#txtCPRExpiryDate").val()      ,
+            PassportNumber: $("#txtPassportNumber").val()     ,
+            PassportExpiryDate: $("#txtPassportExpiryDate").val()    ,
+            VisaNumber: $("#txtVisaNumber").val()    ,
+            ContactAddressHomeCountry: $("#txtContactAddressHomeCountry").val()    ,
+            ContactAddressLocal: $("#txtContactAddressLocal").val()    ,
+            MobileNumberLocal: $("#txtMobileNoLocal").val()    ,
+            EmergencyContactPersonName: $("#txtEmergencyContactPersonName").val()    ,
+            DateOfJoining: $("#txtDateOfJoining").val(),
+            Remarks: $("#txtRemarks").val(),
+            Reference_Code: $("#UserTypeId").val() != "" && $("#UserTypeId").val() == "1" ? "" : Reference.substring(Reference.indexOf('(') + 1, Reference.indexOf(')'))
         };
         var pUrl = "/Admin/User/SaveUsers/";
         $.ajax({
@@ -109,10 +122,21 @@ function ValidateForm() {
         IsValid = false;
         strErrMsg += "Please enter Mobile No . \n";
     }
-    if ($("#txtMobileNo").val() != "" && $("#txtMobileNo").val().length!=10) {
+    if ($("#txtMobileNo").val() != "" && $("#txtMobileNo").val().length <8) {
 
         IsValid = false;
-        strErrMsg += "Mobile No must contain 10 digit. \n";
+        strErrMsg += "Mobile No must contain minimum 8 digit. \n";
+    }
+    if ($("#txtMobileNoLocal").val() != "" && $("#txtMobileNoLocal").val().length <8) {
+
+        IsValid = false;
+        strErrMsg += "Mobile Number (Local) No must contain minimum 8 digit. \n";
+    }
+
+    if ($("#txtPhoneNo").val() != "" && $("#txtPhoneNo").val().length < 8) {
+
+        IsValid = false;
+        strErrMsg += "Phone No must contain minimum 8 digit. \n";
     }
     if ( $("#RoleId").val()=="") {
 
@@ -183,6 +207,30 @@ function EditUser(e) {
                 $("#BranchId").val(Jdata.BranchId);
                
             }
+
+            $("#txtCPRNumber").val(Jdata.CPRNumber);
+            if (Jdata.CPRExpiryDate!=null && Jdata.CPRExpiryDate != "") {
+                var CPRExpiryDate = new Date(parseFloat(Jdata.CPRExpiryDate.substring(Jdata.CPRExpiryDate.indexOf('(') + 1, Jdata.CPRExpiryDate.indexOf(')'))));
+                $("#txtCPRExpiryDate").val(formatDate(CPRExpiryDate));
+            }
+            if (Jdata.PassportExpiryDate !=null &&  Jdata.PassportExpiryDate != "") {
+                var PassportExpiryDate = new Date(parseFloat(Jdata.PassportExpiryDate.substring(Jdata.PassportExpiryDate.indexOf('(') + 1, Jdata.PassportExpiryDate.indexOf(')'))));
+                $("#txtPassportExpiryDate").val(formatDate( PassportExpiryDate));
+            }
+            if (Jdata.DateOfJoining !=null && Jdata.DateOfJoining != "") {
+                var DateOfJoining = new Date(parseFloat(Jdata.DateOfJoining.substring(Jdata.DateOfJoining.indexOf('(') + 1, Jdata.DateOfJoining.indexOf(')'))));
+                $("#txtDateOfJoining").val(formatDate( DateOfJoining));
+            }
+            
+            $("#txtPassportNumber").val(Jdata.PassportNumber);
+          
+            $("#txtVisaNumber").val(Jdata.VisaNumber);
+            $("#txtContactAddressHomeCountry").val(Jdata.ContactAddressHomeCountry);
+            $("#txtContactAddressLocal").val(Jdata.ContactAddressLocal);
+            $("#txtMobileNoLocal").val(Jdata.MobileNumberLocal);
+            $("#txtEmergencyContactPersonName").val(Jdata.EmergencyContactPersonName);
+           
+            $("#txtRemarks").val(Jdata.Remarks);
            
             $("#btnAdd").html("<strong>Update</strong>");
         },
@@ -233,3 +281,4 @@ function BindUserTypeDetail() {
         }
     }
 }
+

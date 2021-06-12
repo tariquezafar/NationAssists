@@ -46,7 +46,7 @@ namespace DbOperation
                 #endregion
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[20];
+                SqlParameter[] objListSqlParam = new SqlParameter[25];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@ServiceProviderId";
                 objListSqlParam[0].Value = objServiceProvider.ServiceProviderId;
@@ -127,6 +127,14 @@ namespace DbOperation
                 objListSqlParam[19].ParameterName = "@PricingOption";
                 objListSqlParam[19].Value = objServiceProvider.PriceOption;
 
+                objListSqlParam[20] = new SqlParameter();
+                objListSqlParam[20].ParameterName = "@Escalation_Person_EmailId";
+                objListSqlParam[20].Value = objServiceProvider.Escalation_Person_EmailId;
+
+                objListSqlParam[21] = new SqlParameter();
+                objListSqlParam[21].ParameterName = "@EscalationLandlineNo";
+                objListSqlParam[21].Value = objServiceProvider.EscalationLandlineNo;
+
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveServiceProvider", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
@@ -182,7 +190,8 @@ namespace DbOperation
                         DocumentPath=y,
                         ServiceProviderId = x.Field<int>("ServiceProviderId"),
                         }).ToList():null,
-                        PriceOption= x.Field<string>("Pricing_option")
+                        PriceOption= x.Field<string>("Pricing_option"),
+                        ServiceProviderCode= x.Field<string>("ServiceProviderCode")
                     }).ToList();
 
                     output.Data = objLst;

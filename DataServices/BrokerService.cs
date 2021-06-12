@@ -28,6 +28,19 @@ namespace DataServices
             OpBroker obj = new OpBroker();
             return obj.DeleteBroker(BrokerId);
         }
+        public MethodOutput<string> SaveBrokerPrice(BrokerPrice objBrokerPrice)
+        {
+            OpBrokerPrice obj = new OpBrokerPrice();
+            return obj.SaveBrokerPrice(objBrokerPrice);
+        }
+
+        public MethodOutput<BrokerPrice> GetBrokerPriceList(int BrokerId, int ServiceId)
+        {
+            OpBrokerPrice opBrokerPrice = new OpBrokerPrice();
+            return opBrokerPrice.GetBrokerPriceList(BrokerId,ServiceId);
+        }
+
+
 
     }
 }

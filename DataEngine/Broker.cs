@@ -16,6 +16,8 @@ namespace DataEngine
         public string Contact_Person_Name { get; set; }
         public string Contact_Person_Contact_No { get; set; }
         public string Escalation_Person_Name { get; set; }
+
+        public string Escalation_Person_EmailId { get; set; }
         public string Escalation_Person_Contact_No { get; set; }
         public DateTime Agreement_Start_Date { get; set; }
         public DateTime Agreement_End_Date { get; set; }
@@ -29,13 +31,26 @@ namespace DataEngine
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
 
-        
 
+     public string    CRNumber                  {get;set;}
+     public DateTime ?   CRExpiryDate              {get;set;}
+     public string    VATRegistrationNumber     {get;set;}
+     public string    Landline                  {get;set;}
+     public string    EscalationLandlineNo      {get;set;}
+     public int? DeclarationPeriod { get; set; }
         public string SelectedServiceOpted { get; set; }
         public List<BrokerDocument> BrokerDocuments { get; set; }
 
 
         public List<BrokerOptedService> BrokerOptedServices { get; set; }
+        
+        public string BrokerServiceCommissionPayable { get; set; }
+
+        public List<BrokerServiceCommissionPayable> lstBrokerServiceCommissionPayable { get; set; }
+
+        public string BranchLocation { get; set; }
+
+        public string BrokerCode { get; set; }
 
     }
 
@@ -62,6 +77,21 @@ namespace DataEngine
         public string SubCategoryName { get; set; }
 
         public string ServiceCode { get; set; }
+
+     
+    }
+
+    public class BrokerServiceCommissionPayable
+
+    {
+        public int BrokerServiceCommissionPayableId { get; set; }
+        public int BrokerId { get; set; }
+        public int ServiceId { get; set; }
+        public decimal Commission_Paybable { get; set; }
+        public DateTime Commission_StartDate { get; set; }
+        public DateTime Commission_EndDate { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 
 

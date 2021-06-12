@@ -276,5 +276,83 @@ namespace DbOperation
 
 
         }
+
+
+        public MethodOutput<Service> BindServiceOptedByBrokerId(int? BrokerId)
+        {
+            MethodOutput<Service> objOutput = new MethodOutput<Service>();
+            List<Service> objLstService = new List<Service>();
+            try
+            {
+                if (BrokerId != null)
+                {
+                    DataTable dt = new DataTable();
+                    SqlParameter[] objListSqlParam = new SqlParameter[1];
+                    objListSqlParam[0] = new SqlParameter();
+                    objListSqlParam[0].ParameterName = "@BrokerId";
+                    objListSqlParam[0].Value = BrokerId;
+
+                    dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetServiceOptedByBrokerId", objListSqlParam).Tables[0];
+                    if (dt.Rows.Count > 0)
+                    {
+                        objLstService = dt.AsEnumerable().Select(x => new Service
+                        {
+                            ServiceId = x.Field<int>("ServiceId"),
+                            ServiceName = x.Field<string>("ServiceName"),
+
+                        }).ToList();
+
+                        objOutput.Data = objLstService;
+                        objOutput.ErrorMessage = string.Empty;
+                    }
+                }
+                else
+                {
+                    objOutput.Data = objLstService;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+
+
+            }
+            return objOutput;
+
+
+        }
+
+        public MethodOutput<Country> BindCountry()
+        {
+            MethodOutput<Country> objOutput = new MethodOutput<Country>();
+            List<Country> objLstCountry = new List<Country>();
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllCountry").Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstCountry = dt.AsEnumerable().Select(x => new Country
+                    {
+                        CountryId = x.Field<int>("CountryId"),
+                        Name = x.Field<string>("CountryName"),
+                        IsActive = x.Field<bool>("IsActive")
+                    }).ToList();
+
+                    objOutput.Data = objLstCountry;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+            }
+            return objOutput;
+        }
+
+      
     }
+
+
 }

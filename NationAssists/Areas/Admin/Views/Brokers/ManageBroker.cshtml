@@ -16,16 +16,39 @@
                 <option value="">--Select--</option>
                 <option value="AG">Agent</option>
                 <option value="IC">Insurance Company</option>
+                <option value="IB">Insurance Brokers</option>
+                <option value="AD">Auto Dealers</option>
+                <option value="BA">Banks</option>
+                <option value="OS">Other sources</option>
+
             </select>
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblBrokerName">Source Name </span>
             <input type="text" class="formInput" id="txtBrokerName" maxlength="1000" placeholder="Name">
         </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblBrokerName">CR Number </span>
+            <input type="text" class="formInput" id="txtCRNumber" maxlength="50" placeholder="CR Number">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblBrokerName">CR Expiry Date </span>
+            <input type="date" class="formInput" id="txtCRExpiryDate">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblBrokerName">VAT Registration Number </span>
+            <input type="text" class="formInput" id="txtVATRegistrationNumber" maxlength="50" placeholder="VAT Registration Number">
+        </li>
 
         <li class="oneThird">
             <span class="fieldHd" id="lblMobileNo">Mobile No </span>
-            <input type="number" class="formInput" id="txtMobileNo" maxlength="10" placeholder="Mobile No" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            <input type="text" class="formInput" id="txtMobileNo" maxlength="15" placeholder="Mobile No" onclick="RestrictAlphabetAndSpace('txtMobileNo')">
+        </li>
+        <li class="oneThird">
+
+            <span class="fieldHd" id="lblEmailID">Landline </span>
+            <input type="text" class="formInput" id="txtLandlineNo" maxlength="15" placeholder="Landline" onclick="RestrictAlphabetAndSpace('txtLandlineNo')">
+
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblEmailID">Email ID </span>
@@ -37,7 +60,7 @@
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblContactPersonName">Contact Person No </span>
-            <input type="number" class="formInput" id="txtContactPersonNo" maxlength="15" placeholder="Contact Person No" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            <input type="text" class="formInput" id="txtContactPersonNo" maxlength="15" placeholder="Contact Person No" onclick="RestrictAlphabetAndSpace('txtContactPersonNo')">
         </li>
 
         <li class="oneThird">
@@ -45,10 +68,21 @@
             <input type="text" class="formInput" id="txtEscalationPersonName" maxlength="255" placeholder="Escalation Person Name">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblContactPersonName">Escalation Person Contact No </span>
-            <input type="number" class="formInput" id="txtEscalationPersonContactNo" maxlength="15" placeholder="Escalation Person Contact No" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            <span class="fieldHd" id="lblContactPersonName">Escalation Email ID </span>
+            <input type="text" class="formInput" id="txtEscalationEmailId"  placeholder="Escalation Email ID">
         </li>
-
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Escalation Person Contact No </span>
+            <input type="text" class="formInput" id="txtEscalationPersonContactNo" maxlength="15" placeholder="Escalation Person Contact No"  onclick="RestrictAlphabetAndSpace('txtEscalationPersonContactNo')">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Escalation Landline No </span>
+            <input type="text" class="formInput" id="txtEscalationLandlineNo" maxlength="15" placeholder="Escalation Landline No" onclick="RestrictAlphabetAndSpace('txtEscalationLandlineNo')">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Branch/Location </span>
+            <input type="text" class="formInput" id="txtBranchLocation" maxlength="500" placeholder="Branch/Location">
+        </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblOfficeAddress">Office Location Address</span>
             <textarea class="formInput" id="txtOfficeLocationAddress" maxlength="500" placeholder="Office Location Address"></textarea>
@@ -63,16 +97,17 @@
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblAggreementStartDate">Agreement Start Date </span>
-            <input type="datetime-local" class="formInput" id="txtAggreementStartDate">
+            <input type="date" class="formInput" id="txtAggreementStartDate">
         </li>
 
         <li class="oneThird">
             <span class="fieldHd" id="lblAggreementEndDate">Agreement End Date </span>
-            <input type="datetime-local" class="formInput" id="txtAggreementEndDate">
+            <input type="date" class="formInput" id="txtAggreementEndDate">
         </li>
+
         <li class="oneThird">
-            <span class="fieldHd" id="lblContactPersonName">Commission Paybable </span>
-            <input type="number" class="formInput" id="txtCommissionPaybable" placeholder="Commission Paybable">
+            <span class="fieldHd" id="lblContactPersonName">Declaration Period </span>
+            <input type="text" class="formInput" id="txtDeclarationPeriod" placeholder="Declaration Period" maxlength="3" onclick="RestrictAlphabetAndSpace('txtDeclarationPeriod')">
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblOfficeAddress">Payment & Credit Terms</span>
@@ -129,7 +164,7 @@
                                             {
                                                 <li>
                                                     @*hummingbirdNoParent checkInpt*@
-                                                    <label> <input class="hummingbirdNoParent" id="node-@i-@j" data-id="custom-@i-@j" type="checkbox" name="chkService" value="@cat.SubCategoryId">@cat.SubCategoryName </label>
+                                                    <label> <input class="hummingbirdNoParent" id="node-@i-@j" data-id="custom-@i-@j" type="checkbox" name="chkService" service-name="@item.ServiceName" service-id="@cat.ServiceId" value="@cat.SubCategoryId">@cat.SubCategoryName </label>
                                                 </li>
 
                                                 j = j + 1;
@@ -147,6 +182,47 @@
                 }
             </div>
         </li>
+        @if (Model.BrokerOptedServices != null && Model.BrokerOptedServices.Any())
+        {
+
+            List<DataEngine.Service> objLstService = Model.BrokerOptedServices.Select(x => new DataEngine.Service { ServiceId = x.ServiceId, ServiceName = x.Name, ServiceCode = x.ServiceCode }).ToList().GroupBy(p => new { p.ServiceName, p.ServiceId }).Select(g => g.First()).ToList();
+
+
+            <li class="fullWidth">
+                <span class="fieldHd">Commission Payable</span>
+                <div class="dbTable" style="box-shadow:none;">
+                    <table id="tblCommissionPayable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Service
+                                </th>
+                                <th>
+                                    Commission Payable(%)
+                                </th>
+                                <th>
+                                    Start Date
+                                </th>
+                                <th>
+                                    End Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataEngine.Service item in objLstService)
+                            {
+                                <tr>
+                                    <td>@item.ServiceName              </td>
+                                    <td>  <input type="text" class="formInput" id="txtCommissionPaybable_@item.ServiceId" placeholder="Commission Paybable" maxlength="2" onclick="RestrictAlphabetAndSpace('txtCommissionPaybable_@item.ServiceId')">           </td>
+                                    <td> <input type="date" class="formInput" id="txtCommissionStartDate_@item.ServiceId"></td>
+                                    <td> <input type="date" class="formInput" id="txtCommissionEndDate_@item.ServiceId"></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        }
 
 
         <li class="oneThird">

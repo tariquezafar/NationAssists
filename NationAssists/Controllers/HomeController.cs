@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,8 @@ namespace NationAssists.Controllers
     {
         public ActionResult Index()
         {
+            EmailServices obj = new EmailServices();
+          //  obj.MailSent();
             return View();
         }
 

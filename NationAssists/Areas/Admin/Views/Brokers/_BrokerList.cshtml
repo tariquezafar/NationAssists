@@ -13,7 +13,7 @@
                 <tr>
 
                     <th>SNo.</th>
-                    <th>Source</th>
+                    <th>Source Code</th>
                     <th>Source Name</th>
                     <th>EmailID</th>
                     <th>Mobile No</th>
@@ -30,7 +30,7 @@
                 <tr>
                     <td> <span class="blueClr">@i </span></td>
 
-                    <td>@(item.Broker_Type=="AG" ? "Agent":"Insurance Company")</td>
+                    <td>@item.BrokerCode</td>
                     <td>@item.Broker_Name</td>
                     <td>@item.EmailId</td>
                     <td>@item.MobileNo</td>

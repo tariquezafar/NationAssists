@@ -269,7 +269,7 @@ function BindUserTypeDetail() {
                         $('#liBranch').hide();
                         $("#liUserType").show();
                         $("#BranchId").val('');
-                        $("#lblUserDetail").html(UserType == "SP" ? "Service Provider" : (UserType=="AG"? "Agent" :"Insurance Company"));
+                        $("#lblUserDetail").html("Source");
                     }
                 }
             });

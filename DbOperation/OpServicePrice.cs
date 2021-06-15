@@ -88,5 +88,40 @@ namespace DbOperation
             return output;
         }
 
+
+        public MethodOutput<ServicePrice> GetAllPackages()
+        {
+            MethodOutput<ServicePrice> output = new MethodOutput<ServicePrice>();
+            List<ServicePrice> objLst = new List<ServicePrice>();
+
+            try
+            {
+                DataTable dt = new DataTable();
+               
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_ShowAllPackage").Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLst = dt.AsEnumerable().Select(x => new ServicePrice
+                    {
+                        ServiceId = x.Field<int>("ServiceId"),
+                        ServiceCode = x.Field<string>("ServiceCode"),
+                        ServiceName = x.Field<string>("ServiceName"),
+                        Prices = x.Field<decimal>("Price"),
+                        SubCategoryName = x.Field<string>("subCategoryName"),
+
+                    }).ToList();
+
+                    output.Data = objLst;
+                    output.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Data = objLst;
+                output.ErrorMessage = ex.Message;
+            }
+            return output;
+        }
+
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="BrokerPrice.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="EmailConfiguration.cs" />
     <Compile Include="MethodOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,0 +1,100 @@
+﻿
+@model NationAssists.Models.mBuyOnline
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="whtBg pt60 pb60">
+    <div class="container">
+        @if (Model.PackageList != null && Model.PackageList.Any())
+        {
+        <div class="mainHd">Plan</div>
+        <ul class="planList flexBox">
+
+            @{
+
+                List<DataEngine.Service> objLstService = Model.PackageList.Select(x => new DataEngine.Service { ServiceId = x.ServiceId, ServiceName = x.ServiceName,ServiceCode=x.ServiceCode }).ToList().GroupBy(p => new { p.ServiceName, p.ServiceId }).Select(g => g.First()).ToList();
+            }
+
+            @foreach (DataEngine.Service item in objLstService)
+            {
+                string strURL = item.ServiceCode == "RAP" ? "roadsideassistance" : (item.ServiceCode == "RAWCRP" ? "roadsideassistancereplacementcar" : "homeassistance");
+
+                <li>
+                    <div class="inner">
+                        <div class="hd">@item.ServiceName</div>
+                        @{
+                            int i = 1;
+                            List<DataEngine.ServicePrice> ServicePriceList = Model.PackageList.Where(x => x.ServiceId == item.ServiceId).ToList();
+
+                        }
+                        @if (ServicePriceList != null && ServicePriceList.Any())
+                        {
+                        <div class="det">
+                            <ul>
+                                @foreach (DataEngine.ServicePrice itemSP in ServicePriceList)
+                                {
+
+                                    <li>@itemSP.SubCategoryName</li>
+
+                                    if (i == ServicePriceList.Count)
+                                    {
+                            <li class="price">&#8377; @itemSP.Prices</li>
+                                    }
+                                    i++;
+                                }
+                                @*<li>2 vCPU</li>
+                                <li>1 Snapshot</li>
+                                <li>2 GB RAM</li>
+                                <li>40 GB SSD (Expandable)</li>
+                                <li>500 GB Bandwidth</li>
+                                <li>1 Dedicated IP Address</li>
+                                <li class="price">&#8377; 599.00<span>/mo</span></li>*@
+                            </ul>
+
+                            <a href="@strURL" class="button">Buy Now</a>
+                        </div>
+                        }
+                    </div>
+                </li>
+            }
+                @*<li>
+                    <div class="inner">
+                        <div class="hd">Baby</div>
+                        <div class="det">
+                            <ul>
+                                <li>2 vCPU</li>
+                                <li>1 Snapshot</li>
+                                <li>2 GB RAM</li>
+                                <li>40 GB SSD (Expandable)</li>
+                                <li>500 GB Bandwidth</li>
+                                <li>1 Dedicated IP Address</li>
+                                <li class="price">&#8377; 599.00<span>/mo</span></li>
+                            </ul>
+                            <a href="#" class="button">Buy Now</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="inner">
+                        <div class="hd">Baby</div>
+                        <div class="det">
+                            <ul>
+                                <li>2 vCPU</li>
+                                <li>1 Snapshot</li>
+                                <li>2 GB RAM</li>
+                                <li>40 GB SSD (Expandable)</li>
+                                <li>500 GB Bandwidth</li>
+                                <li>1 Dedicated IP Address</li>
+                                <li class="price">&#8377; 599.00<span>/mo</span></li>
+                            </ul>
+                            <a href="#" class="button">Buy Now</a>
+                        </div>
+                    </div>
+                </li>*@
+            </ul>
+        }
+    </div>
+</div>
+

@@ -1,15 +1,31 @@
-﻿var $loading = $('#progress').hide();
+﻿
+$loading = null;
 //Attach the event handler to any element
-$(document)
-    .ajaxStart(function () {
-        //ajax request went so show the loading image
-        $loading.show();
-    })
-    .ajaxStop(function () {
-        //got response so hide the loading image
-        $loading.hide();
-    });
+$(document).ready(function () {
+    $loading = $('#progress');
 
+    $(document).ajaxStart(function () {
+        
+        var IsLoaderRequired = $('body').data("IsLoaderRequired");
+        if (IsLoaderRequired) {
+            console.log("started");
+
+            //ajax request went so show the loading image
+            $loading.show();
+        }
+     
+    });
+    $(document).ajaxStop(function () {
+        var IsLoaderRequired = $('body').data("IsLoaderRequired");
+        if (IsLoaderRequired) {
+            console.log("stop");
+
+            //ajax request went so show the loading image
+            $loading.hide();
+        }
+       
+    });
+});
 
 function RestrictAlphabetAndSpace(id) {
     $(function () {

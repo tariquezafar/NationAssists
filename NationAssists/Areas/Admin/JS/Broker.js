@@ -36,8 +36,7 @@ function SaveBroker() {
         frmBroker.append("Contact_Person_Name", $("#txtContactPersonName").val());
         frmBroker.append("Contact_Person_Contact_No", $("#txtContactPersonNo").val());
         frmBroker.append("Escalation_Person_Name", $("#txtEscalationPersonName").val());
-        frmBroker.append("Escalation_Person_Contact_No", $("#txtEscalationPersonName").val());
-        frmBroker.append("EscalationPersonContactNo", $("#txtEscalationPersonContactNo").val());
+        frmBroker.append("Escalation_Person_Contact_No", $("#txtEscalationPersonContactNo").val());
         frmBroker.append("EmailId", $("#txtEmailId").val());
         frmBroker.append("MobileNo", $("#txtMobileNo").val());
         frmBroker.append("Agreement_Start_Date", $("#txtAggreementStartDate").val());
@@ -219,8 +218,8 @@ function EditBroker(e) {
             $("#BrokerTypeId").val(Jdata.Broker_Type);
             $("#txtContactPersonNo").val(Jdata.Contact_Person_Contact_No);
             $("#txtEmailId").val(Jdata.EmailId);
-            $("#txtEscalationPersonContactNo").val(Jdata.Escalation_Person_Name);
-            $("#txtEscalationPersonName").val(Jdata.Escalation_Person_Contact_No);
+            $("#txtEscalationPersonContactNo").val(Jdata.Escalation_Person_Contact_No);
+            $("#txtEscalationPersonName").val(Jdata.Escalation_Person_Name);
             $("#txtBrokerName").val(Jdata.Broker_Name);
             $("#txtMobileNo").val(Jdata.MobileNo);
             $("#txtEscalationEmailId").val(Jdata.Escalation_Person_EmailId);

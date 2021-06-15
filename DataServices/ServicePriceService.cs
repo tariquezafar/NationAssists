@@ -21,5 +21,11 @@ namespace DataServices
             OpServicePrice obj = new OpServicePrice();
             return obj.GetServicePricesByServiceId(ServicePriceId);
         }
+
+        public MethodOutput<ServicePrice> GetAllPackage()
+        {
+            OpServicePrice obj = new OpServicePrice();
+            return obj.GetAllPackages();
+        }
     }
 }

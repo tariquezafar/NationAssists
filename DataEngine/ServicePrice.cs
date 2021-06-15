@@ -11,10 +11,13 @@ namespace DataEngine
         public Int64 ServicePriceId { get; set; }
 
         public string ServiceName { get; set; }
+        public string ServiceCode { get; set; }
         public int ServiceId { get; set; }
         public decimal Prices { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
+
+        public string SubCategoryName { get; set; }
     }
 }

@@ -38,9 +38,9 @@ $(".biNextStep").click(function () {
         alert("Please select Gender");
         $("#ddlGender").focus();
     }
-    else if ($("#txtNationality").val() == "") {
-        alert("Please enter Nationality");
-        $("#txtNationality").focus();
+    else if ($("#txtNationalId").val() == "") {
+        alert("Please enter National Id");
+        $("#txtNationalId").focus();
     }
     else if ($("#txtMobileNo").val() == "") {
         alert("Please enter Mobile No");
@@ -60,22 +60,38 @@ $(".biNextStep").click(function () {
 });
 
 $(".mtNextStep").click(function () {
-    $('.bi').removeClass('active');
-    $('.mt').addClass('active');
+    if ($("#ddlAccountType").val() == "0") {
 
-    $('#dvMemberType').show(0);
-    $('#businessInfo').hide(0);
+        alert("Please select Account Type.");
+        $("#ddlAccountType").focus();
+    }
+    else {
+        if ($("#ddlAccountType").val() == "GA") {
+
+            SubmitRegistration('', 0);
+
+        }
+        else {
+            $('.bi').removeClass('active');
+            $('.mt').addClass('active');
+
+            $('#dvMemberType').show(0);
+            $('#businessInfo').hide(0);
+        }
+    }
 
 });
 
 $(".mdNextStep").click(function () {
-    $('.mt').removeClass('active');
-    $('.bi').hide(0);
-    $('.md').show(0);
-    $('.md').addClass('active');
+   
+            $('.mt').removeClass('active');
+            $('.bi').hide(0);
+            $('.md').show(0);
+            $('.md').addClass('active');
 
-    $('#dvNAMemberDetail').show(0);
-    $('#dvMemberType').hide(0);
+            $('#dvNAMemberDetail').show(0);
+            $('#dvMemberType').hide(0);
+     
 
 });
 
@@ -134,7 +150,50 @@ $("#ddlAccountType").change(function () {
 })
 
 
-function isValidEmail(email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
+
+
+function SubmitRegistration(AccountSubType, BrokerId) {
+    var objUsers = {
+        CustomerId: 0,
+        FirstName: $("#txtFirstName").val(),
+        LastName: $("#txtLastName").val(),
+        EmailId: $("#txtEmailId").val(),
+        MobileNo: $("#txtMobileNo").val(),
+        NationalId: $("#txtNationalId").val(),
+        Gender: $("#ddlGender").val(),
+        BrokerId: BrokerId,
+        AccountType: $("#ddlAccountType").val(),
+        AccountSubType: AccountSubType,
+        Password: $("#txtPassword").val()
+        
+    };
+    var pUrl = "/Register/SaveCustomer/";
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        url: pUrl,
+        data: JSON.stringify(objUsers),
+        success: function (data) {
+            debugger;
+
+            if (data.Result) {
+                alert("Registration is completed. Please verify your email.");
+                window.location.href = "/Home";
+            }
+            else {
+                if (data.DuplicateEmail) {
+                    alert("Email already exists.");
+                }
+                else if (data.DuplicateMobile) {
+                    alert("Mobile No already exists.");
+                }
+                else {
+                    alert("Opps! some error occured.");
+                }
+            }
+        },
+        error: function (data) {
+        }
+    });
 }

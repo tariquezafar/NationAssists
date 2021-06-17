@@ -85,14 +85,14 @@ namespace DbOperation
 
                         objServiceCatPrice.BrokerPriceList = objLst;
                         objPriceLst.Add(objServiceCatPrice);
-                        output.Data = objPriceLst;
+                        output.DataList = objPriceLst;
                         output.ErrorMessage = string.Empty;
                     }
                 }
             }
             catch (Exception ex)
             {
-                output.Data = objLst;
+                output.DataList = objLst;
                 output.ErrorMessage = ex.Message;
             }
             return output;

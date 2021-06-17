@@ -13,18 +13,31 @@ namespace DataServices
 {
     public class EmailServices
     {
-        public bool MailSent(List<string> ToEmails, string TemplateCode ,List<string> CC =null, List<string> BCC =null)
+        public bool MailSent(List<string> ToEmails,Dictionary<string,string> TemplateValues, string TemplateCode ,List<string> CC =null, List<string> BCC =null )
         {
             OpEmail objEmail = new OpEmail();
             EmailConfiguration objEC = objEmail.GetEmailConfiguration();
-            if (objEC != null)
+            Template objTemp = GetEmailTemplate(TemplateCode);
+            if (objEC != null && objTemp.EmailTemplateMasterId!=0)
             {
                   
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress(objEC.EmailId,objEC.DisplayName);
-                string mailbody = "In this article you will learn how to send a email using Asp.Net & C#";
-                message.Subject = "Sending Email Using Asp.Net & C#";
-                message.Body = mailbody;
+                string UserName = string.Empty;
+                string URL = string.Empty;
+                if (TemplateValues.TryGetValue("UserName", out UserName))
+                {
+                    objTemp.Body = objTemp.Body.Replace("@UserName", UserName);
+                }
+
+                if (TemplateValues.TryGetValue("URL", out URL))
+                {
+                    objTemp.Body = objTemp.Body.Replace("@URL", URL);
+                }
+                
+                // string mailbody = "In this article you will learn how to send a email using Asp.Net & C#";
+                message.Subject = objTemp.EmailSubject;//"Sending Email Using Asp.Net & C#";
+                message.Body = objTemp.Body;
                 message.BodyEncoding = Encoding.UTF8;
                 if (ToEmails != null && ToEmails.Any())
                 {
@@ -70,6 +83,20 @@ namespace DataServices
 
             return true;
 
+        }
+
+        public Template GetEmailTemplate( string TemplateCode)
+        {
+            Template objTemp = new Template();
+            OpEmail obj = new OpEmail();
+            MethodOutput<Template> objData = new MethodOutput<Template>();
+            objData = obj.GetEmailTemplates(TemplateCode);
+            if (objData.ErrorMessage == "" && objData.DataList != null)
+            {
+                objTemp = objData.DataList[0];
+            }
+
+            return objTemp;
         }
     }
 }

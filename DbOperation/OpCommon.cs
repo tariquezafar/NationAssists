@@ -29,7 +29,7 @@ namespace DbOperation
                         IsActive= x.Field<bool>("IsActive")
                     }).ToList();
 
-                    objOutput.Data = objLstService;
+                    objOutput.DataList = objLstService;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -61,7 +61,7 @@ namespace DbOperation
                         IsActive = x.Field<bool>("IsActive")
                     }).ToList();
 
-                    objOutput.Data = objLstRole;
+                    objOutput.DataList = objLstRole;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -89,7 +89,7 @@ namespace DbOperation
                         IsActive = x.Field<bool>("IsActive")
                     }).ToList();
 
-                    objOutput.Data = objLstRole;
+                    objOutput.DataList = objLstRole;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -118,7 +118,7 @@ namespace DbOperation
                         IsActive = x.Field<bool>("IsActive")
                     }).ToList();
 
-                    objOutput.Data = objLstBranch;
+                    objOutput.DataList = objLstBranch;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -148,7 +148,7 @@ namespace DbOperation
                         //IsActive = x.Field<bool>("IsActive")
                     }).ToList();
 
-                    objOutput.Data = objLstUser;
+                    objOutput.DataList = objLstUser;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -182,7 +182,7 @@ namespace DbOperation
                         IsActive =false
                     }).ToList();
 
-                    objOutput.Data = objLstServiceSubCategory;
+                    objOutput.DataList = objLstServiceSubCategory;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -218,7 +218,7 @@ namespace DbOperation
                         FirstName = x.Field<string>("SERVICE_PROVIDER_NAME")
                     }).ToList();
 
-                    objOutput.Data = objLstServiceProvider;
+                    objOutput.DataList = objLstServiceProvider;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -256,13 +256,13 @@ namespace DbOperation
 
                         }).ToList();
 
-                        objOutput.Data = objLstService;
+                        objOutput.DataList = objLstService;
                         objOutput.ErrorMessage = string.Empty;
                     }
                 }
                 else
                 {
-                    objOutput.Data = objLstService;
+                    objOutput.DataList = objLstService;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -302,13 +302,13 @@ namespace DbOperation
 
                         }).ToList();
 
-                        objOutput.Data = objLstService;
+                        objOutput.DataList = objLstService;
                         objOutput.ErrorMessage = string.Empty;
                     }
                 }
                 else
                 {
-                    objOutput.Data = objLstService;
+                    objOutput.DataList = objLstService;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -340,7 +340,7 @@ namespace DbOperation
                         IsActive = x.Field<bool>("IsActive")
                     }).ToList();
 
-                    objOutput.Data = objLstCountry;
+                    objOutput.DataList = objLstCountry;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -350,6 +350,10 @@ namespace DbOperation
             }
             return objOutput;
         }
+
+
+ 
+
 
       
     }

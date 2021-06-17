@@ -38,7 +38,7 @@ namespace NationAssists.Areas.Admin.Controllers
             MethodOutput<Users> objMO = new MethodOutput<Users>();
             User obj = new User();
             objMO = obj.GetUsers(UserId);
-            return objMO.Data;
+            return objMO.DataList;
         }
 
         [HttpPost]
@@ -110,7 +110,7 @@ namespace NationAssists.Areas.Admin.Controllers
         {
             CommonServices objComm = new CommonServices();
             UserType = UserType == "SP" ? "" : UserType;
-            return Json(objComm.BindServiceProvider(UserType).Data, JsonRequestBehavior.AllowGet);
+            return Json(objComm.BindServiceProvider(UserType).DataList, JsonRequestBehavior.AllowGet);
         }
     }
 }

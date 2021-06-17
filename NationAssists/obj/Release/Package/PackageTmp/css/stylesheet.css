@@ -421,3 +421,74 @@ a.fp {
         color: #333;
         text-decoration: none;
     }
+.planList {
+    margin: -10px;
+}
+
+    .planList > li {
+        width: 33.33%;
+        padding: 10px;
+    }
+
+    .planList li .inner {
+        background: #f8f8f8;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 5px 5px rgba(0,0,0,.2);
+    }
+
+        .planList li .inner .hd {
+            background: #0066fe;
+            padding: 12px;
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .planList li .inner .det {
+            padding: 20px;
+        }
+
+            .planList li .inner .det ul li {
+                padding: 5px 0;
+                text-align: center;
+                font-size: 16px;
+            }
+
+                .planList li .inner .det ul li.price {
+                    font-size: 32px;
+                    font-weight: 600;
+                    padding-top: 10px;
+                }
+
+                    .planList li .inner .det ul li.price span {
+                        font-size: 16px;
+                        color: #999;
+                        font-weight: 400;
+                    }
+
+            .planList li .inner .det a.button {
+                display: block;
+                background: #f1941b;
+                color: #fff;
+                border-radius: 4px;
+                padding: 12px;
+                font-size: 20px;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+                .planList li .inner .det a.button:hover {
+                    background: #c4740c;
+                }
+.buyNow {
+    display: block;
+    background: #f1941b;
+    color: #fff;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+}

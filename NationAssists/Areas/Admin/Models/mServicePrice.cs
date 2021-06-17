@@ -22,7 +22,7 @@ namespace NationAssists.Areas.Admin.Models
         public SelectList GetAllServices()
         {
             CommonServices objCS = new CommonServices();
-            IEnumerable<SelectListItem> lstDist = objCS.BindServices().Data.OrderBy(s => s.ServiceName).ToList().Select(m => new SelectListItem() { Text = m.ServiceName, Value = m.ServiceId.ToString() }).OrderBy(s => s.Text).ToList();
+            IEnumerable<SelectListItem> lstDist = objCS.BindServices().DataList.OrderBy(s => s.ServiceName).ToList().Select(m => new SelectListItem() { Text = m.ServiceName, Value = m.ServiceId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", ServiceId);
 
         }

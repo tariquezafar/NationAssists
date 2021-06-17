@@ -119,7 +119,7 @@ namespace NationAssists.Areas.Admin.Controllers
             MethodOutput<Broker> objMO = new MethodOutput<Broker>();
             BrokerService obj = new BrokerService();
             objMO = obj.GetAllBrokers(BrokerId,BrokerType);
-            return objMO.Data;
+            return objMO.DataList;
         }
 
         [HttpGet]
@@ -171,7 +171,7 @@ namespace NationAssists.Areas.Admin.Controllers
         {
             CommonServices objComm = new CommonServices();
             UserType = UserType == "SP" ? "" : UserType;
-            return Json(objComm.BindServiceProvider(UserType).Data, JsonRequestBehavior.AllowGet);
+            return Json(objComm.BindServiceProvider(UserType).DataList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult BindServices(int BrokerId)
@@ -179,7 +179,7 @@ namespace NationAssists.Areas.Admin.Controllers
             MethodOutput<Service> objMO = new MethodOutput<Service>();
             CommonServices obj = new CommonServices();
             objMO = obj.BindServiceOptedByBrokerId(BrokerId);
-            return Json(objMO.Data, JsonRequestBehavior.AllowGet);
+            return Json(objMO.DataList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ShowBrokerPriceList(int BrokerId, int ServiceId)
@@ -214,7 +214,7 @@ namespace NationAssists.Areas.Admin.Controllers
             MethodOutput<BrokerPrice> objMO = new MethodOutput<BrokerPrice>();
             BrokerService obj = new BrokerService();
             objMO = obj.GetBrokerPriceList(BrokerId, ServiceId);
-            objServiceSubCategory = objMO.Data;
+            objServiceSubCategory = objMO.DataList;
             objSPP.PriceOption = objServiceSubCategory[0].PriceOption;
             objSPP.PriceCount = objServiceSubCategory[0].PriceCount;
             objSPP.BrokerPriceList = objServiceSubCategory[0].BrokerPriceList;

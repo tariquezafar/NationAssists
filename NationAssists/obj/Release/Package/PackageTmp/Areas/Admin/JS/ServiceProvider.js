@@ -163,71 +163,75 @@ function ValidateForm() {
 
 function EditServiceProvider(e) {
 
-    
-    var ServiceProviderId = $(e).attr("data-id");
-    var pUrl = "/Admin/Service/GetServiceProviderDetail?ServiceProviderId=" + ServiceProviderId;
-    $.ajax({
-        type: "Get",
-        url: pUrl,
-        data: {},
-        dataType: 'html',
-        contentType: false,
-        processData: false,
-        async: false,
-        success: function (data) {
-            debugger;
-            var Jdata = JSON.parse(data);
-            $("#txtContactPersonName").val(Jdata.ContactPersonName);
-            $("#txtEscalationLandlineNo").val(Jdata.EscalationLandlineNo);
-            $("#txtCRNumber").val(Jdata.CRNumber);
-            $("#txtContactPersonNo").val(Jdata.ContactPersonContactDetail);
-            $("#txtEmailId").val(Jdata.EmailId);
-            $("#txtEscalationPersonContactNo").val(Jdata.EscalationContactDetail);
-            $("#txtFirstName").val(Jdata.FirstName);
-            $("#txtMobileNo").val(Jdata.MobileNo);
-            $("#txtLastName").val(Jdata.LastName);
-            $("#txtMiddleName").val(Jdata.MiddleName);
-            $("#txtOfficeAddress").val(Jdata.OfficeLocationAddress);
-            $("#txtPhoneNo").val(Jdata.PhoneNo);
-            $("#txtEscalationEmailId").val(Jdata.Escalation_Person_EmailId);
-            var AgreementFromDate = new Date(parseFloat(Jdata.ServiceProviderAgreementFromDate.substring(Jdata.ServiceProviderAgreementFromDate.indexOf('(') + 1, Jdata.ServiceProviderAgreementFromDate.indexOf(')'))));
-            $("#txtAggreementStartDate").val(formatDateWithTime(AgreementFromDate));
-            //$("#txtAggreementStartDate").val(new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString());
+    $('body').data("IsLoaderRequired", true);
+    $loading.show();
+    setTimeout(function () {
+        var ServiceProviderId = $(e).attr("data-id");
+        var pUrl = "/Admin/Service/GetServiceProviderDetail?ServiceProviderId=" + ServiceProviderId;
+        $.ajax({
+            type: "Get",
+            url: pUrl,
+            data: {},
+            dataType: 'html',
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (data) {
+                debugger;
+                var Jdata = JSON.parse(data);
+                $("#txtContactPersonName").val(Jdata.ContactPersonName);
+                $("#txtEscalationLandlineNo").val(Jdata.EscalationLandlineNo);
+                $("#txtCRNumber").val(Jdata.CRNumber);
+                $("#txtContactPersonNo").val(Jdata.ContactPersonContactDetail);
+                $("#txtEmailId").val(Jdata.EmailId);
+                $("#txtEscalationPersonContactNo").val(Jdata.EscalationContactDetail);
+                $("#txtFirstName").val(Jdata.FirstName);
+                $("#txtMobileNo").val(Jdata.MobileNo);
+                $("#txtLastName").val(Jdata.LastName);
+                $("#txtMiddleName").val(Jdata.MiddleName);
+                $("#txtOfficeAddress").val(Jdata.OfficeLocationAddress);
+                $("#txtPhoneNo").val(Jdata.PhoneNo);
+                $("#txtEscalationEmailId").val(Jdata.Escalation_Person_EmailId);
+                var AgreementFromDate = new Date(parseFloat(Jdata.ServiceProviderAgreementFromDate.substring(Jdata.ServiceProviderAgreementFromDate.indexOf('(') + 1, Jdata.ServiceProviderAgreementFromDate.indexOf(')'))));
+                $("#txtAggreementStartDate").val(formatDateWithTime(AgreementFromDate));
+                //$("#txtAggreementStartDate").val(new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString());
 
-            var AgreementEndDate = new Date(parseFloat(Jdata.ServiceProviderAgreementToDate.substring(Jdata.ServiceProviderAgreementToDate.indexOf('(')+1, Jdata.ServiceProviderAgreementToDate.indexOf(')'))));
-            $("#txtAggreementEndDate").val(formatDateWithTime(AgreementEndDate));
+                var AgreementEndDate = new Date(parseFloat(Jdata.ServiceProviderAgreementToDate.substring(Jdata.ServiceProviderAgreementToDate.indexOf('(') + 1, Jdata.ServiceProviderAgreementToDate.indexOf(')'))));
+                $("#txtAggreementEndDate").val(formatDateWithTime(AgreementEndDate));
 
-            $("#hdnServiceProviderID").val(Jdata.ServiceProviderId);
-            //$('input[name="chkService"][type="checkbox"]').prop("checked", false);
-            if (Jdata.SelectedServiceOpted != null) {
+                $("#hdnServiceProviderID").val(Jdata.ServiceProviderId);
+                //$('input[name="chkService"][type="checkbox"]').prop("checked", false);
+                if (Jdata.SelectedServiceOpted != null) {
 
-                $('input[name="chkService"][type="checkbox"]').each(function (index) {
-                    item = $(this);
-                    if (Jdata.SelectedServiceOpted.indexOf(item.val()) != -1) {
-                        item.attr('checked', true);
-                    }
-                });
+                    $('input[name="chkService"][type="checkbox"]').each(function (index) {
+                        item = $(this);
+                        if (Jdata.SelectedServiceOpted.indexOf(item.val()) != -1) {
+                            item.attr('checked', true);
+                        }
+                    });
+                }
+
+                if ($("input[type=checkbox][checkboxType=service]").length > 0) {
+
+                    $("input[type=checkbox][checkboxType=service]").each(function (i, e) {
+                        if ($(e).parent().parent().find('ul').find('input[type=checkbox]').length == $(e).parent().parent().find('ul').find('input[type=checkbox]:checked').length) {
+                            $(e).prop("checked", true);
+                        }
+                    });
+                }
+
+
+                $("#btnAdd").html("<strong>Update</strong>");
+                $("input[type=radio][name=PricingOption][value=" + Jdata.PriceOption + "]").prop("checked", true);
+                $("#progress").hide();
+
+            },
+            error: function (data) {
+
             }
-
-            if ($("input[type=checkbox][checkboxType=service]").length > 0) {
-
-                $("input[type=checkbox][checkboxType=service]").each(function (i,e) {
-                    if ($(e).parent().parent().find('ul').find('input[type=checkbox]').length == $(e).parent().parent().find('ul').find('input[type=checkbox]:checked').length) {
-                        $(e).prop("checked", true);
-                    }
-                });
-            }
-
-            
-            $("#btnAdd").html("<strong>Update</strong>");
-            $("input[type=radio][name=PricingOption][value=" + Jdata.PriceOption + "]").prop("checked", true);
-            $("#progress").hide();
-            
-        },
-        error: function (data) {
-            
-        }
-    });
+        });
+    }, 1000);
+   
 
 }
 

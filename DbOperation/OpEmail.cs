@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,5 +37,44 @@ namespace DbOperation
             }
             return objEC;
         }
+
+        public MethodOutput<Template> GetEmailTemplates(string TemplateCode)
+        {
+            MethodOutput<Template> objOutput = new MethodOutput<Template>();
+            List<Template> objLstTemplate = new List<Template>();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@TemplateCode";
+                objListSqlParam[0].Value = TemplateCode;
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetEmailTemplate", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstTemplate = dt.AsEnumerable().Select(x => new Template
+                    {
+                        EmailTemplateMasterId = x.Field<int>("EmailTemplateMasterId"),
+                        TemplateCode = x.Field<string>("TemplateCode"),
+                        Body = x.Field<string>("Template")
+
+                    }).ToList();
+
+                    objOutput.DataList = objLstTemplate;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+
+
+            }
+            return objOutput;
+        }
     }
+
 }

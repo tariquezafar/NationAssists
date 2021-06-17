@@ -12,6 +12,8 @@ namespace DataEngine
 
         public string ErrorMessage { get; set; }
 
-        public List<T> Data { get; set; }
+        public List<T> DataList { get; set; }
+
+        public T Data { get; set; }
     }
 }

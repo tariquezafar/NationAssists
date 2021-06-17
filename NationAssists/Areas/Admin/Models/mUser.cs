@@ -41,28 +41,28 @@ namespace NationAssists.Areas.Admin.Models
         public SelectList GetAllUsers()
         {
             CommonServices objCS = new CommonServices();
-            IEnumerable<SelectListItem> lstDist = objCS.BindUsers().Data.OrderBy(s => s.Name).ToList().Select(m => new SelectListItem() { Text = m.Name, Value = m.UserId.ToString() }).OrderBy(s => s.Text).ToList();
+            IEnumerable<SelectListItem> lstDist = objCS.BindUsers().DataList.OrderBy(s => s.Name).ToList().Select(m => new SelectListItem() { Text = m.Name, Value = m.UserId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", UserId);
         }
 
         public SelectList GetAllRoles()
         {
             CommonServices objCS = new CommonServices();
-            IEnumerable<SelectListItem> lstDist = objCS.BindRoles().Data.OrderBy(s => s.RoleName).ToList().Select(m => new SelectListItem() { Text = m.RoleName, Value = m.RoleId.ToString() }).OrderBy(s => s.Text).ToList();
+            IEnumerable<SelectListItem> lstDist = objCS.BindRoles().DataList.OrderBy(s => s.RoleName).ToList().Select(m => new SelectListItem() { Text = m.RoleName, Value = m.RoleId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", UserId);
         }
 
         public SelectList GetAllBranches()
         {
             CommonServices objCS = new CommonServices();
-            IEnumerable<SelectListItem> lstDist = objCS.BindBranches().Data.OrderBy(s => s.BranchName).ToList().Select(m => new SelectListItem() { Text = m.BranchName, Value = m.BranchId.ToString() }).OrderBy(s => s.Text).ToList();
+            IEnumerable<SelectListItem> lstDist = objCS.BindBranches().DataList.OrderBy(s => s.BranchName).ToList().Select(m => new SelectListItem() { Text = m.BranchName, Value = m.BranchId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", UserId);
         }
 
         public SelectList GetAllUserType()
         {
             CommonServices objCS = new CommonServices();
-            IEnumerable<SelectListItem> lstDist = objCS.BindUserType().Data.OrderBy(s => s.UserTypeName).ToList().Select(m => new SelectListItem() { Text = m.UserTypeName, Value = m.UserTypeId.ToString() }).OrderBy(s => s.Text).ToList();
+            IEnumerable<SelectListItem> lstDist = objCS.BindUserType().DataList.OrderBy(s => s.UserTypeName).ToList().Select(m => new SelectListItem() { Text = m.UserTypeName, Value = m.UserTypeId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", UserTypeId);
         }
     }

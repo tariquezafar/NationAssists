@@ -11,8 +11,7 @@ namespace NationAssists.Controllers
     {
         public ActionResult Index()
         {
-            EmailServices obj = new EmailServices();
-          //  obj.MailSent();
+           
             return View();
         }
 

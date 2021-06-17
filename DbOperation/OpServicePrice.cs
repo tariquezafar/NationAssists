@@ -76,13 +76,13 @@ namespace DbOperation
 
                     }).ToList();
 
-                    output.Data = objLst;
+                    output.DataList = objLst;
                     output.ErrorMessage = string.Empty;
                 }
             }
             catch (Exception ex)
             {
-                output.Data = objLst;
+                output.DataList = objLst;
                 output.ErrorMessage = ex.Message;
             }
             return output;
@@ -111,13 +111,13 @@ namespace DbOperation
 
                     }).ToList();
 
-                    output.Data = objLst;
+                    output.DataList = objLst;
                     output.ErrorMessage = string.Empty;
                 }
             }
             catch (Exception ex)
             {
-                output.Data = objLst;
+                output.DataList = objLst;
                 output.ErrorMessage = ex.Message;
             }
             return output;

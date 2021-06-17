@@ -48,7 +48,7 @@ namespace ICardPrinter.Areas.Admin.Models
             List<BrokerOptedService> objLstServices = new List<BrokerOptedService>();
             MethodOutput<ServiceSubCategory> output = new MethodOutput<ServiceSubCategory>();
             output = objCS.BindServiceSubCategory();
-            objLstServices = output.Data.Select(x => new BrokerOptedService
+            objLstServices = output.DataList.Select(x => new BrokerOptedService
             {
 
                 Name = x.ServiceName,

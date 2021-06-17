@@ -182,9 +182,11 @@
     <Compile Include="Areas\Software\SoftwareAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BuyOnlineController.cs" />
+    <Compile Include="Controllers\EmailVerificationController.cs" />
     <Compile Include="Controllers\homeassistanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PrivacyPolicyController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\roadsideassistanceController.cs" />
     <Compile Include="Controllers\roadsideassistancereplacementcarController.cs" />
@@ -586,6 +588,8 @@
     <Content Include="Views\roadsideassistancereplacementcar\Index.cshtml" />
     <Content Include="Views\homeassistance\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\PrivacyPolicy\Index.cshtml" />
+    <Content Include="Views\EmailVerification\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

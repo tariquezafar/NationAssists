@@ -23,7 +23,7 @@ namespace ICardPrinter.Areas.Admin.Models
         public SelectList GetAllServiceProvider()
         {
             CommonServices objCS = new CommonServices();
-            IEnumerable<SelectListItem> lstDist = objCS.BindServiceProvider().Data.OrderBy(s => s.FirstName).ToList().Select(m => new SelectListItem() { Text = m.FirstName, Value = m.ServiceProviderId.ToString() }).OrderBy(s => s.Text).ToList();
+            IEnumerable<SelectListItem> lstDist = objCS.BindServiceProvider().DataList.OrderBy(s => s.FirstName).ToList().Select(m => new SelectListItem() { Text = m.FirstName, Value = m.ServiceProviderId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", ServiceProviderId);
         }
     }

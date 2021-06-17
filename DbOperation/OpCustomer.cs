@@ -20,7 +20,7 @@ namespace DbOperation
 
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[10];
+                SqlParameter[] objListSqlParam = new SqlParameter[12];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@CustomerId";
                 objListSqlParam[0].Value = objCustomer.CustomerId;
@@ -42,8 +42,8 @@ namespace DbOperation
                 objListSqlParam[4].Value = objCustomer.MobileNo;
 
                 objListSqlParam[5] = new SqlParameter();
-                objListSqlParam[5].ParameterName = "@PhoneNo";
-                objListSqlParam[5].Value = objCustomer.PhoneNo;
+                objListSqlParam[5].ParameterName = "@NationalId";
+                objListSqlParam[5].Value = objCustomer.NationalId;
 
                 objListSqlParam[6] = new SqlParameter();
                 objListSqlParam[6].ParameterName = "@Gender";
@@ -53,9 +53,23 @@ namespace DbOperation
                 objListSqlParam[7].ParameterName = "@BrokerId";
                 objListSqlParam[7].Value = objCustomer.BrokerId;
 
+                objListSqlParam[8] = new SqlParameter();
+                objListSqlParam[8].ParameterName = "@AccountType";
+                objListSqlParam[8].Value = objCustomer.AccountType;
+
+                objListSqlParam[9] = new SqlParameter();
+                objListSqlParam[9].ParameterName = "@AccountSubType";
+                objListSqlParam[9].Value = objCustomer.AccountSubType;
+
+                objListSqlParam[10] = new SqlParameter();
+                objListSqlParam[10].ParameterName = "@Password";
+                objListSqlParam[10].Value = objCustomer.Password;
+
+
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveCustomer", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
+                    output.Data= Convert.ToString(dt.Rows[0]["CustomerCode"]);
                     output.ErrorMessage = Convert.ToString(dt.Rows[0]["Error"]);
 
                 }

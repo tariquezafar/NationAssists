@@ -49,7 +49,7 @@ namespace NationAssists.Areas.Admin.Models
             List<ServiceProviderServiceOpted> objLstServices = new List<ServiceProviderServiceOpted>();
             MethodOutput<ServiceSubCategory> output = new MethodOutput<ServiceSubCategory>();
             output = objCS.BindServiceSubCategory();
-            objLstServices = output.Data.Select(x => new ServiceProviderServiceOpted {
+            objLstServices = output.DataList.Select(x => new ServiceProviderServiceOpted {
 
                 Name = x.ServiceName,
                 IsActive = false,

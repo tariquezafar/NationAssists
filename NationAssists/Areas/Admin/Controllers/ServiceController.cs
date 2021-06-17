@@ -114,7 +114,7 @@ namespace NationAssists.Areas.Admin.Controllers
             MethodOutput<ServiceSubCategory> objMO = new MethodOutput<ServiceSubCategory>();
             ServiceSubCategoryService obj = new ServiceSubCategoryService();
             objMO = obj.GetServiceSubCategoryByServiceId(ServiceId);
-            return objMO.Data;
+            return objMO.DataList;
         }
 
         #endregion
@@ -206,7 +206,7 @@ namespace NationAssists.Areas.Admin.Controllers
             MethodOutput<ServiceProvider> objMO = new MethodOutput<ServiceProvider>();
             ServiceProviderService obj = new ServiceProviderService();
             objMO = obj.GetAllServiceProvider(ServiceProviderId);
-            return objMO.Data;
+            return objMO.DataList;
         }
 
 
@@ -266,7 +266,7 @@ namespace NationAssists.Areas.Admin.Controllers
             MethodOutput<Service> objMO = new MethodOutput<Service>();
             CommonServices obj = new CommonServices();
             objMO = obj.BindServicesByServiceProviderId(ServiceProviderId);
-            return Json( objMO.Data,JsonRequestBehavior.AllowGet);
+            return Json( objMO.DataList,JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ShowServiceSubCategoryPriceList(int ServiceProviderId,int ServiceId)
@@ -301,7 +301,7 @@ namespace NationAssists.Areas.Admin.Controllers
             MethodOutput<ServiceSubCategoryPrice> objMO = new MethodOutput<ServiceSubCategoryPrice>();
             ServiceProviderPriceService obj = new ServiceProviderPriceService();
             objMO = obj.GetServiceSubCategoryPriceList(ServiceProviderId, ServiceId);
-            objServiceSubCategory= objMO.Data;
+            objServiceSubCategory= objMO.DataList;
             objSPP.PriceOption = objServiceSubCategory[0].PriceOption;
             objSPP.PriceCount = objServiceSubCategory[0].PriceCount;
             objSPP.ServiceSubCategoryPriceList= objServiceSubCategory[0].SubCategoryPriceList;
@@ -388,7 +388,7 @@ namespace NationAssists.Areas.Admin.Controllers
             MethodOutput<ServicePrice> objMO = new MethodOutput<ServicePrice>();
             ServicePriceService obj = new ServicePriceService();
             objMO = obj.GetServicePrices( ServiceId);
-            return objMO.Data;
+            return objMO.DataList;
         }
 
         #endregion

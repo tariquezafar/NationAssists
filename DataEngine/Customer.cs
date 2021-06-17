@@ -23,5 +23,11 @@ namespace DataEngine
      public bool IsActive { get; set; }
 
         public string Gender { get; set; }
+
+    public string    NationalId         {get;set;}
+    public string    AccountType        {get;set;}
+    public string AccountSubType { get; set; }
+
+        public string Password { get; set; }
     }
 }

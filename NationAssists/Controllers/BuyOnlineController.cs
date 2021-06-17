@@ -24,7 +24,7 @@ namespace NationAssists.Controllers
             MethodOutput<ServicePrice> objMO = new MethodOutput<ServicePrice>();
             ServicePriceService obj = new ServicePriceService();
             objMO = obj.GetAllPackage();
-            return objMO.Data;
+            return objMO.DataList;
         }
     }
 }

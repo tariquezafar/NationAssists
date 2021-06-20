@@ -29,6 +29,19 @@
             overflow: hidden;
             outline: 0;
         }
+        .loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
     </style>
     <script type="text/javascript">
 
@@ -46,18 +59,19 @@
 
         </div>
     </div>
+
     <div class="dbCon">
         <div class="dbHeader transition">
             <div class="dbHeaderInner flexBox">
                 <div class="moreLink">
                     <a href="javascript:void(0)" class="showMoreLink showDBAccount">
                         <img src="/content/css/images/NationAssists/user_img.jpg"
-                             alt=""> Issac
+                             alt=""> @((Session["UserId"] !=null && Session["UserName"] != null) ? Convert.ToString( Session["UserName"]):"")
                     </a>
                     <div class="moreLinkPopup">
                         <ul>
                             <li><a href="#">My Account</a></li>
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="#" id="btnLogout">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,6 +98,7 @@
     <script src="/content/js/NationAssists/jquery.min.js"></script>
     <script src="/content/js/NationAssists/function.js"></script>
     <script src="/content/js/NationAssists/jquery.datetimepicker.full.js"></script>
+    <script src="~/js/Login.js"></script>
     <script>
         $('.datePicker').datetimepicker({ format: 'd/m/y', timepicker: false });
     </script>

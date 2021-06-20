@@ -163,7 +163,7 @@ namespace DbOperation
                         UserExpiryDate = x.Field<DateTime>("UserExpiryDate"),
                         IsActive = x.Field<bool>("IsActive"),
                         UserTypeName = x.Field<string>("UserType"),
-                        Role = x.Field<string>("Role"),
+                        RoleName = x.Field<string>("Role"),
                         BranchName= x.Field<string>("BranchName"),
                         MobileNo= x.Field<string>("MobileNo"),
                         UserTypeId= x.Field<int>("UserTypeId"),

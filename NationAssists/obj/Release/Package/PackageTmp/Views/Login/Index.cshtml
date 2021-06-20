@@ -15,18 +15,23 @@
                 <ul class="form flexBox">
                     <li class="fullWidth">
                         <span class="fieldHd">Email Address</span>
-                        <input type="text" class="formInput">
+                        <input type="text" id="txtEmailId" class="formInput">
                     </li>
                     <li class="fullWidth">
                         <span class="fieldHd">Password</span>
-                        <input type="password" class="formInput">
+                        <input type="password" id="txtPassword" class="formInput">
                     </li>
                     <li class="fullWidth flexBox spacebetween">
-                        <div><label class="rem"><input type="checkbox" class="checkInpt"> Remmember Me</label></div>
+                        <div><label class="rem"><input type="checkbox" id="chkRememberMe" class="checkInpt"> Remmember Me</label></div>
                         <div><a href="#" class="fp">Forgot Password</a></div>
                     </li>
                 </ul>
-                <div class="tac"><a href="/Register" class="skipLink">Sign Up</a><button class="formBtn" id="btnLogin">Login</button></div>
+                <div class="tac">
+                @if (Request.QueryString != null && Request.QueryString["LoginType"] != null && Convert.ToString(Request.QueryString["LoginType"]) == "Customer")
+                {
+                <a href="/Register" class="skipLink">Sign Up</a>
+                }
+                <button class="formBtn" id="btnLogin">Login</button></div>
             </div>
             <div class="assBey">...assistance and beyond</div>
         </div>
@@ -35,6 +40,8 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/function.js"></script>
 <script src="js/slick.min.js"></script>
+<script src="~/js/Login.js"></script>
+
 <script>
     $('.testimonialSlider').slick({
         dots: true,
@@ -45,9 +52,5 @@
         autoplay: false,
     });
 
-    $("#btnLogin").click(function () {
 
-        window.location.href ="/admin/dashboard"
-
-    });
 </script>

@@ -1,59 +1,125 @@
 ﻿<div>
+    @{
+        DataEngine.Users objUSer = new DataEngine.Users();
+        if (Session["User"] != null)
+        {
+            objUSer = (DataEngine.Users)Session["User"];
+
+        }
+    }
     <ul class="dbLeftMenu transition">
-        <li class="active">
-            <a class="link" href="#">User Master</a>
-            <span class="dwnArrow"></span>
-            <ul class="subLink">
-                <li><a href="/admin/User/AddUser/">Manage User</a></li>
-                @*<li class="active"><a href="#">Create User</a></li>
-                <li><a href="#">Role Master</a></li>
-                <li><a href="#">Role UI Mapping</a></li>*@
-            </ul>
-        </li>
-        <li routerLinkActive="active">
-            <a class="link" href="#">Service Provider</a>
-            <span class="dwnArrow"></span>
-            <ul class="subLink">
-                <li><a href="/admin/Service/ManageServiceProvider">Manage Service Provider</a></li>
-                <li><a href="/admin/Service/ManageServiceProviderPrice">Manage Service Provider Price </a></li>
-            </ul>
-        </li>
-        <li routerLinkActive="active">
-            <a class="link" href="#">Service Management</a>
-            <span class="dwnArrow"></span>
-            <ul class="subLink">
-                <li><a href="/admin/Service/ManageServiceSubCategory">Manage Service Category</a></li>
-                <li><a href="/admin/Service/ManageServicePrice">Manage Package Price</a></li>
-            </ul>
-        </li>
-        <li routerLinkActive="active">
-            <a class="link" href="#">Source Management</a>
-            <span class="dwnArrow"></span>
-            <ul class="subLink">
-                <li><a href="/admin/Brokers/ManageBroker">Manage Source</a></li>
-                <li><a href="/admin/Brokers/ManageBrokerPrice">Manage Source Price</a></li>
-            </ul>
-        </li>
-        <li routerLinkActive="active">
-            <a class="link" href="#">Currency</a>
-            <span class="dwnArrow"></span>
-            <ul class="subLink">
-                <li><a href="#">Sub Links</a></li>
-            </ul>
-        </li>
-        <li routerLinkActive="active">
-            <a class="link" href="#">Discount</a>
-            <span class="dwnArrow"></span>
-            <ul class="subLink">
-                <li><a href="#">Sub Links</a></li>
-            </ul>
-        </li>
-        <li routerLinkActive="active">
-            <a class="link" href="#">Document Type</a>
-            <span class="dwnArrow"></span>
-            <ul class="subLink">
-                <li><a href="#">Sub Links</a></li>
-            </ul>
-        </li>
+
+        @if (objUSer != null && objUSer.UserTypeCode == "EMP")
+        {
+            if (objUSer.RoleName == "Admin")
+            {
+                <li class="active">
+                    <a class="link" href="#">User Master</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="/admin/User/AddUser/">Manage User</a></li>
+                        @*<li class="active"><a href="#">Create User</a></li>
+                        <li><a href="#">Role Master</a></li>
+                        <li><a href="#">Role UI Mapping</a></li>*@
+                    </ul>
+                </li>
+
+                <li routerLinkActive="active">
+                    <a class="link" href="#">Service Provider</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="/admin/Service/ManageServiceProvider">Manage Service Provider</a></li>
+                        <li><a href="/admin/Service/ManageServiceProviderPrice">Manage Service Provider Price </a></li>
+                    </ul>
+                </li>
+                <li routerLinkActive="active">
+                    <a class="link" href="#">Service Management</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="/admin/Service/ManageServiceSubCategory">Manage Service Category</a></li>
+                        <li><a href="/admin/Service/ManageServicePrice">Manage Package Price</a></li>
+                    </ul>
+                </li>
+                <li routerLinkActive="active">
+                    <a class="link" href="#">Source Management</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="/admin/Brokers/ManageBroker">Manage Source</a></li>
+                        <li><a href="/admin/Brokers/ManageBrokerPrice">Manage Source Price</a></li>
+                    </ul>
+                </li>
+                <li routerLinkActive="active">
+                    <a class="link" href="#">Currency</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="#">Sub Links</a></li>
+                    </ul>
+                </li>
+                <li routerLinkActive="active">
+                    <a class="link" href="#">Discount</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="#">Sub Links</a></li>
+                    </ul>
+                </li>
+                <li routerLinkActive="active">
+                    <a class="link" href="#">Document Type</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="#">Sub Links</a></li>
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="active">
+                    <a class="link" href="#">User Management</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="#">View Profile</a></li>
+                        <li><a href="#">Change Password</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="active">
+                    <a class="link" href="#">Service Request Management</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="#">Add Service Request</a></li>
+                        <li><a href="#">Allocate Service Request</a></li>
+
+                    </ul>
+                </li>
+            }
+        }
+
+        @if (objUSer != null && objUSer.UserTypeCode != "EMP")
+        {
+            if (objUSer.RoleName == "Admin")
+            {
+                <li class="active">
+                    <a class="link" href="#">User Master</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="/admin/User/AddUser/">Manage User</a></li>
+
+                    </ul>
+                </li>
+            }
+           
+            
+                <li class="active">
+                    <a class="link" href="#">Source Data Management</a>
+                    <span class="dwnArrow"></span>
+                    <ul class="subLink">
+                        <li><a href="#">Manage Source Data</a></li>
+
+                    </ul>
+                </li>
+
+                
+            
+        }
     </ul>
 </div>

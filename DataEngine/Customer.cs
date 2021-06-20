@@ -29,5 +29,7 @@ namespace DataEngine
     public string AccountSubType { get; set; }
 
         public string Password { get; set; }
+
+        public string Name { get; set; }
     }
 }

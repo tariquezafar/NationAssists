@@ -146,7 +146,7 @@ namespace NationAssists.Areas.Admin.Controllers
                 objServiceProvider.MiddleName = Convert.ToString(Request.Form["MiddleName"]);
                 objServiceProvider.MobileNo = Convert.ToString(Request.Form["MobileNo"]);
                 objServiceProvider.OfficeLocationAddress = Convert.ToString(Request.Form["OfficeLocationAddress"]);
-                objServiceProvider.Password = RandomString(8);
+                objServiceProvider.Password = Convert.ToString(Request.Form["Password"]);
                 objServiceProvider.PhoneNo = Convert.ToString(Request.Form["PhoneNo"]);
                 objServiceProvider.SelectedServiceOpted = Convert.ToString(Request.Form["SelectedServiceOpted"]);
                 objServiceProvider.ServiceProviderAgreementFromDate =Convert.ToDateTime( Request.Form["ServiceProviderAgreementFromDate"]);

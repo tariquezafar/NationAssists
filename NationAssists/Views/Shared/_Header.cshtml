@@ -81,14 +81,15 @@
                 </a>
             </div>
             <div class="call"><a href="#"><img src="images/phone.png" alt=""></a></div>
-            <div class="moreLink">
-                <a href="javascript:void(0)" class="showMoreLink">AR</a>
+            <div class="moreLink" style="@(Session["CustomerId"]!=null ? "display:block;":"display:none;")">
+                <a href="javascript:void(0)" class="showMoreLink">
+                @((Session["CustomerId"] !=null && Session["CustomerName"] !=null ) ? Convert.ToString(Session["CustomerName"]) :"")</a>
                 <div class="moreLinkPopup">
                     <ul>
-                        <li><a href="#">Lorem Ipsum</a></li>
-                        <li><a href="#">Lorem Ipsum</a></li>
-                        <li><a href="#">Lorem Ipsum</a></li>
-                        <li><a href="#">Lorem Ipsum</a></li>
+                        <li><a href="#">Edit Profile</a></li>
+                        <li><a href="#">Change Password</a></li>
+                        <li><a href="#">Raise Service Request</a></li>
+                        <li><a href="#" id="btnLogout" onclick="Logout();">Logout</a></li>
                     </ul>
                 </div>
             </div>

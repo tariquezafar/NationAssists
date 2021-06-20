@@ -38,6 +38,7 @@ function SaveBroker() {
         frmBroker.append("Escalation_Person_Name", $("#txtEscalationPersonName").val());
         frmBroker.append("Escalation_Person_Contact_No", $("#txtEscalationPersonContactNo").val());
         frmBroker.append("EmailId", $("#txtEmailId").val());
+        frmBroker.append("Password", $("#txtPassword").val());
         frmBroker.append("MobileNo", $("#txtMobileNo").val());
         frmBroker.append("Agreement_Start_Date", $("#txtAggreementStartDate").val());
         frmBroker.append("Estimated_Business_In_A_Year", $("#txtEstimatedBusinessInAYear").val());

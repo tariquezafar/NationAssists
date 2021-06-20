@@ -21,6 +21,7 @@ function SaveServiceProvider() {
         frmServiceProvider.append("EscalationPersonName", $("#txtEscalationPersonName").val());
         frmServiceProvider.append("EscalationPersonContactNo", $("#txtEscalationPersonContactNo").val());
         frmServiceProvider.append("EmailId", $("#txtEmailId").val());
+        frmServiceProvider.append("Password", $("#txtPassword").val());
         frmServiceProvider.append("CRNumber", $("#txtCRNumber").val());
         frmServiceProvider.append("Escalation_Person_EmailId", $("#txtEscalationEmailId").val());
         frmServiceProvider.append("EscalationLandlineNo", $("#txtEscalationLandlineNo").val());

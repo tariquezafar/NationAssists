@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataEngine;
+using DataServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,55 @@ namespace NationAssists.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ValidateLogin(LoginInput objLogin)
+        {
+
+            LoginOutput objLoginOutput = new LoginOutput();
+            try
+            {
+                LoginServices objLoginServices = new LoginServices();
+                objLoginOutput = objLoginServices.ValidateLogin(objLogin);
+                if (objLoginOutput.IsValid)
+                {
+                    if (objLogin.LoginType == "Customer" && objLoginOutput.CustomerDetail!=null)
+                    {
+                        Session["CustomerId"] = Convert.ToString(objLoginOutput.CustomerDetail.CustomerId);
+                        Session["CustomerName"] = Convert.ToString(objLoginOutput.CustomerDetail.Name);
+
+
+                    }
+                    else
+                    {
+                        if (objLoginOutput.UserDetail != null)
+                        {
+                            Session["UserId"] = Convert.ToString(objLoginOutput.UserDetail.UserId);
+                            Session["UserName"] = Convert.ToString(objLoginOutput.UserDetail.Name);
+
+                            Session["User"] = objLoginOutput.UserDetail;
+                            
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                objLoginOutput.IsValid = false;
+                objLoginOutput.ErrorMessage = ex.Message;
+            }
+
+            return Json(objLoginOutput, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return Json(true,JsonRequestBehavior.AllowGet);
         }
     }
 }

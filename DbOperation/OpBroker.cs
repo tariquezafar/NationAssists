@@ -182,6 +182,10 @@ namespace DbOperation
                 objListSqlParam[28].ParameterName = "@Escalation_Person_EmailId";
                 objListSqlParam[28].Value = objBroker.Escalation_Person_EmailId;
 
+                objListSqlParam[29] = new SqlParameter();
+                objListSqlParam[29].ParameterName = "@Password";
+                objListSqlParam[29].Value = objBroker.Password;
+
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveBroker", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {

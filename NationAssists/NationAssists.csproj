@@ -455,6 +455,7 @@
     <Content Include="js\function.js" />
     <Content Include="js\html5.js" />
     <Content Include="js\jquery.min.js" />
+    <Content Include="js\Login.js" />
     <Content Include="js\Register.js" />
     <Content Include="js\slick.min.js" />
     <Content Include="mission.html" />

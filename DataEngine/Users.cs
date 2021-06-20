@@ -24,7 +24,7 @@ namespace DataEngine
 
         public string MobileNo { get; set; }
 
-        public string Role { get; set; }
+        public string RoleName { get; set; }
 
         public string BranchName { get; set; }
 
@@ -50,6 +50,8 @@ namespace DataEngine
 
         public string SourceName { get; set; }
 
+        public string UserTypeCode { get; set;}
+
     }
 
     public class UserType
@@ -57,5 +59,27 @@ namespace DataEngine
       public int  UserTypeId    {get;set;}
       public string  UserTypeName      {get;set;}
       public bool IsActive { get; set; }
+    }
+
+    public class LoginInput
+    {
+        public string LoginType { get; set; }
+        public string EmailId { get; set; }
+        public string Password { get; set; }
+
+        public bool RememberMe { get; set; } 
+
+    }
+
+    public class LoginOutput
+    {
+        public bool IsValid { get; set; }
+        public bool IsPasswordExpired { get; set; }
+
+        public Users UserDetail { get; set; }
+
+        public Customer CustomerDetail { get; set; }
+
+        public string ErrorMessage { get; set; }
     }
 }

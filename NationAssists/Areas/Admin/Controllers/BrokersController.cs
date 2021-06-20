@@ -66,6 +66,7 @@ namespace NationAssists.Areas.Admin.Controllers
                 objBroker.EscalationLandlineNo = Convert.ToString(Request.Form["EscalationLandlineNo"]);
                 objBroker.DeclarationPeriod = Convert.ToInt32(Request.Form["DeclarationPeriod"]==""?null: Request.Form["DeclarationPeriod"]);
                 objBroker.BranchLocation = Convert.ToString(Request.Form["BranchLocation"]);
+                objBroker.Password = Convert.ToString(Request.Form["Password"]);
                 string strBrokerCommission = Convert.ToString(Request.Form["BrokerCommissionList"]);
                 List<BrokerServiceCommissionPayable> objList = new List<BrokerServiceCommissionPayable>();
                 JavaScriptSerializer jss = new JavaScriptSerializer();

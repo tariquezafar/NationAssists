@@ -52,6 +52,8 @@ namespace DataEngine
 
         public string BrokerCode { get; set; }
 
+        public string Password { get; set; }
+
     }
 
 

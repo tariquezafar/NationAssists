@@ -215,9 +215,13 @@
         <div class="inner">
             <ul class="links">
                 <li><a href="/BuyOnline">Buy Online</a></li>
-                <li><a href="/Login">Corporate Login</a></li>
-                <li><a href="/Login">Agent Login</a></li>
-                <li><a href="/Login">Employee Login</a></li>
+                @if (Session["CustomerId"] == null)
+                {
+                <li><a href="/Login?LoginType=InsuranceCompany">Corporate Login</a></li>
+                <li><a href="/Login?LoginType=Agent">Agent Login</a></li>
+                <li><a href="/Login?LoginType=Employee">Employee Login</a></li>
+                <li><a href="/Login?LoginType=Customer">Customer Login</a></li>
+                }
                 <li><a href="#">Downloads</a></li>
             </ul>
             <div class="flexBox spacebetween">

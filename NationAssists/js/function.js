@@ -25,11 +25,12 @@ $(document).ready(function () {
 
 	$(".showMoreLink").click(function (moreNav) {
 		moreNav.stopPropagation();
-		$(this).next('.moreLinkPopup').slideToggle('300');
+		$(this).next('.moreLinkPopup').show('300');
+	//	$(this).next('.moreLinkPopup').slideToggle('300');
 	});
-	$(".moreLinkPopup").click(function (moreNav) {
-		moreNav.stopPropagation();
-	});
+	//$(".moreLinkPopup").click(function (moreNav) {
+	//	moreNav.stopPropagation();
+	//});
 	$("body").click(function () {
 		$('.moreLinkPopup').hide();
 	});

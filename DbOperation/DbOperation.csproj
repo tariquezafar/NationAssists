@@ -47,6 +47,7 @@
     <Compile Include="OpEmail.cs" />
     <Compile Include="OpLogin.cs" />
     <Compile Include="OpMembership.cs" />
+    <Compile Include="OpServiceArea.cs" />
     <Compile Include="OpServiceCategory.cs" />
     <Compile Include="OpServicePrice.cs" />
     <Compile Include="OpServiceProvider.cs" />

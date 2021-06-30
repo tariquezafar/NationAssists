@@ -15,6 +15,8 @@ namespace NationAssists.Models
 
         public int CountryId { get; set; }
 
+      
+
         public SelectList BindServicesByCPRNumber(string CPRNumber)
         {
             ServiceRequestService objCS = new ServiceRequestService();

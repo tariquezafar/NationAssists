@@ -6,18 +6,31 @@ using System.Threading.Tasks;
 
 namespace DataEngine
 {
-   public class ServiceProviderServiceArea
+    public class ServiceProviderServiceArea
     {
         public Int64 ServiceProviderServiceAreaId { get; set; }
-        public string AreaType { get; set; }
 
-        public int                ServiceProviderId         {get;set;}
-        public int                ServiceId                 {get;set;}
-        public int                ServiceSubCategoryId      {get;set;}
-        public string               Address                   {get;set;}
-        public int                CountryId                 {get;set;}
-        public Int64                StateId                   {get;set;}
-        public Int64 CityId { get; set; }
+
+        public int ServiceProviderId { get; set; }
+        public int ServiceId { get; set; }
+        public int ServiceSubCategoryId { get; set; }
+        public int CountryId { get; set; }
+        public int? GovernotesId { get; set; }
+        public int? PlaceId { get; set; }
+        public int? BlockId { get; set; }
+        public string PinCode { get; set; }
+
+        public string ServiceName { get; set; }
+
+        public string SubCategoryName { get; set; }
+
+        public string CountryName { get; set; }
+
+        public string GovernotesName { get; set; }
+
+        public string PlaceName { get; set; }
+
+        public List<ServiceProviderServiceArea> ServiceAreas { get; set; }
     }
 
     public class Governotes

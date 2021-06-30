@@ -454,6 +454,40 @@ namespace NationAssists.Areas.Admin.Controllers
             objMO = obj.GetServiceSubCategoryByServiceId(ServiceId);
             return Json(objMO.DataList, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult SaveServiceAreaMapping(ServiceProviderServiceArea objSA)
+        {
+            MethodOutput<string> objMO = new MethodOutput<string>();
+            bool IsSaved = false;
+            string strMsg = String.Empty;
+
+            try
+            {
+                ServiceAreaMappingServices obj = new ServiceAreaMappingServices();
+                objMO = obj.SaveServiceAreaMapping(objSA);
+                IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
+                strMsg = objMO.ErrorMessage;
+            }
+            catch (Exception ex)
+            {
+
+                IsSaved = false;
+                strMsg = ex.Message;
+            }
+
+            return Json(new { Result = IsSaved, Msg = strMsg }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetAllServiceArea(int ServiceProviderId, int ServiceId, int SubCategoryId)
+        {
+            ServiceProviderServiceArea objSPP = new ServiceProviderServiceArea();
+            MethodOutput<ServiceProviderServiceArea> objMO = new MethodOutput<ServiceProviderServiceArea>();
+            ServiceAreaMappingServices obj = new ServiceAreaMappingServices();
+            objMO = obj.GetAllServiceArea(ServiceProviderId, ServiceId, SubCategoryId);
+            objSPP.ServiceAreas = objMO.DataList;
+            return Json( objSPP,JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region Service

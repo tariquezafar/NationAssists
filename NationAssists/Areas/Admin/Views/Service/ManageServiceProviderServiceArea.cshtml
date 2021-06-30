@@ -23,7 +23,7 @@
             <span class="fieldHd" id="lblService">Service Sub Category </span>
             @Html.DropDownListFor(m => m.ServiceSubCategoryId,
            new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceCategoryId", "ServiceName"),
-                  "--Select--", new { @class = "formInput", @onchange = "BindServiceSubCategoryPriceList()" })
+                  "--Select--", new { @class = "formInput", @onchange = "BindMappedArea()" })
         </li>
 
         <li class="oneThird">
@@ -54,5 +54,20 @@
             </select>
         </li>
     </ul>
+    <div>
+
+        <input type="hidden" id="hdnServiceId" value="0" />
+        <input type="hidden" id="hdnSubCategoryId" value="0" />
+        <input type="hidden" id="hdnGovernotesId" value="0" />
+        <input type="hidden" id="hdnPlaceId" value="0" />
+        <input type="hidden" id="hdnBlockId" value="0" />
+        <button type="button" class="btnSave dbformBtn mr10" onclick="return AddServiceArea();">Add</button>
+        <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Brokers/ManageServiceProviderServiceArea/'">Reset</button>
+        <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveServiceArea();">Save</button>
+
     </div>
+    <div class="dbTable" id="tblPriceList">
+
+    </div>
+</div>
 <script src="~/Areas/Admin/JS/ServiceProviderServiceArea.js"></script>

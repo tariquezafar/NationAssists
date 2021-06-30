@@ -20,7 +20,7 @@ namespace DbOperation
 
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[12];
+                SqlParameter[] objListSqlParam = new SqlParameter[15];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@CustomerId";
                 objListSqlParam[0].Value = objCustomer.CustomerId;
@@ -65,12 +65,47 @@ namespace DbOperation
                 objListSqlParam[10].ParameterName = "@Password";
                 objListSqlParam[10].Value = objCustomer.Password;
 
+                objListSqlParam[11] = new SqlParameter();
+                objListSqlParam[11].ParameterName = "@Customer_Reference_Code";
+                objListSqlParam[11].Value = objCustomer.Customer_Reference_Code;
+
 
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveCustomer", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
                     output.Data= Convert.ToString(dt.Rows[0]["CustomerCode"]);
                     output.ErrorMessage = Convert.ToString(dt.Rows[0]["Error"]);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                output.ErrorMessage = ex.Message;
+            }
+
+            return output;
+        }
+
+
+        public MethodOutput<string> UpdateCustomerEmailVerificationStatus(string CustomerCode)
+        {
+            MethodOutput<string> output = new MethodOutput<string>();
+            try
+            {
+
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@CustomerCode";
+                objListSqlParam[0].Value = CustomerCode;
+
+              dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_UpdateCustomerEmailVerification", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                   
+                    output.ErrorMessage = Convert.ToString(dt.Rows[0]["ERROR"]);
 
                 }
             }

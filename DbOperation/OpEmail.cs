@@ -58,7 +58,8 @@ namespace DbOperation
                     {
                         EmailTemplateMasterId = x.Field<int>("EmailTemplateMasterId"),
                         TemplateCode = x.Field<string>("TemplateCode"),
-                        Body = x.Field<string>("Template")
+                        Body = x.Field<string>("Template"),
+                        EmailSubject = x.Field<string>("EmailSubject")
 
                     }).ToList();
 

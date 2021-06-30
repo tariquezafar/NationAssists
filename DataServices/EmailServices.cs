@@ -22,6 +22,7 @@ namespace DataServices
             {
                   
                 MailMessage message = new MailMessage();
+                
                 message.From = new MailAddress(objEC.EmailId,objEC.DisplayName);
                 string UserName = string.Empty;
                 string URL = string.Empty;

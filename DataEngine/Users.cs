@@ -81,5 +81,7 @@ namespace DataEngine
         public Customer CustomerDetail { get; set; }
 
         public string ErrorMessage { get; set; }
+
+        
     }
 }

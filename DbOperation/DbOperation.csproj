@@ -46,10 +46,12 @@
     <Compile Include="OpCustomer.cs" />
     <Compile Include="OpEmail.cs" />
     <Compile Include="OpLogin.cs" />
+    <Compile Include="OpMembership.cs" />
     <Compile Include="OpServiceCategory.cs" />
     <Compile Include="OpServicePrice.cs" />
     <Compile Include="OpServiceProvider.cs" />
     <Compile Include="OpServiceProviderPrice.cs" />
+    <Compile Include="OpServiceRequest.cs" />
     <Compile Include="OpUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

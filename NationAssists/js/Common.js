@@ -130,4 +130,12 @@ function isValidEmail(email) {
 }
 
 
+$("input[type='date']").on("change", function () {
+    this.setAttribute(
+        "data-date",
+        moment(this.value, "dd-MM-yyyy")
+            .format(this.getAttribute("data-date-format"))
+    )
+}).trigger("change")
+
 

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ICardPrinter.Areas.Admin.Models
+namespace NationAssists.Areas.Admin.Models
 {
-    public class mServiceProvoiderServiceArea
+    public class mServiceProviderServiceArea
     {
         public Int64 ServiceProviderServiceAreaId { get; set; }
         public string AreaType { get; set; }
@@ -26,5 +26,14 @@ namespace ICardPrinter.Areas.Admin.Models
             IEnumerable<SelectListItem> lstDist = objCS.BindServiceProvider().DataList.OrderBy(s => s.FirstName).ToList().Select(m => new SelectListItem() { Text = m.FirstName, Value = m.ServiceProviderId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", ServiceProviderId);
         }
+
+        public SelectList BindCountry()
+        {
+            CommonServices objCS = new CommonServices();
+            IEnumerable<SelectListItem> lstDist = objCS.BindCountry().DataList.OrderBy(s => s.Name).ToList().Select(m => new SelectListItem() { Text = m.Name, Value = m.CountryId.ToString() }).OrderBy(s => s.Text).ToList();
+            return new SelectList(lstDist, "Value", "Text", CountryId);
+        }
+
+
     }
 }

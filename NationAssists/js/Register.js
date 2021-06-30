@@ -68,7 +68,7 @@ $(".mtNextStep").click(function () {
     else {
         if ($("#ddlAccountType").val() == "GA") {
 
-            SubmitRegistration('', 0);
+            SubmitRegistration('', 0,'');
 
         }
         else {
@@ -83,14 +83,21 @@ $(".mtNextStep").click(function () {
 });
 
 $(".mdNextStep").click(function () {
-   
-            $('.mt').removeClass('active');
-            $('.bi').hide(0);
-            $('.md').show(0);
-            $('.md').addClass('active');
 
-            $('#dvNAMemberDetail').show(0);
-            $('#dvMemberType').hide(0);
+
+    if ($("#ddlSourceType").val() != "0") {
+        $('.mt').removeClass('active');
+        $('.bi').hide(0);
+        $('.md').show(0);
+        $('.md').addClass('active');
+
+        $('#dvNAMemberDetail').show(0);
+        $('#dvMemberType').hide(0);
+    }
+    else {
+        alert("Please select Service Provider.");
+        $("#ddlSourceType").focus();
+    }
      
 
 });
@@ -149,10 +156,45 @@ $("#ddlAccountType").change(function () {
     }
 })
 
+$("#ddlSourceType").change(function () {
+
+    if ($(this).val() != "0") {
+
+      
+        var UserType = $(this).val();
+        $("#ddlSource").html("'<option>--Select--</option>'");
+
+        var pUrl = "../Admin/Brokers/BindBroker?UserType=" + UserType;
+        $.ajax({
+            type: "Get",
+            url: pUrl,
+            data: {},
+            dataType: 'html',
+            contentType: false,
+            processData: false,
+            async: false,
+            success: function (data) {
+
+                $("#ddlSource").html(""); // clear before appending new list
+                var jData = JSON.parse(data);
+                if (jData != null && jData.length > 0) {
+                    $("#ddlSource").append($('<option></option>').val(0).html("--Select--"));
+                    $.each(jData, function (i, service) {
+                        $("#ddlSource").append(
+                            $('<option></option>').val(service.ServiceProviderId).html(service.FirstName));
+                    });
+
+                }
+            }
+        });
+
+    }
+})
 
 
 
-function SubmitRegistration(AccountSubType, BrokerId) {
+
+function SubmitRegistration(AccountSubType, BrokerId, Customer_Reference_Code) {
     var objUsers = {
         CustomerId: 0,
         FirstName: $("#txtFirstName").val(),
@@ -164,8 +206,8 @@ function SubmitRegistration(AccountSubType, BrokerId) {
         BrokerId: BrokerId,
         AccountType: $("#ddlAccountType").val(),
         AccountSubType: AccountSubType,
-        Password: $("#txtPassword").val()
-        
+        Password: $("#txtPassword").val(),
+        Customer_Reference_Code:Customer_Reference_Code
     };
     var pUrl = "/Register/SaveCustomer/";
     $.ajax({
@@ -197,3 +239,47 @@ function SubmitRegistration(AccountSubType, BrokerId) {
         }
     });
 }
+
+
+$("#btnFinish").click(function () {
+    if ($('#ddlSource').val() != "" || $('#ddlSource').val() != "0") {
+        var Reference = $("#ddlSource option:selected").text();
+        var ReferenceCode=    Reference.substring(Reference.indexOf('(') + 1, Reference.indexOf(')'))
+        var pUrl = "/Register/SearchCPRNumber?CPRNumber=" + $("#txtNationalId").val() + "&SourceId=" + $('#ddlSource').val();
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            url: pUrl,
+            success: function (data) {
+
+                if (data.ErrorMessage == null || data.ErrorMessage == "") {
+                    if (data.IsValidCPR && data.IsCPRMatchesWithSource) {
+                        SubmitRegistration($("#ddlSourceType").val(), $('#ddlSource').val(), ReferenceCode);
+
+                    }
+                    else {
+                        if (data.IsValidCPR && !data.IsCPRMatchesWithSource) {
+
+                            alert("CPR Number doesnot matched with Source.");
+                        }
+                        else {
+                            alert("Invalid CPR Number.");
+                        }
+
+                    }
+                }
+                else {
+                    alert("Opps! some error occured.");
+                }
+            },
+            error: function (data) {
+            }
+        });
+    }
+    else {
+        alert("Please select source");
+    }
+})
+
+

@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "ManageService";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboardCon transition">
+    <div class="mainHd">Manage Service</div>
+    <ul class="dbForm flexBox">
+        <li class="oneThird">
+            <span class="fieldHd" id="lblServiceCode">Service Code </span>
+            <input type="text" class="formInput" id="txtServicecode" maxlength="1000" placeholder="Service Code">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblServiceName">Service Name </span>
+            <input type="text" class="formInput" id="txtServicename" maxlength="1000" placeholder="Service Name">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd">Status</span>
+            <div class="optBox flexBox">
+
+                <label><input type="checkbox" class="checkInpt" id="chkIsActive"> Is Active</label>
+
+            </div>
+        </li>
+    </ul>
+    <div>
+        <input type="hidden" id="hdnServiceID" value="0" />
+        <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveService();">Save</button>
+        <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Service/ManageService/'">Reset</button>
+
+    </div>
+</div>
+
+<script src="~/Areas/Admin/JS/Service.js"></script>

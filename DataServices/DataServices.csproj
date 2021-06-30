@@ -44,10 +44,12 @@
     <Compile Include="CustomerService.cs" />
     <Compile Include="EmailServices.cs" />
     <Compile Include="LoginServices.cs" />
+    <Compile Include="MembershipServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicePriceService.cs" />
     <Compile Include="ServiceProviderPriceService.cs" />
     <Compile Include="ServiceProviderService.cs" />
+    <Compile Include="ServiceRequestService.cs" />
     <Compile Include="ServiceSubCategoryService.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

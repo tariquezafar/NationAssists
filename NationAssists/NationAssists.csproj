@@ -169,7 +169,8 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\mBroker.cs" />
     <Compile Include="Areas\Admin\Models\mBrokerPrice.cs" />
-    <Compile Include="Areas\Admin\Models\mServiceProvoiderServiceArea.cs" />
+    <Compile Include="Areas\Admin\Models\mMembership.cs" />
+    <Compile Include="Areas\Admin\Models\mServiceProviderServiceArea.cs" />
     <Compile Include="Areas\Admin\Models\mServicePrice.cs" />
     <Compile Include="Areas\Admin\Models\mServiceProvider.cs" />
     <Compile Include="Areas\Admin\Models\mServiceSubCategory.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PrivacyPolicyController.cs" />
+    <Compile Include="Controllers\RaiseServiceRequestController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\roadsideassistanceController.cs" />
     <Compile Include="Controllers\roadsideassistancereplacementcarController.cs" />
@@ -194,21 +196,26 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AesOperation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\mBuyOnline.cs" />
+    <Compile Include="Models\mServiceRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\JS\Broker.js" />
+    <Content Include="Areas\Admin\JS\Membership.js" />
     <Content Include="Areas\Admin\JS\BrokerPrice.js" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.css" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.js" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.min.css" />
     <Content Include="Areas\Admin\JS\Custom JS\hummingbird-treeview.min.js" />
+    <Content Include="Areas\Admin\JS\Service.js" />
     <Content Include="Areas\Admin\JS\ServicePrice.js" />
     <Content Include="Areas\Admin\JS\ServiceProvider.js" />
     <Content Include="Areas\Admin\JS\ServiceProviderPrice.js" />
+    <Content Include="Areas\Admin\JS\ServiceProviderServiceArea.js" />
     <Content Include="Areas\Admin\JS\ServiceSubCategory.js" />
     <Content Include="Areas\Admin\JS\CardPrinter.js" />
     <Content Include="Areas\Admin\JS\User.js" />
@@ -361,6 +368,7 @@
     <Content Include="Content\js\revolution-slider.js" />
     <Content Include="Content\style.css" />
     <Content Include="css\datatable.min.css" />
+    <Content Include="css\jquery.datetimepicker.css" />
     <Content Include="css\jquery.tablesorter.pager.css" />
     <Content Include="css\responsive.css" />
     <Content Include="css\slick.css" />
@@ -454,9 +462,11 @@
     <Content Include="js\Common.js" />
     <Content Include="js\function.js" />
     <Content Include="js\html5.js" />
+    <Content Include="js\jquery.datetimepicker.full.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\Login.js" />
     <Content Include="js\Register.js" />
+    <Content Include="js\ServiceRequest.js" />
     <Content Include="js\slick.min.js" />
     <Content Include="mission.html" />
     <Content Include="roadside-assistance-replacement-car.html" />
@@ -533,7 +543,10 @@
     <Content Include="Areas\Admin\Views\Brokers\_BrokerList.cshtml" />
     <Content Include="Areas\Admin\Views\Brokers\ManageBrokerPrice.cshtml" />
     <Content Include="Areas\Admin\Views\Brokers\_BrokerPriceList.cshtml" />
-    <Content Include="Areas\Admin\Views\Service\ManageServiceProvierServiceArea.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\ManageServiceProviderServiceArea.cshtml" />
+    <Content Include="Areas\Admin\Views\Brokers\ManageMembership.cshtml" />
+    <Content Include="Areas\Admin\Views\Brokers\_MembershipList.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\ManageService.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -591,6 +604,7 @@
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\PrivacyPolicy\Index.cshtml" />
     <Content Include="Views\EmailVerification\Index.cshtml" />
+    <Content Include="Views\RaiseServiceRequest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

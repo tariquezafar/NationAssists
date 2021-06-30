@@ -30,5 +30,18 @@ namespace DataServices
             return obj.DeleteServiceSubCategory(ServiceId);
         }
 
+
+
+        public MethodOutput<string> SaveService(Service service)
+        {
+            OpServiceCategory obj = new OpServiceCategory();
+            return obj.SaveService(service);
+        }
+
+       
+
+
     }
 }
+
+

@@ -88,8 +88,11 @@
                     <ul>
                         <li><a href="#">Edit Profile</a></li>
                         <li><a href="#">Change Password</a></li>
-                        <li><a href="#">Raise Service Request</a></li>
-                        <li><a href="#" id="btnLogout" onclick="Logout();">Logout</a></li>
+                        @if (Session["IsHavingMembership"] != null && Convert.ToBoolean(Session["IsHavingMembership"]))
+                        {
+                        <li><a href="/RaiseServiceRequest">Raise Service Request</a></li>
+                        }
+                        <li><a href="#" id="btnLogout" onclick="Logout('Customer');">Logout</a></li>
                     </ul>
                 </div>
             </div>

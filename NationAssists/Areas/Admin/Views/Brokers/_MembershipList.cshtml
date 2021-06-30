@@ -1,0 +1,64 @@
+﻿@model ICardPrinter.Areas.Admin.Models.mMembership
+
+@if (Model.MembershipList != null)
+{
+    int i = 0;
+
+    if (Model.MembershipList.Count > 0)
+    {
+        <table>
+            <thead>
+
+
+                <tr>
+
+                    <th>SNo.</th>
+                    <th>Source Name</th>
+                    <th>Package Name</th>
+                    <th>C.P.R Number</th>
+                    <th>Policy No</th>
+                    <th>Insured Name</th>
+                    <th>Effective Date</th>
+                    <th>Expiry Date</th>
+                    <th>Issued Date</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataEngine.Membership item in Model.MembershipList)
+                {
+                    i = i + 1;
+                <tr>
+                    <td> <span class="blueClr">@i </span></td>
+
+                    <td>@item.SourceName</td>
+                    <td>@item.PackageName</td>
+                    <td>@item.CPRNumber</td>
+                    <td>@item.PolicyNo</td>
+                    <td>@item.InsuredName</td>
+                    <td>@(Convert.ToDateTime( item.EffectiveDate).ToString("dd-MMM-yyyy"))</td>
+                    <td>@(Convert.ToDateTime( item.ExpiryDate).ToString("dd-MMM-yyyy"))</td>
+                    <td>@(Convert.ToDateTime( item.IssueDate).ToString("dd-MMM-yyyy"))</td>
+                    
+                    <td>
+
+                        <a data-id="@item.MembershipId" onclick="EditMember(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+                        
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+
+
+
+        </table>
+    }
+
+
+}
+
+else
+{
+    <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+}

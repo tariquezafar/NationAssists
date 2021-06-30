@@ -214,13 +214,22 @@
         <span class="arrow"></span>
         <div class="inner">
             <ul class="links">
-                <li><a href="/BuyOnline">Buy Online</a></li>
+
+                
                 @if (Session["CustomerId"] == null)
                 {
                 <li><a href="/Login?LoginType=InsuranceCompany">Corporate Login</a></li>
                 <li><a href="/Login?LoginType=Agent">Agent Login</a></li>
                 <li><a href="/Login?LoginType=Employee">Employee Login</a></li>
                 <li><a href="/Login?LoginType=Customer">Customer Login</a></li>
+                }
+                else
+                {
+                    string AccountType = Convert.ToString(Session["AccountType"]);
+                    if (AccountType == "GA")
+                    {
+            <li><a href="/BuyOnline">Buy Online</a></li>
+                    }
                 }
                 <li><a href="#">Downloads</a></li>
             </ul>

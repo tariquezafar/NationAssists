@@ -89,9 +89,8 @@
 
                     <li>
                         <span class="fieldHd">Service Provider</span>
-                        <select class="formSelect">
-                            <option>Select</option>
-                            <option value="SP">Nation Assist (Direct/Guest)</option>
+                        <select class="formSelect" id="ddlSourceType">
+                            <option value="0">Select</option>
                             <option value="IC">Insurance Company</option>
                             <option value="IB">Insurance Brokers</option>
                             <option value="BA">Banks</option>
@@ -109,34 +108,17 @@
                 <ul class="form flexBox">
 
                     <li>
-                        <span class="fieldHd">Service Provider</span>
-                        <select class="formSelect">
+                        <span class="fieldHd">Source</span>
+                        <select class="formSelect" id="ddlSource">
                             <option>Select</option>
 
                         </select>
                     </li>
-                    <li>
-                        <span class="fieldHd">Policy No</span>
-                        <input type="text" class="formInput">
-                    </li>
-                    <li>
-                        <span class="fieldHd">Chassis Number</span>
-
-
-                        <input type="text" class="formInput">
-
-                    </li>
-                    <li>
-                        <span class="fieldHd">Registration Number</span>
-
-
-                        <input type="text" class="formInput">
-
-                    </li>
+                    
 
 
                 </ul>
-                <div class="tac"><a href="#" class="skipLink bkmt">Previous</a> <button class="formBtn">Finish</button></div>
+                <div class="tac"><a href="#" class="skipLink bkmt">Previous</a> <button class="formBtn" id="btnFinish">Finish</button></div>
             </div>
 
             <div class="assBey">...assistance and beyond</div>

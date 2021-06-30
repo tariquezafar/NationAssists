@@ -31,8 +31,9 @@ namespace NationAssists.Controllers
                     {
                         Session["CustomerId"] = Convert.ToString(objLoginOutput.CustomerDetail.CustomerId);
                         Session["CustomerName"] = Convert.ToString(objLoginOutput.CustomerDetail.Name);
-
-
+                        Session["IsHavingMembership"] = Convert.ToBoolean(objLoginOutput.CustomerDetail.IsHavingMembership);
+                        Session["AccountType"] = Convert.ToString(objLoginOutput.CustomerDetail.AccountType);
+                        Session["CPRNumber"] = Convert.ToString(objLoginOutput.CustomerDetail.NationalId);
                     }
                     else
                     {
@@ -65,4 +66,5 @@ namespace NationAssists.Controllers
             return Json(true,JsonRequestBehavior.AllowGet);
         }
     }
+
 }

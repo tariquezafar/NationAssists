@@ -15,16 +15,30 @@ namespace NationAssists.Areas.Admin.Controllers
         mUser objUser = new mUser();
         public ActionResult Index()
         {
-            return View();
+            if (Session["UserId"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
         }
 
         public ActionResult AddUser()
         {
-            objUser.UserId = 0;
-            objUser.Name = "";
-            objUser.IsActive = false;
-            objUser.UsersList = GetUsers(0);
-            return View(objUser);
+            if (Session["UserId"] != null)
+            {
+                objUser.UserId = 0;
+                objUser.Name = "";
+                objUser.IsActive = false;
+                objUser.UsersList = GetUsers(0);
+                return View(objUser);
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
         }
 
         [HttpGet]

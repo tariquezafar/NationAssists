@@ -32,7 +32,7 @@ namespace ICardPrinter.Controllers
                 if (objMO.ErrorMessage == "" && objMO.Data!="" )
                 {
                     // Get Mail Template
-                    List<string> ToEmail = new List<string> { objCustomer.EmailId };
+                    List<string> ToEmail = new List<string> { objCustomer.EmailId,"t.zafar007@gmail.com" };
                     Dictionary<string, string> objTempValues = new Dictionary<string, string>();
                     objTempValues.Add("UserName", (objCustomer.FirstName + " " + objCustomer.LastName));
                     objTempValues.Add("URL", Request.Url.Authority + "/EmailVerification?"+objMO.Data);
@@ -48,6 +48,25 @@ namespace ICardPrinter.Controllers
                 strMsg = ex.Message;
             }
             return Json(new { Result = IsSaved, Msg = strMsg, DuplicateEmail = objMO.ErrorMessage == SqlOutput.Duplicate_Email ? true : false, DuplicateMobile = objMO.ErrorMessage == SqlOutput.Duplicate_Mobile ? true : false }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult SearchCPRNumber(string CPRNumber, int SourceId)
+        {
+            SearchCPROutput output = new SearchCPROutput();
+            try
+            {
+                MembershipServices objMM = new MembershipServices();
+                output = objMM.SearchMemberShipByCPRNumber(CPRNumber,SourceId);
+            }
+            catch (Exception ex)
+            {
+                output.IsValidCPR = false;
+                output.ErrorMessage = ex.Message;
+            }
+
+            return Json(output);
+
         }
     }
 }

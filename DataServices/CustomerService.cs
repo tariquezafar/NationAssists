@@ -15,5 +15,11 @@ namespace DataServices
             OpCustomer obj = new OpCustomer();
             return obj.SaveCustomer(objCustomer);
         }
+
+        public MethodOutput<string> UpdateCustomerEmailVerificationStatus(string CustomerCode)
+        {
+            OpCustomer obj = new OpCustomer();
+            return obj.UpdateCustomerEmailVerificationStatus(CustomerCode);
+        }
     }
 }

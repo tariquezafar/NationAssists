@@ -299,6 +299,7 @@ namespace DbOperation
                         {
                             ServiceId = x.Field<int>("ServiceId"),
                             ServiceName = x.Field<string>("ServiceName"),
+                            ServiceCode=x.Field<string>("ServiceCode"),
 
                         }).ToList();
 
@@ -351,11 +352,123 @@ namespace DbOperation
             return objOutput;
         }
 
+        public MethodOutput<Governotes> BindGovernotes(int CountryId)
+        {
+            MethodOutput<Governotes> objOutput = new MethodOutput<Governotes>();
+            List<Governotes> objLstService = new List<Governotes>();
+            try
+            {
 
- 
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@CountryId";
+                objListSqlParam[0].Value = CountryId;
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_BindGovernotes", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstService = dt.AsEnumerable().Select(x => new Governotes
+                    {
+                        GovernorateId = x.Field<int>("GovernorateId"),
+                        GovernoratesName = x.Field<string>("GovernoratesName"),
+                        
+              }).ToList();
+
+                    objOutput.DataList = objLstService;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
 
 
-      
+            }
+            return objOutput;
+
+        }
+
+
+        public MethodOutput<Place> BindPlaces(int GovernotesId)
+        {
+            MethodOutput<Place> objOutput = new MethodOutput<Place>();
+            List<Place> objLstService = new List<Place>();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@GovernotesId";
+                objListSqlParam[0].Value = GovernotesId;
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_BindPlaces", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstService = dt.AsEnumerable().Select(x => new Place
+                    {
+                        PlaceId = x.Field<int>("PlaceId"),
+                        Place_Name = x.Field<string>("Place_Name"),
+
+                    }).ToList();
+
+                    objOutput.DataList = objLstService;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+
+
+            }
+            return objOutput;
+
+        }
+
+
+        public MethodOutput<Block> BindBlockCode(int PlaceId)
+        {
+            MethodOutput<Block> objOutput = new MethodOutput<Block>();
+            List<Block> objLstService = new List<Block>();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@PlaceId";
+                objListSqlParam[0].Value = PlaceId;
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_BindBlockCode", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstService = dt.AsEnumerable().Select(x => new Block
+                    {
+                        BlockId = x.Field<int>("BlockId"),
+                        Block_Code = x.Field<string>("Block_Code"),
+
+                    }).ToList();
+
+                    objOutput.DataList = objLstService;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+
+
+            }
+            return objOutput;
+
+        }
+
+
     }
 
 

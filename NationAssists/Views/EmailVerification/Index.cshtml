@@ -4,5 +4,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="whtBg pt60 pb60">
+    <div class="container">
+        <div class="flexBox">
+            <div class="serviceRgt" style="width: 100%;padding: 0 0 0 120px">
+                @if (ViewBag.IsValidCode != null && ViewBag.IsVerificationSuccess != null)
+                {
+                    bool IsValidCodeExist = Convert.ToBoolean(ViewBag.IsValidCode);
+                    bool IsVerificationSuccess = Convert.ToBoolean(ViewBag.IsVerificationSuccess);
+
+                    if (IsValidCodeExist)
+                    {
+                        if (IsVerificationSuccess)
+                        {
+                            <h1 style="color:green">Thanks for Email Verification. Please  <b> <a href="/Login?LoginType=Customer" style="cursor:pointer;"> Login</a> </b> to enjoy the services. !!</h1>
+                        }
+                        else
+                        {
+                            <h2 style="color:red">Opps! some error occured in Email Verification !!</h2>
+                        }
+                    }
+                    else
+                    {
+                        <h2 style="color:red">Invalid Email Verification code !!</h2>
+                    }
+
+                }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 

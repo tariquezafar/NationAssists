@@ -44,7 +44,7 @@
                         }
                         else {
 
-                           alter("Either EmailId or password is incorrect.")
+                            alert("Either EmailId or password is incorrect.")
 
                         }
                     }
@@ -62,8 +62,11 @@
 
 });
 
-$("#btnLogout").click(function () {
-    var pUrl = "/Login/Logout/";
+
+
+
+function Logout(user) {
+    var pUrl = "/Login/Logout/"
     $.ajax({
         type: 'POST',
         dataType: 'json',
@@ -72,27 +75,12 @@ $("#btnLogout").click(function () {
         success: function (data
         ) {
             if (data) {
-                window.location.href = "/Home";
-            }
-        },
-        error: function (data) {
-        }
-    });
-
-});
-
-
-function Logout() {
-    var pUrl = "/Login/Logout/";
-    $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        contentType: 'application/json; charset=utf-8',
-        url: pUrl,
-        success: function (data
-        ) {
-            if (data) {
-                window.location.href = "/Home";
+                if (user == "Customer") {
+                    window.location.href = "/Home";
+                }
+                else {
+                    window.location.href = "../../Home";
+                }
             }
         },
         error: function (data) {

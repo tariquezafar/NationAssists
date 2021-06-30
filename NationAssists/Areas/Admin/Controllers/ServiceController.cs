@@ -18,21 +18,40 @@ namespace NationAssists.Areas.Admin.Controllers
         mServiceProvider objServiceProiders = new mServiceProvider();
         mServiceProviderPrice objServiceProviderPrice = new mServiceProviderPrice();
         mServicePrice objServicePrice = new mServicePrice();
+        mServiceProviderServiceArea objServiceProviderServiceArea = new mServiceProviderServiceArea();
 
         // GET: Admin/Role
         public ActionResult Index()
         {
-            return View();
+            if (Session["UserId"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
         }
+
+
 
         #region Service Sub Category
         public ActionResult ManageServiceSubCategory()
         {
-            objServiceSubCategory.ServiceId = 0;
-            objServiceSubCategory.Name = "";
-            objServiceSubCategory.IsActive = false;
-            objServiceSubCategory.ServiceSubCategroyList = GetServiceSubCategoryByServiceId(0);
-            return View(objServiceSubCategory);
+            if (Session["UserId"] != null)
+            {
+
+                objServiceSubCategory.ServiceId = 0;
+                objServiceSubCategory.Name = "";
+                objServiceSubCategory.IsActive = false;
+                objServiceSubCategory.ServiceSubCategroyList = GetServiceSubCategoryByServiceId(0);
+                return View(objServiceSubCategory);
+
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
         }
         [HttpPost]
         public ActionResult SaveServiceSubCategory(ServiceSubCategory objSSC)
@@ -196,9 +215,16 @@ namespace NationAssists.Areas.Admin.Controllers
 
         public ActionResult ManageServiceProvider()
         {
-            objServiceProiders.ServiceProviderServicesOpted = objServiceProiders.GetAllServices();
-            objServiceProiders.ServiceProviderList = GetAllServiceProvider(0);
-            return View(objServiceProiders);
+            if (Session["UserId"] != null)
+            {
+                objServiceProiders.ServiceProviderServicesOpted = objServiceProiders.GetAllServices();
+                objServiceProiders.ServiceProviderList = GetAllServiceProvider(0);
+                return View(objServiceProiders);
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
         }
 
         public List<ServiceProvider> GetAllServiceProvider(int ServiceProviderId)
@@ -258,7 +284,14 @@ namespace NationAssists.Areas.Admin.Controllers
 
         public ActionResult ManageServiceProviderPrice()
         {
-            return View(objServiceProviderPrice);
+            if (Session["UserId"] != null)
+            {
+                return View(objServiceProviderPrice);
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
         }
 
         public ActionResult BindServices(int ServiceProviderId)
@@ -337,7 +370,14 @@ namespace NationAssists.Areas.Admin.Controllers
         #region Service Price Master
         public ActionResult ManageServicePrice()
         {
-            return View(objServicePrice);
+            if (Session["UserId"] != null)
+            {
+                return View(objServicePrice);
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
         }
 
         [HttpPost]
@@ -395,7 +435,52 @@ namespace NationAssists.Areas.Admin.Controllers
 
         #region Service Provider Service Area
 
-        public ActionResult ManageServiceProvierServiceArea()
+        public ActionResult ManageServiceProviderServiceArea()
+        {
+            if (Session["UserId"] != null)
+            {
+                return View(objServiceProviderServiceArea);
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
+        }
+
+        public ActionResult BindServiceCategory(int ServiceId)
+        {
+            MethodOutput<ServiceSubCategory> objMO = new MethodOutput<ServiceSubCategory>();
+            ServiceSubCategoryService obj = new ServiceSubCategoryService();
+            objMO = obj.GetServiceSubCategoryByServiceId(ServiceId);
+            return Json(objMO.DataList, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region Service
+        public ActionResult SaveServices(Service objService)
+{
+            MethodOutput<string> objMO = new MethodOutput<string>();
+            bool IsSaved = false;
+            string strMsg = String.Empty;
+            try
+            {
+                ServiceSubCategoryService obj = new ServiceSubCategoryService();
+
+             
+                objMO = obj.SaveService(objService);
+                IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
+                strMsg = objMO.ErrorMessage;
+            }
+            catch (Exception ex)
+            {
+                IsSaved = false;
+                strMsg = ex.Message;
+            }
+            return Json(new { Result = IsSaved, Msg = strMsg }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult ManageService()
         {
             return View();
         }

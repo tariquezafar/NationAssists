@@ -16,13 +16,21 @@ namespace NationAssists.Areas.Admin.Controllers
     {
         // GET: Admin/Brokers
         mBroker objBrokerModel = new mBroker();
+        mMembership objMM = new mMembership();
 
         #region Broker
         public ActionResult ManageBroker()
         {
-            objBrokerModel.BrokerOptedServices = objBrokerModel.GetAllServices();
-            objBrokerModel.BrokerList = this.GetAllBrokers(0,"");
-            return View(objBrokerModel);
+            if (Session["UserId"] != null)
+            {
+                objBrokerModel.BrokerOptedServices = objBrokerModel.GetAllServices();
+                objBrokerModel.BrokerList = this.GetAllBrokers(0, "");
+                return View(objBrokerModel);
+            }
+            else
+            {
+              return  Redirect("../../Home");
+            }
         }
 
         [HttpPost]
@@ -164,7 +172,14 @@ namespace NationAssists.Areas.Admin.Controllers
 
         public ActionResult ManageBrokerPrice()
         {
-            return View();
+            if (Session["UserId"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
         }
 
         [HttpGet]
@@ -245,6 +260,70 @@ namespace NationAssists.Areas.Admin.Controllers
             }
 
             return Json(new { Result = IsSaved, Msg = strMsg }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region Membership
+
+        public ActionResult ManageMembership()
+        {
+            if (Session["UserId"] != null)
+            {
+                objMM.MembershipList = BindMemberShip(0, 0, 0);
+
+                return View(objMM);
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
+
+        }
+
+        public ActionResult SaveMemberShip(Membership objMembership)
+        {
+            MethodOutput<string> objMO = new MethodOutput<string>();
+            bool IsSaved = false;
+            string strMsg = String.Empty;
+
+            try
+            {
+                MembershipServices obj = new MembershipServices();
+                objMembership.CreatedBy = Convert.ToInt32(Session["UserId"]);
+                objMembership.ModifiedBy = Convert.ToInt32(Session["UserId"]);
+                objMO = obj.SaveMembership(objMembership);
+                IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
+                strMsg = objMO.ErrorMessage;
+            }
+            catch (Exception ex)
+            {
+
+                IsSaved = false;
+                strMsg = ex.Message;
+            }
+
+            return Json(new { Result = IsSaved, Msg = strMsg }, JsonRequestBehavior.AllowGet);
+        }
+
+        
+        [HttpGet]
+        public ActionResult GetMembershipDetail(Int64 MembershipId)
+        {
+            List<Membership> objMember = BindMemberShip(0,0,MembershipId);
+            return Json(objMember[0], JsonRequestBehavior.AllowGet);
+        }
+
+        public List<Membership> BindMemberShip(int SourceId, int PackageId, Int64 MembershipId)
+        {
+         
+            List<Membership> objMembershiplist = new List<Membership>();
+            MethodOutput<Membership> objMO = new MethodOutput<Membership>();
+            MembershipServices obj = new MembershipServices();
+            objMO = obj.GetAllMemberShip(SourceId, PackageId, MembershipId);
+            objMembershiplist = objMO.DataList;
+            
+
+            return objMembershiplist;
         }
         #endregion
 

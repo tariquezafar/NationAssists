@@ -19,4 +19,26 @@ namespace DataEngine
         public Int64                StateId                   {get;set;}
         public Int64 CityId { get; set; }
     }
+
+    public class Governotes
+    {
+        public int CountryId { get; set; }
+        public int GovernorateId { get; set; }
+
+        public string GovernoratesName { get; set; }
+    }
+
+    public class Place
+    {
+     public int   PlaceId           {get;set;}
+     public int   GovernorateId     {get;set;}
+     public string Place_Name { get; set; }
+    }
+
+    public class Block
+    {
+     public int   PlaceId           {get;set;}
+     public string   Block_Code     {get;set;}
+     public int BlockId { get; set; }
+    }
 }

@@ -69,5 +69,29 @@ namespace DataServices
             return objCommon.BindUserType();
         }
 
+        public MethodOutput<Country> BindCountry()
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindCountry();
+        }
+
+        public MethodOutput<Governotes> BindGovernotes(int CountryId)
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindGovernotes(CountryId);
+        }
+
+        public MethodOutput<Place> BindPlaces(int GovernotesId)
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindPlaces(GovernotesId);
+        }
+
+        public MethodOutput<Block> BindBlock(int PlaceId)
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindBlockCode(PlaceId);
+        }
+
     }
 }

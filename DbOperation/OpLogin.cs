@@ -44,7 +44,9 @@ namespace DbOperation
                             Name = Convert.ToString(dt.Rows[0]["FirstName"]) + " " + Convert.ToString(dt.Rows[0]["LastName"]),
                             EmailId= Convert.ToString(dt.Rows[0]["EmailId"]),
                             AccountType= Convert.ToString(dt.Rows[0]["AccountType"]),
-                            
+                            IsHavingMembership= Convert.ToBoolean(dt.Rows[0]["IsHavingMembership"]),
+                            NationalId= Convert.ToString(dt.Rows[0]["NationalId"])
+
 
                         };
                     }

@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
     <link rel="stylesheet" href="css/responsive.css" type="text/css">
     <script src="~/js/Common.js"></script>
+    <link href="~/css/jquery.datetimepicker.css" rel="stylesheet" />
+    
 </head>
 
 <body>
@@ -24,32 +26,37 @@
         @RenderBody();
         @Html.Partial("_Footer")
     </div>
-  
+
 
     <script src="js/jquery.min.js"></script>
     <script src="js/function.js"></script>
     <script src="js/slick.min.js"></script>
+    <script src="~/js/jquery.datetimepicker.full.js"></script>
     @*<script>
-        $('.testimonialSlider').slick({
-            dots: true,
-            speed: 600,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            autoplay: false,
-        });
-        $('.bannerSlider').slick({
-            dots: false,
-            speed: 600,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            autoplay: true,
-        });
+            $('.testimonialSlider').slick({
+                dots: true,
+                speed: 600,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                autoplay: false,
+            });
+            $('.bannerSlider').slick({
+                dots: false,
+                speed: 600,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                autoplay: true,
+            });
 
 
 
-    </script>*@
+        </script>*@
+
+    <script>
+        $('.datePicker').datetimepicker({ format: 'd/M/Y', timepicker: false });
+    </script>
 </body>
 
 </html>

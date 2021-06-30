@@ -118,5 +118,50 @@ namespace DbOperation
 
             return output;
         }
+
+
+        public MethodOutput<string> SaveService(Service objService)
+        {
+            MethodOutput<string> output = new MethodOutput<string>();
+            try
+            {
+
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[5];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@ServiceId";
+                objListSqlParam[0].Value = objService.ServiceId;
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@ServiceCode";
+                objListSqlParam[1].Value = objService.ServiceCode;
+
+                objListSqlParam[2] = new SqlParameter();
+                objListSqlParam[2].ParameterName = "@ServiceName";
+                objListSqlParam[2].Value = objService.ServiceName;
+
+                objListSqlParam[3] = new SqlParameter();
+                objListSqlParam[3].ParameterName = "@IsActive";
+                objListSqlParam[3].Value = objService.IsActive;
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveService", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    output.ErrorMessage = Convert.ToString(dt.Rows[0]["Error"]);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                output.ErrorMessage = ex.Message;
+            }
+
+            return output;
+        }
+
+
+
     }
 }

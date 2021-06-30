@@ -11,7 +11,15 @@ namespace NationAssists.Areas.Admin.Controllers
         // GET: Admin/Dashboard
         public ActionResult Index()
         {
-            return View();
+
+            if (Session["UserId"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
         }
     }
 }

@@ -72,7 +72,7 @@ function ValidateForm() {
     var strErrMsg = "";
     if ($('#txtFirstName').val() == "") {
         IsValid = false;
-        strErrMsg += "Please enter First Name. \n";
+        strErrMsg += "Please enter Company Name. \n";
     }
     if ($('#txtMobileNo').val() == "") {
         IsValid = false;

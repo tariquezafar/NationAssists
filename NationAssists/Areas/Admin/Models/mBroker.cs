@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ICardPrinter.Areas.Admin.Models
+namespace NationAssists.Areas.Admin.Models
 {
     public class mBroker
     {

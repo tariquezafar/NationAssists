@@ -166,7 +166,9 @@
     <Compile Include="Areas\Admin\Controllers\BrokersController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServiceRequestController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\AllocateServiceRequest.cs" />
     <Compile Include="Areas\Admin\Models\mBroker.cs" />
     <Compile Include="Areas\Admin\Models\mBrokerPrice.cs" />
     <Compile Include="Areas\Admin\Models\mMembership.cs" />
@@ -176,6 +178,7 @@
     <Compile Include="Areas\Admin\Models\mServiceSubCategory.cs" />
     <Compile Include="Areas\Admin\Models\mServiceProviderPrice.cs" />
     <Compile Include="Areas\Admin\Models\mUser.cs" />
+    <Compile Include="Areas\Admin\Models\ServiceRequestStatusEnum.cs" />
     <Compile Include="Areas\Admin\Models\SqlOutput.cs" />
     <Compile Include="Areas\Biometric\BiometricAreaRegistration.cs" />
     <Compile Include="Areas\CardPrinters\CardPrintersAreaRegistration.cs" />
@@ -204,6 +207,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\JS\ServiceRequest.js" />
+    <Content Include="Areas\Admin\JS\AssignedServiceRequest.js" />
+    <Content Include="Areas\Admin\JS\RespondToServiceAllocation.js" />
+    <Content Include="Areas\Admin\JS\AllocateServiceRequest.js" />
     <Content Include="Areas\Admin\JS\Broker.js" />
     <Content Include="Areas\Admin\JS\Membership.js" />
     <Content Include="Areas\Admin\JS\BrokerPrice.js" />
@@ -547,6 +554,14 @@
     <Content Include="Areas\Admin\Views\Brokers\ManageMembership.cshtml" />
     <Content Include="Areas\Admin\Views\Brokers\_MembershipList.cshtml" />
     <Content Include="Areas\Admin\Views\Service\ManageService.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceRequest\AllocateServiceRequest.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceRequest\_PendingServiceRequestList.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceRequest\RespondToServiceAllocation.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceRequest\_AllocateServiceRequestList.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceRequest\AssignedServiceRequest.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceRequest\_AssignedServiceRequestList.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceRequest\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceRequest\_ServiceRequestList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

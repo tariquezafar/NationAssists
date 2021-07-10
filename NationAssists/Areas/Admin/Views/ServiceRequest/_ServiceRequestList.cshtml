@@ -1,0 +1,68 @@
+﻿@model NationAssists.Areas.Admin.Models.AllocateServiceRequest
+
+
+
+@if (Model.ServiceRequestList != null)
+{
+    int i = 0;
+
+    if (Model.ServiceRequestList.Count > 0)
+    {
+        <table>
+
+            <thead>
+                <tr>
+                    <th>SNo.</th>
+                    <th>Ticket No</th>
+                    <th>Service Name</th>
+                    <th>Type of Service</th>
+                    <th>Customer Name</th>
+                    <th>Service Requested Data</th>
+                    <th>Status</th>
+                    <th>View</th>
+
+                </tr>
+            <thead>
+            <tbody>
+                @foreach (DataEngine.ServiceRequest item in Model.ServiceRequestList)
+                {
+                    i = i + 1;
+
+
+                    <tr>
+                        <td><span class="blueClr">@i</span></td>
+                        <td>@item.TicketNo</td>
+                        <td>@item.ServiceName</td>
+                        <td>@item.SubCategoryName</td>
+                        <td>@item.Customer_Name</td>
+                        <td>@item.ServiceRequestedDate.ToString("dd-MMM-yyyy")</td>
+                        <td>@item.Status_Name</td>
+                        <td>
+
+                            <a data-id="@item.ServiceRequestId" onclick="ShowServiceRequestDetail(@Newtonsoft.Json.JsonConvert.SerializeObject( item))"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+
+
+        </table>
+    }
+
+}
+
+else
+{
+    <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+}
+
+
+@*</div>*@
+
+
+
+
+

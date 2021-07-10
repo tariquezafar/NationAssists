@@ -93,5 +93,11 @@ namespace DataServices
             return objCommon.BindBlockCode(PlaceId);
         }
 
+        public MethodOutput<ServiceRequestStatus> BindServiceRequestStatus()
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindServiceRequestStatus();
+        }
+
     }
 }

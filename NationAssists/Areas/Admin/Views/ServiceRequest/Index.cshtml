@@ -1,0 +1,166 @@
+﻿@model NationAssists.Areas.Admin.Models.AllocateServiceRequest
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+
+<div class="dashboardCon transition">
+    <div class="mainHd"> Search Service Request</div>
+
+
+    <div id="dvDetail" >
+        <ul class="form flexBox">
+            <li class="oneThird">
+                <span class="fieldHd">Service Request Status </span>
+                @Html.DropDownListFor(m => m.ServiceRequestStatusId, Model.GetAllServiceRequestStatus(), "--select-", new { @class = "formInput", })
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblService">Ticket No </span>
+                <input type="text" id="txtTicketNo" class="formInput" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Account Type</span>
+                <select id="ddlAccountType" class="formSelect">
+                    <option value="0">Select</option>
+                    <option value="NA">NA Member Account</option>
+                    <option value="GA">Guest Account</option>
+                </select>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Source Type </span>
+                <select class="formSelect" id="ddlSourceType">
+                    <option value="0">Select</option>
+                    <option value="IC">Insurance Company</option>
+                    <option value="IB">Insurance Brokers</option>
+                    <option value="BA">Banks</option>
+                    <option value="AG">Agents</option>
+                    <option value="OS">Others</option>
+                </select>
+            </li>
+            <li class="oneThird" id="liSource" style="display:none;">
+                <span class="fieldHd">Source</span>
+                <select class="formSelect" id="ddlSource">
+                    <option value="0" >Select</option>
+
+                </select>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Start Date</span>
+                <input type="text" id="txtStartDate" class="formInput datePicker" value="@Model.StartDate" />
+            </li>
+
+            <li class="oneThird">
+                <span class="fieldHd">End Date</span>
+                <input type="text" id="txtEndDate" class="formInput datePicker" value="@Model.EndDate" />
+            </li>
+        </ul>
+        <div>
+            <div class="tac"><button class="formBtn regNextStep" onclick="SearchServiceRequest()">Search</button></div>
+        </div>
+        </div>
+            
+
+
+            <div id="dvServiceRequestDetail" style="display:none;">
+                <ul class="form flexBox">
+                    <li class="oneThird">
+                        <span class="fieldHd">Service</span>
+                        <input type="text" disabled="disabled" id="txtServiceName" class="formInput" />
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd" id="lblService">Service Type </span>
+                        <input type="text" disabled="disabled" id="txtServiceType" class="formInput" />
+                    </li>
+                    <li class="oneThird RAP">
+                        <span class="fieldHd">Vehicle Registration Number </span>
+                        <input type="text" id="txtVehicleRegistrationNumber" class="formInput" disabled="disabled">
+                    </li>
+                    <li class="oneThird RAP">
+                        <span class="fieldHd">Chessis No</span>
+                        <input type="text" id="txtChessisNo" class="formInput" disabled="disabled">
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd">Service Location</span>
+                        <textarea id="txtServiceLocation" class="formInput" disabled="disabled"></textarea>
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd">Country</span>
+                        <input type="text" id="txtCountryName" class="formInput" disabled="disabled">
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd" id="lblGovernotes">Governotes</span>
+                        <input type="text" id="txtGovernotesName" class="formInput" disabled="disabled">
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd" id="lblPlace">
+                            Place
+                        </span>
+                        <input type="text" id="txtPlaceName" class="formInput" disabled="disabled">
+                    </li>
+
+                    <li class="oneThird">
+                        <span class="fieldHd" id="lblBlockCode">
+                            Block Code
+                        </span>
+                        <input type="text" id="txtBlockCode" class="formInput" disabled="disabled">
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd">Date of Accident</span>
+                        <input type="text" id="txtDateOfAccident" class="formInput" disabled="disabled" />
+                    </li>
+                    <li class="oneThird RAP">
+                        <span class="fieldHd">Name of Workshop</span>
+                        <input type="text" id="txtNameOfWorkshop" class="formInput" disabled="disabled" />
+                    </li>
+                    <li class="oneThird HAP">
+                        <span class="fieldHd">Building No</span>
+                        <input type="text" id="txtBuildingNo" class="formInput" disabled="disabled" />
+                    </li>
+                    <li class="RAP">
+                        <span class="fieldHd">Whether Stepini in good condition is available on the vehicle ?</span>
+                        <div class="optBox flexBox">
+
+                            <label><input type="radio" name="StepiniCondtion" disabled="disabled" class="radioInpt" value="YES"> YES</label>
+                            <label><input type="radio" name="StepiniCondtion" disabled="disabled" class="radioInpt" checked="checked" value="NO"> NO</label>
+
+                        </div>
+                    </li>
+                    <li class="RAP">
+                        <span class="fieldHd">Where the client wishes to take the vehicle for the repair?</span>
+                        <textarea id="txtCollectRepairVehicleAddress" class="formInput" disabled="disabled"></textarea>
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd">Contact No</span>
+                        <input type="text" id="txtContactNo" class="formInput" disabled="disabled" />
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd">Relevent Details</span>
+                        <textarea id="txtReleventDetails" class="formInput" disabled="disabled"></textarea>
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd">Remarks</span>
+                        <textarea id="txtRemarks" class="formInput"></textarea>
+                    </li>
+
+                </ul>
+                <div class="dbTable" id="tblProviderList">
+
+
+                </div>
+                <br />
+
+                <div>
+                    
+                    <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/'">Back</button>
+
+                </div>
+            </div>
+            <div class="dbTable" id="tblServiceRequest">
+
+                @Html.Partial("~/Areas/Admin/Views/ServiceRequest/_ServiceRequestList.cshtml", Model);
+            </div>
+    </div>
+    <script src="~/Areas/Admin/JS/ServiceRequest.js"></script>
+
+

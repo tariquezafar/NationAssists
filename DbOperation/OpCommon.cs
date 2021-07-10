@@ -469,6 +469,35 @@ namespace DbOperation
         }
 
 
+        public MethodOutput<ServiceRequestStatus> BindServiceRequestStatus()
+        {
+            MethodOutput<ServiceRequestStatus> objOutput = new MethodOutput<ServiceRequestStatus>();
+            List<ServiceRequestStatus> objLstCountry = new List<ServiceRequestStatus>();
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllServiceRequestStatus").Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstCountry = dt.AsEnumerable().Select(x => new ServiceRequestStatus
+                    {
+                        ServiceRequestStatusId = x.Field<int>("ServiceRequestStatusId"),
+                        Status_Name = x.Field<string>("Status_Name"),
+                        IsActive = x.Field<bool>("IsActive")
+                    }).ToList();
+
+                    objOutput.DataList = objLstCountry;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+            }
+            return objOutput;
+        }
+
+
     }
 
 

@@ -9,7 +9,7 @@ using DataEngine;
 
 namespace DataServices
 {
-    public class User
+    public class UserServices
     {
         public MethodOutput<string> SaveUsers(Users users)
         {
@@ -27,6 +27,12 @@ namespace DataServices
         {
             OpUsers obj = new OpUsers();
             return obj.DeleteUsers(UserId);
+        }
+
+        public MethodOutput<Users> GetUserByReference(int ReferenceId)
+        {
+            OpUsers obj = new OpUsers();
+            return obj.GetUsersByReferenceId(ReferenceId);
         }
     }
 }

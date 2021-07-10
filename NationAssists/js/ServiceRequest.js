@@ -141,7 +141,7 @@ function SubmitServiceRequest() {
             VehicleRegistrationNumber: $("#txtVehicleRegistrationNumber").val(),
             ChessisNo: $("#txtChessisNo").val(),
             ServiceLocation: $("#txtServiceLocation").val(),
-            CountryID: $("#CountryID").val(),
+            CountryID: $("#CountryId").val(),
             GovernotesId: $("#GovernotesId").val(),
             PlaceId: $("#PlaceId").val(),
             LocationPinCode: $("#BlockCode").val(),

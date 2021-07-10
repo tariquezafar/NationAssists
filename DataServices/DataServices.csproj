@@ -52,7 +52,7 @@
     <Compile Include="ServiceProviderService.cs" />
     <Compile Include="ServiceRequestService.cs" />
     <Compile Include="ServiceSubCategoryService.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="UserServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataEngine\DataEngine.csproj">

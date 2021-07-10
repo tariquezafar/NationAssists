@@ -62,6 +62,7 @@ namespace NationAssists.Areas.Admin.Models
         public SelectList GetAllUserType()
         {
             CommonServices objCS = new CommonServices();
+            
             IEnumerable<SelectListItem> lstDist = objCS.BindUserType().DataList.OrderBy(s => s.UserTypeName).ToList().Select(m => new SelectListItem() { Text = m.UserTypeName, Value = m.UserTypeId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", UserTypeId);
         }

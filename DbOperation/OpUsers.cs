@@ -220,5 +220,66 @@ namespace DbOperation
             }
             return output;
         }
+
+
+        public MethodOutput<Users> GetUsersByReferenceId(int UserReferenceId)
+        {
+            MethodOutput<Users> output = new MethodOutput<Users>();
+            List<Users> objLst = new List<Users>();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@ReferenceId";
+                objListSqlParam[0].Value = UserReferenceId;
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetUsersByRefereneId", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLst = dt.AsEnumerable().Select(x => new Users
+                    {
+                        UserId = x.Field<int>("UserId"),
+                        Name = x.Field<string>("Name"),
+                        PhoneNo = x.Field<string>("PhoneNo"),
+                        EmailId = x.Field<string>("EmailId"),
+                        RoleId = x.Field<int>("RoleId"),
+                        BranchId = x.Field<int>("BranchId"),
+                        UserExpiryDate = x.Field<DateTime>("UserExpiryDate"),
+                        IsActive = x.Field<bool>("IsActive"),
+                        UserTypeName = x.Field<string>("UserType"),
+                        RoleName = x.Field<string>("Role"),
+                        BranchName = x.Field<string>("BranchName"),
+                        MobileNo = x.Field<string>("MobileNo"),
+                        UserTypeId = x.Field<int>("UserTypeId"),
+                        Password = x.Field<string>("Password"),
+                        UserReferenceId = x.Field<int>("UserReferenceId"),
+                        CPRExpiryDate = x.Field<DateTime?>("CPRExpiryDate"),
+                        PassportExpiryDate = x.Field<DateTime?>("PassportExpiryDate"),
+                        DateOfJoining = x.Field<DateTime?>("DateOfJoining"),
+                        CPRNumber = x.Field<string>("CPRNumber"),
+                        PassportNumber = x.Field<string>("PassportNumber"),
+                        VisaNumber = x.Field<string>("VisaNumber"),
+                        ContactAddressHomeCountry = x.Field<string>("ContactAddressHomeCountry"),
+                        ContactAddressLocal = x.Field<string>("ContactAddressLocal"),
+                        MobileNumberLocal = x.Field<string>("MobileNumberLocal"),
+                        EmergencyContactPersonName = x.Field<string>("EmergencyContactPersonName"),
+                        Remarks = x.Field<string>("Remarks"),
+                        UserCode = x.Field<string>("UserCode"),
+                        SourceName = x.Field<string>("SourceName")
+
+                    }).ToList();
+
+                    output.DataList = objLst;
+                    output.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                output.DataList = objLst;
+                output.ErrorMessage = ex.Message;
+            }
+            return output;
+        }
     }
 }

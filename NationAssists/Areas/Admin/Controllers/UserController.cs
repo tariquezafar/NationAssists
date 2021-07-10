@@ -32,6 +32,7 @@ namespace NationAssists.Areas.Admin.Controllers
                 objUser.UserId = 0;
                 objUser.Name = "";
                 objUser.IsActive = false;
+              
                 objUser.UsersList = GetUsers(0);
                 return View(objUser);
             }
@@ -50,7 +51,7 @@ namespace NationAssists.Areas.Admin.Controllers
         public List<Users> GetUsers(int UserId)
         {
             MethodOutput<Users> objMO = new MethodOutput<Users>();
-            User obj = new User();
+            UserServices obj = new UserServices();
             objMO = obj.GetUsers(UserId);
             return objMO.DataList;
         }
@@ -64,7 +65,7 @@ namespace NationAssists.Areas.Admin.Controllers
 
             try
             {
-                User obj = new User();
+                UserServices obj = new UserServices();
                 objMO = obj.SaveUsers(objUsers);
                 IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
                 strMsg = objMO.ErrorMessage;
@@ -104,7 +105,7 @@ namespace NationAssists.Areas.Admin.Controllers
             string strMsg = String.Empty;
             try
             {
-                User obj = new User();
+                UserServices obj = new UserServices();
                 objMO = obj.DeleteUsers(UserId);
                 IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
                 strMsg = objMO.ErrorMessage;

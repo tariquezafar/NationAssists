@@ -1,6 +1,6 @@
 ﻿using DataEngine;
 using DataServices;
-using ICardPrinter.Areas.Admin.Models;
+using NationAssists.Areas.Admin.Models;
 using NationAssists.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;

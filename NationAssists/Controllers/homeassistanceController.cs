@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ICardPrinter.Controllers
+namespace NationAssists.Controllers
 {
     public class homeassistanceController : Controller
     {

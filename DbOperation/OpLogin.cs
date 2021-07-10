@@ -46,6 +46,7 @@ namespace DbOperation
                             AccountType= Convert.ToString(dt.Rows[0]["AccountType"]),
                             IsHavingMembership= Convert.ToBoolean(dt.Rows[0]["IsHavingMembership"]),
                             NationalId= Convert.ToString(dt.Rows[0]["NationalId"])
+                            
 
 
                         };
@@ -60,6 +61,7 @@ namespace DbOperation
                             UserTypeName = Convert.ToString(dt.Rows[0]["UserTypeName"]),
                             RoleName= Convert.ToString(dt.Rows[0]["Role"]),
                             UserTypeCode = Convert.ToString(dt.Rows[0]["UserTypeCode"]),
+                            UserReferenceId = Convert.ToInt32(dt.Rows[0]["UserReferenceId"]),
                         };
                     }
 

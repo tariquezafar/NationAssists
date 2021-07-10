@@ -52,10 +52,11 @@
                     </ul>
                 </li>
                 <li routerLinkActive="active">
-                    <a class="link" href="#">Currency</a>
+                    <a class="link" href="#">Service Request</a>
                     <span class="dwnArrow"></span>
                     <ul class="subLink">
-                        <li><a href="#">Sub Links</a></li>
+
+                        <li><a href="/admin/ServiceRequest/index"> Service Request List</a></li>
                     </ul>
                 </li>
                 <li routerLinkActive="active">
@@ -75,7 +76,7 @@
             }
             else
             {
-                <li class="active">
+                <li>
                     <a class="link" href="#">User Management</a>
                     <span class="dwnArrow"></span>
                     <ul class="subLink">
@@ -85,12 +86,12 @@
                     </ul>
                 </li>
 
-                <li class="active">
+                <li>
                     <a class="link" href="#">Service Request Management</a>
                     <span class="dwnArrow"></span>
                     <ul class="subLink">
                         <li><a href="#">Add Service Request</a></li>
-                        <li><a href="#">Allocate Service Request</a></li>
+                        <li><a href="/admin/ServiceRequest/AllocateServiceRequest">Allocate Service Request</a></li>
 
                     </ul>
                 </li>
@@ -109,20 +110,52 @@
 
                     </ul>
                 </li>
+
+                if (objUSer.UserTypeCode == "SP")
+                {
+                    <li routerLinkActive="active">
+                        <a class="link" href="#">Service Request</a>
+                        <span class="dwnArrow"></span>
+                        <ul class="subLink">
+
+                            <li><a href="/admin/ServiceRequest/RespondToServiceAllocation">Respond to Service Request Allocation</a></li>
+                        </ul>
+                    </li>
+                }
             }
-           
-            
-                <li class="active">
-                    <a class="link" href="#">Source Data Management</a>
-                    <span class="dwnArrow"></span>
-                    <ul class="subLink">
-                        <li><a href="#">Manage Source Data</a></li>
+            else
+            {
+                if (objUSer.UserTypeCode == "SP")
+                {
+                    <li routerLinkActive="active">
+                        <a class="link" href="#">Service Request</a>
+                        <span class="dwnArrow"></span>
+                        <ul class="subLink">
 
-                    </ul>
-                </li>
+                            <li><a href="/admin/ServiceRequest/AssignedServiceRequest">Assigned Service Request</a></li>
+                        </ul>
+                    </li>
 
-                
-            
+                }
+            }
+
+
+
+
+
+
         }
+        @if (objUSer != null && (objUSer.UserTypeCode != "EMP" && objUSer.UserTypeCode != "SP"))
+        {
+            <li routerLinkActive="active">
+                <a class="link" href="#">Source Management</a>
+                <span class="dwnArrow"></span>
+                <ul class="subLink">
+
+                    <li><a href="/admin/Brokers/ManageMembership">Manage Memebership</a></li>
+                </ul>
+            </li>
+        }
+
     </ul>
 </div>

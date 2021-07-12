@@ -608,6 +608,140 @@ namespace DbOperation
             return objOutput;
         }
 
+        public MethodOutput<string> BindChessisListByCPRNumber(string CPRNumber)
+        {
+            MethodOutput<string> objOutput = new MethodOutput<string>();
+            List<string> objLstChessis = new List<string>();
 
+            try
+            {
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@CPRNumber";
+                objListSqlParam[0].Value = CPRNumber;
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_BindChessisNoByCPRNumber", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow item in dt.Rows)
+                    {
+                        objLstChessis.Add(Convert.ToString(dt.Rows[0]["ChassisNo"]));
+                    }
+              
+
+                    objOutput.DataList = objLstChessis;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+
+
+            }
+            return objOutput;
+        }
+        public MethodOutput<string> BindVehicleRegistrationNoListByCPRNumber(string CPRNumber)
+        {
+            MethodOutput<string> objOutput = new MethodOutput<string>();
+            List<string> objLstVehicleRegistration = new List<string>();
+
+            try
+            {
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@CPRNumber";
+                objListSqlParam[0].Value = CPRNumber;
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_BindVehicleRegistrationNoByCPRNumber", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow item in dt.Rows)
+                    {
+                        objLstVehicleRegistration.Add(Convert.ToString(dt.Rows[0]["VehicleRegistrationNo"]));
+                    }
+
+
+                    objOutput.DataList = objLstVehicleRegistration;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+
+
+            }
+            return objOutput;
+        }
+
+        public MethodOutput<ServiceRequest> BindServiceRequestByCustomer(int CustomerId)
+        {
+            MethodOutput<ServiceRequest> objOutput = new MethodOutput<ServiceRequest>();
+            List<ServiceRequest> objLstService = new List<ServiceRequest>();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@CustomerId";
+                objListSqlParam[0].Value = CustomerId;
+
+        
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_ShowAllServiceRequestByCustomerId", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstService = dt.AsEnumerable().Select(x => new ServiceRequest
+                    {
+                        //   BlockId= x.Field<int>("BlockId"),
+                        Block_Code = x.Field<string>("Block_Code"),
+                        BuildingNo = x.Field<string>("BuildingNo"),
+                        CarHandledWorkShopDate = x.Field<string>("CarHandledWorkShopDate"),
+                        ChessisNo = x.Field<string>("ChessisNo"),
+                        CollectRepairVehicleAddress = x.Field<string>("CollectRepairVehicleAddress"),
+                        ContactMobileNo = x.Field<string>("ContactMobileNo"),
+                        CountryID = x.Field<int>("CountryID"),
+                        CountryName = x.Field<string>("CountryName"),
+                        CustomerId = x.Field<int>("CustomerId"),
+                        Customer_Name = x.Field<string>("Customer_Name"),
+                        DateOfAccident = x.Field<DateTime>("DateOfAccident"),
+                        EstimatedRepairCompletedDate = x.Field<DateTime?>("EstimatedRepairCompletedDate"),
+                        GovernoratesName = x.Field<string>("GovernoratesName"),
+                        GovernotesId = x.Field<int>("GovernotesId"),
+                        LocationPinCode = x.Field<string>("LocationPinCode"),
+                        NameOfWorkShop = x.Field<string>("NameOfWorkShop"),
+                        PlaceId = x.Field<int>("PlaceId"),
+                        ReleventDetails = x.Field<string>("ReleventDetails"),
+                        Place_Name = x.Field<string>("Place_Name"),
+                        Remarks = x.Field<string>("Remarks"),
+                        ServiceFeedBack = x.Field<string>("ServiceFeedBack"),
+                        ServiceId = x.Field<int>("ServiceId"),
+                        ServiceLocation = x.Field<string>("ServiceLocation"),
+                        ServiceName = x.Field<string>("ServiceName"),
+                        ServiceRequestedDate = x.Field<DateTime>("ServiceRequestedDate"),
+                        ServiceRequestId = x.Field<Int64>("ServiceRequestId"),
+                        TicketNo = x.Field<string>("TicketNo"),
+                        SubCategoryName = x.Field<string>("SubCategoryName"),
+                        Status_Name = x.Field<string>("Status_Name"),
+                        BrokerId = x.Field<int>("BrokerId"),
+                        ServiceSubCategoryId = x.Field<int>("ServiceSubCategoryId"),
+                        StepiniCondtion = x.Field<bool>("StepiniCondtion"),
+                    }).ToList();
+
+                    objOutput.DataList = objLstService;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                objOutput.ErrorMessage = ex.Message;
+            }
+
+            return objOutput;
+        }
     }
 }

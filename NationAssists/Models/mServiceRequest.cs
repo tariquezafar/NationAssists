@@ -1,4 +1,5 @@
-﻿using DataServices;
+﻿using DataEngine;
+using DataServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,12 @@ namespace NationAssists.Models
 
         public int CountryId { get; set; }
 
+        public string ChessisNo { get; set; }
+
+        public string VehicleRegistrationNo { get; set; }
+
+        public List<ServiceRequest> ServiceRequestList { get; set; }
+
       
 
         public SelectList BindServicesByCPRNumber(string CPRNumber)
@@ -30,6 +37,20 @@ namespace NationAssists.Models
             CommonServices objCS = new CommonServices();
             IEnumerable<SelectListItem> lstDist = objCS.BindCountry().DataList.OrderBy(s => s.Name).ToList().Select(m => new SelectListItem() { Text = m.Name, Value = m.CountryId.ToString() }).OrderBy(s => s.Text).ToList();
             return new SelectList(lstDist, "Value", "Text", CountryId);
+        }
+
+        public SelectList BindChessisListByCPRNumber(string CPRNumber)
+        {
+            ServiceRequestService objCS = new ServiceRequestService();
+            IEnumerable<SelectListItem> lstDist = objCS.BindChessisListByCPRNumber(CPRNumber).DataList.OrderBy(s => s).ToList().Select(m => new SelectListItem() { Text = m , Value = m }).OrderBy(s => s.Text).ToList();
+            return new SelectList(lstDist, "Value", "Text", ChessisNo);
+        }
+
+        public SelectList BindVehicleRegistrationNoListByCPRNumber(string CPRNumber)
+        {
+            ServiceRequestService objCS = new ServiceRequestService();
+            IEnumerable<SelectListItem> lstDist = objCS.BindVehicleRegistrationNoListByCPRNumber(CPRNumber).DataList.OrderBy(s => s).ToList().Select(m => new SelectListItem() { Text = m, Value = m }).OrderBy(s => s.Text).ToList();
+            return new SelectList(lstDist, "Value", "Text", VehicleRegistrationNo);
         }
     }
 }

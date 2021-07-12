@@ -45,6 +45,7 @@ namespace DataServices
             return objCommon.BindServiceAllocation(ServiceProviderId);
         }
 
+        
         public MethodOutput<ServiceRequest> BindAssignedServiceRequest(int UserId)
         {
             OpServiceRequest objCommon = new OpServiceRequest();
@@ -56,6 +57,25 @@ namespace DataServices
         {
             OpServiceRequest objCommon = new OpServiceRequest();
             return objCommon.BindAllServiceRequest(ServiceRequestStatusId,TicketNo,AccountType,BrokerId,AccountSubType,StartDate,EndDate);
+        }
+
+        public MethodOutput<string> BindVehicleRegistrationNoListByCPRNumber(string CPRNumber)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.BindVehicleRegistrationNoListByCPRNumber(CPRNumber);
+        }
+
+
+        public MethodOutput<string> BindChessisListByCPRNumber(string CPRNumber)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.BindChessisListByCPRNumber(CPRNumber);
+        }
+
+        public MethodOutput<ServiceRequest> GetServiceRequestListByCustomer(int CustomerId)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.BindServiceRequestByCustomer(CustomerId);
         }
     }
 }

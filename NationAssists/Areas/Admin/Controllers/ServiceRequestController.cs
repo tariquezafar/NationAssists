@@ -29,7 +29,7 @@ namespace NationAssists.Areas.Admin.Controllers
             }
 
 
-            return View();
+            
         }
         public ActionResult AllocateServiceRequest()
         {

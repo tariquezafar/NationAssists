@@ -20,6 +20,7 @@ namespace NationAssists.Controllers
 
                 objSRModel.CPRNumber = Convert.ToString(Session["CPRNumber"]);
                 objSRModel.CustomerId= Convert.ToInt32(Session["CustomerId"]);
+                objSRModel.ServiceRequestList = GetServiceRequestList(Convert.ToInt32(Session["CustomerId"]));
                 return View(objSRModel);
             }
             else
@@ -72,6 +73,7 @@ namespace NationAssists.Controllers
                 EmailServices objEmailService = new EmailServices();
                 objMO = obj.SaveServiceRequest(objSR);
                 IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
+                strMsg = objMO.ErrorMessage;
                 if (IsSaved)
                 {
                     TicketNo = objMO.Data;
@@ -84,6 +86,14 @@ namespace NationAssists.Controllers
                 strMsg = ex.Message;
             }
             return Json(new { Result = IsSaved, Msg = strMsg, TicketNo=TicketNo}, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<ServiceRequest> GetServiceRequestList(int CustomerId)
+        {
+            ServiceRequestService objSR = new ServiceRequestService();
+            MethodOutput<ServiceRequest> objLst = new MethodOutput<ServiceRequest>();
+            objLst = objSR.GetServiceRequestListByCustomer(CustomerId);
+            return objLst.DataList;
         }
     }
 }

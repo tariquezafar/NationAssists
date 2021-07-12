@@ -620,6 +620,7 @@
     <Content Include="Views\PrivacyPolicy\Index.cshtml" />
     <Content Include="Views\EmailVerification\Index.cshtml" />
     <Content Include="Views\RaiseServiceRequest\Index.cshtml" />
+    <Content Include="Views\RaiseServiceRequest\_ServiceRequestList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

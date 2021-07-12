@@ -138,8 +138,8 @@ function SubmitServiceRequest() {
             CustomerId: $("#hdnCustomerId").val(),
             ServiceId: $("#ServiceId").val(),
             ServiceSubCategoryId: $("#ServiceCategoryId").val(),
-            VehicleRegistrationNumber: $("#txtVehicleRegistrationNumber").val(),
-            ChessisNo: $("#txtChessisNo").val(),
+            VehicleRegistrationNumber: $("#VehicleRegistrationNo").val(),
+            ChessisNo: $("#ChessisNo").val(),
             ServiceLocation: $("#txtServiceLocation").val(),
             CountryID: $("#CountryId").val(),
             GovernotesId: $("#GovernotesId").val(),
@@ -256,13 +256,13 @@ function ValidateForm() {
                 IsValid = false;
                 strErrMsg += "Please enter Policy Type . \n";
             }
-            if ($("#txtVehicleRegistrationNo").val() == "") {
+            if ($("#VehicleRegistrationNo").val() == "") {
                 IsValid = false;
-                strErrMsg += "Please enter vehicle registration No. \n";
+                strErrMsg += "Please select vehicle registration No. \n";
             }
-            if ($("#txtChassisNo").val() == "") {
+            if ($("#ChessisNo").val() == "") {
                 IsValid = false;
-                strErrMsg += "Please enter Chassis No. \n";
+                strErrMsg += "Please select Chassis No. \n";
             }
             if ($("#txtVehicleYear").val() == "" || $("#txtVehicleYear").val() == "0") {
                 IsValid = false;
@@ -284,4 +284,47 @@ function ValidateForm() {
         IsValid = false;
         alert(strErrMsg);
     }
+}
+
+function ShowServiceRequestDetail(e) {
+    var hhh = "";
+    $("#hdnServiceRequestId").val(e.ServiceRequestId);
+    $("#txtServiceName").val(e.ServiceName);
+    $("#txtServiceType").val(e.SubCategoryName);
+    $("#txtVehicleRegistrationNumber").val(e.VehicleRegistrationNumber);
+    $("#txtChessisNo").val(e.ChessisNo);
+    $("#ServiceLocation").val(e.ServiceLocation);
+    $("#txtCountryName").val(e.CountryName);
+    $("#txtGovernotesName").val(e.GovernoratesName);
+    $("#txtPlaceName").val(e.Place_Name);
+    $("#txtBlockCode").val(e.Block_Code);
+    $("#DateOfAccident").val(e.DateOfAccident);
+    $("#NameOfWorkshop").val(e.NameOfWorkShop);
+    $("#BuildingNo").val(e.BuildingNo);
+    $("input[type=radio][name=SC][value=" + e.StepiniCondtion + "]").prop("checked", true);
+
+    $("#CollectRepairVehicleAddress").val(e.CollectRepairVehicleAddress);
+    $("#ContactNo").val(e.ContactMobileNo);
+    $("#ReleventDetails").val(e.ReleventDetails);
+    $("#dvServiceRequestDetail").show();
+    $("#hdnServiceId").val(e.ServiceId);
+    $("#hdnSubCategoryId").val(e.ServiceSubCategoryId);
+
+    var SelectedService = e.ServiceName;
+    var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
+    if (ServiceCode == "HAP") {
+        $('.RAP').hide();
+        $('.HAP').show();
+
+    }
+    else {
+        $('.RAP').show();
+        $('.HAP').hide();
+    }
+    var scrollPos = $("#dvServiceRequestDetail").offset().top;
+    $(window).scrollTop(scrollPos);
+
+    $("#dvRaiseServiceRequest").hide();
+
+    //dvDetail
 }

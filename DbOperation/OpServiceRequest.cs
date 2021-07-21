@@ -214,6 +214,8 @@ namespace DbOperation
                         ServiceSubCategoryId = x.Field<int>("ServiceSubCategoryId"),
                         ServiceAllocationId= x.Field<Int64>("ServiceAllocationId"),
                         StepiniCondtion = x.Field<bool>("StepiniCondtion"),
+                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber"),
+
                     }).ToList();
 
                     objOutput.DataList = objLstService;
@@ -425,7 +427,7 @@ namespace DbOperation
                         Status_Name = x.Field<string>("Status_Name"),
                         BrokerId = x.Field<int>("BrokerId"),
                         ServiceSubCategoryId = x.Field<int>("ServiceSubCategoryId"),
-
+                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber")
                     }).ToList();
 
                     objOutput.DataList = objLstService;
@@ -499,7 +501,7 @@ namespace DbOperation
                         Status_Name = x.Field<string>("Status_Name"),
                         BrokerId = x.Field<int>("BrokerId"),
                         ServiceSubCategoryId = x.Field<int>("ServiceSubCategoryId"),
-
+                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber")
                     }).ToList();
 
                     objOutput.DataList = objLstService;
@@ -592,7 +594,7 @@ namespace DbOperation
                         Status_Name = x.Field<string>("Status_Name"),
                         BrokerId = x.Field<int>("BrokerId"),
                         ServiceSubCategoryId = x.Field<int>("ServiceSubCategoryId"),
-
+                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber")
                     }).ToList();
 
                     objOutput.DataList = objLstService;
@@ -608,7 +610,7 @@ namespace DbOperation
             return objOutput;
         }
 
-        public MethodOutput<string> BindChessisListByCPRNumber(string CPRNumber)
+        public MethodOutput<string> BindChessisListByCPRNumber(string CPRNumber, int ServiceId)
         {
             MethodOutput<string> objOutput = new MethodOutput<string>();
             List<string> objLstChessis = new List<string>();
@@ -617,10 +619,14 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@CPRNumber";
                 objListSqlParam[0].Value = CPRNumber;
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@ServiceId";
+                objListSqlParam[1].Value = ServiceId;
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_BindChessisNoByCPRNumber", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
@@ -642,7 +648,7 @@ namespace DbOperation
             }
             return objOutput;
         }
-        public MethodOutput<string> BindVehicleRegistrationNoListByCPRNumber(string CPRNumber)
+        public MethodOutput<string> BindVehicleRegistrationNoListByCPRNumber(string CPRNumber, int ServiceId)
         {
             MethodOutput<string> objOutput = new MethodOutput<string>();
             List<string> objLstVehicleRegistration = new List<string>();
@@ -651,10 +657,14 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@CPRNumber";
                 objListSqlParam[0].Value = CPRNumber;
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@ServiceId";
+                objListSqlParam[1].Value = ServiceId;
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_BindVehicleRegistrationNoByCPRNumber", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
@@ -743,5 +753,92 @@ namespace DbOperation
 
             return objOutput;
         }
+
+        public MethodOutput<CustomerStatus> BindCustomerStatus(string CPRNumber)
+        {
+            MethodOutput<CustomerStatus> objOutput = new MethodOutput<CustomerStatus>();
+            List<CustomerStatus> objLstCustomer = new List<CustomerStatus>();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@CPRNumber";
+                objListSqlParam[0].Value = CPRNumber;
+
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SearchCustomerStatusByCRNumber", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstCustomer = dt.AsEnumerable().Select(x => new CustomerStatus
+                    {
+                        IsHavingMembership = x.Field<bool>("IsHavingMembership"),
+                        IsMemberShipExpired = x.Field<bool>("IsMemberShipExpired"),
+                        IsSignUpCompleted= x.Field<bool>("IsSignUpCompleted"),
+                        CustomerType= x.Field<string>("CustomerType"),
+                        CustomerId=x.Field<int>("CustomerId"),
+                        SourceId= x.Field<int>("SourceId"),
+                        SourceName = x.Field<string>("SourceName"),
+                        SourceType= x.Field<string>("SourceType"),
+                        SourceTypeCode= x.Field<string>("SourceTypeCode")
+
+                    }).ToList();
+
+                    objOutput.DataList = objLstCustomer;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                objOutput.ErrorMessage = ex.Message;
+            }
+
+            return objOutput;
+        }
+
+        public MethodOutput<VehicleDetail> BindVehicleDetailByCPRNumber(string CPRNumber, int ServiceId)
+        {
+            MethodOutput<VehicleDetail> objOutput = new MethodOutput<VehicleDetail>();
+            List<string> objLstVehicleRegistration = new List<string>();
+            List<string> objLstChessisNo = new List<string>();
+            VehicleDetail objVehicleDetail = new VehicleDetail();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@CPRNumber";
+                objListSqlParam[0].Value = CPRNumber;
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@ServiceId";
+                objListSqlParam[1].Value = ServiceId;
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_BindVehicleDetailByCPRNumber", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow item in dt.Rows)
+                    {
+                        objLstVehicleRegistration.Add(Convert.ToString(dt.Rows[0]["VehicleRegistrationNo"]));
+                        objLstChessisNo.Add(Convert.ToString(dt.Rows[0]["ChassisNo"]));
+                    }
+                    objVehicleDetail.ChessisList = objLstChessisNo;
+                    objVehicleDetail.VehicleRegistrationNoList = objLstVehicleRegistration;
+
+                    objOutput.Data = objVehicleDetail;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+
+
+            }
+            return objOutput;
+        }
+        
     }
 }

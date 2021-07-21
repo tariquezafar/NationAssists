@@ -95,5 +95,21 @@ namespace NationAssists.Controllers
             objLst = objSR.GetServiceRequestListByCustomer(CustomerId);
             return objLst.DataList;
         }
+
+        public ActionResult BindChessisListByCPRNumber(string CPRNumber, int ServiceId)
+        {
+            MethodOutput<String> objMO = new MethodOutput<string>();
+            ServiceRequestService obj = new ServiceRequestService();
+            objMO = obj.BindChessisListByCPRNumber(CPRNumber,ServiceId);
+            return Json(objMO.DataList, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult BindVehicleDetailByCPRNumber(string CPRNumber, int ServiceId)
+        {
+            MethodOutput<VehicleDetail> objMO = new MethodOutput<VehicleDetail>();
+            ServiceRequestService obj = new ServiceRequestService();
+            objMO = obj.BindVehicleDetailByCPRNumber(CPRNumber, ServiceId);
+            return Json(objMO.Data, JsonRequestBehavior.AllowGet);
+        }
     }
 }

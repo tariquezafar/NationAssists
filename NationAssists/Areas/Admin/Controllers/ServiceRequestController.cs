@@ -14,6 +14,7 @@ namespace NationAssists.Areas.Admin.Controllers
         AllocateServiceRequest mASR = new AllocateServiceRequest();
         // GET: Admin/ServiceRequest
 
+        #region Service Request Listing
         public ActionResult Index()
         {
             if (Session["UserId"] != null)
@@ -26,16 +27,49 @@ namespace NationAssists.Areas.Admin.Controllers
             else
             {
                 return Redirect("../../Home");
-            }
-
-
-            
+            }    
         }
+
+        public List<ServiceRequest> BindServiceRequestList(int ServiceRequestStatusId,
+           string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime StartDate, DateTime EndDate)
+        {
+            ServiceRequestService objSR = new ServiceRequestService();
+            MethodOutput<ServiceRequest> objLst = new MethodOutput<ServiceRequest>();
+            objLst = objSR.BindAllServiceRequest(ServiceRequestStatusId, TicketNo, AccountType, BrokerId, AccountSubType, StartDate, EndDate);
+            return objLst.DataList;
+        }
+
+        [HttpPost]
+        public ActionResult SearchServiceRequest(SearchSR objSearchSR)
+        {
+            string strError = string.Empty;
+            AllocateServiceRequest objSRSearchResult = new AllocateServiceRequest();
+            List<ServiceRequest> objLst = new List<ServiceRequest>();
+            try
+            {
+
+
+                objLst = BindServiceRequestList(objSearchSR.ServiceRequestStatusId, objSearchSR.TicketNo,
+                    objSearchSR.AccountType, objSearchSR.BrokerId, objSearchSR.AccountSubType, objSearchSR.StartDate, objSearchSR.EndDate);
+                objSRSearchResult.ServiceRequestList = objLst;
+                return PartialView("_ServiceRequestList", objSRSearchResult);
+            }
+            catch (Exception ex)
+            {
+
+                strError = ex.Message;
+            }
+            return Json(new { Error = strError }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Service Request Service Provider Allocation
         public ActionResult AllocateServiceRequest()
         {
             if (Session["UserId"] != null)
             {
-                mASR.PendingServiceRequestList = GetServiceRequestList((int) ServiceRequestStatusEnum.Open, "");
+                mASR.PendingServiceRequestList = GetPendingServiceRequestList((int) ServiceRequestStatusEnum.Open, "");
                 return View(mASR);
             }
             else
@@ -52,7 +86,7 @@ namespace NationAssists.Areas.Admin.Controllers
 
             try
             {
-                objAllocateServiceRequest.PendingServiceRequestList = this.GetServiceRequestList(ServiceRequestStatusId, TicketNo);
+                objAllocateServiceRequest.PendingServiceRequestList = this.GetPendingServiceRequestList(ServiceRequestStatusId, TicketNo);
                 return PartialView("_ServiceSubCategoryPriceList", objAllocateServiceRequest);
             }
             catch (Exception ex)
@@ -64,7 +98,7 @@ namespace NationAssists.Areas.Admin.Controllers
         }
 
 
-        public List<ServiceRequest> GetServiceRequestList(int ServiceRequestStatusId, string TicketNo)
+        public List<ServiceRequest> GetPendingServiceRequestList(int ServiceRequestStatusId, string TicketNo)
         {
             ServiceRequestService objSR = new ServiceRequestService();
             MethodOutput<ServiceRequest> objLst = new MethodOutput<ServiceRequest>();
@@ -105,7 +139,10 @@ namespace NationAssists.Areas.Admin.Controllers
             return Json(new { Result = IsSaved, Msg = strMsg }, JsonRequestBehavior.AllowGet);
         }
 
+        #endregion
 
+
+        #region Respond To Service Request Allocation
         public ActionResult RespondToServiceAllocation()
         {
             if (Session["UserId"] != null && Session["User"]!=null)
@@ -151,6 +188,10 @@ namespace NationAssists.Areas.Admin.Controllers
             }
         }
 
+        #endregion
+
+
+        #region Assigned Service Request 
         public List<ServiceRequest> BindAssignedServiceRequestList(int UserId)
         {
             ServiceRequestService objSR = new ServiceRequestService();
@@ -159,37 +200,38 @@ namespace NationAssists.Areas.Admin.Controllers
             return objLst.DataList;
         }
 
-        public List<ServiceRequest> BindServiceRequestList(int ServiceRequestStatusId,
-            string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime StartDate, DateTime EndDate)
+        #endregion
+
+        #region Raise Service Request
+
+        public ActionResult RaiseServiceRequest()
         {
-            ServiceRequestService objSR = new ServiceRequestService();
-            MethodOutput<ServiceRequest> objLst = new MethodOutput<ServiceRequest>();
-            objLst = objSR.BindAllServiceRequest(ServiceRequestStatusId, TicketNo, AccountType, BrokerId, AccountSubType, StartDate, EndDate);
-            return objLst.DataList;
+            return View(mASR);
         }
 
-        [HttpPost]
-        public ActionResult SearchServiceRequest(SearchSR objSearchSR)
+        public ActionResult SearchCustomerStatus(string CPRNumber)
         {
-            string strError = string.Empty;
-            AllocateServiceRequest objSRSearchResult = new AllocateServiceRequest();
-            List<ServiceRequest> objLst = new List<ServiceRequest>();
-            try
-            {
-
-
-                objLst = BindServiceRequestList(objSearchSR.ServiceRequestStatusId, objSearchSR.TicketNo,
-                    objSearchSR.AccountType, objSearchSR.BrokerId, objSearchSR.AccountSubType, objSearchSR.StartDate, objSearchSR.EndDate);
-                objSRSearchResult.ServiceRequestList = objLst;
-                return PartialView("_ServiceRequestList", objSRSearchResult);
-            }
-            catch (Exception ex)
-            {
-
-                strError = ex.Message;
-            }
-            return Json(new { Error = strError }, JsonRequestBehavior.AllowGet);
+            ServiceRequestService objSRS = new ServiceRequestService();
+            MethodOutput<CustomerStatus> objCUS = new MethodOutput<CustomerStatus>();
+            objCUS = objSRS.GetCustomerStatus(CPRNumber);
+            return Json(objCUS.DataList, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult BindServiceByCPRNumber(string CPRNumber)
+        {
+            ServiceRequestService objSRS = new ServiceRequestService();
+            MethodOutput<Service> objCUS = new MethodOutput<Service>();
+            objCUS = objSRS.BindServicesByCPRNumber(CPRNumber);
+            return Json(objCUS.DataList, JsonRequestBehavior.AllowGet);
+        }
+
+
+        
+
+        #endregion
+
+
+
 
 
 

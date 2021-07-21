@@ -1,0 +1,189 @@
+﻿@model NationAssists.Areas.Admin.Models.AllocateServiceRequest
+
+@{
+    ViewBag.Title = "RaiseServiceRequest";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>RaiseServiceRequest</h2>
+
+<div class="dashboardCon transition">
+    <div class="mainHd"> Raise Service Request</div>
+    <div id="dvSearch">
+        <ul class="form flexBox">
+            <li class="oneThird">
+                <span class="fieldHd">CPR Number </span>
+                <input type="text" id="txtCPRNumber" class="formInput" />
+            </li>
+        </ul>
+        <div>
+            <div class="tac"><button class="formBtn" onclick="BindCustomerStatus()">Search</button></div>
+        </div>
+    </div>
+
+    <div id="dvCompleteSignup" style="display:none;">
+        <ul class="form flexBox">
+            <li class="oneThird">
+                <span class="fieldHd">Source Type </span>
+                <input type="text" id="txtSourceType" class="formInput" disabled="disabled" />
+
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Source </span>
+                <input type="text" id="txtSource" class="formInput" disabled="disabled" />
+
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">First Name </span>
+                <input type="text" id="txtFirstName" class="formInput" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Last Name </span>
+                <input type="text" id="txtLastName" class="formInput" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Gender</span>
+                <select id="ddlGender" class="formSelect">
+                    <option value="0">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Email-ID </span>
+                <input type="text" id="txtEmailId" class="formInput" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Mobile No </span>
+                <input type="text" id="txtMobileNo" class="formInput" />
+            </li>
+        </ul>
+        <div>
+            <div class="tac">
+                <input type="hidden" id="hdnSourceId" />
+                <input type="hidden" id="hdnSourceTypeCode" />
+                <button class="formBtn" onclick="SaveCustomer()">Complete Registration</button>
+                <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/RaiseServiceRequest/'">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dvRaiseServiceRequest" style="display:none;">
+        <ul class="form flexBox">
+            <li class="oneThird">
+                <span class="fieldHd">Service</span>
+                @*@Html.DropDownListFor(m => m.ServiceId, Model.BindServicesByCPRNumber(Model.CPRNumber), "--select-", new { @class = "formSelect", @onchange = "BindServiceType()" })*@
+                <select id="ServiceId" class="formSelect" onchange="BindServiceType()">
+                    <option value="">--Select--</option>
+                </select>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblService">Service Type </span>
+                <select id="ServiceCategoryId" class="formSelect">
+                    <option value="">--Select--</option>
+                </select>
+            </li>
+            <li class="oneThird RAP" style="display:none;">
+                <span class="fieldHd">Vehicle Registration Number </span>
+                <select id="VehicleRegistrationNo" class="formSelect">
+                    <option value="">--Select--</option>
+                </select>
+            </li>
+            <li class="oneThird RAP" style="display:none;">
+                <span class="fieldHd">Chessis No</span>
+                <select id="ChessisNo" class="formSelect">
+                    <option value="">--Select--</option>
+                </select>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Service Location</span>
+                <textarea id="txtServiceLocation" class="formInput" placeholder="Service Location"></textarea>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Country</span>
+                @Html.DropDownListFor(m => m.CountryId, Model.BindCountry(), "--select-", new { @class = "formSelect", @onchange = "BindGovernotes()" })
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblGovernotes">Governotes</span>
+                <select id="GovernotesId" class="formSelect" onchange="BindPlaces();">
+                    <option value="">--Select--</option>
+                </select>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblPlace">
+                    Place
+                </span>
+                <select id="PlaceId" class="formSelect" onchange="BindBlock()">
+                    <option value="">--Select--</option>
+                </select>
+            </li>
+
+            <li class="oneThird">
+                <span class="fieldHd" id="lblBlockCode">
+                    Block Code
+                </span>
+                <select id="BlockCode" class="formSelect">
+                    <option value="">--Select--</option>
+                </select>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Date of Accident</span>
+                <input type="text" id="txtDateOfAccident" class="formInput datePicker" />
+            </li>
+            <li class="oneThird RAP">
+                <span class="fieldHd">Name of Workshop</span>
+                <input type="text" id="txtNameOfWorkshop" class="formInput" />
+            </li>
+            <li class="oneThird HAP">
+                <span class="fieldHd">Building No</span>
+                <input type="text" id="txtBuildingNo" class="formInput" />
+            </li>
+            <li class="RAP">
+                <span class="fieldHd">Whether Stepini in good condition is available on the vehicle ?</span>
+                <div class="optBox flexBox">
+
+                    <label><input type="radio" name="StepiniCondtion" class="radioInpt" value="YES" style="opacity:unset;"> YES</label>
+                    <label><input type="radio" name="StepiniCondtion" class="radioInpt" checked="checked" value="NO" style="opacity:unset;"> NO</label>
+
+                </div>
+            </li>
+            <li class="RAP">
+                <span class="fieldHd">Where the client wishes to take the vehicle for the repair?</span>
+                <textarea id="txtCollectRepairVehicleAddress" class="formInput"></textarea>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Contact No</span>
+                <input type="text" id="txtContactNo" class="formInput" onclick="RestrictAlphabetAndSpace('txtContactNo')" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Relevent Details</span>
+                <textarea id="txtReleventDetails" class="formInput"></textarea>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Remarks</span>
+                <textarea id="txtRemarks" class="formInput"></textarea>
+            </li>
+
+        </ul>
+
+
+
+
+        <input type="hidden" id="hdnCustomerId" value="0" />
+        <div class="tac">
+            <button class="formBtn regNextStep" onclick="SubmitServiceRequest()">Submit</button>
+            <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/RaiseServiceRequest/'">Back</button>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="dbTable" id="tblCustomerStatus">
+
+    </div>
+
+</div>
+
+<script src="~/Areas/Admin/JS/RaiseServiceRequest.js"></script>

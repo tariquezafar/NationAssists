@@ -17,6 +17,11 @@ namespace NationAssists.Areas.Admin.Models
         public string StartDate { get; set; }
 
         public string EndDate { get; set; }
+        
+
+        public int CountryId { get; set; }
+
+
 
 
         public List<ServiceRequest> ServiceRequestList { get; set; }
@@ -40,6 +45,13 @@ namespace NationAssists.Areas.Admin.Models
             UserServices objCS = new UserServices();
             IEnumerable<SelectListItem> lstDist = objCS.GetUserByReference(RefernceId).DataList.OrderBy(s => s.UserId).ToList().Select(m => new SelectListItem() { Text = m.Name+"("+m.UserCode+")", Value = m.UserId.ToString() }).OrderBy(s => s.Value).ToList();
             return new SelectList(lstDist, "Value", "Text", AssignedToUserId);
+        }
+
+        public SelectList BindCountry()
+        {
+            CommonServices objCS = new CommonServices();
+            IEnumerable<SelectListItem> lstDist = objCS.BindCountry().DataList.OrderBy(s => s.Name).ToList().Select(m => new SelectListItem() { Text = m.Name, Value = m.CountryId.ToString() }).OrderBy(s => s.Text).ToList();
+            return new SelectList(lstDist, "Value", "Text", CountryId);
         }
     }
 

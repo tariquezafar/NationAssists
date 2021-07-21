@@ -166,6 +166,7 @@
     <Compile Include="Areas\Admin\Controllers\BrokersController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServiceEnrollmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceRequestController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\AllocateServiceRequest.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Areas\Software\SoftwareAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BuyOnlineController.cs" />
+    <Compile Include="Controllers\BuyPackageRequestController.cs" />
     <Compile Include="Controllers\EmailVerificationController.cs" />
     <Compile Include="Controllers\homeassistanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -202,11 +204,15 @@
     <Compile Include="Models\AesOperation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\mBuyOnline.cs" />
+    <Compile Include="Models\mServiceEnrollment.cs" />
     <Compile Include="Models\mServiceRequest.cs" />
+    <Compile Include="Models\ServiceEnrollmentStatusEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\JS\RaiseServiceRequest.js" />
+    <Content Include="Areas\Admin\JS\ServiceEnrollment.js" />
     <Content Include="Areas\Admin\JS\ServiceRequest.js" />
     <Content Include="Areas\Admin\JS\AssignedServiceRequest.js" />
     <Content Include="Areas\Admin\JS\RespondToServiceAllocation.js" />
@@ -473,6 +479,7 @@
     <Content Include="js\jquery.min.js" />
     <Content Include="js\Login.js" />
     <Content Include="js\Register.js" />
+    <Content Include="js\ServiceEnrollment.js" />
     <Content Include="js\ServiceRequest.js" />
     <Content Include="js\slick.min.js" />
     <Content Include="mission.html" />
@@ -562,6 +569,9 @@
     <Content Include="Areas\Admin\Views\ServiceRequest\_AssignedServiceRequestList.cshtml" />
     <Content Include="Areas\Admin\Views\ServiceRequest\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ServiceRequest\_ServiceRequestList.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceRequest\RaiseServiceRequest.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceEnrollment\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ServiceEnrollment\_ServiceEnrollmentRequestList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -621,6 +631,9 @@
     <Content Include="Views\EmailVerification\Index.cshtml" />
     <Content Include="Views\RaiseServiceRequest\Index.cshtml" />
     <Content Include="Views\RaiseServiceRequest\_ServiceRequestList.cshtml" />
+    <Content Include="Views\BuyPackageRequest\Index.cshtml" />
+    <Content Include="Views\BuyPackageRequest\_ServiceEnrollmentRequestList.cshtml" />
+    <Content Include="Views\BuyPackageRequest\ViewServiceEnrollmentRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

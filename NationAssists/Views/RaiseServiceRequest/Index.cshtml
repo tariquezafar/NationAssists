@@ -29,11 +29,15 @@
                     </li>
                     <li class="oneThird RAP" style="display:none;">
                         <span class="fieldHd">Vehicle Registration Number </span>
-                        @Html.DropDownListFor(m => m.VehicleRegistrationNo, Model.BindVehicleRegistrationNoListByCPRNumber(Model.CPRNumber), "--select-", new { @class = "formSelect" })
+                        <select id="VehicleRegistrationNo" class="formSelect">
+                            <option value="">--Select--</option>
+                        </select>
                     </li>
                     <li class="oneThird RAP" style="display:none;">
                         <span class="fieldHd">Chessis No</span>
-                        @Html.DropDownListFor(m => m.ChessisNo, Model.BindChessisListByCPRNumber(Model.CPRNumber), "--select-", new { @class = "formSelect" })
+                        <select id="ChessisNo" class="formSelect">
+                            <option value="">--Select--</option>
+                        </select>
                     </li>
                     <li class="oneThird">
                         <span class="fieldHd">Service Location</span>
@@ -56,6 +60,7 @@
                         <select id="PlaceId" class="formSelect" onchange="BindBlock()">
                             <option value="">--Select--</option>
                         </select>
+
                     </li>
 
                     <li class="oneThird">
@@ -110,6 +115,7 @@
 
 
                 <input type="hidden" id="hdnCustomerId" value="@Model.CustomerId" />
+                <input type="hidden" id="hdnCPRNumber" value="@Model.CPRNumber" />
                 <div class="tac"><button class="formBtn regNextStep" onclick="SubmitServiceRequest()">Submit</button></div>
 
             </div>

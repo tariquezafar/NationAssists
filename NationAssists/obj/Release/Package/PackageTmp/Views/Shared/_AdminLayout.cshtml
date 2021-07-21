@@ -19,7 +19,7 @@
 
     <style>
         .modal {
-            position: fixed;
+            position: absolute;
             top: 0;
             right: 0;
             bottom: 0;
@@ -28,20 +28,16 @@
             display: none;
             overflow: hidden;
             outline: 0;
+            width: 100%;
+            text-align: center;
+            background: #ccc;
+            opacity: 0.5;
+            height:1500px;
+            padding-top:200px
         }
-        .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-}
+        
 
-@@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+       
     </style>
     <script type="text/javascript">
 
@@ -51,14 +47,16 @@
 </head>
 
 <body>
-    <div id="progress" class="modal" style="display: none;">
-        <div class="center" style="width: 100%;">
+    <div id="progress" class="modal" style="display:none;">
+            <div class="center">
 
-            <img src="~/images/animation loader.gif">
+                <img src="~/images/loader.gif">
 
 
+            </div>
         </div>
-    </div>
+
+   
 
     <div class="dbCon">
         <div class="dbHeader transition">
@@ -101,6 +99,9 @@
     <script src="~/js/Login.js"></script>
     <script>
         $('.datePicker').datetimepicker({ format: 'd/M/Y', timepicker: false });
+
+        
+        
     </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>

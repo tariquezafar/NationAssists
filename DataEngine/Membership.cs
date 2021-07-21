@@ -45,5 +45,7 @@ namespace DataEngine
 
         public string SourceType { get; set; }
 
+        public string MembershipReferenceNo { get; set; }
+
     }
 }

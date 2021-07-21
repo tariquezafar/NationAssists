@@ -27,8 +27,8 @@ D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\EntityFramework.dll
 D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\EntityFramework.SqlServer.dll
 D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\EntityFramework.xml
 D:\Tarique\NationAssists\NationAssists\DataEngine\bin\Debug\EntityFramework.SqlServer.xml
-D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.csprojAssemblyReference.cache
 D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.csproj.CoreCompileInputs.cache
 D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.csproj.CopyComplete
 D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.dll
 D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.pdb
+D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.csprojAssemblyReference.cache

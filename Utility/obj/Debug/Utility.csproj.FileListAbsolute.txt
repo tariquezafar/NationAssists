@@ -33,7 +33,7 @@ D:\Tarique\ICardPrinter\ICardPrinter\Utility\obj\Debug\Utility.dll
 D:\Tarique\ICardPrinter\ICardPrinter\Utility\obj\Debug\Utility.pdb
 D:\Tarique\NationAssists\NationAssists\Utility\bin\Debug\Utility.dll
 D:\Tarique\NationAssists\NationAssists\Utility\bin\Debug\Utility.pdb
-D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
 D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
 D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.dll
 D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.pdb
+D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.csprojAssemblyReference.cache

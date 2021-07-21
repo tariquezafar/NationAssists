@@ -99,5 +99,11 @@ namespace DataServices
             return objCommon.BindServiceRequestStatus();
         }
 
+        public MethodOutput<ServiceEnrollmentStatus> BindServiceEnrollmentStatus()
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindServiceEnrollmentStatus();
+        }
+
     }
 }

@@ -39,18 +39,6 @@ namespace NationAssists.Models
             return new SelectList(lstDist, "Value", "Text", CountryId);
         }
 
-        public SelectList BindChessisListByCPRNumber(string CPRNumber)
-        {
-            ServiceRequestService objCS = new ServiceRequestService();
-            IEnumerable<SelectListItem> lstDist = objCS.BindChessisListByCPRNumber(CPRNumber).DataList.OrderBy(s => s).ToList().Select(m => new SelectListItem() { Text = m , Value = m }).OrderBy(s => s.Text).ToList();
-            return new SelectList(lstDist, "Value", "Text", ChessisNo);
-        }
-
-        public SelectList BindVehicleRegistrationNoListByCPRNumber(string CPRNumber)
-        {
-            ServiceRequestService objCS = new ServiceRequestService();
-            IEnumerable<SelectListItem> lstDist = objCS.BindVehicleRegistrationNoListByCPRNumber(CPRNumber).DataList.OrderBy(s => s).ToList().Select(m => new SelectListItem() { Text = m, Value = m }).OrderBy(s => s.Text).ToList();
-            return new SelectList(lstDist, "Value", "Text", VehicleRegistrationNo);
-        }
+        
     }
 }

@@ -1,0 +1,58 @@
+﻿@model NationAssists.Models.mServiceEnrollment
+
+@if (Model.ServiceEnrollmentRequestList != null)
+{
+    int i = 0;
+
+    if (Model.ServiceEnrollmentRequestList.Count > 0)
+    {
+        <table>
+
+            <thead>
+                <tr>
+                    <th>SNo.</th>
+                    <th>Service Name</th>
+                    
+                    <th>Risk Address</th>
+                    <th>Requested Date</th>
+                    <th>Status</th>
+                    <th>View</th>
+
+                </tr>
+            <thead>
+            <tbody>
+                @foreach (DataEngine.ServiceEnrollmentRequest item in Model.ServiceEnrollmentRequestList)
+                {
+                    i = i + 1;
+
+
+                    <tr>
+                        <td><span class="blueClr">@i</span></td>
+                        <td>@item.ServiceName</td>
+                        <td>@item.RiskAddress</td>
+                        <td>@item.CreatedDate.ToString("dd-MMM-yyyy")</td>
+                       
+                        <td>@item.Status</td>
+                        <td>
+
+                            <a data-id="@item.ServiceEnrollmentRequestId" onclick="ShowServiceEnrollmentDetail(@Newtonsoft.Json.JsonConvert.SerializeObject( item))"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+
+
+        </table>
+    }
+
+}
+
+else
+{
+    <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+}
+
+

@@ -49,6 +49,7 @@
     <Compile Include="OpMembership.cs" />
     <Compile Include="OpServiceArea.cs" />
     <Compile Include="OpServiceCategory.cs" />
+    <Compile Include="OpServiceEnrollment.cs" />
     <Compile Include="OpServicePrice.cs" />
     <Compile Include="OpServiceProvider.cs" />
     <Compile Include="OpServiceProviderPrice.cs" />

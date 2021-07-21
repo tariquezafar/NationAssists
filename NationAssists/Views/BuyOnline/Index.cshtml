@@ -5,16 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+
+    .more {
+        color: red;
+        cursor: pointer;
+    }
+</style>
 <div class="whtBg pt60 pb60">
     <div class="container">
         @if (Model.PackageList != null && Model.PackageList.Any())
         {
         <div class="mainHd">Plan</div>
-        <ul class="planList flexBox">
+        <ul class="planList flexBox" >
 
             @{
 
-                List<DataEngine.Service> objLstService = Model.PackageList.Select(x => new DataEngine.Service { ServiceId = x.ServiceId, ServiceName = x.ServiceName,ServiceCode=x.ServiceCode }).ToList().GroupBy(p => new { p.ServiceName, p.ServiceId }).Select(g => g.First()).ToList();
+                List<DataEngine.Service> objLstService = Model.PackageList.Select(x => new DataEngine.Service { ServiceId = x.ServiceId, ServiceName = x.ServiceName,ServiceCode=x.ServiceCode ,Price=x.Prices}).ToList().GroupBy(p => new { p.ServiceName, p.ServiceId }).Select(g => g.First()).ToList();
+            
             }
 
             @foreach (DataEngine.Service item in objLstService)
@@ -23,16 +31,17 @@
 
                 <li>
                     <div class="inner">
-                        <div class="hd">@item.ServiceName</div>
+                        <div class="hd" style="min-height: 83px;">@item.ServiceName</div>
                         @{
-                            int i = 1;
+                             int i = 1;
                             List<DataEngine.ServicePrice> ServicePriceList = Model.PackageList.Where(x => x.ServiceId == item.ServiceId).ToList();
+
 
                         }
                         @if (ServicePriceList != null && ServicePriceList.Any())
                         {
                         <div class="det">
-                            <ul>
+                            <ul class="term-list">
                                 @foreach (DataEngine.ServicePrice itemSP in ServicePriceList)
                                 {
 
@@ -40,61 +49,70 @@
 
                                     if (i == ServicePriceList.Count)
                                     {
-                            <li class="price">&#8377; @itemSP.Prices</li>
+
+                         
                                     }
                                     i++;
                                 }
-                                @*<li>2 vCPU</li>
-                                <li>1 Snapshot</li>
-                                <li>2 GB RAM</li>
-                                <li>40 GB SSD (Expandable)</li>
-                                <li>500 GB Bandwidth</li>
-                                <li>1 Dedicated IP Address</li>
-                                <li class="price">&#8377; 599.00<span>/mo</span></li>*@
+                               
+                            </ul>
+                            <ul>
+                                <li class="price"> @item.Price</li>
                             </ul>
 
-                            <a href="@strURL" class="button">Buy Now</a>
+                            <a  class="button" style="cursor:pointer;"  onclick="SendPackageRequest(@Newtonsoft.Json.JsonConvert.SerializeObject( item));">Buy Now</a>
                         </div>
                         }
                     </div>
                 </li>
             }
-                @*<li>
-                    <div class="inner">
-                        <div class="hd">Baby</div>
-                        <div class="det">
-                            <ul>
-                                <li>2 vCPU</li>
-                                <li>1 Snapshot</li>
-                                <li>2 GB RAM</li>
-                                <li>40 GB SSD (Expandable)</li>
-                                <li>500 GB Bandwidth</li>
-                                <li>1 Dedicated IP Address</li>
-                                <li class="price">&#8377; 599.00<span>/mo</span></li>
-                            </ul>
-                            <a href="#" class="button">Buy Now</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="inner">
-                        <div class="hd">Baby</div>
-                        <div class="det">
-                            <ul>
-                                <li>2 vCPU</li>
-                                <li>1 Snapshot</li>
-                                <li>2 GB RAM</li>
-                                <li>40 GB SSD (Expandable)</li>
-                                <li>500 GB Bandwidth</li>
-                                <li>1 Dedicated IP Address</li>
-                                <li class="price">&#8377; 599.00<span>/mo</span></li>
-                            </ul>
-                            <a href="#" class="button">Buy Now</a>
-                        </div>
-                    </div>
-                </li>*@
+               
             </ul>
         }
     </div>
 </div>
 
+<script type="text/javascript">
+
+    $('ul.term-list').each(function () {
+        var LiN = $(this).find('li').length;
+        if (LiN >= 4) {
+            $('li', this).eq(2).nextAll().hide().addClass('toggleable');
+            $(this).append('<li class="more">More...</li>');
+        }
+    });
+    $('ul.term-list').on('click', '.more', function () {
+        if ($(this).hasClass('less')) {
+            $(this).text('More...').removeClass('less');
+        } else {
+            $(this).text('Less...').addClass('less');
+        }
+        $(this).siblings('li.toggleable').slideToggle();
+    }); 
+
+
+    function SendPackageRequest(e) {
+        var objService = {
+            ServiceId : e.ServiceId,
+            ServiceName : e.ServiceName,
+            ServiceCode: e.ServiceCode
+        };
+        var pUrl = "/BuyOnline/SendPackageRequest/";
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            url: pUrl,
+            data: JSON.stringify(objService),
+            success: function (data) {
+                debugger;
+
+                window.location.href ="/BuyPackageRequest"
+                
+            },
+            error: function (data) {
+            }
+        });
+    }
+
+</script>

@@ -498,6 +498,36 @@ namespace DbOperation
         }
 
 
+        public MethodOutput<ServiceEnrollmentStatus> BindServiceEnrollmentStatus()
+        {
+            MethodOutput<ServiceEnrollmentStatus> objOutput = new MethodOutput<ServiceEnrollmentStatus>();
+            List<ServiceEnrollmentStatus> objLstEnrollmentStatus = new List<ServiceEnrollmentStatus>();
+            try
+            {
+                DataTable dt = new DataTable();
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllServiceEnrollmentStatus").Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstEnrollmentStatus = dt.AsEnumerable().Select(x => new ServiceEnrollmentStatus
+                    {
+                        ServiceEnrollmentStatusId = x.Field<int>("ServiceEnrollmentStatusId"),
+                        Status_Name = x.Field<string>("Status_Name")
+                    }).ToList();
+
+                    objOutput.DataList = objLstEnrollmentStatus;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+            }
+
+            return objOutput;
+                    
+        }
+
+
     }
 
 

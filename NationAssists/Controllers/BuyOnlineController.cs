@@ -15,8 +15,15 @@ namespace NationAssists.Controllers
         // GET: BuyOnline
         public ActionResult Index()
         {
-            obj.PackageList = GetAllPackages();
-            return View(obj);
+            if (Session["CustomerId"] != null && Session["CPRNumber"] != null)
+            {
+                obj.PackageList = GetAllPackages();
+                return View(obj);
+            }
+            else
+            {
+                return Redirect("../Home");
+            }
         }
 
         public List<ServicePrice> GetAllPackages()
@@ -25,6 +32,13 @@ namespace NationAssists.Controllers
             ServicePriceService obj = new ServicePriceService();
             objMO = obj.GetAllPackage();
             return objMO.DataList;
+        }
+        [HttpPost]
+        public ActionResult SendPackageRequest(Service objService)
+        {
+            TempData["Service"] = objService;
+            //     return Redirect("/BuyPackageRequest");
+            return Json(true, JsonRequestBehavior.AllowGet) ;
         }
     }
 }

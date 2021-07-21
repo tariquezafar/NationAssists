@@ -164,6 +164,8 @@ function ValidateForm() {
 
 function EditServiceProvider(e) {
 
+    var scrollPos = $("#dvDetail").offset().top;
+    $(window).scrollTop(scrollPos);
     $('body').data("IsLoaderRequired", true);
     $loading.show();
     setTimeout(function () {

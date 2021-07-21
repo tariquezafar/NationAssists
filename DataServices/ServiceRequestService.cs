@@ -59,23 +59,35 @@ namespace DataServices
             return objCommon.BindAllServiceRequest(ServiceRequestStatusId,TicketNo,AccountType,BrokerId,AccountSubType,StartDate,EndDate);
         }
 
-        public MethodOutput<string> BindVehicleRegistrationNoListByCPRNumber(string CPRNumber)
+        public MethodOutput<string> BindVehicleRegistrationNoListByCPRNumber(string CPRNumber,int ServiceId)
         {
             OpServiceRequest objCommon = new OpServiceRequest();
-            return objCommon.BindVehicleRegistrationNoListByCPRNumber(CPRNumber);
+            return objCommon.BindVehicleRegistrationNoListByCPRNumber(CPRNumber,ServiceId);
         }
 
 
-        public MethodOutput<string> BindChessisListByCPRNumber(string CPRNumber)
+        public MethodOutput<string> BindChessisListByCPRNumber(string CPRNumber, int ServiceId)
         {
             OpServiceRequest objCommon = new OpServiceRequest();
-            return objCommon.BindChessisListByCPRNumber(CPRNumber);
+            return objCommon.BindChessisListByCPRNumber(CPRNumber,ServiceId);
         }
 
         public MethodOutput<ServiceRequest> GetServiceRequestListByCustomer(int CustomerId)
         {
             OpServiceRequest objCommon = new OpServiceRequest();
             return objCommon.BindServiceRequestByCustomer(CustomerId);
+        }
+
+        public MethodOutput<CustomerStatus> GetCustomerStatus(string CPRNumber)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.BindCustomerStatus(CPRNumber);
+        }
+
+        public MethodOutput<VehicleDetail> BindVehicleDetailByCPRNumber(string CPRNumber, int ServiceId)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.BindVehicleDetailByCPRNumber(CPRNumber,ServiceId);
         }
     }
 }

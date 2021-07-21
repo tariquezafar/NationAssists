@@ -31,6 +31,9 @@
                         $('.RAP').show();
                         $('.HAP').hide();
                     }
+                    if (ServiceCode != "HAP") {
+                        BindVehicleDetail($("#hdnCPRNumber").val(), $("#ServiceId").val());
+                    }
 
                 }
             }
@@ -256,11 +259,11 @@ function ValidateForm() {
                 IsValid = false;
                 strErrMsg += "Please enter Policy Type . \n";
             }
-            if ($("#VehicleRegistrationNo").val() == "") {
+            if ($("#VehicleRegistrationNo").val() == "" || $("#VehicleRegistrationNo").val() == "0") {
                 IsValid = false;
                 strErrMsg += "Please select vehicle registration No. \n";
             }
-            if ($("#ChessisNo").val() == "") {
+            if ($("#ChessisNo").val() == "" || $("#ChessisNo").val() == "0") {
                 IsValid = false;
                 strErrMsg += "Please select Chassis No. \n";
             }
@@ -327,4 +330,38 @@ function ShowServiceRequestDetail(e) {
     $("#dvRaiseServiceRequest").hide();
 
     //dvDetail
+}
+
+function BindVehicleDetail(CPRNumber, ServiceId) {
+    var pUrl = "/RaiseServiceRequest/BindVehicleDetailByCPRNumber?CPRNumber=" + CPRNumber + "&ServiceId=" + ServiceId;
+    $.ajax({
+        type: "Get",
+        url: pUrl,
+        data: {},
+        dataType: 'html',
+        contentType: false,
+        processData: false,
+        async: false,
+        success: function (data) {
+
+            $("#VehicleRegistrationNo").html(""); // clear before appending new list
+            $("#ChessisNo").html("")
+            var jData = JSON.parse(data);
+            if (jData != null ) {
+                $("#VehicleRegistrationNo").append($('<option></option>').val(0).html("--Select--"));
+                $("#ChessisNo").append($('<option></option>').val(0).html("--Select--"));
+                $.each(jData.ChessisList, function (i, Chessis) {
+                    $("#ChessisNo").append(
+                        $('<option></option>').val(Chessis).html(Chessis));
+                });
+                $.each(jData.VehicleRegistrationNoList, function (i, VehicleRegistrationNo) {
+                    $("#VehicleRegistrationNo").append(
+                        $('<option></option>').val(VehicleRegistrationNo).html(VehicleRegistrationNo));
+                });
+
+                
+
+            }
+        }
+    });
 }

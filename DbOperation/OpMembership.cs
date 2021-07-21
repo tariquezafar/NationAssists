@@ -202,6 +202,7 @@ namespace DbOperation
                         VehicleReplacement = x.Field<bool>("VehicleReplacement"),
                         VehicleType = x.Field<string>("VehicleType"),
                         VehicleYear = x.Field<int?>("VehicleYear"),
+                        MembershipReferenceNo=x.Field<string>("MembershipReferenceNo")
                     }).ToList();
 
                     output.DataList = objLst;

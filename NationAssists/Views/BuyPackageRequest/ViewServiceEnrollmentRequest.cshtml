@@ -1,0 +1,132 @@
+﻿@model NationAssists.Models.mServiceEnrollment
+
+@{
+    ViewBag.Title = "ViewServiceEnrollmentRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="whtBg pt60 pb60"
+     style="background: url(../images/login_bg.jpg) no-repeat center top; background-size: cover;">
+    <div class="container">
+        <div class="regBox" style="max-width:100%;">
+            <div class="flexBox spacebetween">
+                <div class="mainHd">View  Service Enrollment Request</div>
+
+            </div>
+            <div id="dvServiceDetail" style="display:none;">
+                <ul class="form flexBox">
+
+                    <li class="oneThird">
+                        <span class="fieldHd" id="lblService">Package </span>
+                        <select id="PackageId" class="formSelect">
+                        </select>
+
+                    </li>
+
+
+                    <li class="oneThird RAS">
+                        <span class="fieldHd" id="lblVehicleRegistrationNo">Vehicle RegistrationNo </span>
+                        <input type="text" class="formInput" id="txtVehicleRegistrationNo" maxlength="50" placeholder="VehicleRegistrationNo">
+                    </li>
+                    <li class="oneThird RAS">
+                        <span class="fieldHd" id="lblChassisNo">Chassis No </span>
+                        <input type="text" class="formInput" id="txtChassisNo" placeholder="ChassisNo" maxlength="50">
+                    </li>
+                    <li class="oneThird RAS">
+                        <span class="fieldHd" id="lblVehicleMake">Vehicle Make </span>
+                        <input type="text" class="formInput" id="txtVehicleMake" maxlength="500" placeholder="Vehicle Make" />
+                    </li>
+                    <li class="oneThird RAS">
+                        <span class="fieldHd" id="lblVehicleType">Vehicle Type </span>
+                        <input type="text" class="formInput" id="txtVehicleType" maxlength="500" placeholder="Vehicle Type" />
+                    </li>
+                    <li class="oneThird RAS">
+                        <span class="fieldHd" id="lblVehicleBody">Vehicle Body </span>
+                        <input type="text" class="formInput" id="txtVehicleBody" maxlength="500" placeholder="Vehicle Body" />
+                    </li>
+                    <li class="oneThird RAS">
+                        <span class="fieldHd" id="lblVehicleYear">Vehicle Year</span>
+                        <input type="text" id="txtVehicleYear" class="formInput" maxlength="4" placeholder="Vehicle Year" onclick="RestrictAlphabetAndSpace('txtVehicleYear')" />
+                    </li>
+
+                    <li class="oneThird HAS">
+                        <span class="fieldHd" id="lblRiskAddress">Risk Address</span>
+                        <textarea id="txtRiskAddress" class="formInput" placeholder="RiskAddress"></textarea>
+                    </li>
+
+                    <li class="oneThird HAS">
+                        <span class="fieldHd">Country</span>
+                        @Html.DropDownListFor(m => m.CountryId, Model.BindCountry(), "--select-", new { @class = "formSelect", @onchange = "BindGovernotes()" })
+                    </li>
+                    <li class="oneThird HAS">
+                        <span class="fieldHd" id="lblGovernotes">Governotes</span>
+                        <select id="GovernotesId" class="formSelect" onchange="BindPlaces();">
+                            <option value="">--Select--</option>
+                        </select>
+                    </li>
+                    <li class="oneThird HAS">
+                        <span class="fieldHd" id="lblPlace">
+                            Place
+                        </span>
+                        <select id="PlaceId" class="formSelect" onchange="BindBlock()">
+                            <option value="">--Select--</option>
+                        </select>
+                    </li>
+
+                    <li class="oneThird HAS">
+                        <span class="fieldHd" id="lblBlockCode">
+                            Block Code
+                        </span>
+                        <select id="BlockCode" class="formSelect">
+                            <option value="">--Select--</option>
+                        </select>
+                    </li>
+                    <li class="oneThird HAS">
+                        <span class="fieldHd" id="lblVehicleYear"> Year of Construction</span>
+                        <input type="text" id="txtYearOfConstruction" class="formInput" maxlength="4" placeholder="Vehicle Year" onclick="RestrictAlphabetAndSpace('txtYearOfConstruction')" />
+                    </li>
+                    <li class="oneThird HAS">
+                        <span class="fieldHd" id="lblNoOfLocation">No Of Location </span>
+                        <input type="text" class="formInput" id="txtNoOfLocation" maxlength="4" placeholder="No of Location" onclick="RestrictAlphabetAndSpace('txtNoOfLocation')" />
+                    </li>
+
+                    <li class="oneThird HAS">
+                        <span class="fieldHd" id="lblAggreementEndDate">Type Of Service </span>
+                        <input type="text" class="formInput" id="txtTypeOfService" maxlength="500" placeholder="Type Of Service" />
+                    </li>
+                    <li id="liApproverRemarks" style="display:none;">
+                        <span class="fieldHd" id="lblAggreementEndDate">Approver Remarks </span>
+                        <textarea id="txtApproverRemarks" class="formInput" disabled="disabled"></textarea>
+                    </li>
+
+                    <li>
+                        <span class="fieldHd" id="lblAggreementEndDate">Remarks </span>
+                        <textarea id="txtRemarks" class="formInput" placeholder="Remarks"></textarea>
+                    </li>
+                </ul>
+
+
+                <input type="hidden" id="hdnServiceEnrollmentId" value="0" />
+                <input type="hidden" id="hdnCustomerId" value="0" />
+                <input type="hidden" id="hdnPackageId" value="0" />
+                <input type="hidden" id="hdnPackageCode" value="" />
+                <input type="hidden" id="hdnCountryId" value="0" />
+                <input type="hidden" id="hdnGovernotesId" value="0" />
+                <input type="hidden" id="hdnPlaceId" value="0" />
+                <input type="hidden" id="hdnBlockId" value="0" />
+                <div class="tac" id="dvButton">
+                    <button type="button" class="formBtn regNextStep" id="btnAdd" onclick="return SaveMembership();">Save</button>
+                    <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/BuyOnline'">Back</button>
+
+                </div>
+            </div>
+            <div class="dbTable">
+                
+
+                @Html.Partial("~/Views/BuyPackageRequest/_ServiceEnrollmentRequestList.cshtml", Model);
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/ServiceEnrollment.js"></script>

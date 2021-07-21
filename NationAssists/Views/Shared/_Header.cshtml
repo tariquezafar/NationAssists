@@ -2,12 +2,12 @@
     <div class="searchBox" id="searchBox">
         <div class="container">
             <input type="text" class="searchInput" placeholder="Search Here...">
-            <button class="searchBtn"><img src="images/search.png" alt=""></button>
+            <button class="searchBtn"><img src="~/images/search.png" alt=""></button>
         </div>
     </div>
     <div class="container flexBox spacebetween itemCenter">
         <div class="flexBox itemCenter headerLft">
-            <div class="logo"><a href="/Home"><img src="images/logo.png" alt=""></a></div>
+            <div class="logo"><a href="/Home"><img src="~/images/logo.png" alt=""></a></div>
             <nav class="menuBox">
                 <a href="javascript:void(0)" class="showMobMenu"><i></i><i></i><i></i></a>
                 <ul class="menu flexBox">
@@ -18,19 +18,19 @@
                             <ul class="flexBox">
                                 <li>
                                     <a href="vision.html">
-                                        <div class="img"><img src="images/vision_icon.png" alt=""></div>
+                                        <div class="img"><img src="~/images/vision_icon.png" alt=""></div>
                                         <div class="hd">Vision</div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="mission.html">
-                                        <div class="img"><img src="images/mission_icon.png" alt=""></div>
+                                        <div class="img"><img src="~/images/mission_icon.png" alt=""></div>
                                         <div class="hd">Mission</div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="values.html">
-                                        <div class="img"><img src="images/value_icon.png" alt=""></div>
+                                        <div class="img"><img src="~/images/value_icon.png" alt=""></div>
                                         <div class="hd">Values</div>
                                     </a>
                                 </li>
@@ -43,25 +43,25 @@
                             <ul class="flexBox">
                                 <li>
                                     <a href="roadside-assistance.html">
-                                        <div class="img"><img src="images/roadside_assistance.png" alt=""></div>
+                                        <div class="img"><img src="~/images/roadside_assistance.png" alt=""></div>
                                         <div class="hd">Roadside<br> Assistance</div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="roadside-assistance-replacement-car.html">
-                                        <div class="img"><img src="images/replacement_car.png" alt=""></div>
+                                        <div class="img"><img src="~/images/replacement_car.png" alt=""></div>
                                         <div class="hd">Roadside Assistance +<br> Replacement Car</div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="home-assistance.html">
-                                        <div class="img"><img src="images/home_assistance.png" alt=""></div>
+                                        <div class="img"><img src="~/images/home_assistance.png" alt=""></div>
                                         <div class="hd">Home<br> Assistance</div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="insurance-document.html">
-                                        <div class="img"><img src="images/insurance_document.png" alt=""></div>
+                                        <div class="img"><img src="~/images/insurance_document.png" alt=""></div>
                                         <div class="hd">Insurance Document<br> Processing</div>
                                     </a>
                                 </li>
@@ -76,11 +76,11 @@
         <div class="headerRgt flexBox itemCenter">
             <div class="search">
                 <a href="javascript:void(0)" class="showSearch">
-                    <img src="images/search.png"
+                    <img src="~/images/search.png"
                          alt="">
                 </a>
             </div>
-            <div class="call"><a href="#"><img src="images/phone.png" alt=""></a></div>
+            <div class="call"><a href="#"><img src="~/images/phone.png" alt=""></a></div>
             <div class="moreLink" style="@(Session["CustomerId"]!=null ? "display:block;":"display:none;")">
                 <a href="javascript:void(0)" class="showMoreLink">
                 @((Session["CustomerId"] !=null && Session["CustomerName"] !=null ) ? Convert.ToString(Session["CustomerName"]) :"")</a>
@@ -88,10 +88,7 @@
                     <ul>
                         <li><a href="#">Edit Profile</a></li>
                         <li><a href="#">Change Password</a></li>
-                        @if (Session["IsHavingMembership"] != null && Convert.ToBoolean(Session["IsHavingMembership"]))
-                        {
-                        <li><a href="/RaiseServiceRequest">Raise Service Request</a></li>
-                        }
+                        
                         <li><a href="#" id="btnLogout" onclick="Logout('Customer');">Logout</a></li>
                     </ul>
                 </div>

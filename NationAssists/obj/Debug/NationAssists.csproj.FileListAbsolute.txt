@@ -130,3 +130,5 @@ D:\Tarique\NationAssists\NationAssists\NationAssists\obj\Debug\NationAssists.csp
 D:\Tarique\NationAssists\NationAssists\NationAssists\obj\Debug\NationAssists.csproj.CopyComplete
 D:\Tarique\NationAssists\NationAssists\NationAssists\obj\Debug\ICardPrinter.dll
 D:\Tarique\NationAssists\NationAssists\NationAssists\obj\Debug\ICardPrinter.pdb
+D:\Tarique\NationAssists\NationAssists\NationAssists\bin\DocumentFormat.OpenXml.dll
+D:\Tarique\NationAssists\NationAssists\NationAssists\bin\DocumentFormat.OpenXml.xml

@@ -19,7 +19,7 @@ namespace NationAssists.Areas.Admin.Controllers
 
             if (Session["UserId"] != null)
             {
-                 objMSE.ServiceEnrollmentRequestList = GetAllServiceEnrollmentRequest(0);
+                 objMSE.ServiceEnrollmentRequestList = GetAllServiceEnrollmentRequest(0,0,0,string.Empty);
                 return View(objMSE);
                 //GetAllServiceEnrollmentRequest(0);
                 //return View();
@@ -30,11 +30,11 @@ namespace NationAssists.Areas.Admin.Controllers
             }
         }
 
-        public List<ServiceEnrollmentRequest> GetAllServiceEnrollmentRequest(int CustomerId)
+        public List<ServiceEnrollmentRequest> GetAllServiceEnrollmentRequest(int CustomerId, int ServiceId, int EnrollmentStatusId, string CustomerName)
         {
             ServiceEnrollmentService objSES = new ServiceEnrollmentService();
             MethodOutput<ServiceEnrollmentRequest> output = new MethodOutput<ServiceEnrollmentRequest>();
-            output = objSES.GetAllServiceEnrollementRequst(CustomerId);
+            output = objSES.GetAllServiceEnrollementRequst(CustomerId, ServiceId, EnrollmentStatusId, CustomerName);
             ViewBag.ErrorMessage = output.ErrorMessage;
             return output.DataList;
         }
@@ -63,5 +63,29 @@ namespace NationAssists.Areas.Admin.Controllers
             }
             return Json(new { Result = IsSaved, Msg = strMsg }, JsonRequestBehavior.AllowGet);
         }
+
+
+        public ActionResult SearchServiceEnrollmentRequest( int ServiceId, int EnrollmentStatusId, string CustomerName)
+        {
+            string strError = string.Empty;
+            try
+            {
+                List<ServiceEnrollmentRequest> objList = new List<ServiceEnrollmentRequest>();
+                objList = GetAllServiceEnrollmentRequest(0, ServiceId, EnrollmentStatusId,CustomerName);
+                mServiceEnrollment objMSE = new mServiceEnrollment();
+                objMSE.ServiceEnrollmentRequestList = objList;
+                return PartialView("_ServiceEnrollmentRequestList",objMSE);
+
+            }
+            catch (Exception ex)
+            {
+                strError = ex.Message;
+            }
+
+            return Json(new { ErrorMsg = strError }, JsonRequestBehavior.AllowGet);
+                 
+        }
+
+      
     }
 }

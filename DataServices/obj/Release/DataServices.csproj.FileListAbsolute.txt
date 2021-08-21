@@ -12,3 +12,5 @@ D:\Tarique\NationAssists\NationAssists\DataServices\obj\Release\DataServices.csp
 D:\Tarique\NationAssists\NationAssists\DataServices\obj\Release\DataServices.dll
 D:\Tarique\NationAssists\NationAssists\DataServices\obj\Release\DataServices.pdb
 D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\Utility.pdb
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\DocumentFormat.OpenXml.dll
+D:\Tarique\NationAssists\NationAssists\DataServices\bin\Release\DocumentFormat.OpenXml.xml

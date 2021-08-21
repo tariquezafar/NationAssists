@@ -16,10 +16,10 @@ namespace DataServices
             return obj.SaveServiceProvider(serviceProvider);
         }
 
-        public MethodOutput<ServiceProvider> GetAllServiceProvider(int ServiceProviderId)
+        public MethodOutput<ServiceProvider> GetAllServiceProvider(int ServiceProviderId, string CompanyName, string MobileNo, string PhoneNo, string EmailId, string CRNumber)
         {
             OpServiceProvider obj = new OpServiceProvider();
-            return obj.GetAllServiceProvider(ServiceProviderId);
+            return obj.GetAllServiceProvider(ServiceProviderId,CompanyName,MobileNo,PhoneNo,EmailId,CRNumber);
         }
 
 

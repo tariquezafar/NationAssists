@@ -1,7 +1,6 @@
 ﻿using DataEngine;
 using DataServices;
 using NationAssists.Areas.Admin.Models;
-using NationAssists.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace NationAssists.Areas.Admin.Controllers
 {
@@ -24,12 +25,12 @@ namespace NationAssists.Areas.Admin.Controllers
             if (Session["UserId"] != null)
             {
                 objBrokerModel.BrokerOptedServices = objBrokerModel.GetAllServices();
-                objBrokerModel.BrokerList = this.GetAllBrokers(0, "");
+                objBrokerModel.BrokerList = this.GetAllBrokers(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
                 return View(objBrokerModel);
             }
             else
             {
-              return  Redirect("../../Home");
+                return Redirect("../../Home");
             }
         }
 
@@ -72,7 +73,7 @@ namespace NationAssists.Areas.Admin.Controllers
                 objBroker.VATRegistrationNumber = Convert.ToString(Request.Form["VATRegistrationNumber"]);
                 objBroker.Landline = Convert.ToString(Request.Form["Landline"]);
                 objBroker.EscalationLandlineNo = Convert.ToString(Request.Form["EscalationLandlineNo"]);
-                objBroker.DeclarationPeriod = Convert.ToInt32(Request.Form["DeclarationPeriod"]==""?null: Request.Form["DeclarationPeriod"]);
+                objBroker.DeclarationPeriod = Convert.ToInt32(Request.Form["DeclarationPeriod"] == "" ? null : Request.Form["DeclarationPeriod"]);
                 objBroker.BranchLocation = Convert.ToString(Request.Form["BranchLocation"]);
                 objBroker.Password = Convert.ToString(Request.Form["Password"]);
                 string strBrokerCommission = Convert.ToString(Request.Form["BrokerCommissionList"]);
@@ -103,8 +104,8 @@ namespace NationAssists.Areas.Admin.Controllers
                 }
                 else
                 {
-                   // ServiceProvider objSP = GetAllServiceProvider(objBroker.ServiceProviderId)[0];
-                   // objBroker.ServiceProviderDocuments = objSP.ServiceProviderDocuments;
+                    // ServiceProvider objSP = GetAllServiceProvider(objBroker.ServiceProviderId)[0];
+                    // objBroker.ServiceProviderDocuments = objSP.ServiceProviderDocuments;
                 }
                 #endregion
                 BrokerService obj = new BrokerService();
@@ -123,21 +124,40 @@ namespace NationAssists.Areas.Admin.Controllers
 
         }
 
-        public List<Broker> GetAllBrokers(int BrokerId, string BrokerType)
+        public List<Broker> GetAllBrokers(int BrokerId, string BrokerType, string SourceName, string CRNumber, string MobileNo, string EmailId)
         {
             MethodOutput<Broker> objMO = new MethodOutput<Broker>();
             BrokerService obj = new BrokerService();
-            objMO = obj.GetAllBrokers(BrokerId,BrokerType);
+            objMO = obj.GetAllBrokers(BrokerId, BrokerType, SourceName, CRNumber, MobileNo, EmailId);
             return objMO.DataList;
         }
 
         [HttpGet]
         public ActionResult GetBrokerDetail(int BrokerId)
         {
-            List<Broker> objBroker = GetAllBrokers(BrokerId,"");
+            List<Broker> objBroker = GetAllBrokers(BrokerId, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
             return Json(objBroker[0], JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult SearchSource(string BrokerType, string SourceName, string CRNumber, string MobileNo, string EmailId)
+        {
+            string strError = string.Empty;
+            List<Broker> objLst = new List<Broker>();
+            try
+            {
+                objLst = this.GetAllBrokers(0, BrokerType, SourceName, CRNumber, MobileNo, EmailId);
+                mBroker objMB = new mBroker();
+                objMB.BrokerList = objLst;
+                return PartialView("_BrokerList", objMB);
+            }
+            catch (Exception ex)
+            {
+
+                strError = ex.Message;
+            }
+
+            return Json(new { ErrorMsg = strError }, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public ActionResult DeleteBroker(int BrokerId)
@@ -269,16 +289,18 @@ namespace NationAssists.Areas.Admin.Controllers
         {
             if (Session["UserId"] != null)
             {
-                objMM.MembershipList = BindMemberShip(0, 0, 0);
+                objMM.MembershipList = BindMemberShip(0, 0, 0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
 
                 return View(objMM);
             }
             else
-            {
-                return Redirect("../../Home");
-            }
 
+                return Redirect("../../Home");
         }
+
+
+
+
 
         public ActionResult SaveMemberShip(Membership objMembership)
         {
@@ -305,27 +327,128 @@ namespace NationAssists.Areas.Admin.Controllers
             return Json(new { Result = IsSaved, Msg = strMsg }, JsonRequestBehavior.AllowGet);
         }
 
-        
+
         [HttpGet]
         public ActionResult GetMembershipDetail(Int64 MembershipId)
         {
-            List<Membership> objMember = BindMemberShip(0,0,MembershipId);
+            List<Membership> objMember = BindMemberShip(0, 0, MembershipId, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
             return Json(objMember[0], JsonRequestBehavior.AllowGet);
         }
 
-        public List<Membership> BindMemberShip(int SourceId, int PackageId, Int64 MembershipId)
+        public List<Membership> BindMemberShip(int SourceId, int PackageId, Int64 MembershipId, string CPRNumber, string PolicyType, string PolicyNo, string InsuredName, string MobileNo, string EmailId, string VehicleRegistrationNo, string ChassisNo, string SourceType)
         {
-         
+
             List<Membership> objMembershiplist = new List<Membership>();
             MethodOutput<Membership> objMO = new MethodOutput<Membership>();
             MembershipServices obj = new MembershipServices();
-            objMO = obj.GetAllMemberShip(SourceId, PackageId, MembershipId);
+            objMO = obj.GetAllMemberShip(SourceId, PackageId, MembershipId, CPRNumber, PolicyType, PolicyNo, InsuredName
+            , MobileNo, EmailId, VehicleRegistrationNo, ChassisNo, SourceType);
             objMembershiplist = objMO.DataList;
-            
+
 
             return objMembershiplist;
         }
+
+        public ActionResult SearchMemberShip(string SourceType,int SourceId, int PackageId, string CPRNumber, string PolicyType, string PolicyNo, string InsuredName, string MobileNo, string EmailId, string VehicleRegistrationNo, string ChassisNo)
+        {
+            string strError = string.Empty;
+            try
+            {
+                List<Membership> objList = new List<Membership>();
+                objList = this.BindMemberShip(SourceId, PackageId, 0, CPRNumber, PolicyType, PolicyNo, InsuredName, MobileNo,EmailId,VehicleRegistrationNo,ChassisNo,SourceType);
+                mMembership objMem = new mMembership();
+                objMem.MembershipList = objList;
+                return PartialView("_MembershipList", objMem);
+
+            }
+            catch (Exception ex)
+            {
+
+                strError = ex.Message;
+            }
+            return Json(new { Error=strError},JsonRequestBehavior.AllowGet);
+        }
         #endregion
+        #region Membership Upload
+        public ActionResult UploadMembership()
+        {
+            if (Session["UserId"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
+
+        }
+
+        public ActionResult UploadFile()
+        {
+            bool IsUploadDone = false;
+            string strError = string.Empty;
+            List<ExcelUploaderResponse> objUR = new List<ExcelUploaderResponse>();
+
+            try
+            {
+                ExcelValidationResponse obj = new ExcelValidationResponse();
+
+
+                if (Request.Files.Count > 0)
+                {
+                    obj.SourceId = Convert.ToInt32(Request.Form["SourceId"]);
+                    obj.SourceName = Convert.ToString(Request.Form["SourceName"]);
+                    string strTempPath = Path.GetTempPath();
+                    HttpFileCollectionBase files = Request.Files;
+                    DirectoryInfo di = new DirectoryInfo(string.Format("{0}/{1}", strTempPath, Session.SessionID));
+                    if (!di.Exists)
+                    {
+                        di.Create();
+                    }
+
+                    string strFileName = DateTime.Now.ToFileTime().ToString() + "_" + files[0].FileName;
+                    files[0].SaveAs(di + "/" + strFileName);
+
+
+                    FileStream objFStream = new FileStream(di + "/" + strFileName, FileMode.Open);
+
+
+                    UploadUtility objUpload = new UploadUtility();
+                    objUR = objUpload.ProcessExcelData(objFStream, obj.SourceId, Convert.ToInt32(Session["UserId"]));
+
+                    IsUploadDone = true;
+                    strError = string.Empty;
+
+                }
+                else
+                {
+                    IsUploadDone = false;
+                    strError = "No file found";
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                strError = ex.Message;
+                IsUploadDone = false;
+            }
+            return Json(new { Result = IsUploadDone, Error = strError, Response = objUR }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DownloadTemplate(string FileName)
+        {
+            string FilePath = Path.Combine(ConfigurationManager.AppSettings["TemplateDownloadPath"], FileName);
+            string mimetype = "application/vnd.ms-excel";
+            MemoryStream ms = new MemoryStream();
+            using (var stream = new FileStream(FilePath, FileMode.Open))
+            {
+                stream.CopyTo(ms);
+            }
+            return File(ms, mimetype, Path.GetFileName(FilePath));
+        }
+        #endregion
+
 
     }
 }

@@ -12,5 +12,7 @@ namespace DataEngine
 
         public List<string> VehicleRegistrationNoList { get; set; }
 
+        public List<string> RiskAddresses { get; set; }
+
     }
 }

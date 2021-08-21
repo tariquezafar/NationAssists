@@ -153,19 +153,45 @@ namespace DbOperation
         }
 
 
-        public MethodOutput<ServiceProvider> GetAllServiceProvider(int ServiceProviderId)
+        public MethodOutput<ServiceProvider> GetAllServiceProvider(int ServiceProviderId, string CompanyName, string MobileNo,string PhoneNo, string EmailId, string CRNumber)
         {
             MethodOutput<ServiceProvider> output = new MethodOutput<ServiceProvider>();
             List<ServiceProvider> objLst = new List<ServiceProvider>();
+            DataSet ds = new DataSet();
             try
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                DataTable dtServiceArea = new DataTable();
+
+                SqlParameter[] objListSqlParam = new SqlParameter[7];
+
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@ServiceProviderId";
                 objListSqlParam[0].Value = ServiceProviderId;
-                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_showAllServiceProvider", objListSqlParam).Tables[0];
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@CompanyName";
+                objListSqlParam[1].Value = CompanyName;
+
+                objListSqlParam[2] = new SqlParameter();
+                objListSqlParam[2].ParameterName = "@MobileNo";
+                objListSqlParam[2].Value = MobileNo;
+
+                objListSqlParam[3] = new SqlParameter();
+                objListSqlParam[3].ParameterName = "@PhoneNo";
+                objListSqlParam[3].Value = PhoneNo;
+
+                objListSqlParam[4] = new SqlParameter();
+                objListSqlParam[4].ParameterName = "@EmailId";
+                objListSqlParam[4].Value = EmailId;
+
+                objListSqlParam[5] = new SqlParameter();
+                objListSqlParam[5].ParameterName = "@CRNumber";
+                objListSqlParam[5].Value = CRNumber;
+                ds = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_showAllServiceProvider", objListSqlParam);
+                dt = ds != null && ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+                dtServiceArea = ds != null && ds.Tables.Count > 1 ? ds.Tables[1] : new DataTable();
                 if (dt.Rows.Count > 0)
                 {
                     objLst = dt.AsEnumerable().Select(x => new ServiceProvider
@@ -191,7 +217,18 @@ namespace DbOperation
                         ServiceProviderId = x.Field<int>("ServiceProviderId"),
                         }).ToList():null,
                         PriceOption= x.Field<string>("Pricing_option"),
-                        ServiceProviderCode= x.Field<string>("ServiceProviderCode")
+                        ServiceProviderCode= x.Field<string>("ServiceProviderCode"),
+                        ServiceProviderAreas= dtServiceArea.Rows.Count > 0 && dtServiceArea.Select("ServiceProviderId ="+ x.Field<int>("ServiceProviderId")).Length >0 ? dtServiceArea.Select("ServiceProviderId =" + x.Field<int>("ServiceProviderId")).CopyToDataTable().AsEnumerable().Select(y => new ServiceProviderServiceArea
+                        {
+                            ServiceProviderServiceAreaId = y.Field<Int64>("ServiceProviderServiceAddressId"),
+                            ServiceName= y.Field<string>("ServiceName"),
+                            SubCategoryName= y.Field<string>("SubCategoryName"),
+                            CountryName= y.Field<string>("CountryName"),
+                            GovernotesName = y.Field<string>("GovernoratesName"),
+                            PlaceName = y.Field<string>("Place_Name"),
+                            PinCode = y.Field<string>("Block_Code"),
+                           
+                        }).ToList() : new List<ServiceProviderServiceArea>()
                     }).ToList();
 
                     output.DataList = objLst;

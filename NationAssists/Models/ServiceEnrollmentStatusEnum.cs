@@ -13,4 +13,13 @@ namespace NationAssists.Models
         SendForModification = 4,
         Closed=5
     }
+
+    public static class UserTypeCode
+    {
+        public static string Customer = "CS";
+        public static string Employee = "EMP";
+       
+
+    }
+
 }

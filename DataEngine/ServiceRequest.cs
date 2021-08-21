@@ -51,16 +51,24 @@ namespace DataEngine
         public string Block_Code { get; set; }
         public string Status_Name { get; set; }
 
+        
+
 
         public int BrokerId { get; set; }
 
-        public Int64 ServiceAllocationId { get; set; }
-        public int ServiceAllocationStatus { get; set; }
+        public Int64? ServiceAllocationId { get; set; }
+        public int? ServiceAllocationStatus { get; set; }
 
         public int ServiceProviderId { get; set; }
 
         public string Allocation_Status { get; set; }
+        public string AllocationRemarks { get; set; }
+        public int? AcceptedBy { get; set; }
+        public int? AssignedTo { get; set; }
 
+        public string EmailId { get; set; }
+        public string AssignedToUser { get; set; }
+        public string ServiceAllocationRemarks { get; set; }
     }
 
     public class ServiceRequestStatus
@@ -107,6 +115,13 @@ namespace DataEngine
         public string ReasonForRejection { get; set; }
         public decimal ServicePrice { get; set; }
         public Int64 ServicePriceId { get; set; }
+
+        public string AllocationRemarks { get; set; }
+
+        public string Action { get; set; }
+        public string AssignmentRemarks { get; set; }
+
+        public int AcceptedBy { get; set; }
     }
 
     public class ServiceAllocationStatus
@@ -136,5 +151,20 @@ namespace DataEngine
         public string SourceName { get; set; }
 
         public string SourceTypeCode { get; set; }
+
+        public string EffectiveDate { get; set; }
+
+        public string ExpiryDate { get; set; }
+    }
+
+    public class ServiceRemarks
+    {
+        public Int64 RemarksId { get; set;}
+        public Int64 ServiceRequestId { get; set; }
+        public string Remarks { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public int CreatedBy { get; set; }
+
+        public string CreatedByUser { get; set; }
     }
 }

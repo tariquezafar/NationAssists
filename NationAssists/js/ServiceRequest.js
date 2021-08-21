@@ -25,15 +25,19 @@
                     if (ServiceCode == "HAP") {
                         $('.RAP').hide();
                         $('.HAP').show();
+                        $("#txtServiceLocation").hide();
+                        $("#ddlServiceLocation").show();   
 
                     }
                     else {
                         $('.RAP').show();
                         $('.HAP').hide();
+                        $("#txtServiceLocation").show();
+                        $("#ddlServiceLocation").hide();  
                     }
-                    if (ServiceCode != "HAP") {
+                   // if (ServiceCode != "HAP") {
                         BindVehicleDetail($("#hdnCPRNumber").val(), $("#ServiceId").val());
-                    }
+                  //  }
 
                 }
             }
@@ -143,7 +147,7 @@ function SubmitServiceRequest() {
             ServiceSubCategoryId: $("#ServiceCategoryId").val(),
             VehicleRegistrationNumber: $("#VehicleRegistrationNo").val(),
             ChessisNo: $("#ChessisNo").val(),
-            ServiceLocation: $("#txtServiceLocation").val(),
+            ServiceLocation: $("#ServiceId").val() != "3" ? $("#txtServiceLocation").val() : $("#ddlServiceLocation").val(),
             CountryID: $("#CountryId").val(),
             GovernotesId: $("#GovernotesId").val(),
             PlaceId: $("#PlaceId").val(),
@@ -207,10 +211,7 @@ function ValidateForm() {
         strErrMsg += "Please select Service Type. \n";
     }
    
-    if ($('#txtServiceLocation').val() == "" ) {
-        IsValid = false;
-        strErrMsg += "Please enter Service Location. \n";
-    }
+   
 
     if ($('#CountryId').val() == "" || $('#CountryId').val() == "0") {
         IsValid = false;
@@ -240,7 +241,7 @@ function ValidateForm() {
         var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
         if (ServiceCode == "HAP") {
 
-            if ($("#txtRiskAddress").val() == "") {
+            if ($("#ddlServiceLocation").val() == "0" || $("#ddlServiceLocation").val() == "") {
                 IsValid = false;
                 strErrMsg += "Please enter Risk Address . \n";
             }
@@ -270,6 +271,10 @@ function ValidateForm() {
             if ($("#txtVehicleYear").val() == "" || $("#txtVehicleYear").val() == "0") {
                 IsValid = false;
                 strErrMsg += "Please enter Vehicle year . \n";
+            }
+            if ($('#txtServiceLocation').val() == "") {
+                IsValid = false;
+                strErrMsg += "Please enter Service Location. \n";
             }
         }
     }
@@ -345,7 +350,8 @@ function BindVehicleDetail(CPRNumber, ServiceId) {
         success: function (data) {
 
             $("#VehicleRegistrationNo").html(""); // clear before appending new list
-            $("#ChessisNo").html("")
+            $("#ChessisNo").html("");
+            $("#ddlServiceLocation").html("");
             var jData = JSON.parse(data);
             if (jData != null ) {
                 $("#VehicleRegistrationNo").append($('<option></option>').val(0).html("--Select--"));
@@ -357,6 +363,10 @@ function BindVehicleDetail(CPRNumber, ServiceId) {
                 $.each(jData.VehicleRegistrationNoList, function (i, VehicleRegistrationNo) {
                     $("#VehicleRegistrationNo").append(
                         $('<option></option>').val(VehicleRegistrationNo).html(VehicleRegistrationNo));
+                });
+                $.each(jData.RiskAddresses, function (i, rd) {
+                    $("#ddlServiceLocation").append(
+                        $('<option></option>').val(rd).html(rd));
                 });
 
                 

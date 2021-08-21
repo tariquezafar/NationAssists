@@ -13,6 +13,8 @@ namespace NationAssists.Areas.Admin.Models
         public int ServiceId { get; set; }
         public int ServiceProviderId { get; set; }
 
+        public bool Editable { get; set; }
+
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }

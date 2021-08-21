@@ -161,6 +161,39 @@ namespace DbOperation
             return output;
         }
 
+        public MethodOutput<Service> GetAllServices()
+        {
+            MethodOutput<Service> output = new MethodOutput<Service>();
+            List<Service> objLst = new List<Service>();
+            try
+            {
+
+                DataTable dt = new DataTable();
+               
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllServices").Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLst = dt.AsEnumerable().Select(x => new Service
+                    {
+                        ServiceId = x.Field<int>("ServiceId"),
+                        ServiceCode = x.Field<string>("ServiceCode"),
+                        IsActive = x.Field<bool>("IsActive"),
+                        ServiceName = x.Field<string>("ServiceName"),
+                        PackageCode = x.Field<string>("PackageCode"),
+                    }).ToList();
+
+                    output.DataList = objLst;
+                    output.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                output.DataList = objLst;
+                output.ErrorMessage = ex.Message;
+            }
+            return output;
+        }
+
 
 
     }

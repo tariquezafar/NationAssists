@@ -111,7 +111,7 @@ namespace DbOperation
         }
 
 
-        public MethodOutput<ServiceEnrollmentRequest> GetAllServiceEnrollementRequst(int CustomerId)
+        public MethodOutput<ServiceEnrollmentRequest> GetAllServiceEnrollementRequst(int CustomerId, int ServiceId, int EnrollmentStatusId, string CustomerName)
         {
             MethodOutput<ServiceEnrollmentRequest> objOutput = new MethodOutput<ServiceEnrollmentRequest>();
             List<ServiceEnrollmentRequest> objLstService = new List<ServiceEnrollmentRequest>();
@@ -119,10 +119,24 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                SqlParameter[] objListSqlParam = new SqlParameter[4];
+
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@CustomerId";
                 objListSqlParam[0].Value = CustomerId;
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@ServiceId";
+                objListSqlParam[1].Value = ServiceId;
+
+                objListSqlParam[2] = new SqlParameter();
+                objListSqlParam[2].ParameterName = "@StatusId";
+                objListSqlParam[2].Value = EnrollmentStatusId;
+
+                objListSqlParam[3] = new SqlParameter();
+                objListSqlParam[3].ParameterName = "@CustomerName";
+                objListSqlParam[3].Value = CustomerName;
+                
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllServiceEnrollmentRequest", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
@@ -163,6 +177,7 @@ namespace DbOperation
                         YearOfConstruction = x.Field<int>("YearOfConstruction"),
                         YearOfManufacture= x.Field<int>("YearOfManufacture"),
                         RequestedDate= x.Field<DateTime>("CreatedDate").AddDays(3).ToString("dd-MMM-yyyy"),
+                        CPRNumber= x.Field<string>("CPRNumber"),
                     }).ToList();
 
                     objOutput.DataList = objLstService;

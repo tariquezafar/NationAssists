@@ -84,14 +84,26 @@
                 <input type="text" id="txtContactNo" class="formInput" disabled="disabled" />
             </li>
             <li class="oneThird">
+                <span class="fieldHd">Customer Name</span>
+                <input type="text" id="txtCustomerName" class="formInput" disabled="disabled" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Customer Email Id</span>
+                <input type="text" id="txtCustomerEmailId" class="formInput" disabled="disabled" />
+            </li>
+            <li class="oneThird">
                 <span class="fieldHd">Relevent Details</span>
                 <textarea id="txtReleventDetails" class="formInput" disabled="disabled"></textarea>
             </li>
             <li class="oneThird">
-                <span class="fieldHd">Remarks</span>
+                <span class="fieldHd">Service Request Remarks</span>
                 <textarea id="txtRemarks" class="formInput" disabled="disabled"></textarea>
             </li>
 
+            <li class="oneThird">
+                <span class="fieldHd">Service Allocation Remarks</span>
+                <textarea id="txtAllocationRemarks" class="formInput" disabled="disabled"></textarea>
+            </li>
 
             <li class="oneThird">
                 <span class="fieldHd">Status</span>
@@ -104,7 +116,14 @@
             </li>
             <li class="oneThird">
                 <span class="fieldHd">Assigned To User</span>
-                @Html.DropDownListFor(m => m.AssignedToUserId, Model.GetUserByReference(Convert.ToInt32(Session["UserId"])), "--select-", new { @class = "formInput", })
+                <select id="AssignedToUserId" class="formInput">
+                    <option value="0">-Select-</option>
+                    @foreach (DataEngine.Users item in Model.UserList)
+                    {
+                        <option value="@item.UserId">@(item.Name+"("+item.UserCode+")")</option>
+                    }
+                </select>
+                @*@Html.DropDownListFor(m => m.AssignedToUserId, Model.GetUserByReference(Convert.ToInt32(Session["UserId"])), "--select-", new { @class = "formInput", })*@
             </li>
             <li class="oneThird">
                 <span class="fieldHd">Reason For Rejection</span>

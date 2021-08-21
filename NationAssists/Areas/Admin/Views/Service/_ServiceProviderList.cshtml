@@ -39,8 +39,11 @@
                             <td>@(Convert.ToDateTime( item.ServiceProviderAgreementToDate).ToString("dd-MMM-yyyy"))</td>
                             <td>
 
-                                <a data-id="@item.ServiceProviderId" onclick="EditServiceProvider(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
-                                &nbsp; <a data-id="@item.ServiceProviderId" onclick="DeleteServiceProvider(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
+                                <a data-id="@item.ServiceProviderId" onclick="EditServiceProvider(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp; &nbsp;
+                                @if (Model.Editable)
+                                {
+                                    <a data-id="@item.ServiceProviderId" onclick="DeleteServiceProvider(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
+                                }
                             </td>
 
                         </tr>

@@ -9,10 +9,32 @@
 
 <div class="dashboardCon transition">
     <div class="mainHd">Service Enrollment Request</div>
+    <div id="dvDetail">
+        <ul class="form flexBox">
+            <li class="oneThird">
+                <span class="fieldHd">Service </span>
+                @Html.DropDownListFor(m => m.ServiceId, Model.GetAllServices(), "--select-", new { @class = "formInput", })
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblService">Enrollment Status </span>
+                @Html.DropDownListFor(m => m.SearchServiceEnrollmentStatusId, Model.BindEnrollementStatus(false), "--select-", new { @class = "formInput", })
+            </li>
+           
+
+            <li class="oneThird">
+                <span class="fieldHd">Customer Name</span>
+                <input type="text" id="txtCustomerName" class="formInput"  />
+            </li>
+        </ul>
+        <div>
+            <div class="tac"><button class="formBtn regNextStep" onclick="SearchServiceEnrollment()">Search</button></div>
+        </div>
+    </div>
     <div style="display:none;">
         @Newtonsoft.Json.JsonConvert.SerializeObject(Model)
     </div>
     <div id="dvServiceDetail" style="display:none;">
+        <div id="dvCustomerDetail" style="display:none;"></div>
         <ul class="form flexBox" id="ulserviceEnrollmentRequest">
 
             <li class="oneThird">
@@ -53,10 +75,10 @@
                 <textarea id="txtRiskAddress" class="formInput" placeholder="RiskAddress"></textarea>
             </li>
 
-            @*<li class="oneThird HAS">
+            <li class="oneThird HAS">
                 <span class="fieldHd">Country</span>
                 @Html.DropDownListFor(m => m.CountryId, Model.BindCountry(), "--select-", new { @class = "formSelect", @onchange = "BindGovernotes()" })
-            </li>*@
+            </li>
             <li class="oneThird HAS">
                 <span class="fieldHd" id="lblGovernotes">Governotes</span>
                 <select id="GovernotesId" class="formSelect" onchange="BindPlaces();">
@@ -103,11 +125,11 @@
 
         </ul>
 
-        <ul class="form flexBox">
-            @*<li class="oneThird">
+        <ul class="form flexBox" id="ulUpdated">
+            <li class="oneThird">
                 <span class="fieldHd">Enrollment Status</span>
-                @Html.DropDownListFor(m => m.ServiceEnrollmentStatusId, Model.BindEnrollementStatus(), "--select-", new { @class = "formSelect", @onchange = "OnChangingEnrollmentStatus()" })
-            </li>*@
+                @Html.DropDownListFor(m => m.ServiceEnrollmentStatusId, Model.BindEnrollementStatus(true), "--select-", new { @class = "formSelect", @onchange = "OnChangingEnrollmentStatus(this)" })
+            </li>
             <li class="oneThird MEM" style="display:none;">
                 <span class="fieldHd" id="lblBrokerName">Branch </span>
                 <input type="text" class="formInput" id="txtBranch" maxlength="1000" placeholder="Branch">
@@ -148,17 +170,18 @@
         <input type="hidden" id="hdnPlaceId" value="0" />
         <input type="hidden" id="hdnBlockId" value="0" />
         <input type="hidden" id="hdnRequestedDate" value="" />
-        <div class="tac" id="dvButton" style="display:none;">
-            <button type="button" class="formBtn regNextStep" id="btnAdd" onclick="return SaveMembership();">Save</button>
-            <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/BuyOnline'">Back</button>
 
+        <div class="tac" >
+            <button type="button" class="formBtn regNextStep" id="dvButton" onclick="return SaveMembership();">Save</button>
+
+            <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/Admin/ServiceEnrollment'">Back</button>
         </div>
     </div>
-    
 
-    @*<div class="dbTable" id="tblServiceRequest">
+
+    <div class="dbTable" id="tblServiceRequest">
 
         @Html.Partial("~/Areas/Admin/Views/ServiceEnrollment/_ServiceEnrollmentRequestList.cshtml", Model);
-    </div>*@
+    </div>
 </div>
 <script src="~/Areas/Admin/JS/ServiceEnrollment.js"></script>

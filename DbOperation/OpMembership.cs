@@ -144,7 +144,8 @@ namespace DbOperation
             return output;
         }
 
-        public MethodOutput<Membership> GetAllMemberShip(int SourceId,int PackageId, Int64 MembershipId)
+        public MethodOutput<Membership> GetAllMemberShip(int SourceId,int PackageId, Int64 MembershipId,string CPRNumber ,string PolicyType,string PolicyNo,string InsuredName
+            ,string MobileNo,string EmailId,string VehicleRegistrationNo,string ChassisNo,string SourceType)
         {
             MethodOutput<Membership> output = new MethodOutput<Membership>();
             List<Membership> objLst = new List<Membership>();
@@ -152,7 +153,7 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[3];
+                SqlParameter[] objListSqlParam = new SqlParameter[15];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@SourceId";
                 objListSqlParam[0].Value = SourceId;
@@ -164,6 +165,42 @@ namespace DbOperation
                 objListSqlParam[2] = new SqlParameter();
                 objListSqlParam[2].ParameterName = "@MembershipId";
                 objListSqlParam[2].Value = MembershipId;
+
+                objListSqlParam[3] = new SqlParameter();
+                objListSqlParam[3].ParameterName = "@CPRNumber";
+                objListSqlParam[3].Value = CPRNumber;
+
+                objListSqlParam[4] = new SqlParameter();
+                objListSqlParam[4].ParameterName = "@PolicyType";
+                objListSqlParam[4].Value = PolicyType;
+
+                objListSqlParam[5] = new SqlParameter();
+                objListSqlParam[5].ParameterName = "@PolicyNo";
+                objListSqlParam[5].Value = PolicyNo;
+
+                objListSqlParam[6] = new SqlParameter();
+                objListSqlParam[6].ParameterName = "@InsuredName";
+                objListSqlParam[6].Value = InsuredName;
+
+                objListSqlParam[7] = new SqlParameter();
+                objListSqlParam[7].ParameterName = "@MobileNo";
+                objListSqlParam[7].Value = MobileNo;
+
+                objListSqlParam[8] = new SqlParameter();
+                objListSqlParam[8].ParameterName = "@EmailId";
+                objListSqlParam[8].Value = EmailId;
+
+                objListSqlParam[10] = new SqlParameter();
+                objListSqlParam[10].ParameterName = "@VehicleRegistrationNo";
+                objListSqlParam[10].Value = VehicleRegistrationNo;
+
+                objListSqlParam[11] = new SqlParameter();
+                objListSqlParam[11].ParameterName = "@ChassisNo";
+                objListSqlParam[11].Value = ChassisNo;
+
+                objListSqlParam[12] = new SqlParameter();
+                objListSqlParam[12].ParameterName = "@SourceType";
+                objListSqlParam[12].Value = SourceType;
 
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_ShowAllMemberShip", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
@@ -259,5 +296,175 @@ namespace DbOperation
             }
             return objOutput;
         }
+
+        public MethodOutput<string> MemembershipBulkInsert(ExcelData exceldata,int SourceId, int UserId)
+        {
+            MethodOutput<string> output = new MethodOutput<string>();
+            try
+            {
+                exceldata.dt.Columns["Policy No"].ColumnName = "PolicyNo";
+                
+                exceldata.dt.Columns["Insured Name"].ColumnName = "InsuredName";
+                exceldata.dt.Columns["CPR Number"].ColumnName = "CPRNumber";
+                exceldata.dt.Columns["Mobile Number"].ColumnName = "MobileNo";
+                exceldata.dt.Columns["Email ID"].ColumnName = "EmailId";
+                if (exceldata.SheetName == "HA")
+                {
+                    exceldata.dt.Columns["House No."].ColumnName = "HouseNo";
+                    exceldata.dt.Columns["Risk Address"].ColumnName = "RiskAddress";
+                    exceldata.dt.Columns["No. of Location"].ColumnName = "NoOfLocation";
+                    exceldata.dt.Columns.Add("PolicyType", typeof(string));
+                    exceldata.dt.Columns["PolicyType"].DefaultValue = string.Empty;
+                    exceldata.dt.Columns.Add("VehicleRegistrationNo", typeof(string));
+                    exceldata.dt.Columns["VehicleRegistrationNo"].DefaultValue = string.Empty;
+
+                    exceldata.dt.Columns.Add("VehicleMake", typeof(string));
+                    exceldata.dt.Columns["VehicleMake"].DefaultValue = string.Empty;
+
+                    exceldata.dt.Columns.Add("ChassisNo", typeof(string));
+                    exceldata.dt.Columns["ChassisNo"].DefaultValue = string.Empty;
+
+                    exceldata.dt.Columns.Add("VehicleType", typeof(string));
+                    exceldata.dt.Columns["VehicleType"].DefaultValue = string.Empty;
+
+                    exceldata.dt.Columns.Add("VehicleBody", typeof(string));
+                    exceldata.dt.Columns["VehicleBody"].DefaultValue = string.Empty;
+
+                    exceldata.dt.Columns.Add("VehicleYear", typeof(int));
+                    exceldata.dt.Columns["VehicleYear"].DefaultValue = 0;
+
+                }
+                else
+                {
+                    exceldata.dt.Columns["Policy Type"].ColumnName = "PolicyType";
+                    exceldata.dt.Columns.Add("RiskAddress", typeof(string));
+                    exceldata.dt.Columns["RiskAddress"].DefaultValue = string.Empty;
+                    exceldata.dt.Columns.Add("HouseNo", typeof(string));
+                    exceldata.dt.Columns["HouseNo"].DefaultValue = string.Empty;
+                    exceldata.dt.Columns.Add("Road", typeof(string));
+                    exceldata.dt.Columns["Road"].DefaultValue = string.Empty;
+                    exceldata.dt.Columns.Add("Block", typeof(string));
+                    exceldata.dt.Columns["Block"].DefaultValue = string.Empty;
+                    exceldata.dt.Columns.Add("Area", typeof(string));
+                    exceldata.dt.Columns["Area"].DefaultValue = string.Empty;
+                    exceldata.dt.Columns.Add("Governorate", typeof(string));
+                    exceldata.dt.Columns["Governorate"].DefaultValue = string.Empty;
+                    exceldata.dt.Columns["Veh. No"].ColumnName = "VehicleRegistrationNo";
+                    exceldata.dt.Columns["Chassis No"].ColumnName = "ChassisNo";
+                    exceldata.dt.Columns["Veh. Make"].ColumnName = "VehicleMake";
+                    exceldata.dt.Columns["Veh. Type"].ColumnName = "VehicleType";
+                    exceldata.dt.Columns["Veh. Body"].ColumnName = "VehicleBody";
+                    exceldata.dt.Columns["Veh. Year"].ColumnName = "VehicleYear";
+                }
+                
+                exceldata.dt.Columns["Eff. Date"].ColumnName = "EffectiveDate";
+
+                exceldata.dt.Columns["Exp. date"].ColumnName = "ExpiryDate";
+                
+               
+                
+
+                
+
+                exceldata.dt.Columns.Add("TypeOfService", typeof(string));
+                exceldata.dt.Columns["TypeOfService"].DefaultValue = "";
+
+                exceldata.dt.Columns.Add("CreatedBy", typeof(int));
+                exceldata.dt.Columns["CreatedBy"].DefaultValue = UserId;
+
+                exceldata.dt.Columns.Add("ModifiedBy", typeof(int));
+                exceldata.dt.Columns["ModifiedBy"].DefaultValue = UserId;
+
+                exceldata.dt.Columns.Add("CreatedDate", typeof(DateTime));
+                exceldata.dt.Columns["CreatedDate"].DefaultValue = DateTime.Now;
+
+                exceldata.dt.Columns.Add("ModifiedDate", typeof(DateTime));
+                exceldata.dt.Columns["ModifiedDate"].DefaultValue = DateTime.Now;
+
+                exceldata.dt.Columns.Add("SourceId", typeof(int));
+                exceldata.dt.Columns["SourceId"].DefaultValue = SourceId;
+
+                exceldata.dt.Columns.Add("PackageId", typeof(int));
+
+                exceldata.dt.Columns.Add("VehicleReplacement", typeof(bool));
+
+
+                exceldata.dt.AcceptChanges();
+
+                foreach (DataRow dr in exceldata.dt.Rows)
+                {
+                    dr["SourceId"] = SourceId;
+                    dr["ModifiedDate"] = DateTime.Now;
+                    dr["CreatedDate"] = DateTime.Now;
+                    dr["ModifiedBy"] = UserId;
+                    dr["CreatedBy"] = UserId;
+
+                    if (dr.Table.Columns["Packages"]!=null && dr["Packages"] != null)
+                    {
+
+                        
+                        if (string.IsNullOrEmpty( Convert.ToString(dr["Packages"])) && Convert.ToString(dr["Packages"]).ToUpper() == ServiceEnum.NO.ToString())
+                        {
+                            dr["VehicleReplacement"] = false;
+                            dr["PackageId"] = 2;
+                        }
+                        else
+                        {
+                            dr["VehicleReplacement"] = true;
+                            dr["PackageId"]=(int)Enum.Parse(typeof(ServiceEnum), (Convert.ToString(dr["Packages"]).ToUpper()));
+                          
+                        }
+                        
+
+                    }
+                    else
+                    {
+                        dr["VehicleReplacement"] = false;
+                        dr["PackageId"] = 3;
+                    }
+                }
+
+                DataSet ds = new DataSet();
+                    ds.Tables.Add(exceldata.dt);
+                string strXML = ds.GetXml();
+
+                SqlConnection connection = new SqlConnection(SqlHelper.ConnectionString);
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("usp_MembershipBulkUpload", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //Pass table Valued parameter to Store Procedure
+                SqlParameter sqlParam = cmd.Parameters.AddWithValue("@MemberShipXml", strXML);
+                sqlParam.SqlDbType = SqlDbType.Xml;
+            output.RowAffected=    cmd.ExecuteNonQuery();
+                connection.Close();
+                
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                output.ErrorMessage = ex.Message;
+            }
+
+            return output;
+        }
+    }
+
+    public enum ServiceEnum
+    {
+        NO = 1,
+        SC8=2,
+        SC10=4 ,
+        SC15 = 5,
+        MC8=6,
+        MC10=7,
+        MC15 = 8,
+        LC8=9,
+        LC10=10,
+        LC15=11
+       
     }
 }

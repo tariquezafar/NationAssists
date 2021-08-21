@@ -86,7 +86,8 @@ namespace DbOperation
                     {
                         UserTypeId = x.Field<int>("UserTypeId"),
                         UserTypeName = x.Field<string>("UserType"),
-                        IsActive = x.Field<bool>("IsActive")
+                        IsActive = x.Field<bool>("IsActive"),
+                        UserTypeCode= x.Field<string>("UserTypeCode")
                     }).ToList();
 
                     objOutput.DataList = objLstRole;

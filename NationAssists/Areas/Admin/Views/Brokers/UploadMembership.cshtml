@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "UploadMembership";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboardCon transition">
+    <div class="mainHd">Upload Membership</div>
+    <div style="float:right"><a style="cursor:pointer;color:green" id="DownloadTemlate" href="../../UploadTemplate/NA Document Upload Sheet.xlsx"  ><b> Download Template </b></a> </div>
+    <ul class="dbForm flexBox">
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserType">Source Type </span>
+            <select id="BrokerTypeId" class="formInput" onchange="BindBroker()">
+                <option value="">--Select--</option>
+                <option value="AG">Agent</option>
+                <option value="IC">Insurance Company</option>
+                <option value="IB">Insurance Brokers</option>
+                <option value="AD">Auto Dealers</option>
+                <option value="BA">Banks</option>
+                <option value="OS">Other sources</option>
+
+            </select>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblService">Source </span>
+            <select id="BrokerId" class="formInput">
+                <option value="0">-Select-</option>
+            </select>
+
+        </li>
+
+        <li class="oneThird">
+            <span class="fieldHd" id="lblfile">File  </span>
+          <input  type="file" class="formInput" id="membershipfile"/>
+        </li>
+    </ul>
+    <div>
+     
+        <input type="hidden" id="hdnSourceId" value="0" />
+        
+        <button type="button" class="btnSave dbformBtn mr10" id="btnAdd" onclick="return UploadMembershipFile();">Upload</button>
+        <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Brokers/ManageMembership/'">Reset</button>
+
+    </div>
+</div>
+
+<script src="~/Areas/Admin/JS/UploadMembership.js"></script>
+<script type="text/javascript">
+    $(function () {
+    $("#DownloadTemplate").click(function () {
+        $.ajax(
+            {
+                url: '@Url.Action("DownloadTemplate", "Brokers")',
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                data: {
+                    FileName: "NA Document Upload Sheet.xlsx"
+                },
+                type: "GET",
+                success: function () {
+                    window.location = '@Url.Action("DownloadTemplate", "Brokers", new { FileName= "NA Document Upload Sheet.xlsx" })';
+                }
+            });
+
+    });
+});
+</script>

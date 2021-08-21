@@ -1,5 +1,6 @@
 ﻿function ShowServiceRequestDetail(e) {
     var hhh = "";
+    $("#dvDetail").hide();
     $("#hdnServiceRequestId").val(e.ServiceRequestId);
     $("#txtServiceName").val(e.ServiceName);
     $("#txtServiceType").val(e.SubCategoryName);
@@ -15,12 +16,17 @@
     $("#txtBuildingNo").val(e.BuildingNo);
     $("input[type=radio][name=StepiniCondtion][value=" + e.StepiniCondtion + "]").prop("checked", true);
     $("#txtCollectRepairVehicleAddress").val(e.CollectRepairVehicleAddress);
-    $("#txtContactNo").val(e.ContactMobileNo);
+    $("#txtCustContactNo").val(e.ContactMobileNo);
     $("#txtReleventDetails").val(e.ReleventDetails);
     $("#dvServiceRequestDetail").show();
     $("#hdnServiceId").val(e.ServiceId);
     $("#hdnSubCategoryId").val(e.ServiceSubCategoryId);
     $("#hdnServiceAllocationId").val(e.ServiceAllocationId);
+    $("#txtRemarks").val(e.Remarks);
+    $("#txtCustName").val(e.Customer_Name);
+    $("#txtCustomerEmailId").val(e.EmailId);
+
+
     
     var SelectedService = e.ServiceName;
     var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
@@ -93,7 +99,7 @@
 
 function SaveServiceAllocation() {
 
-    if ($("input[name='chkProvider']:checked").length > 0) {
+    if (ValidateServiceAllocation()) {
 
         var objServiceAllocationReq = {
             ServiceAllocationId:  $("#hdnServiceAllocationId").val(),
@@ -104,6 +110,8 @@ function SaveServiceAllocation() {
             ServiceAllocationStatus: 1,
             ServicePrice: $("input[name='chkProvider']:checked").attr("price"),//PriceId
             ServicePriceId: $("input[name='chkProvider']:checked").attr("PriceId"),
+            AllocationRemarks: $("#txtAllocationRemarks").val()
+
 
         };
 
@@ -130,7 +138,59 @@ function SaveServiceAllocation() {
             }
         });
     }
-    else {
+    
+}
+
+function ValidateServiceAllocation() {
+
+    var IsValid = true;
+    var strErrMsg = "";
+    if ($("input[name='chkProvider']").length == 0) {
+        IsValid = false;
+        
+        alert("Please map Service Provider.");
+    }
+    if ($("input[name='chkProvider']").length > 0 && $("input[name='chkProvider']:checked").length == 0) {
+        IsValid = false;
         alert("Please select any Service Provider to allocate service.");
     }
+    if ($("input[name='chkProvider']:checked").length > 0 && $("#txtAllocationRemarks").val() == "") {
+        IsValid = false;
+        alert("Please enter Service Allocation Remarks");
+    }
+    if (IsValid) {
+        return true;
+    }
+    else {
+        IsValid = false;
+       
+    }
+
+   
+    
+}
+
+function SearchAllocateServiceRequest() {
+
+    var TicketNo = $("#txtTicketNo").val();
+    var CustomerName = $("#txtCustomerName").val();
+    var ContactNo = $("#txtContactNo").val();
+    var EmailId = $("#txtEmailId").val();
+  
+    var pUrl = "/Admin/ServiceRequest/ShowServiceRequestList?TicketNo=" + TicketNo + "&CustomerName=" + CustomerName + "&ContactNo=" + ContactNo + "&EmailId=" + EmailId;
+    $.ajax({
+        type: "Get",
+        url: pUrl,
+        data: {},
+        dataType: 'html',
+        contentType: false,
+        processData: false,
+        async: false,
+        success: function (data) {
+
+            if (!IsJsonString(data)) {
+                $("#tblServiceRequest").html(data);
+            }
+        }
+    });
 }

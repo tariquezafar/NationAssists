@@ -64,7 +64,7 @@ namespace DbOperation
                                 
                                 foreach (DataRow item in dt.Rows)
                                 {
-                                    if (objLst.Where(x => x.BatchNo == Convert.ToInt32(item["BatchNo"])).Any() == false)
+                                    if (Convert.ToInt32(item["BatchNo"]) !=0 && objLst.Where(x => x.BatchNo == Convert.ToInt32(item["BatchNo"])).Any() == false)
                                     {
                                         objLst.Add(new ServiceSubCategoryPrice
                                         {

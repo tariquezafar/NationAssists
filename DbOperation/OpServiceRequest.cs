@@ -157,7 +157,7 @@ namespace DbOperation
             return objOutput;
         }
 
-        public MethodOutput<ServiceRequest> BindServiceRequestForAllocation(int ServiceRequestStatusId, string TicketNo)
+        public MethodOutput<ServiceRequest> BindServiceRequestForAllocation(int ServiceRequestStatusId, string TicketNo, string CustomerName , string ContactNo, string  EmailId)
         {
             MethodOutput<ServiceRequest> objOutput = new MethodOutput<ServiceRequest>();
             List<ServiceRequest> objLstService = new List<ServiceRequest>();
@@ -165,7 +165,7 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                SqlParameter[] objListSqlParam = new SqlParameter[6];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@ServiceRequestStatusId";
                 objListSqlParam[0].Value = ServiceRequestStatusId;
@@ -174,6 +174,17 @@ namespace DbOperation
                 objListSqlParam[1].ParameterName = "@TicketNo";
                 objListSqlParam[1].Value = TicketNo;
 
+                objListSqlParam[2] = new SqlParameter();
+                objListSqlParam[2].ParameterName = "@CustomerName";
+                objListSqlParam[2].Value = CustomerName;
+
+                objListSqlParam[3] = new SqlParameter();
+                objListSqlParam[3].ParameterName = "@ContactNo";
+                objListSqlParam[3].Value = ContactNo;
+
+                objListSqlParam[4] = new SqlParameter();
+                objListSqlParam[4].ParameterName = "@EmailId";
+                objListSqlParam[4].Value = EmailId;
 
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_ShowAllRaisedServiceRequest", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
@@ -215,6 +226,7 @@ namespace DbOperation
                         ServiceAllocationId= x.Field<Int64>("ServiceAllocationId"),
                         StepiniCondtion = x.Field<bool>("StepiniCondtion"),
                         VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber"),
+                        EmailId= x.Field<string>("EmailId"),
 
                     }).ToList();
 
@@ -354,6 +366,13 @@ namespace DbOperation
                 objListSqlParam[10].ParameterName = "@ServicePriceId";
                 objListSqlParam[10].Value = objSA.ServicePriceId;
 
+                objListSqlParam[11] = new SqlParameter();
+                objListSqlParam[11].ParameterName = "@AllocationRemarks";
+                objListSqlParam[11].Value = objSA.AllocationRemarks;
+
+                objListSqlParam[12] = new SqlParameter();
+                objListSqlParam[12].ParameterName = "@AcceptedBy";
+                objListSqlParam[12].Value = objSA.AcceptedBy;
 
 
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveServiceRequestAllocation", objListSqlParam).Tables[0];
@@ -427,7 +446,9 @@ namespace DbOperation
                         Status_Name = x.Field<string>("Status_Name"),
                         BrokerId = x.Field<int>("BrokerId"),
                         ServiceSubCategoryId = x.Field<int>("ServiceSubCategoryId"),
-                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber")
+                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber"),
+                        AllocationRemarks = x.Field<string>("AllocationRemarks"),
+                        EmailId = x.Field<string>("EmailId"),
                     }).ToList();
 
                     objOutput.DataList = objLstService;
@@ -501,7 +522,8 @@ namespace DbOperation
                         Status_Name = x.Field<string>("Status_Name"),
                         BrokerId = x.Field<int>("BrokerId"),
                         ServiceSubCategoryId = x.Field<int>("ServiceSubCategoryId"),
-                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber")
+                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber"),
+                        EmailId = x.Field<string>("EmailId"),
                     }).ToList();
 
                     objOutput.DataList = objLstService;
@@ -518,7 +540,7 @@ namespace DbOperation
         }
 
 
-        public MethodOutput<ServiceRequest> BindAllServiceRequest(int ServiceRequestStatusId, string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime StartDate, DateTime EndDate)
+        public MethodOutput<ServiceRequest> BindAllServiceRequest(int ServiceRequestStatusId, string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime StartDate, DateTime EndDate, int UserId)
         {
             MethodOutput<ServiceRequest> objOutput = new MethodOutput<ServiceRequest>();
             List<ServiceRequest> objLstService = new List<ServiceRequest>();
@@ -554,6 +576,10 @@ namespace DbOperation
                 objListSqlParam[6] = new SqlParameter();
                 objListSqlParam[6].ParameterName = "@EndDate";
                 objListSqlParam[6].Value = EndDate;
+
+                objListSqlParam[7] = new SqlParameter();
+                objListSqlParam[7].ParameterName = "@UserId";
+                objListSqlParam[7].Value = UserId;
 
 
 
@@ -594,7 +620,15 @@ namespace DbOperation
                         Status_Name = x.Field<string>("Status_Name"),
                         BrokerId = x.Field<int>("BrokerId"),
                         ServiceSubCategoryId = x.Field<int>("ServiceSubCategoryId"),
-                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber")
+                        VehicleRegistrationNumber = x.Field<string>("VehicleRegistrationNumber"),
+                        ServiceRequestStatus= x.Field<int>("ServiceRequestStatus"),
+                        ServiceAllocationStatus = x.Field<int?>("ServiceAllocationStatus"),
+                        AcceptedBy=x.Field<int?>("AcceptedBy"),
+                        AssignedTo= x.Field<int?>("AssignedTo"),
+                        ServiceAllocationId= x.Field<Int64?>("ServiceAllocationId"),
+                        EmailId = x.Field<string>("EmailId"),
+                        AssignedToUser=x.Field<string>("AssignedToUser"),
+                        ServiceAllocationRemarks= x.Field<string>("AllocationRemarks")
                     }).ToList();
 
                     objOutput.DataList = objLstService;
@@ -781,7 +815,9 @@ namespace DbOperation
                         SourceId= x.Field<int>("SourceId"),
                         SourceName = x.Field<string>("SourceName"),
                         SourceType= x.Field<string>("SourceType"),
-                        SourceTypeCode= x.Field<string>("SourceTypeCode")
+                        SourceTypeCode= x.Field<string>("SourceTypeCode"),
+                        EffectiveDate= x.Field<string>("EffectiveDate"),
+                        ExpiryDate=x.Field<string>("ExpiryDate")
 
                     }).ToList();
 
@@ -803,6 +839,7 @@ namespace DbOperation
             MethodOutput<VehicleDetail> objOutput = new MethodOutput<VehicleDetail>();
             List<string> objLstVehicleRegistration = new List<string>();
             List<string> objLstChessisNo = new List<string>();
+            List<string> objlstRiskAddress = new List<string>();
             VehicleDetail objVehicleDetail = new VehicleDetail();
             try
             {
@@ -821,11 +858,22 @@ namespace DbOperation
                 {
                     foreach (DataRow item in dt.Rows)
                     {
-                        objLstVehicleRegistration.Add(Convert.ToString(dt.Rows[0]["VehicleRegistrationNo"]));
-                        objLstChessisNo.Add(Convert.ToString(dt.Rows[0]["ChassisNo"]));
+                        if (!string.IsNullOrEmpty(Convert.ToString(item["VehicleRegistrationNo"])))
+                        {
+                            objLstVehicleRegistration.Add(Convert.ToString(item["VehicleRegistrationNo"]));
+                        }
+                        if (!string.IsNullOrEmpty(Convert.ToString(item["ChassisNo"])))
+                        {
+                            objLstChessisNo.Add(Convert.ToString(dt.Rows[0]["ChassisNo"]));
+                        }
+                        if (!string.IsNullOrEmpty(Convert.ToString(item["RiskAddress"])))
+                        {
+                            objlstRiskAddress.Add(Convert.ToString(dt.Rows[0]["RiskAddress"]));
+                        }
                     }
                     objVehicleDetail.ChessisList = objLstChessisNo;
                     objVehicleDetail.VehicleRegistrationNoList = objLstVehicleRegistration;
+                    objVehicleDetail.RiskAddresses = objlstRiskAddress;
 
                     objOutput.Data = objVehicleDetail;
                     objOutput.ErrorMessage = string.Empty;
@@ -837,6 +885,251 @@ namespace DbOperation
 
 
             }
+            return objOutput;
+        }
+
+
+        public MethodOutput<Customer> BindCustomeDetail(string CPRNumber)
+        {
+            MethodOutput<Customer> objOutput = new MethodOutput<Customer>();
+            List<Customer> objLstCustomer = new List<Customer>();
+            DataSet ds = new DataSet();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                DataTable dtMemberShip = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@CPRNumber";
+                objListSqlParam[0].Value = CPRNumber;
+
+
+                ds = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetCustomerDetail", objListSqlParam);
+                dt = ds != null && ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+                dtMemberShip = ds != null && ds.Tables.Count > 1 ? ds.Tables[1] : new DataTable();
+                if (dt.Rows.Count > 0)
+                {
+                    objLstCustomer = dt.AsEnumerable().Select(x => new Customer
+                    {
+                       
+                       CustomerId = x.Field<int>("CustomerId"),
+                       EmailId=x.Field<string>("EmailId"),
+                       FirstName=x.Field<string>("FirstName"),
+                       LastName= x.Field<string>("LastName"),
+                       MobileNo= x.Field<string>("MobileNo"),
+                       NationalId=x.Field<string>("NationalId"),
+                       MembershipList= dtMemberShip.Rows.Count > 0 ? dtMemberShip.AsEnumerable().Select(y => new Membership
+                       {
+                           MembershipId = y.Field<Int64>("MembershipId"),
+                           MembershipReferenceNo= y.Field<string>("MembershipReferenceNo"),
+                           PackageName = y.Field<string>("ServiceName"),
+                           EffectiveDate = y.Field<DateTime>("EffectiveDate"),
+                           ExpiryDate = y.Field<DateTime>("ExpiryDate"),
+                           
+                       }).ToList() : new List<Membership>()
+
+
+                    }).ToList();
+
+                    objOutput.DataList = objLstCustomer;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                objOutput.ErrorMessage = ex.Message;
+            }
+
+            return objOutput;
+        }
+
+        public MethodOutput<ServiceProvider> GetAllServiceProviderByServiceRequest(Int64 ServiceRequestId)
+        {
+            MethodOutput<ServiceProvider> objOutput = new MethodOutput<ServiceProvider>();
+            List<ServiceProvider> objLstCustomer = new List<ServiceProvider>();
+            DataSet ds = new DataSet();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                DataTable dtMemberShip = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@ServiceRequestId";
+                objListSqlParam[0].Value = ServiceRequestId;
+
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetProviderByServiceRequest", objListSqlParam).Tables[0];
+                
+                if (dt.Rows.Count > 0)
+                {
+                    objLstCustomer = dt.AsEnumerable().Select(x => new ServiceProvider
+                    {
+
+                        ServiceProviderCode = x.Field<string>("ServiceProviderCode"),
+                        ServiceProviderId = x.Field<int>("ServiceProviderId"),
+                        EmailId = x.Field<string>("EmailId"),
+                        FirstName = x.Field<string>("FirstName"),
+                        LastName = x.Field<string>("LastName"),
+                        MobileNo = x.Field<string>("MobileNo"),
+                        CRNumber = x.Field<string>("CRNumber"),
+                        ContactPersonName = x.Field<string>("ContactPersonName"),
+                        ContactPersonNo = x.Field<string>("ContactPersonContactDetail"),
+                        EscalationPersonName= x.Field<string>("EscalationPersonName"),
+                        EscalationPersonContactNo= x.Field<string>("EscalationContactDetail"),
+                        Escalation_Person_EmailId = x.Field<string>("Escalation_Person_EmailId"),
+
+
+                    }).ToList();
+
+                    objOutput.DataList = objLstCustomer;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                objOutput.ErrorMessage = ex.Message;
+            }
+
+            return objOutput;
+        }
+
+        public MethodOutput<string> UpdateServiceRequest(ServiceAllocation objSA)
+        {
+            MethodOutput<string> output = new MethodOutput<string>();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[15];
+
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@ServiceAllocationId";
+                objListSqlParam[0].Value = objSA.ServiceAllocationId;
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@ServiceRequestId";
+                objListSqlParam[1].Value = objSA.ServiceRequestId;
+
+                objListSqlParam[2] = new SqlParameter();
+                objListSqlParam[2].ParameterName = "@Action";
+                objListSqlParam[2].Value = objSA.Action;
+
+                objListSqlParam[3] = new SqlParameter();
+                objListSqlParam[3].ParameterName = "@AssignedTo";
+                objListSqlParam[3].Value = objSA.AssignedToUser;
+
+                objListSqlParam[4] = new SqlParameter();
+                objListSqlParam[4].ParameterName = "@AssignmentRemarks";
+                objListSqlParam[4].Value = objSA.AssignmentRemarks;
+
+                objListSqlParam[5] = new SqlParameter();
+                objListSqlParam[5].ParameterName = "@ClosingRemarks";
+                objListSqlParam[5].Value = objSA.Remarks;
+
+                objListSqlParam[6] = new SqlParameter();
+                objListSqlParam[6].ParameterName = "@ActionBy";
+                objListSqlParam[6].Value = objSA.AcceptedBy;
+
+
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_updateServiceRequest", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    output.ErrorMessage = Convert.ToString(dt.Rows[0]["Error"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                output.ErrorMessage = ex.Message;
+            }
+            return output;
+        }
+
+        public MethodOutput<Users> GetAllAssignToUser(int UserId)
+        {
+            MethodOutput<Users> objOutput = new MethodOutput<Users>();
+            List<Users> objLstCustomer = new List<Users>();
+            DataSet ds = new DataSet();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                DataTable dtMemberShip = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@UserId";
+                objListSqlParam[0].Value = UserId;
+
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllAssignedUser", objListSqlParam).Tables[0];
+
+                if (dt.Rows.Count > 0)
+                {
+                    objLstCustomer = dt.AsEnumerable().Select(x => new Users
+                    {
+
+                        Name = x.Field<string>("FirstName"),
+                        UserCode = x.Field<string>("UserCode"),
+                        UserId = x.Field<int>("UserId")
+                    }).ToList();
+
+                    objOutput.DataList = objLstCustomer;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                objOutput.ErrorMessage = ex.Message;
+            }
+
+            return objOutput;
+        }
+
+        public MethodOutput<ServiceRemarks> GetAllServiceRemarks(Int64 ServiceRequestId)
+        {
+            MethodOutput<ServiceRemarks> objOutput = new MethodOutput<ServiceRemarks>();
+            List<ServiceRemarks> objLstRemarks = new List<ServiceRemarks>();
+            DataSet ds = new DataSet();
+            try
+            {
+
+                DataTable dt = new DataTable();
+                DataTable dtMemberShip = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@ServiceRequestId";
+                objListSqlParam[0].Value = ServiceRequestId;
+
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetAllServiceRequestRemarks", objListSqlParam).Tables[0];
+
+                if (dt.Rows.Count > 0)
+                {
+                    objLstRemarks = dt.AsEnumerable().Select(x => new ServiceRemarks
+                    {
+
+                        ServiceRequestId = x.Field<Int64>("ServiceRequestId"),
+                        RemarksId= x.Field<Int64>("RemarksId"),
+                        Remarks = x.Field<string>("Remarks"),
+                        CreatedBy = x.Field<int>("CreatedBy"),
+                        CreatedByUser= x.Field<string>("CreatedByUser"),
+                        CreatedDate= x.Field<DateTime>("CreatedDate")
+                    }).ToList();
+
+                    objOutput.DataList = objLstRemarks;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                objOutput.ErrorMessage = ex.Message;
+            }
+
             return objOutput;
         }
         

@@ -3,7 +3,7 @@
 
         var UserTypeId = $("#BrokerTypeId").val();
         var UserType = $("#BrokerTypeId").val();
-        $("#ServiceId").html("'<option>--Select--</option>'");
+        $("#ServiceId").html("'<option value='0'>--Select--</option>'");
      
             var pUrl = "/Admin/Brokers/BindBroker?UserType=" + UserType;
             $.ajax({
@@ -318,6 +318,37 @@ function EditMember(e) {
         }
     });
 
+}
+function SearchMembership() {
+    var SourceType = $("#BrokerTypeId").val();
+    var SourceId = $("#BrokerId").val() == "" ? 0 : parseInt($("#BrokerId").val());
+    var PackageId = $("#ServiceId").val() == "" ? 0 : parseInt($("#ServiceId").val());
+    var CPRNumber = $("#txtCPRNumber").val();
+    var PolicyType = $("#txtPolicyType").val();
+    var PolicyNo = $("#txtPolicyNo").val();
+    var InsuredName = $("#txtInsuredName").val();
+    var MobileNo = $("#txtMobileNo").val();
+    var EmailId = $("#txtEmailId").val();
+    var VehicleRegistrationNo = $("#txtVehicleRegistrationNo").val();
+    var ChassisNo = $("#txtChassisNo").val();
+
+    var pUrl = "/Admin/Brokers/SearchMemberShip?SourceType=" + SourceType + "&SourceId=" + SourceId + "&PackageId=" + PackageId + "&CPRNumber=" + CPRNumber + "&PolicyType=" + PolicyType + "&PolicyNo=" + PolicyNo + "&InsuredName=" + InsuredName + "&MobileNo=" + MobileNo + "&EmailId=" + EmailId + "&VehicleRegistrationNo=" + VehicleRegistrationNo + "&ChassisNo=" + ChassisNo;
+    $.ajax({
+        type: "Get",
+        url: pUrl,
+        data: {},
+        dataType: 'html',
+        contentType: false,
+        processData: false,
+        async: false,
+        success: function (data) {
+
+            if (!IsJsonString(data)) {
+                $("#tblMembership").html(data);
+            }
+        }
+    });
+    
 }
 
 

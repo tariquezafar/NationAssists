@@ -17,10 +17,10 @@ namespace DataServices
             return obj.SaveBroker(Brokers);
         }
 
-        public MethodOutput<Broker> GetAllBrokers(int BrokerId, string BrokerType)
+        public MethodOutput<Broker> GetAllBrokers(int BrokerId, string BrokerType, string SourceName, string CRNumber, string MobileNo, string EmailId)
         {
             OpBroker obj = new OpBroker();
-            return obj.GetAllBroker(BrokerId,BrokerType);
+            return obj.GetAllBroker(BrokerId,BrokerType, SourceName,  CRNumber,  MobileNo,  EmailId);
         }
 
         public MethodOutput<string> DeleteBroker(int BrokerId)

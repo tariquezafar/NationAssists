@@ -135,23 +135,67 @@
                         <input type="text" id="txtContactNo" class="formInput" disabled="disabled" />
                     </li>
                     <li class="oneThird">
+                        <span class="fieldHd">Customer Name</span>
+                        <input type="text" id="txtCustomerName" class="formInput" disabled="disabled" />
+                    </li>
+                    <li class="oneThird">
+                        <span class="fieldHd">Customer Email Id</span>
+                        <input type="text" id="txtCustomerEmailId" class="formInput" disabled="disabled" />
+                    </li>
+                    <li class="oneThird">
                         <span class="fieldHd">Relevent Details</span>
                         <textarea id="txtReleventDetails" class="formInput" disabled="disabled"></textarea>
                     </li>
                     <li class="oneThird">
                         <span class="fieldHd">Remarks</span>
-                        <textarea id="txtRemarks" class="formInput"></textarea>
+                        <textarea id="txtRemarks" class="formInput" disabled="disabled"></textarea>
                     </li>
 
+                    <li class="oneThird">
+                        <span class="fieldHd">Allocation Remarks</span>
+                        <textarea id="txtServiceAllocationRemarks" class="formInput" disabled="disabled"></textarea>
+                    </li>
+                    <li id="Action">
+                        <span class="fieldHd">Action</span>
+                        <div class="optBox flexBox">
+                            <label><input type="radio" name="rdAction" checked="checked" class="radioInpt" value="UpdateRemarks"> Update Remarks</label>
+                            <label><input type="radio" name="rdAction" class="radioInpt" value="Assigned"> Assigned</label>
+                            <label><input type="radio" name="rdAction" class="radioInpt" value="Closed"> Closed Ticket</label>
+
+                        </div>
+                    </li>
+                    <li class="oneThird ASG" style="display:none;">
+                        <span class="fieldHd">Assigned To</span>
+                        <select id="AssignedTo" class="formInput"></select>
+                    </li>
+
+                    <li class="oneThird ASG" style="display:none;">
+                        <span class="fieldHd">Assignment Remarks</span>
+                        <textarea id="txtAssignmentRemarks" class="formInput"></textarea>
+                    </li>
+                    <li class="oneThird" id="ClosingRemarks" style="display:none;">
+                        <span class="fieldHd">Closing Remarks</span>
+                        <textarea id="txtClosingRemarks" class="formInput"></textarea>
+                    </li>
+
+                    <li class="oneThird" id="UpdateRemarks">
+                        <span class="fieldHd">Updated Remarks</span>
+                        <textarea id="txtUpdatedRemarks" class="formInput"></textarea>
+                    </li>
                 </ul>
                 <div class="dbTable" id="tblProviderList">
 
 
                 </div>
-                <br />
 
+                <br />
+                <div class="dbTable" id="tblServiceRemarks"></div>
+                <br />
                 <div>
-                    
+                    <input type="hidden" id="hdnUserID" value="@Model.UserId" />
+                    <input type="hidden" id="hdnServiceRequestID" value="0" />
+                    <input type="hidden" id="hdnServiceAllocationID" value="0" />
+                    <button class="formBtn regNextStep" id="BtnUpdate" onclick="UpdateServiceRequest()">Update</button>
                     <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/'">Back</button>
 
                 </div>

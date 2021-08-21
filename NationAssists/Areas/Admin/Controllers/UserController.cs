@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using NationAssists.Areas.Admin.Models;
 using DataEngine;
 using DataServices;
+using NationAssists.Models;
+
 namespace NationAssists.Areas.Admin.Controllers
 {
     public class UserController : Controller
@@ -33,7 +35,7 @@ namespace NationAssists.Areas.Admin.Controllers
                 objUser.Name = "";
                 objUser.IsActive = false;
               
-                objUser.UsersList = GetUsers(0);
+                objUser.UsersList = GetUsers(0,0,0,string.Empty,string.Empty);
                 return View(objUser);
             }
             else
@@ -45,14 +47,14 @@ namespace NationAssists.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetUserDetail(int UserId)
         {
-            List<Users> objUser = GetUsers(UserId);
+            List<Users> objUser = GetUsers(UserId,0,0, string.Empty, string.Empty);
             return Json(objUser[0], JsonRequestBehavior.AllowGet);
         }
-        public List<Users> GetUsers(int UserId)
+        public List<Users> GetUsers(int UserId, int UserTypeId, int UserReferenceId, string UserCode, string UserName)
         {
             MethodOutput<Users> objMO = new MethodOutput<Users>();
             UserServices obj = new UserServices();
-            objMO = obj.GetUsers(UserId);
+            objMO = obj.GetUsers(UserId, UserTypeId, UserReferenceId, UserCode, UserName);
             return objMO.DataList;
         }
 
@@ -79,15 +81,17 @@ namespace NationAssists.Areas.Admin.Controllers
             return Json(new { Result = IsSaved, Msg = strMsg,DuplicateEmail= objMO.ErrorMessage == SqlOutput.Duplicate_Email? true :false,DuplicateMobile= objMO.ErrorMessage == SqlOutput.Duplicate_Mobile ? true : false }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public ActionResult BindUsers(int UserId)
+        [HttpGet]
+        public ActionResult BindUsers(int UserId, int UserTypeId, int UserReferenceId, string UserCode, string UserName)
         {
             string strError = string.Empty;
             List<Users> objList = new List<Users>();
             try
             {
-                objList = this.GetUsers(UserId);
-                return PartialView("_UserList.cshtml", objList);
+                objList = this.GetUsers(UserId, UserTypeId, UserReferenceId, UserCode, UserName);
+                mUser objUsers = new mUser();
+                objUsers.UsersList = objList;
+                return PartialView("_UserList", objUsers);
             }
             catch (Exception ex)
             {
@@ -126,6 +130,22 @@ namespace NationAssists.Areas.Admin.Controllers
             CommonServices objComm = new CommonServices();
             UserType = UserType == "SP" ? "" : UserType;
             return Json(objComm.BindServiceProvider(UserType).DataList, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ChangePassword()
+        {
+            if (Session["UserId"] != null)
+            {
+                mChangePassword obj = new mChangePassword();
+                obj.UserType = UserTypeCode.Employee;
+                obj.UserId = Convert.ToInt32(Session["UserId"]);
+                return View(obj);
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
+            
         }
     }
 }

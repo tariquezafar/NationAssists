@@ -52,6 +52,9 @@
                             $('#tblPriceList').html(table);
 
                         }
+                        else {
+                            $('#tblPriceList').html('');
+                        }
 
                     }
                     

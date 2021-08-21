@@ -99,14 +99,19 @@
 
             </div>
         </li>
+        <li class="oneThird">
+            <span class="fieldHd">User Code</span>
+            <input type="text"  class="formInput" id="txtUserCode" placeholder="User Code">
+        </li>
     </ul>
     <div>
         <input type="hidden" id="hdnUserId" value="@Model.UserId" />
         <button type="submit" class="btnSave dbformBtn mr10" onclick="return SaveUsers();">Save</button>
         <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/User/AddUser/'">Reset</button>
+        <button type="submit" class="btnSave dbformBtn mr10" onclick="return SearchUser();">Search</button>
 
     </div>
-    <div class="dbTable">
+    <div class="dbTable" id="tblUsers" >
         @Html.Partial("~/Areas/Admin/Views/User/_UserList.cshtml", Model);
     </div>
 </div>

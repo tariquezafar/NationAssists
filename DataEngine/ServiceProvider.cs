@@ -51,5 +51,8 @@ namespace DataEngine
 
         public string EscalationLandlineNo { get; set; }
 
+        public List<ServiceProviderServiceArea> ServiceProviderAreas { get; set; }
+        public List<ServiceSubCategoryPrice> ServiceProviderPriceList { get; set; }
+
     }
 }

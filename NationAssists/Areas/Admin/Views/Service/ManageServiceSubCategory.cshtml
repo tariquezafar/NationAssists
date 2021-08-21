@@ -11,7 +11,7 @@
         <li class="oneThird">
             <span class="fieldHd" id="lblService">Service </span>
             @*<input type="text" class="formInput">*@
-            @Html.DropDownListFor(m => m.ServiceId, Model.GetAllServices(), "--select-", new { @class = "formInput" })
+            @Html.DropDownListFor(m => m.ServiceId, Model.GetAllServices(), "--select-", new { @class = "formInput",@onchange= "BindCategory()" })
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblSubCategoryName">Sub Category Name </span>
@@ -38,7 +38,7 @@
     </div>
 
 
-    <div class="dbTable">
+    <div class="dbTable" id="tblCategory">
 
         @Html.Partial("~/Areas/Admin/Views/Service/_ServiceSubCategoryList.cshtml", Model);
     </div>

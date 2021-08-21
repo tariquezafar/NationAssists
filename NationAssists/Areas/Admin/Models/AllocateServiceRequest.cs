@@ -21,6 +21,8 @@ namespace NationAssists.Areas.Admin.Models
 
         public int CountryId { get; set; }
 
+        public int UserId { get; set; }
+
 
 
 
@@ -29,6 +31,8 @@ namespace NationAssists.Areas.Admin.Models
         public List<ServiceRequest> PendingServiceRequestList { get; set; }
 
         public List<ServiceRequest> AllocateServiceRequestList { get; set; }
+
+        public List<Users> UserList { get; set; }
 
         public List<ServiceRequest> AssignedServiceRequestList { get; set; }
         public SelectList GetAllServiceRequestStatus()
@@ -66,6 +70,7 @@ namespace NationAssists.Areas.Admin.Models
         
        public DateTime StartDate { get; set; }
      public DateTime EndDate { get; set; }
+        public int UserId { get; set; }
         
     }
 }

@@ -227,12 +227,15 @@
                 else
                 {
                     string AccountType = Convert.ToString(Session["AccountType"]);
+
+                  
+
+                    if (Session["IsHavingMembership"] != null && Convert.ToBoolean(Session["IsHavingMembership"]))
+                    {
+                        <li><a href="/RaiseServiceRequest">Raise Service Request</a></li>
+                    }
                     if (AccountType == "GA")
                     {
-                        if (Session["IsHavingMembership"] != null && Convert.ToBoolean(Session["IsHavingMembership"]))
-                        {
-                            <li><a href="/RaiseServiceRequest">Raise Service Request</a></li>
-                        }
                         <li><a href="/BuyOnline">Buy Online</a></li>
                         <li><a href="/BuyPackageRequest/ViewServiceEnrollmentRequest">View Service Enrollment Request</a></li>
                     }

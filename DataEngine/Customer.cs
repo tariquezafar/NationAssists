@@ -35,5 +35,7 @@ namespace DataEngine
         public string Customer_Reference_Code { get; set; }
 
         public bool IsHavingMembership { get; set; }
+
+        public List<Membership> MembershipList { get; set; }
     }
 }

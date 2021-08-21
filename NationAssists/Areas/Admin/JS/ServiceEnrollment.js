@@ -117,14 +117,14 @@ function ValidateForm() {
     }
     else {
         if ($("#ServiceEnrollmentStatusId").val() == "2") {
-            if ($("#txtPolicyType").val() == "") {
-                IsValid = false;
-                strErrMsg += "Please enter Policy Type . \n";
-            }
-            if ($("#txtPolicyNo").val() == "") {
-                IsValid = false;
-                strErrMsg += "Please enter Policy No . \n";
-            }
+            //if ($("#txtPolicyType").val() == "") {
+            //    IsValid = false;
+            //    strErrMsg += "Please enter Policy Type . \n";
+            //}
+            //if ($("#txtPolicyNo").val() == "") {
+            //    IsValid = false;
+            //    strErrMsg += "Please enter Policy No . \n";
+            //}
 
             if ($("#txtEffectiveDate").val() == "") {
                 IsValid = false;
@@ -212,6 +212,7 @@ function SaveMembership() {
 }
 
 function ShowServiceEnrollmentDetail(e) {
+    $("#dvDetail").hide();
     $("#hdnServiceEnrollmentId").val(e.ServiceEnrollmentRequestId);
     $("#PackageId").html("<option value='" + e.ServiceId + "' > " + e.ServiceName + "</option>");
     $("#hdnPackageId").val(e.ServiceId); 
@@ -244,20 +245,25 @@ function ShowServiceEnrollmentDetail(e) {
         $(".RAS").show();
     }
     $("#dvServiceDetail").show();
-    if (e.ServiceEnrollmentStatus == 1) {
+    if (e.ServiceEnrollmentStatus != 5) {
 
         $("#dvButton").show();
     }
     else {
         $("#dvButton").hide();
+       
+        
     }
-  
+
+
+
+    GetCustomerDetail(e.CPRNumber);
     
 }
 
-function OnChangingEnrollmentStatus() {
-    if ($("#ServiceEnrollmentStatusId").val() != "" && $("#ServiceEnrollmentStatusId").val() != "0") {
-        if ($("#ServiceEnrollmentStatusId").val() == "2") {
+function OnChangingEnrollmentStatus(e) {
+    if ($(e).val() != "" && $(e).val() != "0") {
+        if ($(e).val() == "2") {
             $('.MEM').show();
             $('#liApRemarks').hide();
         }
@@ -266,5 +272,54 @@ function OnChangingEnrollmentStatus() {
             $('#liApRemarks').show();
         }
     }
+
+    return true;
+}
+
+function GetCustomerDetail(CPRNumber) {
+    if (CPRNumber != "") {
+        var pUrl = "/Admin/ServiceRequest/BindCustomerDetail?CPRNumber=" + CPRNumber
+        $.ajax({
+            type: "Get",
+            url: pUrl,
+            data: {},
+            dataType: 'html',
+            contentType: false,
+            processData: false,
+            async: false,
+            success: function (data) {
+
+                if (!IsJsonString(data)) {
+                    $("#dvCustomerDetail").html(data);
+                    $("#dvCustomerDetail").show();
+                }
+
+            }
+        });
+    }
+}
+
+function SearchServiceEnrollment() {
+
+    var ServiceId = $("#ServiceId").val() == "" ? 0 : parseInt($("#ServiceId").val());
+    var EnrollmentStatusId = $("#SearchServiceEnrollmentStatusId").val() == "" ? 0 : parseInt($("#SearchServiceEnrollmentStatusId").val());
+    var CustomerName = $("#txtCustomerName").val();
+
+    var pUrl = "/Admin/ServiceEnrollment/SearchServiceEnrollmentRequest?ServiceId=" + ServiceId + "&EnrollmentStatusId=" + EnrollmentStatusId + "&CustomerName=" + CustomerName
+    $.ajax({
+        type: "Get",
+        url: pUrl,
+        data: {},
+        dataType: 'html',
+        contentType: false,
+        processData: false,
+        async: false,
+        success: function (data) {
+
+            if (!IsJsonString(data)) {
+                $("#tblServiceRequest").html(data);
+            }
+        }
+    });
 
 }

@@ -1,0 +1,59 @@
+﻿@model NationAssists.Areas.Admin.Models.mService
+@if (Model.ServiceList != null)
+{
+    int i = 0;
+
+    if (Model.ServiceList.Count > 0)
+    {
+        <table>
+
+            <thead>
+                <tr>
+                    <th>SNo.</th>
+                    <th>Service Code</th>
+                    <th>Service Name</th>
+                    <th>Package Code</th>
+                    <th>Status</th>
+
+                    <th></th>
+
+                </tr>
+            <thead>
+            <tbody>
+                @foreach (DataEngine.Service item in Model.ServiceList)
+                {
+                    i = i + 1;
+
+
+                <tr>
+                    <td><span class="blueClr">@i</span></td>
+                    <td>@item.ServiceCode</td>
+                    <td>@item.ServiceName</td>
+                    <td>@item.PackageCode</td>
+                    <td>@(item.IsActive? "Active":"InActive")</td>
+                    <td>
+                        <input type="hidden" value="@item.IsActive.ToString()" />
+                        <a data-id="@item.ServiceId" service-id="@item.ServiceId"  subCat_isActive="@item.IsActive.ToString()" onclick="EditService(@Newtonsoft.Json.JsonConvert.SerializeObject( item))"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+                        
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+
+
+
+        </table>
+    }
+
+}
+
+else
+{
+    <blockquote>  <h3 style="color:salmon">No Record exist...!!!</h3></blockquote>
+}
+
+
+@*</div>*@
+
+

@@ -34,6 +34,7 @@ namespace NationAssists.Controllers
                         Session["IsHavingMembership"] = Convert.ToBoolean(objLoginOutput.CustomerDetail.IsHavingMembership);
                         Session["AccountType"] = Convert.ToString(objLoginOutput.CustomerDetail.AccountType);
                         Session["CPRNumber"] = Convert.ToString(objLoginOutput.CustomerDetail.NationalId);
+                        Session["Customer"] = objLoginOutput.CustomerDetail;
                     }
                     else
                     {

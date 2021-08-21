@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,5 +48,37 @@ namespace DataEngine
 
         public string MembershipReferenceNo { get; set; }
 
+    }
+
+    public class ExcelData
+    {
+        public string SheetId { get; set; }
+        public string SheetName { get; set; }
+
+        public DataTable dt { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public List<string> MandatoryColumns { get; set; }
+
+        public List<string> Columns { get; set; }
+    }
+
+    public class ExcelValidationResponse
+    {
+        public int SourceId { get; set; }
+
+        public string SourceName { get; set; }
+        public string ErrorMessage { get; set; }
+
+        public List<ExcelData> ExcelData { get; set; }
+
+
+    }
+
+    public class ExcelUploaderResponse
+    {
+        public string sheetName { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

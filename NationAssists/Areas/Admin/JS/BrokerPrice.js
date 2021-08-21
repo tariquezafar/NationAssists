@@ -117,6 +117,9 @@ function BindBrokerPriceList() {
                             $('#tblPriceList').html(table);
 
                         }
+                        else {
+                            $('#tblPriceList').html('');
+                        }
 
                     }
 

@@ -166,9 +166,10 @@
         <input type="hidden" id="hdnServiceProviderID" value="0" />
         <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveServiceProvider();">Save</button>
         <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Service/ManageServiceProvider/'">Reset</button>
+        <button type="button" class="btnSave dbformBtn mr10" onclick="return SearchServiceProvider();">Search</button>
 
     </div>
-    <div class="dbTable">
+    <div class="dbTable" id="tblServiceProvider">
 
         @Html.Partial("~/Areas/Admin/Views/Service/_ServiceProviderList.cshtml", Model);
     </div>

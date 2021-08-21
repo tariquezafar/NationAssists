@@ -58,6 +58,7 @@ namespace DataEngine
     {
       public int  UserTypeId    {get;set;}
       public string  UserTypeName      {get;set;}
+        public string UserTypeCode { get; set; }
       public bool IsActive { get; set; }
     }
 

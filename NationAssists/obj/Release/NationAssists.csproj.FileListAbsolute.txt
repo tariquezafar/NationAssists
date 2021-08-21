@@ -64,3 +64,5 @@ D:\Tarique\NationAssists\NationAssists\NationAssists\obj\Release\NationAssists.c
 D:\Tarique\NationAssists\NationAssists\NationAssists\obj\Release\ICardPrinter.dll
 D:\Tarique\NationAssists\NationAssists\NationAssists\obj\Release\ICardPrinter.pdb
 D:\Tarique\NationAssists\NationAssists\NationAssists\bin\Utility.pdb
+D:\Tarique\NationAssists\NationAssists\NationAssists\bin\DocumentFormat.OpenXml.dll
+D:\Tarique\NationAssists\NationAssists\NationAssists\bin\DocumentFormat.OpenXml.xml

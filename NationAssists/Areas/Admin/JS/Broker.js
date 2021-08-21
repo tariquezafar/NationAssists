@@ -169,7 +169,7 @@ function ValidateForm() {
         });
         $.each(SelectedServiceIds, function (x, y) {
 
-            if ($("#txtCommissionPaybable_" + y.ServiceId).val() == "0" || $("#txtCommissionPaybable_" + y.ServiceId).val() == "") {
+            if ($("#txtCommissionPaybable_" + y.ServiceId).val() == "") {
 
                 IsValid = false;
                 strErrMsg += "Please enter Commission Payable for " + y.ServiceName + " .\n";
@@ -380,6 +380,41 @@ function DeleteBrokers(e) {
     else {
         return false;
     }
+}
+
+function SearchSource() {
+    $('body').data("IsLoaderRequired", true);
+    $loading.show();
+    var BrokerType = $("#BrokerTypeId").val();
+    var SourceName = $("#txtBrokerName").val();
+    var CRNumber = $("#txtCRNumber").val();
+    var MobileNo = $("#txtMobileNo").val();
+    var EmailId = $("#txtEmailId").val();
+    setTimeout(function () {
+    var pUrl = "/Admin/Brokers/SearchSource?BrokerType=" + BrokerType + "&SourceName=" + SourceName + "&CRNumber=" + CRNumber + "&MobileNo=" + MobileNo + "&EmailId=" + EmailId;
+    $.ajax({
+        type: "Get",
+        url: pUrl,
+        data: {},
+        dataType: 'html',
+        contentType: false,
+        processData: false,
+        async: false,
+        success: function (data) {
+            if (!IsJsonString(data)) {
+                $("#tblBrokers").html(data);
+                $loading.hide();
+            }
+            else {
+                console.log(data);
+                $loading.hide();
+            }
+        }
+    });
+    }, 1000);
+
+
+
 }
 
 

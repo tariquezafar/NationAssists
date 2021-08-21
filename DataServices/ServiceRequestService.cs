@@ -21,10 +21,10 @@ namespace DataServices
             OpServiceRequest objCommon = new OpServiceRequest();
             return objCommon.SaveServiceRequest(SR);
         }
-        public MethodOutput<ServiceRequest> BindServiceRequestForAllocation(int ServiceRequestStatusId, string TicketNo)
+        public MethodOutput<ServiceRequest> BindServiceRequestForAllocation(int ServiceRequestStatusId, string TicketNo, string CustomerName, string ContactNo, string EmailId)
         {
             OpServiceRequest objCommon = new OpServiceRequest();
-            return objCommon.BindServiceRequestForAllocation(ServiceRequestStatusId,TicketNo);
+            return objCommon.BindServiceRequestForAllocation(ServiceRequestStatusId,TicketNo,  CustomerName,  ContactNo,   EmailId);
         }
 
         public MethodOutput<AllocatedServiceProvider> BindServiceProviderForAllocation(int BlockId, int PlaceId, int GovernotesId, int CountryId, int SubCategoryId, int BrokerId, int ServiceId)
@@ -53,10 +53,10 @@ namespace DataServices
         }
 
         public MethodOutput<ServiceRequest> BindAllServiceRequest(int ServiceRequestStatusId,
-            string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime StartDate, DateTime EndDate)
+            string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime StartDate, DateTime EndDate , int UserId)
         {
             OpServiceRequest objCommon = new OpServiceRequest();
-            return objCommon.BindAllServiceRequest(ServiceRequestStatusId,TicketNo,AccountType,BrokerId,AccountSubType,StartDate,EndDate);
+            return objCommon.BindAllServiceRequest(ServiceRequestStatusId,TicketNo,AccountType,BrokerId,AccountSubType,StartDate,EndDate,UserId);
         }
 
         public MethodOutput<string> BindVehicleRegistrationNoListByCPRNumber(string CPRNumber,int ServiceId)
@@ -89,5 +89,34 @@ namespace DataServices
             OpServiceRequest objCommon = new OpServiceRequest();
             return objCommon.BindVehicleDetailByCPRNumber(CPRNumber,ServiceId);
         }
+
+        public MethodOutput<Customer> GetCustomerDetail(string CPRNumber)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.BindCustomeDetail(CPRNumber);
+        }
+        public MethodOutput<ServiceProvider> GetAllServiceProviderByServiceRequest(Int64 ServiceRequestId)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.GetAllServiceProviderByServiceRequest(ServiceRequestId);
+        }
+        public MethodOutput<Users> GetAllAssignToUser(int UserId)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.GetAllAssignToUser(UserId);
+        }
+
+        public MethodOutput<string> UpdateServiceRequest(ServiceAllocation objSA)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.UpdateServiceRequest(objSA);
+        }
+
+        public MethodOutput<ServiceRemarks> GetAllServiceRemarks(Int64 ServiceRequestId)
+        {
+            OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.GetAllServiceRemarks(ServiceRequestId);
+        }
+
     }
 }

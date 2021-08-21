@@ -52,6 +52,8 @@ namespace DataEngine
         public string PolicyType { get; set; }
 
         public int ApprovedBy { get; set; }
+
+        public string CPRNumber { get; set; }
     }
 
 }

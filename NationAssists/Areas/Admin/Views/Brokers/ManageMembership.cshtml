@@ -136,9 +136,10 @@
         <input type="hidden" id="hdnPackageId" value="0" />
         <button type="button" class="btnSave dbformBtn mr10" id="btnAdd" onclick="return SaveMembership();">Save</button>
         <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Brokers/ManageMembership/'">Reset</button>
+        <button type="button" class="btnSave dbformBtn mr10"  onclick="return SearchMembership();">Search</button>
 
     </div>
-    <div class="dbTable">
+    <div class="dbTable" id="tblMembership">
 
         @Html.Partial("~/Areas/Admin/Views/Brokers/_MembershipList.cshtml", Model);
 

@@ -100,12 +100,13 @@ function ValidateForm() {
     }
 }
 
-function EditServiceSubCategory(e) {
+function EditService(e) {
 
-    $("#hdnServiceSubCategoryID").val($(e).attr("data-id"));
-    $("#ServiceId").val($(e).attr("service-id"));
-    $("#txtSubCategoryName").val($(e).attr("subcate-name"));
+    $("#hdnServiceID").val(e.ServiceId);
+    $("#txtServicecode").val(e.ServiceCode);
+    $("#txtServicename").val(e.ServiceName);
+    $("#txtPackageCode").val(e.PackageCode);
     $("#btnAdd").html("<strong>Update</strong>");
-    $('#chkIsActive').prop('checked', $(e).attr("subCat_isActive") == "True" ? true : false);
+    $('#chkIsActive').prop('checked', e.IsActive );
 
 }

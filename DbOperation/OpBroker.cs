@@ -203,7 +203,7 @@ namespace DbOperation
 
         }
 
-        public MethodOutput<Broker> GetAllBroker(int BrokerId,string BrokerType)
+        public MethodOutput<Broker> GetAllBroker(int BrokerId,string BrokerType,string SourceName,string CRNumber,string MobileNo, string EmailId)
         {
             MethodOutput<Broker> output = new MethodOutput<Broker>();
             List<Broker> objLst = new List<Broker>();
@@ -211,7 +211,7 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                SqlParameter[] objListSqlParam = new SqlParameter[7];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@BrokerId";
                 objListSqlParam[0].Value = BrokerId;
@@ -219,6 +219,23 @@ namespace DbOperation
                 objListSqlParam[1] = new SqlParameter();
                 objListSqlParam[1].ParameterName = "@BrokerType";
                 objListSqlParam[1].Value = BrokerType;
+
+                objListSqlParam[2] = new SqlParameter();
+                objListSqlParam[2].ParameterName = "@SourceName";
+                objListSqlParam[2].Value = SourceName;
+
+                objListSqlParam[3] = new SqlParameter();
+                objListSqlParam[3].ParameterName = "@CRNumber";
+                objListSqlParam[3].Value = CRNumber;
+
+                objListSqlParam[4] = new SqlParameter();
+                objListSqlParam[4].ParameterName = "@MobileNo";
+                objListSqlParam[4].Value = MobileNo;
+
+                objListSqlParam[5] = new SqlParameter();
+                objListSqlParam[5].ParameterName = "@EmailId";
+                objListSqlParam[5].Value = EmailId;
+
                 DataSet ds = new DataSet();
                 DataTable dtCommission = new DataTable();
                 ds = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_showAllBroker", objListSqlParam);

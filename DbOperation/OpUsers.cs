@@ -137,7 +137,7 @@ namespace DbOperation
             return output;
         }
 
-        public MethodOutput<Users> GetUsers(int UserId)
+        public MethodOutput<Users> GetUsers(int UserId, int UserTypeId,int UserReferenceId, string UserCode, string UserName)
         {
             MethodOutput<Users> output = new MethodOutput<Users>();
             List<Users> objLst = new List<Users>();
@@ -145,10 +145,28 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[1];
+                SqlParameter[] objListSqlParam = new SqlParameter[5];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@UserId";
                 objListSqlParam[0].Value = UserId;
+            
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@UserTypeId";
+                objListSqlParam[1].Value = UserTypeId;
+
+                objListSqlParam[2] = new SqlParameter();
+                objListSqlParam[2].ParameterName = "@UserReferenceId";
+                objListSqlParam[2].Value = UserReferenceId;
+
+              
+                objListSqlParam[3] = new SqlParameter();
+                objListSqlParam[3].ParameterName = "@UserCode";
+                objListSqlParam[3].Value = UserCode;
+
+               
+                objListSqlParam[4] = new SqlParameter();
+                objListSqlParam[4].ParameterName = "@UserName";
+                objListSqlParam[4].Value = UserName;
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetUsers", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
@@ -277,6 +295,41 @@ namespace DbOperation
             catch (Exception ex)
             {
                 output.DataList = objLst;
+                output.ErrorMessage = ex.Message;
+            }
+            return output;
+        }
+
+        public MethodOutput<string> UpdateUserPassword(int UserId, string UserType, string Password)
+        {
+            MethodOutput<string> output = new MethodOutput<string>();
+            try
+            {
+                DataTable dt = new DataTable();
+
+                SqlParameter[] objListSqlParam = new SqlParameter[3];
+
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@UserId";
+                objListSqlParam[0].Value = UserId;
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@UserType";
+                objListSqlParam[1].Value = UserType;
+
+                objListSqlParam[2] = new SqlParameter();
+                objListSqlParam[2].ParameterName = "@Password";
+                objListSqlParam[2].Value = Password;
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_UpdateUserPassword", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    output.ErrorMessage = Convert.ToString(dt.Rows[0]["Error"]);
+                }
+            }
+            catch (Exception ex)
+            {
+
                 output.ErrorMessage = ex.Message;
             }
             return output;

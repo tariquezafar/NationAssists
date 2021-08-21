@@ -109,3 +109,24 @@ function EditServiceSubCategory(e) {
     $('#chkIsActive').prop('checked', $(e).attr("subCat_isActive") == "True" ? true : false);
     
 }
+
+function BindCategory() {
+
+    if ($('#ServiceId').val() != "" && $('#ServiceId').val() != "0" ) {
+        var pUrl = "/Admin/Service/ServiceSubCategoryByServiceId?ServiceId=" + $("#ServiceId").val();
+        $.ajax({
+            type: "Get",
+            url: pUrl,
+            data: {},
+            dataType: 'html',
+            contentType: false,
+            processData: false,
+            async: false,
+            success: function (data) {
+                if (!IsJsonString(data)) {
+                    $("#tblCategory").html(data);
+                }
+            }
+        });
+    }
+}

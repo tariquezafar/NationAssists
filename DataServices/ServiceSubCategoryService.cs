@@ -38,7 +38,12 @@ namespace DataServices
             return obj.SaveService(service);
         }
 
-       
+        public MethodOutput<Service> GetAllServices()
+        {
+            OpServiceCategory obj = new OpServiceCategory();
+            return obj.GetAllServices();
+        }
+
 
 
     }

@@ -22,6 +22,8 @@
     $("#dvServiceRequestDetail").show();
     $("#hdnServiceId").val(e.ServiceId);
     $("#hdnSubCategoryId").val(e.ServiceSubCategoryId);
+    $("#txtCustomerName").val(e.Customer_Name);
+    $("#txtCustomerEmailId").val(e.EmailId);
     
     var SelectedService = e.ServiceName;
     var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));

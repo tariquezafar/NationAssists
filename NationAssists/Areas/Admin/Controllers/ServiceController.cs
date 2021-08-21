@@ -102,6 +102,29 @@ namespace NationAssists.Areas.Admin.Controllers
             return Json(objList, JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpGet]
+        public ActionResult ServiceSubCategoryByServiceId(int ServiceId)
+        {
+            string strError = string.Empty;
+            mServiceSubCategory objSSC = new mServiceSubCategory();
+            List<ServiceSubCategory> objList = new List<ServiceSubCategory>();
+
+            try
+            {
+                objList = this.GetServiceSubCategoryByServiceId(ServiceId);
+                objSSC.ServiceSubCategroyList = objList;
+                return PartialView("_ServiceSubCategoryList", objSSC);
+            }
+            catch (Exception ex)
+            {
+
+                strError = ex.Message;
+            }
+
+            return Json(new { Error=strError}, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult DeleteServiceSubCategory(int ServiceId)
         {
@@ -174,27 +197,30 @@ namespace NationAssists.Areas.Admin.Controllers
 
 
                 List<ServiceProviderDocument> lstServiceProviderDocuments = new List<ServiceProviderDocument>();
-                if (Request.Files.Count > 0)
+                if (objServiceProvider.ServiceProviderId != 0)
                 {
-                    HttpFileCollectionBase files = Request.Files;
-
-                    for (int i = 0; i < files.Count; i++)
+                    if (Request.Files.Count > 0)
                     {
-                        HttpPostedFileBase file = files[i];
-                        // Get the complete folder path and store the file inside it.      
-                        string strFileName = DateTime.Now.ToFileTime().ToString() + "_" + file.FileName;
-                        file.SaveAs(Server.MapPath(strFolder + strFileName));
-                        lstServiceProviderDocuments.Add(new ServiceProviderDocument { DocumentPath = strFileName });
+                        HttpFileCollectionBase files = Request.Files;
+
+                        for (int i = 0; i < files.Count; i++)
+                        {
+                            HttpPostedFileBase file = files[i];
+                            // Get the complete folder path and store the file inside it.      
+                            string strFileName = DateTime.Now.ToFileTime().ToString() + "_" + file.FileName;
+                            file.SaveAs(Server.MapPath(strFolder + strFileName));
+                            lstServiceProviderDocuments.Add(new ServiceProviderDocument { DocumentPath = strFileName });
 
 
+                        }
+
+                        objServiceProvider.ServiceProviderDocuments = lstServiceProviderDocuments;
                     }
-
-                    objServiceProvider.ServiceProviderDocuments = lstServiceProviderDocuments;
-                }
-                else
-                {
-                    ServiceProvider objSP = GetAllServiceProvider(objServiceProvider.ServiceProviderId)[0];
-                    objServiceProvider.ServiceProviderDocuments = objSP.ServiceProviderDocuments;
+                    else
+                    {
+                        ServiceProvider objSP = GetAllServiceProvider(objServiceProvider.ServiceProviderId, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty)[0];
+                        objServiceProvider.ServiceProviderDocuments = objSP.ServiceProviderDocuments;
+                    }
                 }
                 #endregion
                 ServiceProviderService obj = new ServiceProviderService();
@@ -217,8 +243,9 @@ namespace NationAssists.Areas.Admin.Controllers
         {
             if (Session["UserId"] != null)
             {
+                objServiceProiders.Editable = true;
                 objServiceProiders.ServiceProviderServicesOpted = objServiceProiders.GetAllServices();
-                objServiceProiders.ServiceProviderList = GetAllServiceProvider(0);
+                objServiceProiders.ServiceProviderList = GetAllServiceProvider(0,string.Empty,string.Empty,string.Empty,string.Empty,string.Empty);
                 return View(objServiceProiders);
             }
             else
@@ -227,12 +254,31 @@ namespace NationAssists.Areas.Admin.Controllers
             }
         }
 
-        public List<ServiceProvider> GetAllServiceProvider(int ServiceProviderId)
+        public List<ServiceProvider> GetAllServiceProvider(int ServiceProviderId, string CompanyName, string MobileNo, string PhoneNo, string EmailId, string CRNumber)
         {
             MethodOutput<ServiceProvider> objMO = new MethodOutput<ServiceProvider>();
             ServiceProviderService obj = new ServiceProviderService();
-            objMO = obj.GetAllServiceProvider(ServiceProviderId);
+            objMO = obj.GetAllServiceProvider(ServiceProviderId, CompanyName, MobileNo, PhoneNo, EmailId, CRNumber);
             return objMO.DataList;
+        }
+
+        public ActionResult BindServiceProvider(int ServiceProviderId, string CompanyName, string MobileNo, string PhoneNo, string EmailId, string CRNumber)
+        {
+            string strError = string.Empty;
+            List<ServiceProvider> objList = new List<ServiceProvider>();
+            try
+            {
+                objList = this.GetAllServiceProvider(ServiceProviderId, CompanyName, MobileNo, PhoneNo, EmailId, CRNumber);
+                mServiceProvider objSP = new mServiceProvider();
+                objSP.ServiceProviderList = objList;
+                return PartialView("_ServiceProviderList", objSP);
+            }
+            catch (Exception ex)
+            {
+
+                strError = ex.Message;
+            }
+            return Json(new { ErrorMsg = strError }, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -269,11 +315,26 @@ namespace NationAssists.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetServiceProviderDetail(int ServiceProviderId)
         {
-            List<ServiceProvider> objServiceProvider = GetAllServiceProvider(ServiceProviderId);
+            List<ServiceProvider> objServiceProvider = GetAllServiceProvider(ServiceProviderId,string.Empty,string.Empty,string.Empty,string.Empty,string.Empty);
             return Json(objServiceProvider[0], JsonRequestBehavior.AllowGet);
         }
 
 
+
+        public ActionResult ServiceProviderList()
+        {
+            if (Session["UserId"] != null)
+            {
+                objServiceProiders.Editable = false;
+                objServiceProiders.ServiceProviderServicesOpted = objServiceProiders.GetAllServices();
+                objServiceProiders.ServiceProviderList = GetAllServiceProvider(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+                return View(objServiceProiders);
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
+        }
 
 
         #endregion
@@ -514,9 +575,21 @@ namespace NationAssists.Areas.Admin.Controllers
 
         }
 
+        public List<Service> BindService()
+        {
+            MethodOutput<Service> objMO = new MethodOutput<Service>();
+            ServiceSubCategoryService obj = new ServiceSubCategoryService();
+            objMO = obj.GetAllServices();
+            return objMO.DataList;
+        }
+
+
         public ActionResult ManageService()
         {
-            return View();
+            mService objService = new mService();
+            objService.ServiceList = BindService();
+
+            return View(objService);
         }
         #endregion
         public static string RandomString(int length)

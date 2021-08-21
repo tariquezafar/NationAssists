@@ -205,10 +205,10 @@ function EditServiceProvider(e) {
                 $("#hdnServiceProviderID").val(Jdata.ServiceProviderId);
                 //$('input[name="chkService"][type="checkbox"]').prop("checked", false);
                 if (Jdata.SelectedServiceOpted != null) {
-
+                    var ArrSelectedServiceOpted = Jdata.SelectedServiceOpted.split(',');
                     $('input[name="chkService"][type="checkbox"]').each(function (index) {
                         item = $(this);
-                        if (Jdata.SelectedServiceOpted.indexOf(item.val()) != -1) {
+                        if (ArrSelectedServiceOpted.includes(item.val())) {
                             item.attr('checked', true);
                         }
                     });
@@ -307,6 +307,37 @@ function DeleteServiceProvider(e) {
     else {
         return false;
     }
+}
+
+function SearchServiceProvider() {
+    $('body').data("IsLoaderRequired", true);
+    $loading.show();
+    var CompanyName = $("#txtFirstName").val();
+    var ServiceProviderId = 0;
+    var MobileNo = $("#txtMobileNo").val();
+    var PhoneNo = $("#txtPhoneNo").val();
+    var EmailId = $("#txtEmailId").val()
+    var CPRNumber = $("#txtCRNumber").val();
+    var pUrl = "/Admin/Service/BindServiceProvider?ServiceProviderId=" + ServiceProviderId + "&CompanyName=" + CompanyName + "&MobileNo=" + MobileNo + "&PhoneNo=" + PhoneNo + "&EmailId=" + EmailId + "&CRNumber=" + CPRNumber;
+    $.ajax({
+        type: "Get",
+        url: pUrl,
+        data: {},
+        dataType: 'html',
+        contentType: false,
+        processData: false,
+        async: true,
+        success: function (data) {
+            if (!IsJsonString(data)) {
+                $("#tblServiceProvider").html(data);
+            }
+
+            $loading.hide();
+        },
+        error: function (data) {
+
+        }
+    });
 }
 
 

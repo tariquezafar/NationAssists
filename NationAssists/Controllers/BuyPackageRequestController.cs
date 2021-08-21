@@ -71,7 +71,7 @@ namespace NationAssists.Controllers
         {
             ServiceEnrollmentService objSES = new ServiceEnrollmentService();
             MethodOutput<ServiceEnrollmentRequest> output = new MethodOutput<ServiceEnrollmentRequest>();
-            output = objSES.GetAllServiceEnrollementRequst(CustomerId);
+            output = objSES.GetAllServiceEnrollementRequst(CustomerId,0,0,string.Empty);
             return output.DataList;
         }
 

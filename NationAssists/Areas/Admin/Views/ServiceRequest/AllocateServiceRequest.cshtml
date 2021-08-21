@@ -4,18 +4,46 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <div class="dashboardCon transition">
     <div class="mainHd">Allocate Service Request</div>
+    <div id="dvDetail">
+        <ul class="form flexBox">
 
-    <div id="dvServiceRequestDetail" style="display:none;" >
+            <li class="oneThird">
+                <span class="fieldHd" id="lblService">Ticket No </span>
+                <input type="text" id="txtTicketNo" class="formInput" />
+            </li>
+
+
+            <li class="oneThird">
+                <span class="fieldHd">Customer Name</span>
+                <input type="text" id="txtCustomerName" class="formInput" />
+            </li>
+
+            <li class="oneThird">
+                <span class="fieldHd">Contact No</span>
+                <input type="text" id="txtContactNo" class="formInput" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Email ID</span>
+                <input type="text" id="txtEmailId" class="formInput" />
+            </li>
+        </ul>
+        <div>
+            <div class="tac"><button class="formBtn regNextStep" onclick="SearchAllocateServiceRequest()">Search</button></div>
+        </div>
+    </div>
+
+    <div id="dvServiceRequestDetail" style="display:none;">
         <ul class="form flexBox">
             <li class="oneThird">
                 <span class="fieldHd">Service</span>
-                <input type="text" disabled="disabled" id="txtServiceName"  class="formInput" />
+                <input type="text" disabled="disabled" id="txtServiceName" class="formInput" />
             </li>
             <li class="oneThird">
                 <span class="fieldHd" id="lblService">Service Type </span>
-                <input type="text" disabled="disabled" id="txtServiceType"  class="formInput" />
+                <input type="text" disabled="disabled" id="txtServiceType" class="formInput" />
             </li>
             <li class="oneThird RAP">
                 <span class="fieldHd">Vehicle Registration Number </span>
@@ -76,8 +104,16 @@
                 <textarea id="txtCollectRepairVehicleAddress" class="formInput" disabled="disabled"></textarea>
             </li>
             <li class="oneThird">
+                <span class="fieldHd">Customer Name</span>
+                <input type="text" id="txtCustName" class="formInput" disabled="disabled" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Customer Email Id</span>
+                <input type="text" id="txtCustomerEmailId" class="formInput" disabled="disabled" />
+            </li>
+            <li class="oneThird">
                 <span class="fieldHd">Contact No</span>
-                <input type="text" id="txtContactNo" class="formInput" disabled="disabled" />
+                <input type="text" id="txtCustContactNo" class="formInput" disabled="disabled" />
             </li>
             <li class="oneThird">
                 <span class="fieldHd">Relevent Details</span>
@@ -87,12 +123,19 @@
                 <span class="fieldHd">Remarks</span>
                 <textarea id="txtRemarks" class="formInput" disabled="disabled"></textarea>
             </li>
+            <li class="oneThird">
+                <span class="fieldHd"> Allocation Remarks</span>
+                <textarea id="txtAllocationRemarks" class="formInput"></textarea>
+            </li>
+
 
         </ul>
+
         <div class="dbTable" id="tblProviderList">
 
 
         </div>
+
         <br />
 
         <div>

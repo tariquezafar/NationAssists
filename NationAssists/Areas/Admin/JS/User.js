@@ -243,11 +243,13 @@ function EditUser(e) {
 
 function BindUserTypeDetail() {
     if ($("#UserTypeId").val() != "") {
-        var UserTypeId = $("#UserTypeId").val();
-        var UserType = $("#UserTypeId").val() == "2" ? 'AG' : ($("#UserTypeId").val() == "3" ? 'IC' : ($("#UserTypeId").val() == "4" ? 'SP' : ''));
+        var userType = $("#UserTypeId option:selected").text();
+        var UserTypeCode = userType.substring(userType.indexOf('(') + 1, userType.indexOf(')'));
+       // var UserTypeId = $("#UserTypeId").val();
+       // var UserType = $("#UserTypeId").val() == "2" ? 'AG' : ($("#UserTypeId").val() == "3" ? 'IC' : ($("#UserTypeId").val() == "4" ? 'SP' : ''));
 
-        if (UserTypeId != "1") {
-            var pUrl = "/Admin/User/BindUserTypeDetail?UserType=" + UserType;
+        if (UserTypeCode != "EMP") {
+            var pUrl = "/Admin/User/BindUserTypeDetail?UserType=" + UserTypeCode;
             $.ajax({
                 type: "Get",
                 url: pUrl,
@@ -280,5 +282,32 @@ function BindUserTypeDetail() {
             $("#UserReferenceId").val('');
         }
     }
+}
+
+function SearchUser() {
+    var UserId = 0;
+    var UserTypeId = $("#UserTypeId").val() == "" ? 0 : parseInt($("#UserTypeId").val());
+    var UserReferenceId = $("#UserReferenceId").val() == "" ? 0 : parseInt($("#UserReferenceId").val());
+    var UserCode = $("#txtUserCode").val();
+    var UserName = $("#txtUserName").val();
+
+    var pUrl = "/Admin/User/BindUsers?UserId=" + UserId + "&UserTypeId=" + UserTypeId + "&UserReferenceId=" + UserReferenceId + "&UserCode=" + UserCode + "&UserName=" + UserName;
+    $.ajax({
+        type: "Get",
+        url: pUrl,
+        data: {},
+        dataType: 'html',
+        contentType: false,
+        processData: false,
+        async: false,
+        success: function (data) {
+            if (!IsJsonString(data)) {
+                $("#tblUsers").html(data);
+            }
+            else {
+                console.log(data);
+            }
+        }
+    });
 }
 

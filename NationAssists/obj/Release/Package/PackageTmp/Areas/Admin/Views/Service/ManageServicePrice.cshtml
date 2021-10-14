@@ -7,24 +7,24 @@
 
 
 <div class="dashboardCon transition">
-    <div class="mainHd">Manage Service Provider</div>
+    <div class="mainHd">Manage Package Price</div>
     <ul class="dbForm flexBox">
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Service </span>
+            <span class="fieldHd" id="lblService">Service** </span>
             @Html.DropDownListFor(m => m.ServiceId, Model.GetAllServices(), "--select-", new { @class = "formInput", @onchange = "BindServicePriceList()" })
         </li>
 
         <li class="oneThird">
-            <span class="fieldHd" id="lblServicePrice">Price </span>
+            <span class="fieldHd" id="lblServicePrice">Price** </span>
             <input type="number" class="formInput" id="txtPrice" placeholder="Price">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblStartDate">Start Date </span>
-            <input type="datetime-local" class="formInput" id="txtStartDate">
+            <span class="fieldHd" id="lblStartDate">Start Date** </span>
+            <input type="text" class="formInput datePicker" id="txtStartDate">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblEndDate">End Date </span>
-            <input type="datetime-local" class="formInput" id="txtEndDate">
+            <span class="fieldHd" id="lblEndDate">End Date** </span>
+            <input type="text" class="formInput datePicker" id="txtEndDate">
         </li>
     </ul>
     <div>

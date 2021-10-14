@@ -38,6 +38,8 @@ namespace DbOperation
                     dtServ = ds.Tables[0];
                     objServiceCatPrice.PriceOption = Convert.ToString(dtServ.Rows[0]["Pricing_option"]);
                     objServiceCatPrice.PriceCount = Convert.ToInt32(dtServ.Rows[0]["PRICE_COUNT"]);
+                    objServiceCatPrice.AgreementStartDate = Convert.ToDateTime(dtServ.Rows[0]["Agreement_Start_Date"]);
+                    objServiceCatPrice.AgreementEndDate = Convert.ToDateTime(dtServ.Rows[0]["Agreement_End_Date"]);
                     dt = ds.Tables[1];
                     if (dt.Rows.Count > 0)
                     {

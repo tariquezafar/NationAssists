@@ -49,25 +49,13 @@ namespace DbOperation
                 objListSqlParam[6].ParameterName = "@Gender";
                 objListSqlParam[6].Value = objCustomer.Gender;
 
+
+            
                 objListSqlParam[7] = new SqlParameter();
-                objListSqlParam[7].ParameterName = "@BrokerId";
-                objListSqlParam[7].Value = objCustomer.BrokerId;
+                objListSqlParam[7].ParameterName = "@Password";
+                objListSqlParam[7].Value = objCustomer.Password;
 
-                objListSqlParam[8] = new SqlParameter();
-                objListSqlParam[8].ParameterName = "@AccountType";
-                objListSqlParam[8].Value = objCustomer.AccountType;
-
-                objListSqlParam[9] = new SqlParameter();
-                objListSqlParam[9].ParameterName = "@AccountSubType";
-                objListSqlParam[9].Value = objCustomer.AccountSubType;
-
-                objListSqlParam[10] = new SqlParameter();
-                objListSqlParam[10].ParameterName = "@Password";
-                objListSqlParam[10].Value = objCustomer.Password;
-
-                objListSqlParam[11] = new SqlParameter();
-                objListSqlParam[11].ParameterName = "@Customer_Reference_Code";
-                objListSqlParam[11].Value = objCustomer.Customer_Reference_Code;
+               
 
 
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveCustomer", objListSqlParam).Tables[0];

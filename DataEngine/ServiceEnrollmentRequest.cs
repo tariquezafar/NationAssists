@@ -54,6 +54,8 @@ namespace DataEngine
         public int ApprovedBy { get; set; }
 
         public string CPRNumber { get; set; }
+
+        public string CustomerEmail { get; set; }
     }
 
 }

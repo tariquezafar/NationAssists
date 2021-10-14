@@ -9,7 +9,7 @@
     <div class="mainHd">Manage Source Price</div>
     <ul class="dbForm flexBox">
         <li class="oneThird">
-            <span class="fieldHd" id="lblUserType">Source Type </span>
+            <span class="fieldHd" id="lblUserType">Source Type** </span>
             <select id="BrokerTypeId" class="formInput" onchange="BindBroker()">
                 <option value="">--Select--</option>
                 <option value="AG">Agent</option>
@@ -21,16 +21,24 @@
             </select>
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Source </span>
+            <span class="fieldHd" id="lblService">Source** </span>
             @Html.DropDownListFor(m => m.BrokerId,
              new SelectList(Enumerable.Empty<SelectListItem>(), "BrokerId", "BrokerName"),
                     "Select Service", new { @class = "formInput", @onchange = "GetAllServices()" })
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Service </span>
+            <span class="fieldHd" id="lblService">Service** </span>
             @Html.DropDownListFor(m => m.ServiceId,
            new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceId", "ServiceName"),
                   "Select Service", new { @class = "formInput", @onchange = "BindBrokerPriceList()" })
+        </li>
+        <li class="oneThird Ad" style="display:none;">
+            <span class="fieldHd" id="lblStartDate">Agreement Start Date** </span>
+            <input type="text" class="formInput"disabled="disabled" id="txtAgreementStartDate">
+        </li>
+        <li class="oneThird Ad" style="display:none;">
+            <span class="fieldHd" id="lblEndDate">Agreement End Date** </span>
+            <input type="text" class="formInput" disabled="disabled" id="txtAgreementEndDate">
         </li>
         <li class="oneThird">
             <span class="fieldHd">Pricing Option</span>
@@ -40,21 +48,22 @@
             </div>
         </li>
         <li class="oneThird pb" style="display:none;">
-            <span class="fieldHd" id="lblServicePrice">Price </span>
+            <span class="fieldHd" id="lblServicePrice">Price** </span>
             <input type="number" class="formInput" id="txtPrice" placeholder="Price">
         </li>
         <li class="oneThird pb" style="display:none;">
             <span class="fieldHd" id="lblStartDate">Start Date </span>
-            <input type="datetime-local" class="formInput" id="txtStartDate">
+            <input type="text" class="formInput datePicker" id="txtStartDate">
         </li>
         <li class="oneThird pb" style="display:none;">
             <span class="fieldHd" id="lblEndDate">End Date </span>
-            <input type="datetime-local" class="formInput" id="txtEndDate">
+            <input type="text" class="formInput datePicker" id="txtEndDate">
         </li>
     </ul>
 
     <div>
-
+        <input type="hidden" id="hdnAgreementStartDate" value="" />
+        <input type="hidden" id="hdnAgreementEndDate" value="" />
         <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveBrokerPrice();">Save</button>
         <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Brokers/ManageBrokerPrice/'">Reset</button>
 

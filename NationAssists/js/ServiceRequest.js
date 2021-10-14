@@ -22,7 +22,7 @@
 
                     var SelectedService = $("#ServiceId option:selected").text();
                     var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-                    if (ServiceCode == "HAP") {
+                    if (ServiceCode == "HA") {
                         $('.RAP').hide();
                         $('.HAP').show();
                         $("#txtServiceLocation").hide();
@@ -160,8 +160,9 @@ function SubmitServiceRequest() {
             CollectRepairVehicleAddress: $("#txtCollectRepairVehicleAddress").val(),
             ContactMobileNo: $("#txtContactNo").val(),
             ReleventDetails: $("#txtReleventDetails").val(),
-            Remarks: $("#txtRemarks").val()
-
+            Remarks: $("#txtRemarks").val(),
+            SubCategoryName: $("#ServiceCategoryId option:selected").text(),
+            IsRequestedFromCustomer:true
 
         };
         var pUrl = "/RaiseServiceRequest/SubmitServiceRequest/";
@@ -239,7 +240,7 @@ function ValidateForm() {
     if ($("#ServiceId").val() != "0") {
         var SelectedService = $("#ServiceId option:selected").text();
         var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-        if (ServiceCode == "HAP") {
+        if (ServiceCode == "HA") {
 
             if ($("#ddlServiceLocation").val() == "0" || $("#ddlServiceLocation").val() == "") {
                 IsValid = false;
@@ -320,7 +321,7 @@ function ShowServiceRequestDetail(e) {
 
     var SelectedService = e.ServiceName;
     var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-    if (ServiceCode == "HAP") {
+    if (ServiceCode == "HA") {
         $('.RAP').hide();
         $('.HAP').show();
 

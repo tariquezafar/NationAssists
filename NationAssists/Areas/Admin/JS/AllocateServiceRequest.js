@@ -30,7 +30,7 @@
     
     var SelectedService = e.ServiceName;
     var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-    if (ServiceCode == "HAP") {
+    if (ServiceCode == "HA") {
         $('.RAP').hide();
         $('.HAP').show();
 

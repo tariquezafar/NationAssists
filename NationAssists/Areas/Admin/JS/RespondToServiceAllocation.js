@@ -24,10 +24,10 @@
     $("#hdnSubCategoryId").val(e.ServiceSubCategoryId);
     $("#txtCustomerName").val(e.Customer_Name);
     $("#txtCustomerEmailId").val(e.EmailId);
-    
+    $("#hdnTicketNo").val(e.TicketNo);
     var SelectedService = e.ServiceName;
     var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-    if (ServiceCode == "HAP") {
+    if (ServiceCode == "HA") {
         $('.RAP').hide();
         $('.HAP').show();
 
@@ -45,6 +45,18 @@
     $("#tblServiceRequest").hide();
     $("#txtAllocationRemarks").val(e.AllocationRemarks);
 
+    if (e.ServiceAllocationStatus !=  1) {
+        $("#btnSave").hide();
+        $("#ddlStatus").val(e.ServiceAllocationStatus == "2" ? "AC" : "RJ");
+        $("#txtAcceptanceRemarks").val(e.AcceptanceRemark);
+        $("#txtReasonForRejection").val(e.ReasonForRejection);
+        $("#AssignedToUserId").val(e.AssignedToUserId);
+
+    }
+    else {
+        $("#btnSave").show();
+    }
+
 }
 
 
@@ -56,8 +68,8 @@ function SaveServiceAllocation() {
         alert("Please select Status.");
 
     }
-    else if ($("#ddlStatus").val() == "AC" && $("#AssignedToUserId").val() == "") {
-        alert("Please select User.");
+    else if ($("#ddlStatus").val() == "AC" && $("#txtAcceptanceRemarks").val() == "") {
+        alert("Please enter Acceptance Remarks.");
     }
     else if ($("#ddlStatus").val() == "RJ" && $("#txtReasonForRejection").val() == "") {
         alert("Please enter Rejection Reason");
@@ -72,10 +84,17 @@ function SaveServiceAllocation() {
             ServiceSubCategoryId: $("#hdnSubCategoryId").val(),  
             ServiceAllocationStatus: $("#ddlStatus").val() == "AC" ? 2 : 3,
             ReasonForRejection: $("#txtReasonForRejection").val(),
-            AssignedToUser: $("#AssignedToUserId").val(),
+            AssignedToUser: $("#AssignedToUserId").val() == "" ? 0 : $("#AssignedToUserId").val(),
             ServicePrice: 0,
             ServicePriceId: 0,
             ServiceAllocationId: $("#hdnServiceAllocationId").val(),
+            Remarks: $("#txtAcceptanceRemarks").val(),
+            CustomerName:  $("#txtCustomerName").val(),
+            CustomerEmail: $("#txtCustomerEmailId").val(),
+            ServiceType: $("#txtServiceType").val(),
+            SourceType: 'Nation Assist',
+            SourceName: 'Nation Assist',
+            TicketNo: $("#hdnTicketNo").val()
 
         };
 
@@ -105,3 +124,30 @@ function SaveServiceAllocation() {
     }
     
 }
+
+function SearchAllocation() {
+    var ServiceProviderId = $("#hdnServiceProviderId").val();
+    var ServiceAllocationStatusId = $("#ServiceAllocationStatusId").val() == "" ? "0": $("#ServiceAllocationStatusId").val();
+    var Service = $("#Service").val();
+    var pUrl = "/Admin/ServiceRequest/SearchAllocation?ServiceProviderId=" + ServiceProviderId + "&ServiceAllocationStatusId=" + ServiceAllocationStatusId + "&Service=" + Service;
+    $.ajax({
+        type: "Get",
+        url: pUrl,
+        data: {},
+        dataType: 'html',
+        contentType: false,
+        processData: false,
+        async: false,
+        success: function (data) {
+            if (!IsJsonString(data)) {
+                $("#tblServiceRequest").html(data);
+             //   $loading.hide();
+            }
+            else {
+                console.log(data);
+               // $loading.hide();
+            }
+        }
+    });
+}
+

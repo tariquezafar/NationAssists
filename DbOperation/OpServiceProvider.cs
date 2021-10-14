@@ -218,7 +218,9 @@ namespace DbOperation
                         }).ToList():null,
                         PriceOption= x.Field<string>("Pricing_option"),
                         ServiceProviderCode= x.Field<string>("ServiceProviderCode"),
-                        ServiceProviderAreas= dtServiceArea.Rows.Count > 0 && dtServiceArea.Select("ServiceProviderId ="+ x.Field<int>("ServiceProviderId")).Length >0 ? dtServiceArea.Select("ServiceProviderId =" + x.Field<int>("ServiceProviderId")).CopyToDataTable().AsEnumerable().Select(y => new ServiceProviderServiceArea
+                        Agg_Start_Date = x.Field<string>("Agg_Start_Date"),
+                        Agg_End_Date = x.Field<string>("Agg_End_Date"),
+                        ServiceProviderAreas = dtServiceArea.Rows.Count > 0 && dtServiceArea.Select("ServiceProviderId ="+ x.Field<int>("ServiceProviderId")).Length >0 ? dtServiceArea.Select("ServiceProviderId =" + x.Field<int>("ServiceProviderId")).CopyToDataTable().AsEnumerable().Select(y => new ServiceProviderServiceArea
                         {
                             ServiceProviderServiceAreaId = y.Field<Int64>("ServiceProviderServiceAddressId"),
                             ServiceName= y.Field<string>("ServiceName"),

@@ -357,10 +357,10 @@ namespace NationAssists.Areas.Admin.Controllers
 
         public ActionResult BindServices(int ServiceProviderId)
         {
-            MethodOutput<Service> objMO = new MethodOutput<Service>();
+            MethodOutput<ServiceProvider> objMO = new MethodOutput<ServiceProvider>();
             CommonServices obj = new CommonServices();
             objMO = obj.BindServicesByServiceProviderId(ServiceProviderId);
-            return Json( objMO.DataList,JsonRequestBehavior.AllowGet);
+            return Json( objMO.Data,JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ShowServiceSubCategoryPriceList(int ServiceProviderId,int ServiceId)
@@ -549,6 +549,13 @@ namespace NationAssists.Areas.Admin.Controllers
             return Json( objSPP,JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult BindServiceOptedByServiceProviderId(int ServiceId, int ServiceProviderId)
+        {
+            MethodOutput<ServiceSubCategory> objMO = new MethodOutput<ServiceSubCategory>();
+            CommonServices obj = new CommonServices();
+            objMO = obj.BindServiceCategoryByProviderId(ServiceId,ServiceProviderId);
+            return Json(objMO.DataList, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Service

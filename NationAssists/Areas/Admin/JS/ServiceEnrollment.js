@@ -131,10 +131,10 @@ function ValidateForm() {
                 strErrMsg += "Please select Policy Effective Date . \n";
             }
 
-            if ($("#txtEffectiveDate").val() != "" && Date.parse($("#txtEffectiveDate").val()) < Date.parse($("#hdnRequestedDate").val()) ) {
-                IsValid = false;
-                strErrMsg += "Policy Effective date must 3 days after than Service requested Date . \n";
-            }
+            //if ($("#txtEffectiveDate").val() != "" && Date.parse($("#txtEffectiveDate").val()) < Date.parse($("#hdnRequestedDate").val()) ) {
+            //    IsValid = false;
+            //    strErrMsg += "Policy Effective date must 3 days after than Service requested Date . \n";
+            //}
             if ($("#txtExpiryDate").val() != "" && $("#txtEffectiveDate").val() != "" && Date.parse($("#txtExpiryDate").val()) <= Date.parse($("#txtEffectiveDate").val())) {
 
                 IsValid = false;
@@ -179,7 +179,8 @@ function SaveMembership() {
             PolicyEndDate: $("#txtExpiryDate").val(),
             ServiceEnrollmentStatus: $("#ServiceEnrollmentStatusId").val(),
             ApproverRemarks: $("#txtApproverRemarks").val(),
-
+            CustomerName: $("#txtCustName").val(),
+            CustomerEmail: $("#txtCustEmail").val()
 
         };
 
@@ -235,7 +236,7 @@ function ShowServiceEnrollmentDetail(e) {
     $("#txtVehicleRegistrationNo").val(e.VehicleRegistrationNumber);
     $("#txtYearOfConstruction").val(e.YearOfConstruction);
     $("#txtVehicleYear").val(e.YearOfManufacture);
-    if (ServiceCode == "HAP") {
+    if (ServiceCode == "HA") {
         $(".HAS").show();
         $(".RAS").hide();
 

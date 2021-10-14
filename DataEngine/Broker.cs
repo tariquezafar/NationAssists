@@ -54,6 +54,9 @@ namespace DataEngine
 
         public string Password { get; set; }
 
+        public string Agg_Start_Date { get; set; }
+        public string Agg_End_Date { get; set; }
+        public string CPR_Expiry_Date { get; set; }
     }
 
 
@@ -94,6 +97,8 @@ namespace DataEngine
         public DateTime Commission_EndDate { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string Commission_Start_Date { get; set; }
+        public string Commission_End_Date { get; set; }
     }
 
 

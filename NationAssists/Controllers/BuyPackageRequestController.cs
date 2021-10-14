@@ -40,6 +40,8 @@ namespace NationAssists.Controllers
                 ServiceEnrollmentService obj = new ServiceEnrollmentService();
              
                 objMO = obj.SaveServiceEnrollmentRequest(objSER);
+                
+
                 IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
                 strMsg = objMO.ErrorMessage;
                 

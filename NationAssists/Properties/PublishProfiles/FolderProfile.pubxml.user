@@ -4,21 +4,24 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <History>True|2021-08-20T09:50:34.1315553Z;True|2021-08-17T16:00:37.3920459+05:30;True|2021-08-16T08:53:32.4090494+05:30;True|2021-08-15T14:49:04.5639430+05:30;True|2021-08-12T10:10:13.7448359+05:30;True|2021-08-11T10:12:22.1690310+05:30;True|2021-08-10T10:23:00.5200685+05:30;True|2021-08-09T10:13:22.7527250+05:30;True|2021-08-07T13:07:34.9870541+05:30;True|2021-08-06T19:27:10.8255130+05:30;True|2021-08-06T09:54:49.4956396+05:30;True|2021-08-05T21:34:33.6111351+05:30;True|2021-07-30T10:35:38.7716349+05:30;True|2021-07-27T13:15:30.1031229+05:30;True|2021-07-27T11:35:38.7754471+05:30;True|2021-07-24T18:10:17.0579283+05:30;True|2021-07-22T21:01:33.9755341+05:30;True|2021-07-20T08:40:48.8384944+05:30;True|2021-07-20T08:33:46.3150479+05:30;True|2021-07-20T08:14:44.6166590+05:30;True|2021-07-20T08:00:12.3462435+05:30;True|2021-07-19T14:56:09.5616026+05:30;True|2021-07-16T21:48:53.0426927+05:30;True|2021-07-13T10:23:06.7871679+05:30;True|2021-07-10T20:10:07.7854913+05:30;True|2021-07-08T19:41:45.0928130+05:30;True|2021-07-05T13:38:54.5315665+05:30;True|2021-06-30T20:55:28.4101182+05:30;True|2021-06-29T15:03:27.9555306+05:30;True|2021-06-23T22:06:42.5099214+05:30;True|2021-06-22T21:57:06.6113393+05:30;True|2021-06-20T12:07:30.7396319+05:30;True|2021-06-17T10:19:51.0547981+05:30;True|2021-06-17T10:18:36.0811070+05:30;True|2021-06-12T18:37:20.6729253+05:30;True|2021-06-10T14:22:41.3959216+05:30;True|2021-06-10T09:22:01.2022957+05:30;True|2021-06-09T14:53:33.7458854+05:30;True|2021-06-07T22:10:34.1029701+05:30;True|2021-06-05T11:43:56.6805351+05:30;True|2021-06-03T20:44:45.6947974+05:30;True|2021-05-29T20:39:06.5711970+05:30;False|2021-05-29T15:22:39.9762977+05:30;False|2021-05-29T15:21:22.4078550+05:30;False|2021-05-29T15:19:25.6278529+05:30;False|2021-05-29T15:11:56.9806338+05:30;False|2021-05-29T14:48:00.1646295+05:30;False|2021-05-29T14:46:36.1714360+05:30;</History>
-    <_PublishTargetUrl>D:\Tarique\NationAssists-Publish\20_08_2021</_PublishTargetUrl>
+    <History>True|2021-10-14T09:42:22.6027993Z;True|2021-10-14T14:52:26.6432537+05:30;True|2021-10-06T14:36:30.7863768+05:30;True|2021-10-04T10:16:20.1847615+05:30;True|2021-10-01T20:33:51.4632128+05:30;True|2021-09-30T23:45:14.3082889+05:30;True|2021-09-29T10:57:50.1716068+05:30;True|2021-09-28T11:05:16.7446073+05:30;True|2021-09-27T16:44:11.8407857+05:30;True|2021-09-26T23:51:02.8455563+05:30;True|2021-09-23T11:46:33.0425211+05:30;True|2021-09-19T11:15:32.9032848+05:30;True|2021-09-19T00:08:33.2995370+05:30;True|2021-09-19T00:04:32.0694294+05:30;True|2021-09-15T09:50:33.5818597+05:30;True|2021-09-13T13:51:28.7185868+05:30;True|2021-09-13T10:13:11.9458159+05:30;True|2021-09-08T14:57:35.0930403+05:30;True|2021-09-07T22:26:07.7290076+05:30;True|2021-09-06T10:17:31.7348469+05:30;True|2021-09-03T14:41:05.7106950+05:30;True|2021-08-26T15:18:57.7124201+05:30;True|2021-08-25T10:35:32.4334268+05:30;True|2021-08-23T10:24:03.3886211+05:30;True|2021-08-21T20:49:45.1752284+05:30;True|2021-08-20T15:20:34.1315553+05:30;True|2021-08-17T16:00:37.3920459+05:30;True|2021-08-16T08:53:32.4090494+05:30;True|2021-08-15T14:49:04.5639430+05:30;True|2021-08-12T10:10:13.7448359+05:30;True|2021-08-11T10:12:22.1690310+05:30;True|2021-08-10T10:23:00.5200685+05:30;True|2021-08-09T10:13:22.7527250+05:30;True|2021-08-07T13:07:34.9870541+05:30;True|2021-08-06T19:27:10.8255130+05:30;True|2021-08-06T09:54:49.4956396+05:30;True|2021-08-05T21:34:33.6111351+05:30;True|2021-07-30T10:35:38.7716349+05:30;True|2021-07-27T13:15:30.1031229+05:30;True|2021-07-27T11:35:38.7754471+05:30;True|2021-07-24T18:10:17.0579283+05:30;True|2021-07-22T21:01:33.9755341+05:30;True|2021-07-20T08:40:48.8384944+05:30;True|2021-07-20T08:33:46.3150479+05:30;True|2021-07-20T08:14:44.6166590+05:30;True|2021-07-20T08:00:12.3462435+05:30;True|2021-07-19T14:56:09.5616026+05:30;True|2021-07-16T21:48:53.0426927+05:30;True|2021-07-13T10:23:06.7871679+05:30;True|2021-07-10T20:10:07.7854913+05:30;True|2021-07-08T19:41:45.0928130+05:30;True|2021-07-05T13:38:54.5315665+05:30;True|2021-06-30T20:55:28.4101182+05:30;True|2021-06-29T15:03:27.9555306+05:30;True|2021-06-23T22:06:42.5099214+05:30;True|2021-06-22T21:57:06.6113393+05:30;True|2021-06-20T12:07:30.7396319+05:30;True|2021-06-17T10:19:51.0547981+05:30;True|2021-06-17T10:18:36.0811070+05:30;True|2021-06-12T18:37:20.6729253+05:30;True|2021-06-10T14:22:41.3959216+05:30;True|2021-06-10T09:22:01.2022957+05:30;True|2021-06-09T14:53:33.7458854+05:30;True|2021-06-07T22:10:34.1029701+05:30;True|2021-06-05T11:43:56.6805351+05:30;True|2021-06-03T20:44:45.6947974+05:30;True|2021-05-29T20:39:06.5711970+05:30;False|2021-05-29T15:22:39.9762977+05:30;False|2021-05-29T15:21:22.4078550+05:30;False|2021-05-29T15:19:25.6278529+05:30;False|2021-05-29T15:11:56.9806338+05:30;False|2021-05-29T14:48:00.1646295+05:30;False|2021-05-29T14:46:36.1714360+05:30;</History>
+    <_PublishTargetUrl>D:\Tarique\NationAssists-Publish\14_10_2021_1</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/Admin/JS/AllocateServiceRequest.js">
-      <publishTime>08/18/2021 15:02:21</publishTime>
+      <publishTime>08/25/2021 22:53:37</publishTime>
     </File>
     <File Include="Areas/Admin/JS/AssignedServiceRequest.js">
-      <publishTime>08/08/2021 13:16:59</publishTime>
+      <publishTime>09/13/2021 09:44:01</publishTime>
     </File>
     <File Include="Areas/Admin/JS/Broker.js">
-      <publishTime>08/18/2021 14:38:28</publishTime>
+      <publishTime>09/30/2021 15:32:01</publishTime>
+    </File>
+    <File Include="Areas/Admin/JS/BrokerList.js">
+      <publishTime>10/09/2021 11:07:47</publishTime>
     </File>
     <File Include="Areas/Admin/JS/BrokerPrice.js">
-      <publishTime>08/17/2021 17:05:34</publishTime>
+      <publishTime>09/28/2021 11:01:17</publishTime>
     </File>
     <File Include="Areas/Admin/JS/CardPrinter.js">
       <publishTime>11/25/2017 07:31:00</publishTime>
@@ -36,37 +39,37 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/22/2021 15:24:09</publishTime>
     </File>
     <File Include="Areas/Admin/JS/Membership.js">
-      <publishTime>08/15/2021 13:36:20</publishTime>
+      <publishTime>09/30/2021 15:18:12</publishTime>
     </File>
     <File Include="Areas/Admin/JS/RaiseServiceRequest.js">
-      <publishTime>08/08/2021 15:44:25</publishTime>
+      <publishTime>10/01/2021 20:17:36</publishTime>
     </File>
     <File Include="Areas/Admin/JS/RespondToServiceAllocation.js">
-      <publishTime>08/08/2021 13:17:25</publishTime>
+      <publishTime>10/14/2021 14:13:08</publishTime>
     </File>
     <File Include="Areas/Admin/JS/Service.js">
-      <publishTime>08/06/2021 16:00:19</publishTime>
+      <publishTime>08/24/2021 15:00:43</publishTime>
     </File>
     <File Include="Areas/Admin/JS/ServiceEnrollment.js">
-      <publishTime>08/18/2021 15:04:17</publishTime>
+      <publishTime>09/12/2021 20:27:30</publishTime>
     </File>
     <File Include="Areas/Admin/JS/ServicePrice.js">
       <publishTime>06/12/2021 12:11:04</publishTime>
     </File>
     <File Include="Areas/Admin/JS/ServiceProvider.js">
-      <publishTime>08/12/2021 14:17:42</publishTime>
+      <publishTime>09/28/2021 09:58:32</publishTime>
     </File>
     <File Include="Areas/Admin/JS/ServiceProviderList.js">
-      <publishTime>08/11/2021 10:10:04</publishTime>
+      <publishTime>09/28/2021 10:08:27</publishTime>
     </File>
     <File Include="Areas/Admin/JS/ServiceProviderPrice.js">
-      <publishTime>08/17/2021 17:05:06</publishTime>
+      <publishTime>09/30/2021 15:48:58</publishTime>
     </File>
     <File Include="Areas/Admin/JS/ServiceProviderServiceArea.js">
-      <publishTime>06/30/2021 22:21:46</publishTime>
+      <publishTime>08/27/2021 17:09:47</publishTime>
     </File>
     <File Include="Areas/Admin/JS/ServiceRequest.js">
-      <publishTime>08/09/2021 10:26:58</publishTime>
+      <publishTime>10/14/2021 15:06:27</publishTime>
     </File>
     <File Include="Areas/Admin/JS/ServiceSubCategory.js">
       <publishTime>08/07/2021 15:34:03</publishTime>
@@ -75,55 +78,58 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/07/2021 11:53:41</publishTime>
     </File>
     <File Include="Areas/Admin/JS/User.js">
-      <publishTime>08/16/2021 08:51:21</publishTime>
+      <publishTime>09/28/2021 10:29:05</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Brokers/ManageBroker.cshtml">
-      <publishTime>08/12/2021 09:45:56</publishTime>
+      <publishTime>09/02/2021 14:34:47</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Brokers/ManageBrokerPrice.cshtml">
-      <publishTime>07/02/2021 23:41:27</publishTime>
+      <publishTime>09/02/2021 14:38:03</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Brokers/ManageMembership.cshtml">
-      <publishTime>08/15/2021 13:15:50</publishTime>
+      <publishTime>10/06/2021 14:34:53</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Brokers/SourceList.cshtml">
+      <publishTime>10/07/2021 23:00:07</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Brokers/UploadMembership.cshtml">
-      <publishTime>08/05/2021 21:32:57</publishTime>
+      <publishTime>10/06/2021 14:44:33</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Brokers/_BrokerList.cshtml">
-      <publishTime>07/02/2021 23:41:27</publishTime>
+      <publishTime>08/22/2021 10:11:58</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Brokers/_BrokerPriceList.cshtml">
-      <publishTime>07/02/2021 23:41:27</publishTime>
+      <publishTime>09/02/2021 14:37:39</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Brokers/_MembershipList.cshtml">
-      <publishTime>07/18/2021 22:24:48</publishTime>
+      <publishTime>09/29/2021 14:45:56</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Dashboard/Index.cshtml">
-      <publishTime>05/29/2021 19:12:49</publishTime>
+      <publishTime>10/14/2021 14:49:55</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/AddServiceSubCategory.cshtml">
       <publishTime>05/29/2021 16:19:28</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/ManageService.cshtml">
-      <publishTime>08/06/2021 15:56:19</publishTime>
+      <publishTime>09/02/2021 14:46:21</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/ManageServicePrice.cshtml">
-      <publishTime>05/29/2021 16:19:28</publishTime>
+      <publishTime>09/02/2021 14:46:30</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/ManageServiceProvider.cshtml">
-      <publishTime>08/11/2021 09:22:15</publishTime>
+      <publishTime>09/02/2021 14:47:46</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/ManageServiceProviderPrice.cshtml">
-      <publishTime>05/30/2021 21:47:32</publishTime>
+      <publishTime>09/02/2021 14:48:58</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/ManageServiceProviderServiceArea.cshtml">
-      <publishTime>06/30/2021 20:45:43</publishTime>
+      <publishTime>09/02/2021 14:49:22</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/ManageServiceProvierServiceArea.cshtml">
       <publishTime>06/05/2021 17:33:12</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/ManageServiceSubCategory.cshtml">
-      <publishTime>08/07/2021 15:37:27</publishTime>
+      <publishTime>09/02/2021 14:49:29</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/ServiceProviderList.cshtml">
       <publishTime>08/11/2021 10:10:47</publishTime>
@@ -141,58 +147,58 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/29/2021 16:19:28</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/_ServiceProviderList.cshtml">
-      <publishTime>07/24/2021 16:03:50</publishTime>
+      <publishTime>08/22/2021 10:13:33</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/_ServiceSubCategoryList.cshtml">
       <publishTime>07/03/2021 11:43:36</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/_ServiceSubCategoryPriceList.cshtml">
-      <publishTime>05/30/2021 21:42:13</publishTime>
+      <publishTime>09/02/2021 14:49:49</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceEnrollment/Index.cshtml">
-      <publishTime>08/18/2021 15:03:37</publishTime>
+      <publishTime>09/02/2021 14:50:35</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceEnrollment/_ServiceEnrollmentRequestList.cshtml">
-      <publishTime>07/17/2021 20:40:24</publishTime>
+      <publishTime>08/22/2021 10:14:05</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/AllocateServiceRequest.cshtml">
-      <publishTime>08/18/2021 15:04:20</publishTime>
+      <publishTime>09/02/2021 14:51:00</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/AssignedServiceRequest.cshtml">
-      <publishTime>08/08/2021 13:17:57</publishTime>
+      <publishTime>09/13/2021 09:42:55</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/Index.cshtml">
-      <publishTime>08/09/2021 10:27:36</publishTime>
+      <publishTime>10/13/2021 09:17:06</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/RaiseServiceRequest.cshtml">
-      <publishTime>08/07/2021 19:37:20</publishTime>
+      <publishTime>09/29/2021 00:04:18</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/RespondToServiceAllocation.cshtml">
-      <publishTime>08/19/2021 23:16:37</publishTime>
+      <publishTime>10/14/2021 14:11:48</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/_AllocateServiceRequestList.cshtml">
-      <publishTime>07/30/2021 10:16:07</publishTime>
+      <publishTime>08/22/2021 10:51:04</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/_AssignedServiceRequestList.cshtml">
-      <publishTime>07/30/2021 10:16:59</publishTime>
+      <publishTime>08/22/2021 10:22:46</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/_CustomerDetail.cshtml">
-      <publishTime>07/25/2021 11:38:28</publishTime>
+      <publishTime>09/12/2021 20:26:59</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/_PendingServiceRequestList.cshtml">
-      <publishTime>07/30/2021 10:34:01</publishTime>
+      <publishTime>08/22/2021 10:23:14</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ServiceRequest/_ServiceRequestList.cshtml">
-      <publishTime>07/30/2021 10:31:59</publishTime>
+      <publishTime>08/22/2021 10:23:37</publishTime>
     </File>
     <File Include="Areas/Admin/Views/User/AddUser.cshtml">
-      <publishTime>08/10/2021 00:33:35</publishTime>
+      <publishTime>09/28/2021 10:40:59</publishTime>
     </File>
     <File Include="Areas/Admin/Views/User/ChangePassword.cshtml">
       <publishTime>08/08/2021 00:06:24</publishTime>
     </File>
     <File Include="Areas/Admin/Views/User/_UserList.cshtml">
-      <publishTime>06/20/2021 21:47:41</publishTime>
+      <publishTime>09/28/2021 10:32:58</publishTime>
     </File>
     <File Include="Areas/Admin/Views/web.config">
       <publishTime>05/29/2021 16:19:28</publishTime>
@@ -218,26 +224,29 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/Antlr3.Runtime.pdb">
       <publishTime>11/05/2017 15:26:17</publishTime>
     </File>
+    <File Include="bin/BouncyCastle.Crypto.dll">
+      <publishTime>02/21/2020 16:24:54</publishTime>
+    </File>
     <File Include="bin/DataEngine.dll">
-      <publishTime>08/16/2021 08:53:24</publishTime>
+      <publishTime>10/06/2021 14:36:23</publishTime>
     </File>
     <File Include="bin/DataEngine.dll.config">
       <publishTime>11/23/2017 00:22:06</publishTime>
     </File>
     <File Include="bin/DataEngine.pdb">
-      <publishTime>08/16/2021 08:53:24</publishTime>
+      <publishTime>10/06/2021 14:36:23</publishTime>
     </File>
     <File Include="bin/DataServices.dll">
-      <publishTime>08/17/2021 16:00:30</publishTime>
+      <publishTime>10/14/2021 15:12:18</publishTime>
     </File>
     <File Include="bin/DataServices.pdb">
-      <publishTime>08/17/2021 16:00:30</publishTime>
+      <publishTime>10/14/2021 15:12:18</publishTime>
     </File>
     <File Include="bin/DbOperation.dll">
-      <publishTime>08/17/2021 16:00:29</publishTime>
+      <publishTime>10/14/2021 15:12:18</publishTime>
     </File>
     <File Include="bin/DbOperation.pdb">
-      <publishTime>08/17/2021 16:00:29</publishTime>
+      <publishTime>10/14/2021 15:12:18</publishTime>
     </File>
     <File Include="bin/DocumentFormat.OpenXml.dll">
       <publishTime>02/28/2020 19:59:18</publishTime>
@@ -249,10 +258,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/05/2017 15:26:25</publishTime>
     </File>
     <File Include="bin/ICardPrinter.dll">
-      <publishTime>08/20/2021 15:20:29</publishTime>
+      <publishTime>10/14/2021 15:12:20</publishTime>
     </File>
     <File Include="bin/ICardPrinter.pdb">
-      <publishTime>08/20/2021 15:20:29</publishTime>
+      <publishTime>10/14/2021 15:12:20</publishTime>
+    </File>
+    <File Include="bin/itextsharp.dll">
+      <publishTime>08/27/2020 11:20:20</publishTime>
+    </File>
+    <File Include="bin/itextsharp.xmlworker.dll">
+      <publishTime>08/27/2020 11:20:20</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>11/05/2017 15:26:33</publishTime>
@@ -328,6 +343,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>11/05/2017 15:26:18</publishTime>
+    </File>
+    <File Include="Certificate/HA_Certificate.html">
+      <publishTime>10/09/2021 11:32:55</publishTime>
+    </File>
+    <File Include="Certificate/RSACR_Certificate.html">
+      <publishTime>10/10/2021 23:23:29</publishTime>
+    </File>
+    <File Include="Certificate/RSACR_Certificate_new.html">
+      <publishTime>10/02/2021 19:48:29</publishTime>
+    </File>
+    <File Include="Certificate/RSA_Certificate.html">
+      <publishTime>10/10/2021 14:29:51</publishTime>
     </File>
     <File Include="contact-us.html">
       <publishTime>07/16/2021 21:46:07</publishTime>
@@ -858,16 +885,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/07/2017 06:20:09</publishTime>
     </File>
     <File Include="css/Calibri-Bold.woff">
-      <publishTime>05/29/2021 14:52:24</publishTime>
+      <publishTime>08/26/2021 00:50:38</publishTime>
     </File>
     <File Include="css/Calibri-Bold.woff2">
-      <publishTime>05/29/2021 14:52:24</publishTime>
+      <publishTime>08/26/2021 00:50:38</publishTime>
     </File>
     <File Include="css/Calibri.woff">
-      <publishTime>05/29/2021 14:52:24</publishTime>
+      <publishTime>08/26/2021 00:50:38</publishTime>
     </File>
     <File Include="css/Calibri.woff2">
-      <publishTime>05/29/2021 14:52:24</publishTime>
+      <publishTime>08/26/2021 00:50:38</publishTime>
     </File>
     <File Include="css/datatable.min.css">
       <publishTime>11/14/2017 06:31:42</publishTime>
@@ -879,16 +906,25 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/14/2017 00:48:03</publishTime>
     </File>
     <File Include="css/responsive.css">
-      <publishTime>05/29/2021 14:52:24</publishTime>
+      <publishTime>08/26/2021 00:50:38</publishTime>
     </File>
     <File Include="css/slick.css">
-      <publishTime>05/29/2021 14:52:24</publishTime>
+      <publishTime>08/26/2021 00:50:38</publishTime>
     </File>
     <File Include="css/stylesheet.css">
-      <publishTime>06/30/2021 18:41:39</publishTime>
+      <publishTime>08/26/2021 23:08:59</publishTime>
     </File>
     <File Include="css/TableSorter.css">
       <publishTime>11/14/2017 00:48:03</publishTime>
+    </File>
+    <File Include="DownloadDocument/Nation Assist Home Assistance.pdf">
+      <publishTime>08/23/2021 08:04:09</publishTime>
+    </File>
+    <File Include="DownloadDocument/Nation Assist Roadside and Car Replacement.pdf">
+      <publishTime>08/23/2021 08:04:09</publishTime>
+    </File>
+    <File Include="DownloadDocument/Nation Assist Roadside Assistance.pdf">
+      <publishTime>08/23/2021 08:04:09</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>05/29/2021 15:10:30</publishTime>
@@ -993,9 +1029,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/17/2021 20:03:18</publishTime>
     </File>
     <File Include="images/banner_img3.jpg">
-      <publishTime>04/17/2021 20:02:58</publishTime>
+      <publishTime>06/11/2021 15:20:40</publishTime>
+    </File>
+    <File Include="images/banner_img3.jpg old">
+      <publishTime>05/07/2021 22:35:14</publishTime>
+    </File>
+    <File Include="images/career-bg.png">
+      <publishTime>06/19/2021 10:57:17</publishTime>
     </File>
     <File Include="images/client_img.jpg">
+      <publishTime>06/18/2021 23:37:29</publishTime>
+    </File>
+    <File Include="images/client_img2.jpg">
       <publishTime>03/16/2021 10:37:22</publishTime>
     </File>
     <File Include="images/commitment_employees.png">
@@ -1016,6 +1061,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="images/dwn_arrow.png">
       <publishTime>03/18/2021 20:54:44</publishTime>
     </File>
+    <File Include="images/edit.gif">
+      <publishTime>11/20/2017 23:33:12</publishTime>
+    </File>
     <File Include="images/email_contact.png">
       <publishTime>05/01/2021 12:45:12</publishTime>
     </File>
@@ -1025,7 +1073,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="images/facebook_wht.png">
       <publishTime>03/16/2021 10:44:58</publishTime>
     </File>
+    <File Include="images/Footer.jpg">
+      <publishTime>09/25/2021 19:08:27</publishTime>
+    </File>
     <File Include="images/footer_logo.png">
+      <publishTime>05/01/2021 23:01:12</publishTime>
+    </File>
+    <File Include="images/footer_logo.png2">
       <publishTime>03/16/2021 10:42:04</publishTime>
     </File>
     <File Include="images/google_play.png">
@@ -1055,6 +1109,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="images/home_icon.png">
       <publishTime>03/16/2021 10:43:16</publishTime>
     </File>
+    <File Include="images/icon-delete.gif">
+      <publishTime>11/20/2017 23:33:12</publishTime>
+    </File>
     <File Include="images/innovation.png">
       <publishTime>04/11/2021 13:46:44</publishTime>
     </File>
@@ -1064,8 +1121,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="images/insurance_document_banner.png">
       <publishTime>05/01/2021 14:11:36</publishTime>
     </File>
-    <File Include="images/insurance_document_banner_bg.jpg">
+    <File Include="images/insurance_document_banner_bg old.jpg">
       <publishTime>05/01/2021 14:12:48</publishTime>
+    </File>
+    <File Include="images/insurance_document_banner_bg.jpg">
+      <publishTime>06/18/2021 23:52:29</publishTime>
     </File>
     <File Include="images/insurance_document_ro.png">
       <publishTime>03/16/2021 10:33:24</publishTime>
@@ -1076,14 +1136,35 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="images/linkedin_wht.png">
       <publishTime>03/16/2021 10:45:16</publishTime>
     </File>
+    <File Include="images/link_arrow old2.png">
+      <publishTime>03/16/2021 10:45:42</publishTime>
+    </File>
     <File Include="images/link_arrow.png">
       <publishTime>03/16/2021 10:45:42</publishTime>
+    </File>
+    <File Include="images/load.gif">
+      <publishTime>07/13/2021 21:22:57</publishTime>
+    </File>
+    <File Include="images/loader.gif">
+      <publishTime>07/13/2021 21:13:24</publishTime>
+    </File>
+    <File Include="images/loading.gif">
+      <publishTime>07/13/2021 21:11:15</publishTime>
     </File>
     <File Include="images/location_contact.png">
       <publishTime>05/01/2021 12:46:32</publishTime>
     </File>
-    <File Include="images/logo.png">
+    <File Include="images/login_bg.jpg">
+      <publishTime>05/16/2021 20:36:36</publishTime>
+    </File>
+    <File Include="images/logo old.png">
       <publishTime>03/25/2021 17:38:28</publishTime>
+    </File>
+    <File Include="images/logo.png">
+      <publishTime>05/01/2021 23:48:31</publishTime>
+    </File>
+    <File Include="images/mission.png">
+      <publishTime>05/01/2021 21:04:04</publishTime>
     </File>
     <File Include="images/mission_banner.jpg">
       <publishTime>04/15/2021 10:02:02</publishTime>
@@ -1097,6 +1178,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="images/mobile_screen.png">
       <publishTime>03/16/2021 10:37:48</publishTime>
     </File>
+    <File Include="images/old banner_img3.jpg">
+      <publishTime>04/17/2021 20:02:58</publishTime>
+    </File>
+    <File Include="images/old roadside_assistance_img.jpg">
+      <publishTime>05/01/2021 13:50:02</publishTime>
+    </File>
     <File Include="images/phone.png">
       <publishTime>04/11/2021 14:20:02</publishTime>
     </File>
@@ -1105,6 +1192,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="images/phone_icon.png">
       <publishTime>03/24/2021 21:19:00</publishTime>
+    </File>
+    <File Include="images/play_icon old.png">
+      <publishTime>03/16/2021 10:35:18</publishTime>
     </File>
     <File Include="images/play_icon.png">
       <publishTime>03/16/2021 10:35:18</publishTime>
@@ -1137,7 +1227,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/01/2021 13:49:08</publishTime>
     </File>
     <File Include="images/roadside_assistance_img.jpg">
-      <publishTime>05/01/2021 13:50:02</publishTime>
+      <publishTime>05/08/2021 14:00:42</publishTime>
     </File>
     <File Include="images/roadside_assistance_ro.png">
       <publishTime>03/16/2021 10:31:50</publishTime>
@@ -1166,6 +1256,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="images/underConstruction_img.png">
       <publishTime>05/01/2021 14:15:40</publishTime>
     </File>
+    <File Include="images/value.png">
+      <publishTime>05/01/2021 22:16:54</publishTime>
+    </File>
     <File Include="images/value_banner.jpg">
       <publishTime>04/15/2021 10:04:36</publishTime>
     </File>
@@ -1175,14 +1268,20 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="images/value_img.jpg">
       <publishTime>04/15/2021 10:35:38</publishTime>
     </File>
-    <File Include="images/video_img.jpg">
+    <File Include="images/video_img old1.jpg">
       <publishTime>03/16/2021 10:36:00</publishTime>
     </File>
+    <File Include="images/video_img.jpg">
+      <publishTime>06/17/2021 21:04:41</publishTime>
+    </File>
     <File Include="images/video_img2.jpg">
-      <publishTime>03/17/2021 20:12:32</publishTime>
+      <publishTime>06/17/2021 21:09:54</publishTime>
     </File>
     <File Include="images/video_img3.jpg">
       <publishTime>03/17/2021 20:12:46</publishTime>
+    </File>
+    <File Include="images/vision.png">
+      <publishTime>05/01/2021 22:16:55</publishTime>
     </File>
     <File Include="images/vision_banner.jpg">
       <publishTime>04/15/2021 09:59:38</publishTime>
@@ -1192,6 +1291,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="images/vision_img.jpg">
       <publishTime>04/15/2021 10:06:42</publishTime>
+    </File>
+    <File Include="images/Watermark1.png">
+      <publishTime>09/25/2021 19:08:27</publishTime>
     </File>
     <File Include="images/web_contact.png">
       <publishTime>05/01/2021 12:46:12</publishTime>
@@ -1206,40 +1308,40 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/12/2021 09:00:23</publishTime>
     </File>
     <File Include="js/Common.js">
-      <publishTime>06/22/2021 00:40:06</publishTime>
+      <publishTime>10/01/2021 20:24:47</publishTime>
     </File>
     <File Include="js/function.js">
-      <publishTime>06/20/2021 11:56:13</publishTime>
+      <publishTime>08/26/2021 00:50:57</publishTime>
     </File>
     <File Include="js/html5.js">
-      <publishTime>05/29/2021 14:53:10</publishTime>
+      <publishTime>08/26/2021 00:50:57</publishTime>
     </File>
     <File Include="js/jquery.datetimepicker.full.js">
       <publishTime>01/08/2021 11:02:28</publishTime>
     </File>
     <File Include="js/jquery.min.js">
-      <publishTime>05/29/2021 14:53:10</publishTime>
+      <publishTime>08/26/2021 00:50:57</publishTime>
     </File>
     <File Include="js/Login.js">
-      <publishTime>06/30/2021 09:35:31</publishTime>
+      <publishTime>10/01/2021 20:33:42</publishTime>
     </File>
     <File Include="js/Register.js">
-      <publishTime>06/23/2021 09:42:43</publishTime>
+      <publishTime>09/26/2021 19:18:35</publishTime>
     </File>
     <File Include="js/ServiceEnrollment.js">
-      <publishTime>07/19/2021 14:51:12</publishTime>
+      <publishTime>08/30/2021 23:30:08</publishTime>
     </File>
     <File Include="js/ServiceRequest.js">
-      <publishTime>08/08/2021 15:44:59</publishTime>
+      <publishTime>09/14/2021 23:44:29</publishTime>
     </File>
     <File Include="js/slick.min.js">
-      <publishTime>05/29/2021 14:53:10</publishTime>
+      <publishTime>08/26/2021 00:50:57</publishTime>
     </File>
     <File Include="mission.html">
       <publishTime>07/16/2021 21:46:07</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>11/05/2017 18:50:33</publishTime>
+      <publishTime>09/18/2021 15:18:41</publishTime>
     </File>
     <File Include="roadside-assistance-replacement-car.html">
       <publishTime>07/16/2021 21:46:07</publishTime>
@@ -1341,7 +1443,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/16/2021 09:15:20</publishTime>
     </File>
     <File Include="Views/BuyPackageRequest/Index.cshtml">
-      <publishTime>07/19/2021 14:53:58</publishTime>
+      <publishTime>08/27/2021 00:30:01</publishTime>
     </File>
     <File Include="Views/BuyPackageRequest/ViewServiceEnrollmentRequest.cshtml">
       <publishTime>07/19/2021 14:54:20</publishTime>
@@ -1349,41 +1451,65 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/BuyPackageRequest/_ServiceEnrollmentRequestList.cshtml">
       <publishTime>07/16/2021 20:56:37</publishTime>
     </File>
+    <File Include="Views/Career/Index.cshtml">
+      <publishTime>08/26/2021 00:53:33</publishTime>
+    </File>
+    <File Include="Views/ContactUs/Index.cshtml">
+      <publishTime>09/29/2021 10:53:43</publishTime>
+    </File>
+    <File Include="Views/Download/Index.cshtml">
+      <publishTime>08/23/2021 10:29:23</publishTime>
+    </File>
     <File Include="Views/EmailVerification/Index.cshtml">
       <publishTime>06/23/2021 20:18:23</publishTime>
+    </File>
+    <File Include="Views/Faq/Index.cshtml">
+      <publishTime>08/25/2021 23:13:28</publishTime>
+    </File>
+    <File Include="Views/feedbackgrievances/Index.cshtml">
+      <publishTime>08/26/2021 00:56:17</publishTime>
     </File>
     <File Include="Views/Home/ChangePassword.cshtml">
       <publishTime>08/08/2021 00:24:13</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>08/12/2021 00:02:49</publishTime>
+      <publishTime>09/25/2021 00:13:13</publishTime>
     </File>
     <File Include="Views/Home/_ChangePassword.cshtml">
-      <publishTime>08/12/2021 09:08:49</publishTime>
+      <publishTime>09/02/2021 14:52:56</publishTime>
     </File>
     <File Include="Views/homeassistance/Index.cshtml">
-      <publishTime>07/16/2021 21:46:07</publishTime>
+      <publishTime>09/29/2021 14:26:58</publishTime>
+    </File>
+    <File Include="Views/InsuranceDocument/Index.cshtml">
+      <publishTime>08/26/2021 00:56:17</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>06/20/2021 12:52:03</publishTime>
+      <publishTime>10/06/2021 14:33:49</publishTime>
+    </File>
+    <File Include="Views/mediaupdates/Index.cshtml">
+      <publishTime>08/26/2021 00:56:17</publishTime>
+    </File>
+    <File Include="Views/mission/Index.cshtml">
+      <publishTime>08/26/2021 00:56:17</publishTime>
     </File>
     <File Include="Views/PrivacyPolicy/Index.cshtml">
-      <publishTime>06/16/2021 22:34:53</publishTime>
+      <publishTime>08/26/2021 00:44:35</publishTime>
     </File>
     <File Include="Views/RaiseServiceRequest/Index.cshtml">
-      <publishTime>08/07/2021 17:54:57</publishTime>
+      <publishTime>09/02/2021 14:55:44</publishTime>
     </File>
     <File Include="Views/RaiseServiceRequest/_ServiceRequestList.cshtml">
       <publishTime>07/12/2021 09:10:09</publishTime>
     </File>
     <File Include="Views/Register/Index.cshtml">
-      <publishTime>06/22/2021 21:56:17</publishTime>
+      <publishTime>09/22/2021 09:40:02</publishTime>
     </File>
     <File Include="Views/roadsideassistance/Index.cshtml">
-      <publishTime>07/16/2021 21:47:16</publishTime>
+      <publishTime>09/29/2021 14:25:55</publishTime>
     </File>
     <File Include="Views/roadsideassistancereplacementcar/Index.cshtml">
-      <publishTime>07/16/2021 21:46:07</publishTime>
+      <publishTime>08/26/2021 00:55:19</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>11/05/2017 15:26:21</publishTime>
@@ -1392,7 +1518,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/26/2021 15:07:48</publishTime>
     </File>
     <File Include="Views/Shared/_AdminHeader.cshtml">
-      <publishTime>08/06/2021 19:40:15</publishTime>
+      <publishTime>09/04/2021 15:52:53</publishTime>
     </File>
     <File Include="Views/Shared/_AdminLayout.cshtml">
       <publishTime>08/08/2021 00:27:49</publishTime>
@@ -1401,16 +1527,25 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/26/2021 14:45:23</publishTime>
     </File>
     <File Include="Views/Shared/_Footer.cshtml">
-      <publishTime>07/16/2021 21:46:07</publishTime>
+      <publishTime>08/26/2021 00:45:30</publishTime>
     </File>
     <File Include="Views/Shared/_Header.cshtml">
-      <publishTime>08/08/2021 00:23:30</publishTime>
+      <publishTime>08/26/2021 00:57:31</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/16/2021 21:38:07</publishTime>
+      <publishTime>09/30/2021 21:39:30</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>11/05/2017 15:26:23</publishTime>
+    </File>
+    <File Include="Views/tipssafety/Index.cshtml">
+      <publishTime>08/26/2021 00:55:31</publishTime>
+    </File>
+    <File Include="Views/values/Index.cshtml">
+      <publishTime>08/26/2021 00:55:41</publishTime>
+    </File>
+    <File Include="Views/vision/Index.cshtml">
+      <publishTime>08/26/2021 00:55:56</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>05/29/2021 16:19:27</publishTime>
@@ -1422,7 +1557,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/16/2021 21:46:07</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/07/2021 00:23:04</publishTime>
+      <publishTime>09/23/2021 11:46:28</publishTime>
     </File>
   </ItemGroup>
 </Project>

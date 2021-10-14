@@ -209,18 +209,22 @@ function EditUser(e) {
             }
 
             $("#txtCPRNumber").val(Jdata.CPRNumber);
-            if (Jdata.CPRExpiryDate!=null && Jdata.CPRExpiryDate != "") {
-                var CPRExpiryDate = new Date(parseFloat(Jdata.CPRExpiryDate.substring(Jdata.CPRExpiryDate.indexOf('(') + 1, Jdata.CPRExpiryDate.indexOf(')'))));
-                $("#txtCPRExpiryDate").val(formatDate(CPRExpiryDate));
-            }
-            if (Jdata.PassportExpiryDate !=null &&  Jdata.PassportExpiryDate != "") {
-                var PassportExpiryDate = new Date(parseFloat(Jdata.PassportExpiryDate.substring(Jdata.PassportExpiryDate.indexOf('(') + 1, Jdata.PassportExpiryDate.indexOf(')'))));
-                $("#txtPassportExpiryDate").val(formatDate( PassportExpiryDate));
-            }
-            if (Jdata.DateOfJoining !=null && Jdata.DateOfJoining != "") {
-                var DateOfJoining = new Date(parseFloat(Jdata.DateOfJoining.substring(Jdata.DateOfJoining.indexOf('(') + 1, Jdata.DateOfJoining.indexOf(')'))));
-                $("#txtDateOfJoining").val(formatDate( DateOfJoining));
-            }
+            //if (Jdata.CPRExpiryDate!=null && Jdata.CPRExpiryDate != "") {
+            //    var CPRExpiryDate = new Date(parseFloat(Jdata.CPRExpiryDate.substring(Jdata.CPRExpiryDate.indexOf('(') + 1, Jdata.CPRExpiryDate.indexOf(')'))));
+            //    $("#txtCPRExpiryDate").val(formatDate(CPRExpiryDate));
+            //}
+            //if (Jdata.PassportExpiryDate !=null &&  Jdata.PassportExpiryDate != "") {
+            //    var PassportExpiryDate = new Date(parseFloat(Jdata.PassportExpiryDate.substring(Jdata.PassportExpiryDate.indexOf('(') + 1, Jdata.PassportExpiryDate.indexOf(')'))));
+            //    $("#txtPassportExpiryDate").val(formatDate( PassportExpiryDate));
+            //}
+            //if (Jdata.DateOfJoining !=null && Jdata.DateOfJoining != "") {
+            //    var DateOfJoining = new Date(parseFloat(Jdata.DateOfJoining.substring(Jdata.DateOfJoining.indexOf('(') + 1, Jdata.DateOfJoining.indexOf(')'))));
+            //    $("#txtDateOfJoining").val(formatDate( DateOfJoining));
+            //}
+
+            $("#txtCPRExpiryDate").val(Jdata.CPR_Expiry_Date);
+            $("#txtPassportExpiryDate").val(Jdata.PASSPORT_Expiry_Date);
+            $("#txtDateOfJoining").val(Jdata.Date_OF_Joining);
             
             $("#txtPassportNumber").val(Jdata.PassportNumber);
           
@@ -287,7 +291,7 @@ function BindUserTypeDetail() {
 function SearchUser() {
     var UserId = 0;
     var UserTypeId = $("#UserTypeId").val() == "" ? 0 : parseInt($("#UserTypeId").val());
-    var UserReferenceId = $("#UserReferenceId").val() == "" ? 0 : parseInt($("#UserReferenceId").val());
+    var UserReferenceId =( $("#UserReferenceId").val() == "" || $("#UserReferenceId").val()==null) ? 0 : parseInt($("#UserReferenceId").val());
     var UserCode = $("#txtUserCode").val();
     var UserName = $("#txtUserName").val();
 

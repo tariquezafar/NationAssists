@@ -1,0 +1,312 @@
+﻿@model NationAssists.Areas.Admin.Models.mBroker
+
+@{
+    ViewBag.Title = "ManageBroker";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ManageBroker</h2>
+
+<div class="dashboardCon transition">
+    <div class="mainHd">Manage Source</div>
+    <div id="dvSearchDetail">
+        <ul class="dbForm flexBox">
+            <li class="oneThird">
+                <span class="fieldHd" id="lblServiceProviderName">Company Name </span>
+                <input type="text" class="formInput" id="txtCompanyName" maxlength="255" placeholder="Company Name">
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblMobileNo">Mobile No </span>
+                <input type="text" class="formInput" id="txtSPMobileNo" maxlength="15" placeholder="Mobile No" minlength="8" onclick="RestrictAlphabetAndSpace('txtSPMobileNo')">
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblPhoneNo">Phone No </span>
+                <input type="text" class="formInput" id="txtSPPhoneNo" maxlength="15" placeholder="Phone No" minlength="8" onclick="RestrictAlphabetAndSpace('txtSPPhoneNo')">
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblEmailID">Email ID </span>
+                <input type="text" class="formInput" id="txtSPEmailId" maxlength="500" placeholder="Email ID">
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblCRNumber">CR Number </span>
+                <input type="text" class="formInput" id="txtSPCRNumber" maxlength="500" placeholder="CR Number">
+            </li>
+
+        </ul>
+        <div>
+
+            <button type="button" class="btnSave dbformBtn mr10" onclick="return SearchServiceProvider();">Search</button>
+
+        </div>
+    </div>
+    <ul class="dbForm flexBox" id="dvDetail" style="display:none;">
+        <li class="oneThird">
+            <span class="fieldHd" id="lblUserType">Source Type** </span>
+            <select id="BrokerTypeId" class="formInput">
+                <option value="">--Select--</option>
+                <option value="AG">Agent</option>
+                <option value="IC">Insurance Company</option>
+                <option value="IB">Insurance Brokers</option>
+                <option value="AD">Auto Dealers</option>
+                <option value="BA">Banks</option>
+                <option value="OS">Other sources</option>
+
+            </select>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblBrokerName">Source Name** </span>
+            <input type="text" class="formInput" id="txtBrokerName" maxlength="1000" placeholder="Name">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblBrokerName">CR Number </span>
+            <input type="text" class="formInput" id="txtCRNumber" maxlength="50" placeholder="CR Number">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblBrokerName">CR Expiry Date </span>
+            <input type="text" class="formInput datePicker" id="txtCRExpiryDate">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblBrokerName">VAT Registration Number </span>
+            <input type="text" class="formInput" id="txtVATRegistrationNumber" maxlength="50" placeholder="VAT Registration Number">
+        </li>
+
+        <li class="oneThird">
+            <span class="fieldHd" id="lblMobileNo">Mobile No** </span>
+            <input type="text" class="formInput" id="txtMobileNo" maxlength="15" placeholder="Mobile No" onclick="RestrictAlphabetAndSpace('txtMobileNo')">
+        </li>
+        <li class="oneThird">
+
+            <span class="fieldHd" id="lblEmailID">Landline </span>
+            <input type="text" class="formInput" id="txtLandlineNo" maxlength="15" placeholder="Landline" onclick="RestrictAlphabetAndSpace('txtLandlineNo')">
+
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblEmailID">Email ID** </span>
+            <input type="text" class="formInput" id="txtEmailId" maxlength="500" placeholder="Email ID">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblPassword">Admin User Password** </span>
+            <input type="password" class="formInput" id="txtPassword" maxlength="50" placeholder="Password">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Contact Person Name </span>
+            <input type="text" class="formInput" id="txtContactPersonName" maxlength="255" placeholder="Contact Person Name">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Contact Person No </span>
+            <input type="text" class="formInput" id="txtContactPersonNo" maxlength="15" placeholder="Contact Person No" onclick="RestrictAlphabetAndSpace('txtContactPersonNo')">
+        </li>
+
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Escalation Person Name </span>
+
+            <input type="text" class="formInput" id="txtEscalationPersonName" maxlength="255" placeholder="Escalation Person Name">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Escalation Email ID </span>
+            <input type="text" class="formInput" id="txtEscalationEmailId" placeholder="Escalation Email ID">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Escalation Person Contact No </span>
+            <input type="text" class="formInput" id="txtEscalationPersonContactNo" maxlength="15" placeholder="Escalation Person Contact No" onclick="RestrictAlphabetAndSpace('txtEscalationPersonContactNo')">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Escalation Landline No </span>
+            <input type="text" class="formInput" id="txtEscalationLandlineNo" maxlength="15" placeholder="Escalation Landline No" onclick="RestrictAlphabetAndSpace('txtEscalationLandlineNo')">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Branch/Location </span>
+            <input type="text" class="formInput" id="txtBranchLocation" maxlength="500" placeholder="Branch/Location">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblOfficeAddress">Office Location Address</span>
+            <textarea class="formInput" id="txtOfficeLocationAddress" maxlength="500" placeholder="Office Location Address"></textarea>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblOfficeAddress">Office Postal Address</span>
+            <textarea class="formInput" id="txtOfficePostalAddress" maxlength="500" placeholder="Office Postal Address"></textarea>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblOfficeAddress">Estimated Business In A Year</span>
+            <textarea class="formInput" id="txtEstimatedBusinessInAYear" maxlength="500" placeholder="Estimated Business In A Year"></textarea>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblAggreementStartDate">Agreement Start Date </span>
+            <input type="text" class="formInput datePicker" id="txtAggreementStartDate">
+        </li>
+
+        <li class="oneThird">
+            <span class="fieldHd" id="lblAggreementEndDate">Agreement End Date </span>
+            <input type="text" class="formInput datePicker" id="txtAggreementEndDate">
+        </li>
+
+        <li class="oneThird">
+            <span class="fieldHd" id="lblContactPersonName">Declaration Period </span>
+            <input type="text" class="formInput" id="txtDeclarationPeriod" placeholder="Declaration Period" maxlength="3" onclick="RestrictAlphabetAndSpace('txtDeclarationPeriod')">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblOfficeAddress">Payment & Credit Terms</span>
+            <textarea class="formInput" id="txtPaymentAndCreditTerms" placeholder="Payment & Credit Terms"></textarea>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd" id="lblOfficeAddress">Remarks</span>
+            <textarea class="formInput" id="txtRemarks" maxlength="500" placeholder="Remarks"></textarea>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd">Pricing Option</span>
+            <div class="optBox flexBox">
+                <label><input type="radio" name="PricingOption" class="radioInpt" value="PB"> Package Based</label>
+                <label><input type="radio" name="PricingOption" class="radioInpt" checked="checked" value="SB"> Service Based</label>
+            </div>
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd">Status</span>
+            <div class="optBox flexBox">
+
+                <label><input type="checkbox" class="checkInpt" id="chkIsActive"> Is Active</label>
+
+            </div>
+        </li>
+        <li class="fullWidth">
+            <span class="fieldHd">Service Opted **</span>
+            <div>
+                @if (Model.BrokerOptedServices != null && Model.BrokerOptedServices.Any())
+                {
+                    <div id="treeview_container" class="hummingbird-treeview well h-scroll-large">
+                        <ul id="treeview" class="hummingbird-base">
+                            @{
+                                int i = 0;
+                                List<DataEngine.Service> objLstService = Model.BrokerOptedServices.Select(x => new DataEngine.Service { ServiceId = x.ServiceId, ServiceName = x.Name, ServiceCode = x.ServiceCode }).ToList().GroupBy(p => new { p.ServiceName, p.ServiceId }).Select(g => g.First()).ToList();
+                            }
+                            @foreach (DataEngine.Service item in objLstService)
+                            {
+                                <li>
+                                    <i class="fa fa-plus"></i> <label>
+                                        <input id="node-@i" data-id="custom-@i" type="checkbox" checkboxType="service">@item.ServiceName
+                                    </label>
+
+
+                                    @{
+                                        List<DataEngine.BrokerOptedService> serviceopteds = Model.BrokerOptedServices.Where(x => x.ServiceId == item.ServiceId).ToList();
+
+                                    }
+
+                                    @if (serviceopteds.Any())
+                                    {
+                                        int j = 1;
+                                        <ul>
+                                            @foreach (DataEngine.BrokerOptedService cat in serviceopteds)
+                                            {
+                                                <li>
+                                                    @*hummingbirdNoParent checkInpt*@
+                                                    <label> <input class="hummingbirdNoParent" id="node-@i-@j" data-id="custom-@i-@j" type="checkbox" name="chkService" service-name="@item.ServiceName" service-id="@cat.ServiceId" value="@cat.SubCategoryId">@cat.SubCategoryName </label>
+                                                </li>
+
+                                                j = j + 1;
+                                            }
+
+                                        </ul>
+                                        i = i + 1;
+
+                                    }
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                }
+            </div>
+        </li>
+        @if (Model.BrokerOptedServices != null && Model.BrokerOptedServices.Any())
+        {
+
+            List<DataEngine.Service> objLstService = Model.BrokerOptedServices.Select(x => new DataEngine.Service { ServiceId = x.ServiceId, ServiceName = x.Name, ServiceCode = x.ServiceCode }).ToList().GroupBy(p => new { p.ServiceName, p.ServiceId }).Select(g => g.First()).ToList();
+
+
+            <li class="fullWidth">
+                <span class="fieldHd">Commission Payable**</span>
+                <div class="dbTable" style="box-shadow:none;">
+                    <table id="tblCommissionPayable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Service
+                                </th>
+                                <th>
+                                    Commission Payable(%)
+                                </th>
+                                <th>
+                                    Start Date
+                                </th>
+                                <th>
+                                    End Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataEngine.Service item in objLstService)
+                            {
+                                <tr>
+                                    <td>@item.ServiceName              </td>
+                                    <td>  <input type="text" class="formInput" id="txtCommissionPaybable_@item.ServiceId" placeholder="Commission Paybable" maxlength="5" onclick="RestrictAlphabetAndSpace('txtCommissionPaybable_@item.ServiceId')">           </td>
+                                    <td> <input type="text" class="formInput datePicker" id="txtCommissionStartDate_@item.ServiceId"></td>
+                                    <td> <input type="text" class="formInput datePicker" id="txtCommissionEndDate_@item.ServiceId"></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        }
+
+
+        <li class="oneThird">
+            <span class="fieldHd">Upload File</span>
+            <div class="optBox flexBox">
+                <input id="fileInput" type="file" multiple>
+                <div class="dbTable" style="box-shadow:none;">
+                    <table id="FilesList" style="visibility:hidden;width:300px">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Document(s)
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+    <div>
+        <input type="hidden" id="hdnBrokerID" value="0" />
+
+        <button type="button" class="btnSave dbformBtn mr10" onclick="return SearchSource();">Search</button>
+
+    </div>
+    <div class="dbTable" id="tblBrokers">
+
+
+        @Html.Partial("~/Areas/Admin/Views/Brokers/_BrokerList.cshtml", Model);
+    </div>
+</div>
+
+
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="https://bootswatch.com/cosmo/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="~/Areas/Admin/JS/BrokerList.js"></script>
+<link href="~/Areas/Admin/JS/Custom JS/hummingbird-treeview.css" rel="stylesheet" />
+<script src="~/Areas/Admin/JS/Custom JS/hummingbird-treeview.js"></script>
+<script>
+    $("#treeview").hummingbird();
+    $("#collapseAll").click(function () {
+        $("#treeview").hummingbird("collapseAll");
+    });
+</script>

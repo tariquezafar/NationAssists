@@ -18,7 +18,7 @@ namespace NationAssists.Areas.Admin.Models
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
 
-     public int ServiceId { get; set; }
+        public int ServiceId { get; set; }
 
         public string PriceOption { get; set; }
 
@@ -36,12 +36,12 @@ namespace NationAssists.Areas.Admin.Models
             return new SelectList(lstDist, "Value", "Text", ServiceProviderId);
         }
 
-        public SelectList GetAllServices(int? ServiceProviderId)
-        {
-            CommonServices objCS = new CommonServices();
-            IEnumerable<SelectListItem> lstDist = objCS.BindServicesByServiceProviderId(ServiceProviderId).DataList.OrderBy(s => s.ServiceName).ToList().Select(m => new SelectListItem() { Text = m.ServiceName, Value = m.ServiceId.ToString() }).OrderBy(s => s.Text).ToList();
-            return new SelectList(lstDist, "Value", "Text", ServiceId);
+        //public SelectList GetAllServices(int? ServiceProviderId)
+        //{
+        //    CommonServices objCS = new CommonServices();
+        //    IEnumerable<SelectListItem> lstDist = objCS.BindServicesByServiceProviderId(ServiceProviderId).DataList.OrderBy(s => s.ServiceName).ToList().Select(m => new SelectListItem() { Text = m.ServiceName, Value = m.ServiceId.ToString() }).OrderBy(s => s.Text).ToList();
+        //    return new SelectList(lstDist, "Value", "Text", ServiceId);
 
-        }
+        //}
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -76,8 +77,37 @@ namespace NationAssists.Controllers
                 strMsg = objMO.ErrorMessage;
                 if (IsSaved)
                 {
+                    string ServiceEmailId = ConfigurationManager.AppSettings["ServiceEmailID"];
                     TicketNo = objMO.Data;
-                }
+                    string CustomerName = string.Empty;
+                    string CustomerEmail = string.Empty;
+                    string ServiceType = string.Empty;
+                    string SourceName = string.Empty;
+                    if (objSR.IsRequestedFromCustomer)
+                    {
+                        CustomerName = Convert.ToString(Session["CustomerName"]);
+                        CustomerEmail = Convert.ToString(Session["CustomerEmail"]);
+                        SourceName = Convert.ToString(Session["SourceName"]);
+                    }
+                    else
+                    {
+                        CustomerName = objSR.Customer_Name;
+                        CustomerEmail = objSR.EmailId;
+                        SourceName = objSR.SourceName;
+                    }
+                   
+
+                        ServiceType = objSR.SubCategoryName;
+                        Dictionary<string, string> objTempValues = new Dictionary<string, string>();
+                        objTempValues.Add("CustomerName", CustomerName);
+                        objTempValues.Add("ServiceType", ServiceType);
+                        objTempValues.Add("SourceName", SourceName);
+                        objTempValues.Add("TicketNo", TicketNo);
+
+
+                        List<string> ToEmail = string.IsNullOrEmpty(CustomerEmail) ? new List<string> { ServiceEmailId } : new List<string> { CustomerEmail, ServiceEmailId };
+                        objEmailService.MailSent(ToEmail, objTempValues, "RAISE_SERVICE_REQUEST");
+                     }
             }
             catch (Exception ex)
             {
@@ -104,11 +134,11 @@ namespace NationAssists.Controllers
             return Json(objMO.DataList, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult BindVehicleDetailByCPRNumber(string CPRNumber, int ServiceId)
+        public ActionResult BindVehicleDetailByCPRNumber(string CPRNumber, int ServiceId,Int64 MembershipId=0)
         {
             MethodOutput<VehicleDetail> objMO = new MethodOutput<VehicleDetail>();
             ServiceRequestService obj = new ServiceRequestService();
-            objMO = obj.BindVehicleDetailByCPRNumber(CPRNumber, ServiceId);
+            objMO = obj.BindVehicleDetailByCPRNumber(CPRNumber, ServiceId, MembershipId);
             return Json(objMO.Data, JsonRequestBehavior.AllowGet);
         }
     }

@@ -29,5 +29,12 @@ namespace DataEngine
 
         public int BatchNo { get; set; }
         public List<ServiceSubCategoryPrice> SubCategoryPriceList { get; set; }
+
+        public string AgreementStartDate { get; set; }
+
+        public string AgreementEndDate { get; set; }
+        public string Start_Date { get; set; }
+        public string End_Date { get; set; }
+        public string CreatedDate { get; set; }
     }
 }

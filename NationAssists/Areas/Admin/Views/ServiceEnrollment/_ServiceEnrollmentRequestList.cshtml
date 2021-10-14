@@ -11,14 +11,15 @@
 
             <thead>
                 <tr>
+                    <th>View</th>
                     <th>SNo.</th>
                     <th>Customer Name</th>
                     <th>Service Name</th>
-                    
+
                     <th>Risk Address</th>
                     <th>Requested Date</th>
                     <th>Status</th>
-                    <th>View</th>
+
 
                 </tr>
             <thead>
@@ -28,21 +29,22 @@
                     i = i + 1;
 
 
-                    <tr>
-                        <td><span class="blueClr">@i</span></td>
-                        <td>@item.CustomerName</td>
-                        <td>@item.ServiceName</td>
-                        <td>@item.RiskAddress</td>
-                        <td>@item.CreatedDate.ToString("dd-MMM-yyyy")</td>
-                       
-                        <td>@item.Status</td>
-                        <td>
+                <tr>
+                    <td>
 
-                            <a data-id="@item.ServiceEnrollmentRequestId" onclick="ShowServiceEnrollmentDetail(@Newtonsoft.Json.JsonConvert.SerializeObject( item))"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+                        <a data-id="@item.ServiceEnrollmentRequestId" onclick="ShowServiceEnrollmentDetail(@Newtonsoft.Json.JsonConvert.SerializeObject( item))"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
 
-                        </td>
+                    </td>
+                    <td><span class="blueClr">@i</span></td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.ServiceName</td>
+                    <td>@item.RiskAddress</td>
+                    <td>@item.CreatedDate.ToString("dd-MMM-yyyy")</td>
 
-                    </tr>
+                    <td>@item.Status</td>
+
+
+                </tr>
                 }
             </tbody>
 

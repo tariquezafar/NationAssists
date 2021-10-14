@@ -3,7 +3,7 @@
     <ul class="form flexBox">
         <li class="oneThird">
             <span class="fieldHd">Customer Name</span>
-            <input type="text" disabled="disabled" value="@(Model.FirstName+ " "+ Convert.ToString(Model.LastName))" class="formInput" />
+            <input type="text" disabled="disabled" value="@(Model.FirstName+ " "+ Convert.ToString(Model.LastName))" id="txtCustName" class="formInput" />
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblService">Mobile No </span>
@@ -11,7 +11,7 @@
         </li>
         <li class="oneThird RAP">
             <span class="fieldHd">Email ID </span>
-            <input type="text" value="@Model.EmailId" class="formInput" disabled="disabled">
+            <input type="text" value="@Model.EmailId" id="txtCustEmail" class="formInput" disabled="disabled">
         </li>
         <li class="oneThird RAP">
             <span class="fieldHd">CPR Number</span>

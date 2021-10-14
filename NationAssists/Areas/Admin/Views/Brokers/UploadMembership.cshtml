@@ -3,41 +3,75 @@
     ViewBag.Title = "UploadMembership";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@{
+    DataEngine.Users objUSer = new DataEngine.Users();
+    if (Session["User"] != null)
+    {
+        objUSer = (DataEngine.Users)Session["User"];
 
+    }
+}
 <div class="dashboardCon transition">
     <div class="mainHd">Upload Membership</div>
-    <div style="float:right"><a style="cursor:pointer;color:green" id="DownloadTemlate" href="../../UploadTemplate/NA Document Upload Sheet.xlsx"  ><b> Download Template </b></a> </div>
+    <div style="float:right"><a style="cursor:pointer;color:green" id="DownloadTemlate" href="../../UploadTemplate/NA Document Upload Sheet.xlsx"><b> Download Template </b></a> </div>
     <ul class="dbForm flexBox">
         <li class="oneThird">
-            <span class="fieldHd" id="lblUserType">Source Type </span>
-            <select id="BrokerTypeId" class="formInput" onchange="BindBroker()">
-                <option value="">--Select--</option>
-                <option value="AG">Agent</option>
-                <option value="IC">Insurance Company</option>
-                <option value="IB">Insurance Brokers</option>
-                <option value="AD">Auto Dealers</option>
-                <option value="BA">Banks</option>
-                <option value="OS">Other sources</option>
+            <span class="fieldHd" id="lblUserType">Source Type** </span>
+            @if (objUSer != null && objUSer.UserTypeCode == "EMP")
+            {
+                <select id="BrokerTypeId" class="formInput" onchange="BindBroker()">
 
-            </select>
+                    <option value="">--Select--</option>
+                    <option value="AG">Agent</option>
+                    <option value="IC">Insurance Company</option>
+                    <option value="IB">Insurance Brokers</option>
+                    <option value="AD">Auto Dealers</option>
+                    <option value="BA">Banks</option>
+                    <option value="OS">Other sources</option>
+
+                </select>
+            }
+            else
+            {
+                <select id="BrokerTypeId" class="formInput">
+
+                    <option value="">--Select--</option>
+                    <option value="@objUSer.UserTypeCode">@objUSer.UserTypeName</option>
+
+                </select>
+            }
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Source </span>
-            <select id="BrokerId" class="formInput">
-                <option value="0">-Select-</option>
-            </select>
+            <span class="fieldHd" id="lblService">Source** </span>
+
+
+            @if (objUSer != null && objUSer.UserTypeCode == "EMP")
+            {
+                <select id="BrokerId" class="formInput">
+                    <option value="0">-Select-</option>
+                </select>
+            }
+            else
+            {
+                <select id="BrokerId" class="formInput" >
+
+                    <option value="">--Select--</option>
+                    <option value="@objUSer.SourceId">@objUSer.SourceName</option>
+
+                </select>
+            }
 
         </li>
 
         <li class="oneThird">
-            <span class="fieldHd" id="lblfile">File  </span>
-          <input  type="file" class="formInput" id="membershipfile"/>
+            <span class="fieldHd" id="lblfile">File**  </span>
+            <input type="file" class="formInput" id="membershipfile" />
         </li>
     </ul>
     <div>
-     
+
         <input type="hidden" id="hdnSourceId" value="0" />
-        
+
         <button type="button" class="btnSave dbformBtn mr10" id="btnAdd" onclick="return UploadMembershipFile();">Upload</button>
         <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Brokers/ManageMembership/'">Reset</button>
 

@@ -67,18 +67,19 @@ function formatDateWithTime(date) {
 
 function formatDate(date) {
     var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
+        
+        month = '' + NameMonths[d.getMonth()+1],
         day = '' + d.getDate(),
         year = d.getFullYear();
 
 
 
-    if (month.length < 2)
-        month = '0' + month;
+    //if (month.length < 2)
+    //    month = '0' + month;
     if (day.length < 2)
-        day = '0' + day;
+       day = '0' + day;
 
-    return [year, month, day].join('-');
+    return [ day, month, year].join('/');
 
 }
 
@@ -138,4 +139,36 @@ $("input[type='date']").on("change", function () {
     )
 }).trigger("change")
 
+
+var NumberMonths = {
+    Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+    Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+};
+var NameMonths = {
+    1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'
+};
+
+
+function Logout(user) {
+    var pUrl = "/Login/Logout/"
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        url: pUrl,
+        success: function (data
+        ) {
+            if (data) {
+                if (user == "Customer") {
+                    window.location.href = "/Home";
+                }
+                else {
+                    window.location.href = "../../Home";
+                }
+            }
+        },
+        error: function (data) {
+        }
+    });
+}
 

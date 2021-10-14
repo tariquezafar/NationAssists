@@ -10,7 +10,26 @@
 </div>
 <div class="dashboardCon transition">
     <div class="mainHd">Respond To Allocated Service Request</div>
+    <div id="dvDetail">
+        <ul class="form flexBox">
+          
+            <li class="oneThird">
+                <span class="fieldHd">Service Allocation Status </span>
+                @Html.DropDownListFor(m => m.ServiceAllocationStatusId, Model.BindServiceAllocationStatus(), "--select-", new { @class = "formInput", })
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">
+                    Service
+                </span>
+                @Html.DropDownListFor(m => m.Service, Model.BindService(), "--select-", new { @class = "formInput", })
 
+            </li>
+           
+        </ul>
+        <div>
+            <div class="tac"><button class="formBtn regNextStep" onclick="SearchAllocation()">Search</button></div>
+        </div>
+    </div>
     <div id="dvServiceRequestDetail" style="display:none;">
         <ul class="form flexBox">
             <li class="oneThird">
@@ -118,12 +137,19 @@
                 <span class="fieldHd">Assigned To User</span>
                 <select id="AssignedToUserId" class="formInput">
                     <option value="0">-Select-</option>
-                    @foreach (DataEngine.Users item in Model.UserList)
+                    @if (Model.UserList != null && Model.UserList.Any())
                     {
-                        <option value="@item.UserId">@(item.Name+"("+item.UserCode+")")</option>
+                        foreach (DataEngine.Users item in Model.UserList)
+                        {
+                            <option value="@item.UserId">@(item.Name + "(" + item.UserCode + ")")</option>
+                        }
                     }
                 </select>
                 @*@Html.DropDownListFor(m => m.AssignedToUserId, Model.GetUserByReference(Convert.ToInt32(Session["UserId"])), "--select-", new { @class = "formInput", })*@
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">Acceptance Remarks</span>
+                <textarea id="txtAcceptanceRemarks" class="formInput"></textarea>
             </li>
             <li class="oneThird">
                 <span class="fieldHd">Reason For Rejection</span>
@@ -131,24 +157,25 @@
             </li>
 
         </ul>
-          <br />
+        <br />
 
-          <div>
-              <input id="hdnServiceRequestId" type="hidden" value="0" />
-              <input id="hdnServiceId" type="hidden" value="0" />
-              <input id="hdnSubCategoryId" type="hidden" value="0" />
-             
-              <input id="hdnServiceProviderId" type="hidden" value="0" />
-              <input id="hdnServiceAllocationId" type="hidden" value="0" />
-              <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveServiceAllocation()">Save</button>
-              <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/RespondToServiceAllocation/'">Back</button>
+        <div>
+            <input id="hdnServiceProviderId"  value="@Model.ServiceProviderId"/>
+            <input id="hdnServiceRequestId" type="hidden" value="0" />
+            <input id="hdnServiceId" type="hidden" value="0" />
+            <input id="hdnSubCategoryId" type="hidden" value="0" />
+            <input id="hdnTicketNo" type="hidden" value="" />
+            <input id="hdnServiceProviderId" type="hidden" value="0" />
+            <input id="hdnServiceAllocationId" type="hidden" value="0" />
+            <button type="button" class="btnSave dbformBtn mr10" id="btnSave" onclick="return SaveServiceAllocation()">Save</button>
+            <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/RespondToServiceAllocation/'">Back</button>
 
-          </div>
+        </div>
     </div>
     <div class="dbTable" id="tblServiceRequest">
 
-        @Html.Partial("~/Areas/Admin/Views/ServiceRequest/_AllocateServiceRequestList.cshtml", Model);
-        
+        @Html.Partial("~/Areas/Admin/Views/ServiceRequest/_AllocateServiceRequestList.cshtml", Model)
+
     </div>
 </div>
 

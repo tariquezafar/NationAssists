@@ -233,37 +233,45 @@ namespace DbOperation
         }
 
 
-        public MethodOutput<Service> BindServiceOptedByServiceProviderId(int? ServiceProviderId)
+        public MethodOutput<ServiceProvider> BindServiceOptedByServiceProviderId(int? ServiceProviderId)
         {
-            MethodOutput<Service> objOutput = new MethodOutput<Service>();
-            List<Service> objLstService = new List<Service>();
+            MethodOutput<ServiceProvider> objOutput = new MethodOutput<ServiceProvider>();
+            ServiceProvider objServiceProvider = new ServiceProvider();
+            DataSet ds = new DataSet();
             try
             {
                 if (ServiceProviderId != null)
                 {
                     DataTable dt = new DataTable();
+                    DataTable dtServices = new DataTable();
                     SqlParameter[] objListSqlParam = new SqlParameter[1];
                     objListSqlParam[0] = new SqlParameter();
                     objListSqlParam[0].ParameterName = "@ServiceProviderId";
                     objListSqlParam[0].Value = ServiceProviderId;
 
-                    dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetServiceOptedByServiceProviderId", objListSqlParam).Tables[0];
+                    ds = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetServiceOptedByServiceProviderId", objListSqlParam);
+                    dt = ds!=null && ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+                    dtServices = ds != null && ds.Tables.Count > 1 ? ds.Tables[1] : new DataTable();
                     if (dt.Rows.Count > 0)
                     {
-                        objLstService = dt.AsEnumerable().Select(x => new Service
+                        objServiceProvider.ServiceProviderId = Convert.ToInt32(ServiceProviderId);
+                        objServiceProvider.Agg_Start_Date = Convert.ToString(dt.Rows[0]["ServiceProviderAgreementFromDate"]);
+                        objServiceProvider.Agg_End_Date = Convert.ToString(dt.Rows[0]["ServiceProviderAgreementEndDate"]);
+                        objServiceProvider.ServiceProviderServicesOpted = dtServices.Rows.Count > 0 ? dtServices.AsEnumerable().Select(x => new ServiceProviderServiceOpted
                         {
                             ServiceId = x.Field<int>("ServiceId"),
-                            ServiceName = x.Field<string>("ServiceName"),
+                            Name = x.Field<string>("ServiceName"),
 
-                        }).ToList();
 
-                        objOutput.DataList = objLstService;
+                        }).ToList() : new List<ServiceProviderServiceOpted>();
+
+                        objOutput.Data = objServiceProvider;
                         objOutput.ErrorMessage = string.Empty;
                     }
                 }
                 else
                 {
-                    objOutput.DataList = objLstService;
+                    objOutput.Data = objServiceProvider;
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -526,6 +534,99 @@ namespace DbOperation
 
             return objOutput;
                     
+        }
+
+        public MethodOutput<ServiceSubCategory> BindServiceCategoryByProviderId(int ServiceId, int ServiceProviderId)
+        {
+            MethodOutput<ServiceSubCategory> objOutput = new MethodOutput<ServiceSubCategory>();
+            List<ServiceSubCategory> objLstSubCategory = new List<ServiceSubCategory>();
+            try
+            {
+                DataTable dt = new DataTable();
+
+                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@ServiceId";
+                objListSqlParam[0].Value = ServiceId;
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@ServiceProviderId";
+                objListSqlParam[1].Value = ServiceProviderId;
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_BindServiceCategoryByProvider",objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0)
+                {
+                    objLstSubCategory = dt.AsEnumerable().Select(x => new ServiceSubCategory
+                    {
+                        ServiceSubCategoryId = x.Field<int>("ServiceSubCategoryId"),
+                        Name = x.Field<string>("Name")
+                    }).ToList();
+
+                    objOutput.DataList = objLstSubCategory;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+            }
+
+            return objOutput;
+        }
+
+
+        public MethodOutput<Broker> BindServiceOptedForPriceByBrokerId(int? BrokerId)
+        {
+            MethodOutput<Broker> objOutput = new MethodOutput<Broker>();
+            Broker objBroker = new Broker();
+            try
+            {
+                if (BrokerId != null)
+                {
+                    DataSet ds = new DataSet();
+                    DataTable dt = new DataTable();
+                    DataTable dtService = new DataTable();
+                    SqlParameter[] objListSqlParam = new SqlParameter[1];
+                    objListSqlParam[0] = new SqlParameter();
+                    objListSqlParam[0].ParameterName = "@BrokerId";
+                    objListSqlParam[0].Value = BrokerId;
+
+                    ds = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetServiceOptedForPriceByBrokerId", objListSqlParam);
+                    dt = ds != null && ds.Tables.Count > 0 ? ds.Tables[0] : new DataTable();
+                    dtService= ds != null && ds.Tables.Count > 1 ? ds.Tables[1] : new DataTable();
+                    if (dt.Rows.Count > 0)
+                    {
+                        objBroker.Agg_Start_Date = Convert.ToString(dt.Rows[0]["Agreement_Start_Date"]);
+                        objBroker.Agg_End_Date= Convert.ToString(dt.Rows[0]["Agreement_End_Date"]);
+                        objBroker.BrokerId = Convert.ToInt32(BrokerId);
+
+                        objBroker.BrokerOptedServices = dtService.Rows.Count > 0 ? dtService.AsEnumerable().Select(x => new BrokerOptedService
+                        {
+                            ServiceId = x.Field<int>("ServiceId"),
+                            Name = x.Field<string>("ServiceName"),
+                            ServiceCode = x.Field<string>("ServiceCode"),
+
+                        }).ToList() : new List<BrokerOptedService>() ;
+
+                        objOutput.Data = objBroker;
+                        objOutput.ErrorMessage = string.Empty;
+                    }
+                }
+                else
+                {
+                    objOutput.Data = objBroker;
+                    objOutput.ErrorMessage = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                objOutput.ErrorMessage = ex.Message;
+
+
+            }
+            return objOutput;
+
+
         }
 
 

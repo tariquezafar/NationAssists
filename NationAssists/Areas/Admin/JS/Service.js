@@ -8,6 +8,7 @@ function SaveService() {
             ServiceId: $("#hdnServiceID").val(),
             ServiceCode: $("#txtServicecode").val(),
             ServiceName: $("#txtServicename").val(),
+            PackageCode: $("#txtPackageCode").val(),
             IsActive: $("#chkIsActive").prop("checked")
         };
 

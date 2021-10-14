@@ -18,11 +18,11 @@ function GetAllServices() {
             success: function (data) {
                 var jData = JSON.parse(data);
                 $("#ServiceId").html(""); // clear before appending new list
-                if (jData != null && jData.length > 0) {
+                if (jData.ServiceProviderServicesOpted != null && jData.ServiceProviderServicesOpted.length > 0) {
                     $("#ServiceId").append($('<option></option>').val(0).html("--Select Services--"));
-                    $.each(jData, function (i, service) {
+                    $.each(jData.ServiceProviderServicesOpted, function (i, service) {
                         $("#ServiceId").append(
-                            $('<option></option>').val(service.ServiceId).html(service.ServiceName));
+                            $('<option></option>').val(service.ServiceId).html(service.Name));
                     });
 
                     BindServiceAreaBySearch($("#ServiceProviderId").val(),"0","0");
@@ -34,8 +34,8 @@ function GetAllServices() {
 }
 
 function BindServiceType() {
-    if ($("#ServiceId").val() != "" && $("#ServiceId").val() != "0") {
-        var pUrl = "../../../RaiseServiceRequest/BindServiceType?ServiceId=" + $("#ServiceId").val();
+    if ($("#ServiceId").val() != "" && $("#ServiceId").val() != "0" && $("#ServiceProviderId").val() != "" ) {
+        var pUrl = "/Admin/Service/BindServiceOptedByServiceProviderId?ServiceId=" + $("#ServiceId").val() + "&ServiceProviderId=" + $("#ServiceProviderId").val();
         $.ajax({
             type: "Get",
             url: pUrl,

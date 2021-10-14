@@ -16,7 +16,7 @@
                 var jData = JSON.parse(data);
                
                 if (jData != null && jData.length > 0) {
-                    var table = "<table> <thead> <tr>  <th>SNo.</th> <th>Customer Type</th> <th>Is Having Membership</th> <th>Membership Status</th> <th>Membership Effective Date</th> <th>Membership Expiry Date</th>  <th>Is Signup Completed</th> <th>Customer Detail </th> <th>Action </th>  </tr> </thead>";
+                    var table = "<table> <thead> <tr>  <th>SNo.</th> <th>Customer Type</th> <th>Is Having Membership</th> <th>Membership Status</th><th>Source</th> <th>Service Name</th><th>Membership Effective Date</th> <th>Membership Expiry Date</th>  <th>Is Signup Completed</th> <th>Customer Detail </th> <th>Action </th>  </tr> </thead>";
 
                     table += "<tbody>";
                     jData.forEach(function (e, i) {
@@ -26,12 +26,14 @@
                         tbody += "<td>" + (e.CustomerType != null ? (e.CustomerType == "NA" ? "Nation Assist Member" : "Guest Customer") : (e.IsHavingMembership ? "Nation Assist Member" :"NA")) + "  </td>";
                         tbody += "<td>" + (e.IsHavingMembership ==true ? "Yes":"No") + " </td>";
                         tbody += "<td>" + (e.IsMemberShipExpired == true ? "In Active" : "Active") + "</td>";
+                        tbody += "<td>" + e.SourceName + "</td>";
+                        tbody += "<td>" + e.ServiceName + "</td>";
                         tbody += "<td>" + (e.EffectiveDate == null ? '' : e.EffectiveDate)+ "</td>";
                         tbody += "<td>" + (e.ExpiryDate== null ? '' :e.ExpiryDate) + "</td>";
                        
                         tbody += "<td>" + (e.IsSignUpCompleted == true ? "Yes" : "No") + " </td>";
                         tbody += "<td> " + (e.IsSignUpCompleted ? "<a style='cursor:pointer;color:green;' onclick='GetCustomerDetail()' >Customer Detail</a>" : "") + " </td>";
-                        tbody += "<td> " + (e.IsHavingMembership && !e.IsMemberShipExpired && e.IsSignUpCompleted ? "<a style='cursor:pointer;color:green;' onclick='AddServiceRequest(" + JSON.stringify(e) + ")' >Add Service Request</a>" : "") + (e.IsHavingMembership && !e.IsMemberShipExpired && !e.IsSignUpCompleted ? "<a style='cursor:pointer;color:green;' onclick='ComplateSignUp(" + JSON.stringify(e) + ")' >Complete Signup</a>" : "")+  " </td>";
+                        tbody += "<td> " + (e.IsHavingMembership && !e.IsMemberShipExpired  ? "<a style='cursor:pointer;color:green;' onclick='AddServiceRequest(" + JSON.stringify(e) + ")' >Add Service Request</a>" : "") +   " </td>";
 
 
                         tbody += "</tr>";
@@ -79,8 +81,15 @@ function GetCustomerDetail() {
 }
 function AddServiceRequest(e) {
 
+    
+    $("#hdnMembershipId").val(e.MembershipId);
     $("#hdnCustomerId").val(e.CustomerId);
-    var pUrl = "/Admin/ServiceRequest/BindServiceByCPRNumber?CPRNumber=" + $("#txtCPRNumber").val();
+    $("#hdnCustomerName").val(e.CustomerName);
+    //e.SourceName.substring(0,e.SourceName.lastIndexOf("("))
+    $("#hdnSourceName").val(e.SourceName.substring(0, e.SourceName.lastIndexOf("(")));
+    $("#hdnCustomerEmail").val(e.CustomerEmail);
+    $("#hdnIsSignUpCompleted").val(e.IsSignUpCompleted);
+    var pUrl = "/Admin/ServiceRequest/BindServiceByCPRNumber?CPRNumber=" + $("#txtCPRNumber").val() + "&MembershipId=" + parseInt(e.MembershipId);
     $.ajax({
         type: "Get",
         url: pUrl,
@@ -203,7 +212,7 @@ function BindServiceType() {
 
                     var SelectedService = $("#ServiceId option:selected").text();
                     var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-                    if (ServiceCode == "HAP") {
+                    if (ServiceCode == "HA") {
                         $('.RAP').hide();
                         $('.HAP').show();
                         $("#txtServiceLocation").hide();
@@ -215,7 +224,7 @@ function BindServiceType() {
                         $("#txtServiceLocation").show();
                         $("#ddlServiceLocation").hide();
                     }
-                    BindVehicleDetail($("#txtCPRNumber").val(), $("#ServiceId").val())
+                    BindVehicleDetail($("#txtCPRNumber").val(), $("#ServiceId").val(), $("#hdnMembershipId").val() )
                 }
             }
         });
@@ -336,7 +345,13 @@ function SubmitServiceRequest() {
             CollectRepairVehicleAddress: $("#txtCollectRepairVehicleAddress").val(),
             ContactMobileNo: $("#txtContactNo").val(),
             ReleventDetails: $("#txtReleventDetails").val(),
-            Remarks: $("#txtRemarks").val()
+            Remarks: $("#txtRemarks").val(),
+            SubCategoryName: $("#ServiceCategoryId option:selected").text(),
+            Customer_Name: $("#hdnCustomerName").val(),
+            SourceName: $("#hdnSourceName").val(),
+            EmailId: $("#hdnCustomerEmail").val(),
+            IsRequestedFromCustomer: false,
+            MembershipId: $("#hdnMembershipId").val()
 
 
         };
@@ -379,10 +394,10 @@ function ValidateForm() {
         strErrMsg += "Please select Service Type. \n";
     }
 
-    if ($('#txtServiceLocation').val() == "") {
-        IsValid = false;
-        strErrMsg += "Please enter Service Location. \n";
-    }
+    //if ($('#txtServiceLocation').val() == "") {
+    //    IsValid = false;
+    //    strErrMsg += "Please enter Service Location. \n";
+    //}
 
     if ($('#CountryId').val() == "" || $('#CountryId').val() == "0") {
         IsValid = false;
@@ -410,7 +425,7 @@ function ValidateForm() {
     if ($("#ServiceId").val() != "0") {
         var SelectedService = $("#ServiceId option:selected").text();
         var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-        if (ServiceCode == "HAP") {
+        if (ServiceCode == "HA") {
 
             if ($("#ddlServiceLocation").val() == "0" || $("#ddlServiceLocation").val() == "") {
                 IsValid = false;
@@ -450,7 +465,10 @@ function ValidateForm() {
         }
     }
 
-
+    if ( $("#hdnIsSignUpCompleted").val() == "false" && $("#txtContactNo").val() == "") {
+        IsValid = false;
+        strErrMsg += "Please enter Contact No. \n";
+    }
 
     if ($("#txtContactNo").val() != "" && $("#txtContactNo").val().length < 8) {
         IsValid = false;
@@ -491,7 +509,8 @@ function SaveCustomer() {
             AccountType: "NA",
             AccountSubType: $("#hdnSourceTypeCode").val(),
             Password: $("#txtCPRNumber").val(),
-            Customer_Reference_Code: $("#txtSource").val().substring($("#txtSource").val().indexOf('(') + 1, $("#txtSource").val().indexOf(')'))
+            Customer_Reference_Code: $("#txtSource").val().substring($("#txtSource").val().indexOf('(') + 1, $("#txtSource").val().indexOf(')')),
+            IsCustomerCreatedFromCRM:true
         };
         var pUrl = "../../Register/SaveCustomer/";
         $.ajax({
@@ -559,8 +578,8 @@ function ValidateCustomerSignUp() {
 
 }
 
-function BindVehicleDetail(CPRNumber, ServiceId) {
-    var pUrl = "/RaiseServiceRequest/BindVehicleDetailByCPRNumber?CPRNumber=" + CPRNumber + "&ServiceId=" + ServiceId;
+function BindVehicleDetail(CPRNumber, ServiceId, MembershipId) {
+    var pUrl = "/RaiseServiceRequest/BindVehicleDetailByCPRNumber?CPRNumber=" + CPRNumber + "&ServiceId=" + ServiceId + "&MembershipId=" + MembershipId;
     $.ajax({
         type: "Get",
         url: pUrl,

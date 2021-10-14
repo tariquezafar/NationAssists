@@ -9,25 +9,25 @@
     <div class="mainHd">Manage Service Provider Service Area</div>
     <ul class="dbForm flexBox">
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Service Provider </span>
+            <span class="fieldHd" id="lblService">Service Provider** </span>
             @Html.DropDownListFor(m => m.ServiceProviderId, Model.GetAllServiceProvider(), "--select-", new { @class = "formInput", @onchange = "GetAllServices()" })
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Service </span>
+            <span class="fieldHd" id="lblService">Service** </span>
             @Html.DropDownListFor(m => m.ServiceId,
            new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceId", "ServiceName"),
                   "Select Service", new { @class = "formInput", @onchange = "BindServiceType()" })
         </li>
 
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Service Sub Category </span>
+            <span class="fieldHd" id="lblService">Service Sub Category** </span>
             @Html.DropDownListFor(m => m.ServiceSubCategoryId,
            new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceCategoryId", "ServiceName"),
                   "--Select--", new { @class = "formInput", @onchange = "BindMappedArea()" })
         </li>
 
         <li class="oneThird">
-            <span class="fieldHd" id="lblUserType">Country </span>
+            <span class="fieldHd" id="lblUserType">Country** </span>
             @Html.DropDownListFor(m => m.CountryId, Model.BindCountry(), "--select-", new { @class = "formInput", @onchange = "BindGovernotes()" })
         </li>
         <li class="oneThird">

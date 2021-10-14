@@ -36,7 +36,7 @@ function GetAllServices() {
 
     if ($("#BrokerId").val() != "") {
         var BrokerId = $("#BrokerId").val();
-        var pUrl = "/Admin/Brokers/BindServices?BrokerId=" + BrokerId;
+        var pUrl = "/Admin/Brokers/BindServiceOptedForBroker?BrokerId=" + BrokerId;
         $.ajax({
             type: "Get",
             url: pUrl,
@@ -49,13 +49,27 @@ function GetAllServices() {
                 $('.pb').hide();
                 $('#tblPriceList').html('');
                 var jData = JSON.parse(data);
-                $("#ServiceId").html(""); // clear before appending new list
-                if (jData != null && jData.length > 0) {
-                    $("#ServiceId").append($('<option></option>').val(0).html("--Select Services--"));
-                    $.each(jData, function (i, service) {
-                        $("#ServiceId").append(
-                            $('<option></option>').val(service.ServiceId).html(service.ServiceName));
-                    });
+                if (jData.BrokerId != null) {
+                    //var AgreementFromDate = new Date(parseFloat(jData.Agreement_Start_Date.substring(jData.Agreement_Start_Date.indexOf('(') + 1, jData.Agreement_Start_Date.indexOf(')'))));
+                    //$("#hdnAgreementStartDate").val(formatDate(AgreementFromDate));
+                    ////$("#txtAggreementStartDate").val(new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString());
+                    //$("#txtAgreementStartDate").val($("#hdnAgreementStartDate").val());
+                    //var AgreementEndDate = new Date(parseFloat(jData.Agreement_End_Date.substring(jData.Agreement_End_Date.indexOf('(') + 1, jData.Agreement_End_Date.indexOf(')'))));
+                    //$("#hdnAgreementEndDate").val(formatDate(AgreementEndDate));
+                    //$("#txtAgreementEndDate").val($("#hdnAgreementEndDate").val());
+                    $("#hdnAgreementStartDate").val(jData.Agg_Start_Date);
+                    $("#txtAgreementStartDate").val($("#hdnAgreementStartDate").val());
+                    $("#hdnAgreementEndDate").val(jData.Agg_End_Date);
+                    $("#txtAgreementEndDate").val($("#hdnAgreementEndDate").val());
+                    $(".Ad").show();
+                    $("#ServiceId").html(""); // clear before appending new list
+                    if (jData.BrokerOptedServices != null && jData.BrokerOptedServices.length > 0) {
+                        $("#ServiceId").append($('<option></option>').val(0).html("--Select Services--"));
+                        $.each(jData.BrokerOptedServices, function (i, service) {
+                            $("#ServiceId").append(
+                                $('<option></option>').val(service.ServiceId).html(service.Name));
+                        });
+                    }
                 }
             }
         });
@@ -88,6 +102,7 @@ function BindBrokerPriceList() {
                     if (JData.Error == "") {
 
                         var objServiceCategoryPrice = JData.ServiceProviderPrice;
+
                         $("input[type=radio][name=PricingOption][value=" + objServiceCategoryPrice.PriceOption + "]").prop("checked", true);
                         $('.pb').show()
 
@@ -222,7 +237,15 @@ function ValidateForm() {
                 IsValid = false;
                 strErrMsg += "Please enter End Date for Row No " + (i + 1) + ". \n";
             }
+            if ($(e).find('input[name="txtStartDate"]').val() != "" && $("#hdnAgreementStartDate").val() != "" && $("#hdnAgreementEndDate").val() != "" && ((Date.parse($(e).find('input[name="txtStartDate"]').val()) <= Date.parse($("#hdnAgreementStartDate").val())) || (Date.parse($(e).find('input[name="txtStartDate"]').val()) > Date.parse($("#hdnAgreementEndDate").val())))) {
+                IsValid = false;
+                strErrMsg += "Start Date is less than Source Agreement start date  or greater than Source Agreement End date for Row No.  " + (i + 1) + ". \n";
+            }
 
+            if ($(e).find('input[name="txtEndDate"]').val() != "" && $("#hdnAgreementStartDate").val() != "" && $("#hdnAgreementEndDate").val() != "" && ((Date.parse($(e).find('input[name="txtEndDate"]').val()) <= Date.parse($("#hdnAgreementStartDate").val())) || (Date.parse($(e).find('input[name="txtEndDate"]').val()) > Date.parse($("#hdnAgreementEndDate").val())))) {
+                IsValid = false;
+                strErrMsg += "End Date is less than Source Agreement start date  or greater than Source Agreement End date  for Row No.  " + (i + 1) + ". \n";
+            }
             if ($(e).find('input[name="txtEndDate"]').val() != "" && $(e).find('input[name="txtStartDate"]').val() != "" && Date.parse($(e).find('input[name="txtEndDate"]').val()) <= Date.parse($(e).find('input[name="txtStartDate"]').val())) {
 
                 IsValid = false;
@@ -243,6 +266,15 @@ function ValidateForm() {
         if ($("#txtEndDate").val() == "") {
             IsValid = false;
             strErrMsg += "Please select end date.";
+        }
+        if ($("#txtStartDate").val() != "" && $("#hdnAgreementStartDate").val() != "" && $("#hdnAgreementEndDate").val() != "" && ((Date.parse($("#txtStartDate").val()) <= Date.parse($("#hdnAgreementStartDate").val())) || (Date.parse($("#txtStartDate").val()) > Date.parse($("#hdnAgreementEndDate").val())))) {
+            IsValid = false;
+            strErrMsg += "Start Date is less than Source Agreement start date  or greater than Source Agreement End date . \n";
+        }
+
+        if ($("#txtEndDate").val() != "" && $("#hdnAgreementStartDate").val() != "" && $("#hdnAgreementEndDate").val() != "" && ((Date.parse($("#txtEndDate").val()) <= Date.parse($("#hdnAgreementStartDate").val())) || (Date.parse($("#txtEndDate").val()) > Date.parse($("#hdnAgreementEndDate").val())))) {
+            IsValid = false;
+            strErrMsg += "End Date is  less than Source Agreement start date  or greater than Source Agreement End date . \n";
         }
         if ($("#txtEndDate").val() != "" && $("#txtStartDate").val() != "" && Date.parse($("#txtAggreementEndDate").val()) <= Date.parse($("#txtStartDate").val())) {
 

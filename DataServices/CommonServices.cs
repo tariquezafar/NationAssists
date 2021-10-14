@@ -49,7 +49,7 @@ namespace DataServices
         }
 
 
-        public MethodOutput<Service> BindServicesByServiceProviderId(int? ServiceProviderId)
+        public MethodOutput<ServiceProvider> BindServicesByServiceProviderId(int? ServiceProviderId)
         {
             OpCommon objCommon = new OpCommon();
             return objCommon.BindServiceOptedByServiceProviderId(ServiceProviderId);
@@ -105,5 +105,18 @@ namespace DataServices
             return objCommon.BindServiceEnrollmentStatus();
         }
 
+        public MethodOutput<ServiceSubCategory> BindServiceCategoryByProviderId(int ServiceId, int ServiceProviderId)
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindServiceCategoryByProviderId(ServiceId,ServiceProviderId);
+        }
+
+        public MethodOutput<Broker> BindServiceOptedForPriceByBrokerId(int? BrokerId)
+        {
+            OpCommon objCommon = new OpCommon();
+            return objCommon.BindServiceOptedForPriceByBrokerId(BrokerId);
+        }
+
+    
     }
 }

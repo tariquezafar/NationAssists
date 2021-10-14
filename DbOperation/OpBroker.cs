@@ -279,13 +279,18 @@ namespace DbOperation
                         EscalationLandlineNo = x.Field<string>("EscalationLandlineNo"),
                         DeclarationPeriod = x.Field<int?>("DeclarationPeriod"),
                         BranchLocation = x.Field<string>("BranchLocation"),
+                        Agg_Start_Date= x.Field<string>("Agg_Start_Date"),
+                        Agg_End_Date = x.Field<string>("Agg_End_Date"),
+                        CPR_Expiry_Date = x.Field<string>("CPR_Expiry_Date"),
                         lstBrokerServiceCommissionPayable = dtCommission.Rows.Count > 0 ? dtCommission.AsEnumerable().Select(y => new BrokerServiceCommissionPayable
                         {
                             BrokerId = y.Field<int>("BrokerId"),
                             Commission_EndDate = y.Field<DateTime>("Commission_EndDate"),
                             Commission_StartDate = y.Field<DateTime>("Commission_StartDate"),
                             Commission_Paybable = y.Field<decimal>("Commission_Paybable"),
-                            ServiceId= y.Field<int>("ServiceId"),
+                            Commission_Start_Date = y.Field<string>("Commission_Start_Date"),
+                            Commission_End_Date = y.Field<string>("Commission_End_Date"),
+                            ServiceId = y.Field<int>("ServiceId"),
                         }).ToList() : new List<BrokerServiceCommissionPayable>()
                     }).ToList();
 

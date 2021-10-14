@@ -8,16 +8,29 @@
     <div class="mainHd">Manage Service</div>
     <ul class="dbForm flexBox">
         <li class="oneThird">
-            <span class="fieldHd" id="lblServiceCode">Service Code </span>
+            <span class="fieldHd" id="lblServiceCode">Service Code** </span>
             <input type="text" class="formInput" id="txtServicecode" maxlength="1000" placeholder="Service Code">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblServiceName">Service Name </span>
+            <span class="fieldHd" id="lblServiceName">Service Name** </span>
             <input type="text" class="formInput" id="txtServicename" maxlength="1000" placeholder="Service Name">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblServiceName">Package Code </span>
-            <input type="text" class="formInput" id="txtPackageCode"  placeholder="Package Code">
+            <span class="fieldHd" id="lblServiceName">Package Code** </span>
+            <select type="text" class="formInput" id="txtPackageCode">
+                <option value="0">-Select-</option>
+                <option value="HA">HA</option>
+                <option value="RA">RA</option>
+                <option value="SC8">SC8</option>
+                <option value="SC10">SC10</option>
+                <option value="SC15">SC15</option>
+                <option value="MC8">MC8</option>
+                <option value="MC10">MC10</option>
+                <option value="MC15">MC15</option>
+                <option value="LC8">LC8</option>
+                <option value="LC10">LC10</option>
+                <option value="LC15">LC15</option>
+            </select>
         </li>
         <li class="oneThird">
             <span class="fieldHd">Status</span>

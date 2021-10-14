@@ -18,45 +18,45 @@
             <div id="dvRaiseServiceRequest">
                 <ul class="form flexBox">
                     <li class="oneThird">
-                        <span class="fieldHd">Service</span>
+                        <span class="fieldHd">Service**</span>
                         @Html.DropDownListFor(m => m.ServiceId, Model.BindServicesByCPRNumber(Model.CPRNumber), "--select-", new { @class = "formSelect", @onchange = "BindServiceType()" })
                     </li>
                     <li class="oneThird">
-                        <span class="fieldHd" id="lblService">Service Type </span>
+                        <span class="fieldHd" id="lblService">Service Type** </span>
                         <select id="ServiceCategoryId" class="formSelect">
                             <option value="">--Select--</option>
                         </select>
                     </li>
                     <li class="oneThird RAP" style="display:none;">
-                        <span class="fieldHd">Vehicle Registration Number </span>
+                        <span class="fieldHd">Vehicle Registration Number** </span>
                         <select id="VehicleRegistrationNo" class="formSelect">
                             <option value="">--Select--</option>
                         </select>
                     </li>
                     <li class="oneThird RAP" style="display:none;">
-                        <span class="fieldHd">Chessis No</span>
+                        <span class="fieldHd">Chessis No**</span>
                         <select id="ChessisNo" class="formSelect">
                             <option value="">--Select--</option>
                         </select>
                     </li>
                     <li class="oneThird">
-                        <span class="fieldHd">Service Location</span>
+                        <span class="fieldHd">Service Location**</span>
                         <textarea id="txtServiceLocation" class="formInput" placeholder="Service Location"></textarea>
                         <select id="ddlServiceLocation" class="formInput" style="display:none;"></select>
                     </li>
                     <li class="oneThird">
-                        <span class="fieldHd">Country</span>
+                        <span class="fieldHd">Country**</span>
                         @Html.DropDownListFor(m => m.CountryId, Model.BindCountry(), "--select-", new { @class = "formSelect", @onchange = "BindGovernotes()" })
                     </li>
                     <li class="oneThird">
-                        <span class="fieldHd" id="lblGovernotes">Governotes</span>
+                        <span class="fieldHd" id="lblGovernotes">Governotes**</span>
                         <select id="GovernotesId" class="formSelect" onchange="BindPlaces();">
                             <option value="">--Select--</option>
                         </select>
                     </li>
                     <li class="oneThird">
                         <span class="fieldHd" id="lblPlace">
-                            Place
+                            Place**
                         </span>
                         <select id="PlaceId" class="formSelect" onchange="BindBlock()">
                             <option value="">--Select--</option>
@@ -66,14 +66,14 @@
 
                     <li class="oneThird">
                         <span class="fieldHd" id="lblBlockCode">
-                            Block Code
+                            Block Code**
                         </span>
                         <select id="BlockCode" class="formSelect">
                             <option value="">--Select--</option>
                         </select>
                     </li>
                     <li class="oneThird">
-                        <span class="fieldHd">Date of Accident</span>
+                        <span class="fieldHd">Date of Accident**</span>
                         <input type="text" id="txtDateOfAccident" class="formInput datePicker" />
                     </li>
                     <li class="oneThird RAP">

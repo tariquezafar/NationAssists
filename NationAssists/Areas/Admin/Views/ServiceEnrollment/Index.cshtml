@@ -127,7 +127,7 @@
 
         <ul class="form flexBox" id="ulUpdated">
             <li class="oneThird">
-                <span class="fieldHd">Enrollment Status</span>
+                <span class="fieldHd">Enrollment Status**</span>
                 @Html.DropDownListFor(m => m.ServiceEnrollmentStatusId, Model.BindEnrollementStatus(true), "--select-", new { @class = "formSelect", @onchange = "OnChangingEnrollmentStatus(this)" })
             </li>
             <li class="oneThird MEM" style="display:none;">
@@ -144,16 +144,16 @@
                 <input type="text" class="formInput" placeholder="Policy No" id="txtPolicyNo" />
             </li>
             <li class="oneThird MEM" style="display:none;">
-                <span class="fieldHd" id="lblLandlineNo">Effective Date </span>
+                <span class="fieldHd" id="lblLandlineNo">Effective Date** </span>
                 <input type="text" id="txtEffectiveDate" class="formInput datePicker" />
             </li>
             <li class="oneThird MEM" style="display:none;">
-                <span class="fieldHd" id="lblEmailID">Expiry Date </span>
+                <span class="fieldHd" id="lblEmailID">Expiry Date** </span>
                 <input type="text" id="txtExpiryDate" class="formInput datePicker" />
             </li>
 
             <li id="liApRemarks" style="display:none;">
-                <span class="fieldHd" id="lblAggreementEndDate">Approver Remarks </span>
+                <span class="fieldHd" id="lblAggreementEndDate">Approver Remarks** </span>
                 <textarea id="txtApproverRemarks" class="formInput" placeholder="Approver Remarks"></textarea>
             </li>
 

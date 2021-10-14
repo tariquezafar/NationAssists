@@ -29,5 +29,9 @@ namespace DataEngine
 
         public int BatchNo { get; set; }
         public List<BrokerPrice> BrokerPriceList { get; set; }
+
+        public DateTime AgreementStartDate { get; set; }
+
+        public DateTime AgreementEndDate { get; set; }
     }
 }

@@ -51,6 +51,33 @@ namespace NationAssists.Areas.Admin.Controllers
                 ServiceEnrollmentService obj = new ServiceEnrollmentService();
                 objSER.ApprovedBy = Convert.ToInt32(Session["UserId"]);
                 objMO = obj.UpdateServiceEnrollmentRequest(objSER);
+                if (objSER.ServiceEnrollmentStatus==(int)ServiceEnrollmentStatusEnum.Accepted && objMO.ErrorMessage == string.Empty)
+                {
+                    string CustomerName = objSER.CustomerName;
+                    string DownloadURL = string.Empty;
+
+
+                    if (objSER.ServiceId == 1)
+                    {
+                        DownloadURL = Request.Url.Authority + "/DownloadDocument/Nation Assist Roadside Assistance.pdf";
+                    }
+                    else if (objSER.ServiceId == 11)
+                    {
+                        DownloadURL = Request.Url.Authority + "/DownloadDocument/Nation Assist Home Assistance.pdf";
+                    }
+                    else
+                    {
+                        DownloadURL = Request.Url.Authority + "/DownloadDocument/Nation Assist Roadside and Car Replacement.pdf";
+                    }
+
+                    Dictionary<string, string> objTempValues = new Dictionary<string, string>();
+                    objTempValues.Add("CustomerName", CustomerName);
+                    objTempValues.Add("DownloadURL", DownloadURL);
+
+                    EmailServices objEmailService = new EmailServices();
+                    List<string> ToEmail = new List<string> { objSER.CustomerEmail };
+                    objEmailService.MailSent(ToEmail, objTempValues, "SERVICE_ENROLLMENT");
+                }
                 IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
                 strMsg = objMO.ErrorMessage;
 

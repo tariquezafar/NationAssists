@@ -10,7 +10,21 @@ namespace NationAssists.Areas.Admin.Models
         Open = 1,
         Assigned = 2,
         Re_Assigned = 3,
+        Closed = 4,
+        Pending=5
+
+    }
+
+    public enum ServiceRequestAllocationStatusEnum
+    {
+        Open = 1,
+        Accepted = 2,
+        Rejected = 3,
         Closed = 4
 
     }
+
+   
+
+
 }

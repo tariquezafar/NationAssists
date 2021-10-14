@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="contactMap">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.67269241234!2d50.52892791435043!3d26.239822595050477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a591b72dc749%3A0x799974ba3e0ce44!2sBayswater%20Commercial!5e0!3m2!1sen!2sin!4v1623938738712!5m2!1sen!2sin" width="100%" height="300" style="border:0;"
+            allowfullscreen="" loading="lazy"></iframe>
+</div>
+<div class="whtBg pb60">
+    <div class="container">
+        <div class="contactBox flexBox">
+            <div class="contactLft">
+                <div class="reachUs"><span>Reach Us</span></div>
+                <ul class="contactInfo">
+                    <li class="emailContact"><img src="../images/email_contact.png" alt=""><strong>info@nassistbh.com</strong></li>
+                    <li class="phoneContact"><img src="../images/phone_contact.png" alt=""><strong> +973 17 558 555</strong></li>
+                    <li class="webContact"><img src="../images/web_contact.png" alt=""> <strong>www.nassistbh.com</strong></li>
+                    <li class="locationContact"><img src="../images/location_contact.png" alt=""> <strong>Bayswater Tower, Office 61, Building No. 742, Road No. 3616, Block No. 436, Al Seef, Kingdom of Bahrain</strong> </li>
+                </ul>
+            </div>
+            <div class="contactRgt">
+                <ul class="contactForm flexBox">
+                    <li class="half">
+                        <span class="contactField">Name</span>
+                        <input type="text" class="contactInput" id="txtName" placeholder="Enter your name">
+                    </li>
+                    <li class="half">
+                        <span class="contactField">Email Address</span>
+                        <input type="text" class="contactInput" id="txtEmailAddress" placeholder="Enter your email">
+                    </li>
+                    <li class="half">
+                        <span class="contactField">Select Reason</span>
+                        <select class="contactSelect" id="ddlReason">
+                            <option value="Feedback">Feedback</option>
+                            <option value="Suggestions">Suggestions</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </li>
+                    <li class="half">
+                        <span class="contactField">Mobile Number</span>
+                        <input type="text" class="contactInput" id="txtMobileNumber" placeholder="Enter Mobile Number">
+                    </li>
+                    <li>
+                        <span class="contactField">Message</span>
+                        <textarea rows="4" cols="4" class="contactInput" id="txtMessage" placeholder="Type your message here"></textarea>
+                    </li>
+                    <li>
+                        <button class="goBtn" id="btnSubmit"><img src="../images/go_icon.png" alt=""></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#btnSubmit").click(function () {
+
+        if ($("#txtName").val() == "") {
+            alert("Please enter Name.");
+            $("#txtName").focus();
+        }
+        else if ($("#txtEmailAddress").val() == "") {
+            alert("Please enter Email Address.");
+            $("#txtEmailAddress").focus();
+        }
+        else if ($("#txtMobileNumber").val() == "") {
+            alert("Please enter Mobile Number.");
+            $("#txtMobileNumber").focus();
+        }
+        else if ($("#txtMessage").val() == "") {
+            alert("Please enter Message.");
+            $("#txtMessage").focus();
+        }
+        else {
+            var pUrl = "/ContactUs/SubmitEnquiry/";
+            var objEnquiry = {
+                Name: $("#txtName").val(),
+                Reason: $("#ddlReason").val(),
+                EmailAddress: $("#txtEmailAddress").val(),
+                MobileNumber: $("#txtMobileNumber").val(),
+                Message: $("#txtMessage").val(),
+            };
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                url: pUrl,
+                data: JSON.stringify(objEnquiry),
+                success: function (data) {
+                    debugger;
+
+                    if (data.Error == null || data.Error == "") {
+                        alert("Thanks for your enquiry.");
+                        window.location.href = "/Contactus";
+                    }
+                    else {
+
+                    }
+                },
+                error: function (data) {
+                }
+            });
+
+        }
+    });
+</script>

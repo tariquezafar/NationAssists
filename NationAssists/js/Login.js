@@ -65,25 +65,3 @@
 
 
 
-function Logout(user) {
-    var pUrl = "/Login/Logout/"
-    $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        contentType: 'application/json; charset=utf-8',
-        url: pUrl,
-        success: function (data
-        ) {
-            if (data) {
-                if (user == "Customer") {
-                    window.location.href = "/Home";
-                }
-                else {
-                    window.location.href = "../../Home";
-                }
-            }
-        },
-        error: function (data) {
-        }
-    });
-}

@@ -178,6 +178,7 @@ namespace DbOperation
                         YearOfManufacture= x.Field<int>("YearOfManufacture"),
                         RequestedDate= x.Field<DateTime>("CreatedDate").AddDays(3).ToString("dd-MMM-yyyy"),
                         CPRNumber= x.Field<string>("CPRNumber"),
+                        CustomerEmail=x.Field<string>("EmailId")
                     }).ToList();
 
                     objOutput.DataList = objLstService;

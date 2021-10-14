@@ -11,9 +11,11 @@
 
 
                 <tr>
-
+                    <th>Certificate Generation</th>
+                    <th>Send Certificate</th>
+                    <th>Operation</th>
                     <th>SNo.</th>
-                    <th>MemberShip Reference No</th>
+                    <th>Membership Reference No</th>
                     <th>Source Name</th>
                     <th>Package Name</th>
                     <th>C.P.R Number</th>
@@ -22,7 +24,7 @@
                     <th>Effective Date</th>
                     <th>Expiry Date</th>
                     <th>Issued Date</th>
-                    <th>Operation</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +32,17 @@
                 {
                     i = i + 1;
                 <tr>
+                    <td>
+                        <a data-id="@item.MembershipId" target="_blank" href="@Url.Action( "GenerateCertificate","Brokers",new { PackageId = item.PackageId,IssueDate=item.IssueDate,EffectiveDate=item.EffectiveDate,ExpiryDate=item.ExpiryDate,MembershipReferenceNo=item.MembershipReferenceNo,InsuredName=item.InsuredName,RiskAddress=item.RiskAddress,PackageName=item.PackageName,VehicleRegistrationNo=item.VehicleRegistrationNo ,VehicleMake=item.VehicleMake,ChassisNo=item.ChassisNo,VehicleYear=item.VehicleYear })" style="cursor:pointer;">Generate Certificate</a>
+                    </td>
+                    <td>
+                        <a data-id="@item.MembershipId" onclick="SendGenerateCertificate(@Newtonsoft.Json.JsonConvert.SerializeObject( item));" style="cursor:pointer;">Send Certificate</a>
+                    </td>
+                    <td>
+
+                        <a data-id="@item.MembershipId" onclick="EditMember(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+
+                    </td>
                     <td> <span class="blueClr">@i </span></td>
                     <td>@item.MembershipReferenceNo</td>
                     <td>@item.SourceName</td>
@@ -40,12 +53,8 @@
                     <td>@(Convert.ToDateTime( item.EffectiveDate).ToString("dd-MMM-yyyy"))</td>
                     <td>@(Convert.ToDateTime( item.ExpiryDate).ToString("dd-MMM-yyyy"))</td>
                     <td>@(Convert.ToDateTime( item.IssueDate).ToString("dd-MMM-yyyy"))</td>
-                    
-                    <td>
 
-                        <a data-id="@item.MembershipId" onclick="EditMember(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
-                        
-                    </td>
+
 
                 </tr>
                 }

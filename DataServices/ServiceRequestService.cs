@@ -10,10 +10,10 @@ namespace DataServices
 {
    public class ServiceRequestService
     {
-        public MethodOutput<Service> BindServicesByCPRNumber(string CPRNumber)
+        public MethodOutput<Service> BindServicesByCPRNumber(string CPRNumber, Int64 MembershipId=0)
         {
             OpServiceRequest objCommon = new OpServiceRequest();
-            return objCommon.BindServicesByCPRNumber(CPRNumber);
+            return objCommon.BindServicesByCPRNumber(CPRNumber, MembershipId);
         }
 
         public MethodOutput<string> SaveServiceRequest(ServiceRequest SR)
@@ -39,10 +39,10 @@ namespace DataServices
             return objCommon.SaveServiceRequestAllocation(objSA);
         }
 
-        public MethodOutput<ServiceRequest> BindAllocation(int ServiceProviderId)
+        public MethodOutput<ServiceRequest> BindAllocation(int ServiceProviderId, int ServiceAllocationStatusId, string Service)
         {
             OpServiceRequest objCommon = new OpServiceRequest();
-            return objCommon.BindServiceAllocation(ServiceProviderId);
+            return objCommon.BindServiceAllocation(ServiceProviderId, ServiceAllocationStatusId, Service);
         }
 
         
@@ -53,10 +53,10 @@ namespace DataServices
         }
 
         public MethodOutput<ServiceRequest> BindAllServiceRequest(int ServiceRequestStatusId,
-            string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime StartDate, DateTime EndDate , int UserId)
+            string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime ? StartDate, DateTime ? EndDate , int UserId, string Service, int ServiceAllocationStatusId)
         {
-            OpServiceRequest objCommon = new OpServiceRequest();
-            return objCommon.BindAllServiceRequest(ServiceRequestStatusId,TicketNo,AccountType,BrokerId,AccountSubType,StartDate,EndDate,UserId);
+                OpServiceRequest objCommon = new OpServiceRequest();
+            return objCommon.BindAllServiceRequest(ServiceRequestStatusId,TicketNo,AccountType,BrokerId,AccountSubType,StartDate,EndDate,UserId,Service,ServiceAllocationStatusId);
         }
 
         public MethodOutput<string> BindVehicleRegistrationNoListByCPRNumber(string CPRNumber,int ServiceId)
@@ -84,10 +84,10 @@ namespace DataServices
             return objCommon.BindCustomerStatus(CPRNumber);
         }
 
-        public MethodOutput<VehicleDetail> BindVehicleDetailByCPRNumber(string CPRNumber, int ServiceId)
+        public MethodOutput<VehicleDetail> BindVehicleDetailByCPRNumber(string CPRNumber, int ServiceId, Int64 MembershipId)
         {
             OpServiceRequest objCommon = new OpServiceRequest();
-            return objCommon.BindVehicleDetailByCPRNumber(CPRNumber,ServiceId);
+            return objCommon.BindVehicleDetailByCPRNumber(CPRNumber,ServiceId,MembershipId);
         }
 
         public MethodOutput<Customer> GetCustomerDetail(string CPRNumber)

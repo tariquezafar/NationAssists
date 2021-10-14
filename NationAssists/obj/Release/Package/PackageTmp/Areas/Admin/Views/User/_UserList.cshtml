@@ -12,7 +12,7 @@
 
 
                         <tr>
-
+                            <th>Operation</th>
                             <th>SNo.</th>
                             <th>User Type</th>
                             <th>User Code</th>
@@ -24,7 +24,7 @@
                             <th>Role</th>
                             <th>Status</th>
 
-                            <th>Operation</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +32,12 @@
                         {
                             i = i + 1;
                         <tr>
-                            <td >@i</td>
+                            <td>
+                                <input type="hidden" value="@item.IsActive.ToString()" />
+                                <a data-id="@item.UserId" userType-id="@item.UserTypeId" branch_id="@item.BranchId" role_id="@item.RoleId" subCat_isActive="@item.IsActive.ToString()" onclick="EditUser(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+                                &nbsp; <a data-id="@item.UserId" onclick="DeleteUsers(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
+                            </td>
+                            <td>@i</td>
 
                             <td>@item.UserTypeName</td>
                             <td>@item.UserCode</td>
@@ -43,11 +48,7 @@
                             <td>@item.BranchName</td>
                             <td>@item.RoleName</td>
                             <td>@(item.IsActive? "Active":"InActive")</td>
-                            <td>
-                                <input type="hidden" value="@item.IsActive.ToString()" />
-                                <a data-id="@item.UserId" userType-id="@item.UserTypeId" branch_id="@item.BranchId" role_id="@item.RoleId" subCat_isActive="@item.IsActive.ToString()" onclick="EditUser(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
-                                &nbsp; <a data-id="@item.UserId" onclick="DeleteUsers(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
-                            </td>
+
 
                         </tr>
                         }

@@ -1,40 +1,361 @@
-﻿
+﻿@model NationAssists.Areas.Admin.Models.mDashboard
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@{
+    DataEngine.Users objUSer = new DataEngine.Users();
+    if (Session["User"] != null)
+    {
+        objUSer = (DataEngine.Users)Session["User"];
 
+    }
+}
 <div class="dashboardCon transition">
     <div class="mainHd">Dashboard</div>
     <div class="dashboardTop">
-        <ul class="flexBox">
-            <li>
-                <div class="inner">
-                    1500
-                    <span>Total No of Users</span>
-                </div>
-            </li>
-            <li>
-                <div class="inner">
-                    225
-                    <span>Total No of Agents/Broker</span>
-                </div>
-            </li>
-            <li>
-                <div class="inner">
-                    3000
-                    <span>Total No of Customer</span>
-                </div>
-            </li>
-            <li>
-                <div class="inner">
-                    20
-                    <span>Total No of Service Requests</span>
-                </div>
-            </li>
-        </ul>
+        @if (objUSer != null && objUSer.UserTypeCode == "EMP")
+        {
+            <ul class="flexBox">
+                <li onclick="window.location.href='/Admin/Service/ManageServiceProvider'">
+                    <div class="inner">
+                        @Model.TotalNoOfServiceProvider
+                        <span>Total No of Service Provider</span>
+                    </div>
+                </li>
+                <li  onclick="window.location.href='/admin/ServiceRequest/index'">
+                    <div class="inner">
+                        @Model.TotalNoOfServiceRequests
+                        <span>Total No of Service Requests</span>
+                    </div>  
+                </li>
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Open'">
+                    <div class="inner">
+                        @Model.TotalNoOfOpenServiceRequest
+                        <span>Total No of Open Service Request</span>
+                    </div>
+                </li>
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Closed'">
+                    <div class="inner">
+                        @Model.TotalNoOfClosedServiceRequest
+                        <span>Total No of Closed Service Request</span>
+                    </div>
+                </li>
+
+
+            </ul>
+            <ul class="flexBox">
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Open&Service=RA'" >
+                    <div class="inner">
+                     
+                        @Model.TotalNoOfOpenRAServiceRequest
+                        <span>Total No of Open RA Service Request</span>
+                    </div>
+                </li>
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Pending&Service=RA'">
+                    <div class="inner">
+                        @Model.TotalNoOfPendingRAServiceRequest
+                        <span>Total No of Pending  RA Service Request</span>
+                    </div>
+                </li>
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Closed&Service=RA'">
+                    <div class="inner">
+                        @Model.TotalNoOfClosedRAServiceRequest
+                        <span>Total No of Closed  RA Service Request</span>
+                    </div>
+                </li>
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Open&Service=CR'">
+                    <div class="inner">
+                        @Model.TotalNoOfOpenCRServiceRequest
+                        <span>Total No of Open CR Service Request</span>
+                    </div>
+                </li>
+
+
+            </ul>
+
+            <ul class="flexBox" >
+                <li>
+                    <div class="inner">
+                        @Model.TotalNoOfPendingCRServiceRequest
+                        <span>Total No of Pending CR Service Request</span>
+                    </div>
+                </li>
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Closed&Service=CR'">
+                    <div class="inner">
+                        @Model.TotalNoOfClosedCRServiceRequest
+                        <span>Total No of Closed CR Service Request</span>
+                    </div>
+                </li>
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Open&Service=HA'">
+                    <div class="inner">
+                        @Model.TotalNoOfOpenHAServiceRequest
+                        <span>Total No of open HA Service Request</span>
+                    </div>
+                </li>
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Pending&Service=HA'">
+                    <div class="inner">
+                        @Model.TotalNoOfPendingHAServiceRequest
+                        <span>Total No of pending HA Service Request</span>
+                    </div>
+                </li>
+
+
+            </ul>
+
+            <ul class="flexBox">
+                <li onclick="window.location.href='/admin/ServiceRequest/index?Status=Closed&Service=HA'">
+                    <div class="inner">
+                        @Model.TotalNoOfClosedHAServiceRequest
+                        <span>Total No of closed HA Service Request</span>
+                    </div>
+                </li>
+                <li onclick="window.location.href='/admin/ServiceRequest/index?AllocationStatus=Open'">
+                    <div class="inner">
+                        @Model.TotalNoOfOpenServiceRequestAllocation
+                        <span>Total No of open Allocated Service Request</span>
+                    </div>
+                </li>
+                <li onclick ="window.location.href='/admin/ServiceRequest/index?AllocationStatus=Closed'">
+                    <div class="inner">
+                        @Model.TotalNoOfClosedServiceRequestAllocation
+                        <span>Total No of closed Allocated Service Request</span>
+                    </div>
+                    </li>
+
+
+
+</ul>
+        }
+
+        @if (objUSer != null && objUSer.UserTypeCode == "SP")
+        {
+            if (objUSer.RoleName == "Admin")
+            {
+    <ul class="flexBox">
+        <li  onclick="window.location.href='/admin/ServiceRequest/RespondToServiceAllocation'">
+            <div class="inner">
+                @Model.NoOfServiceRequestAllocated
+                <span>Total No of Serv. Req. till date</span>
+            </div>
+        </li>
+
+
+        <li onclick="window.location.href='/admin/ServiceRequest/RespondToServiceAllocation?AllocationStatus=Accepted'">
+            <div class="inner">
+                @Model.NoOfServiceRequestAccepted
+                <span>No. of Ser. Req accepted</span>
+            </div>
+        </li>
+
+        <li onclick="window.location.href='/admin/ServiceRequest/RespondToServiceAllocation?AllocationStatus=Open'">
+            <div class="inner">
+                @Model.NoOfServiceRequestPending
+                <span>No. of pending Ser. Req</span>
+            </div>
+        </li>
+        <li onclick="window.location.href='/admin/ServiceRequest/RespondToServiceAllocation?AllocationStatus=Closed'">
+            <div class="inner">
+                @Model.NoOfServiceRequestClosed
+                <span>No. of Serv. req. close </span>
+            </div>
+        </li>
+    </ul>
+    <ul class="flexBox">
+        <li onclick="window.location.href='/admin/ServiceRequest/RespondToServiceAllocation?AllocationStatus=Accepted&Service=RSA'">
+            <div class="inner">
+                @Model.NoOfRSAServiceRequestAccepted
+                <span>No. of RSA accepted </span>
+            </div>
+        </li>
+        <li onclick="window.location.href='/admin/ServiceRequest/RespondToServiceAllocation?AllocationStatus=Accepted&Service=CR'">
+            <div class="inner">
+                @Model.NoOfCRServiceRequestAccepted
+                <span>No. of CR req. accepted</span>
+            </div>
+        </li>
+
+        <li onclick="window.location.href='/admin/ServiceRequest/RespondToServiceAllocation?AllocationStatus=Accepted&Service=HA'">
+            <div class="inner">
+                @Model.NoOfHAServiceRequestAccepted
+                <span>No. of HA req. accepted</span>
+            </div>
+        </li>
+
+    </ul>
+            }
+            else
+            {
+                <ul class="flexBox">
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfServiceRequestAllocated
+                            <span>No. of Serv. Allocated</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfServiceRequestClosed
+                            <span>No. of ser. Allocated/Closed Today.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfServiceRequestPending
+                            <span>No. of Pending </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfServiceRequestAccepted
+                            <span>Total No. of Serv. attended till date</span>
+                        </div>
+                    </li>
+                </ul>
+            }
+        }
+
+        @if (objUSer != null && objUSer.UserTypeCode != "SP" && objUSer.UserTypeCode != "EMP")
+        {
+            if (objUSer.RoleName == "Admin")
+            {
+                <ul class="flexBox">
+                    <li>
+                        <div class="inner">
+                            @Model.TotalNoOfMembeshipIssuedTillDate
+                            <span>Total No of Memberships issued till date</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfRSAMembeshipIssuedTillDate
+                            <span>Total No Of RSA Membership sold till date</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfHAMembeshipIssuedTillDate
+                            <span>Total No Of HA Membership sold till date</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfRSAplusCRMembeshipIssuedTillDate
+                            <span>Total No Of RSA+ CR  sold till date</span>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="flexBox">
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfMembershipSoldForTheMonth
+                            <span>Total No. of Membership sold for the month</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.TotalNoOfMembeshipIssuedForTheDay
+                            <span>Total No of Memberships sold for the day</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfRSAMembeshipIssuedTillDate
+                            <span>Total No Of RSA Membership sold for the day</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfHAMembeshipIssuedTillDate
+                            <span>Total No Of HA Membership sold for the day</span>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="flexBox">
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfRSAplusCRMembeshipIssuedForTheDay
+                            <span>Total No Of RSA+ CR  sold for the day</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.TotalNoOfActiveSourceUser
+                            <span>Total No Of Active users</span>
+                        </div>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <ul class="flexBox">
+                    <li>
+                        <div class="inner">
+                            @Model.TotalNoOfMembeshipIssuedTillDate
+                            <span>Total No of Memberships issued till date</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfRSAMembeshipIssuedTillDate
+                            <span>Total No Of RSA Membership sold till date</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfHAMembeshipIssuedTillDate
+                            <span>Total No Of HA Membership sold till date</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfRSAplusCRMembeshipIssuedTillDate
+                            <span>Total No Of RSA+ CR  sold till date</span>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="flexBox">
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfMembershipSoldForTheMonth
+                            <span>Total No. of Membership sold for the month</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.TotalNoOfMembeshipIssuedForTheDay
+                            <span>Total No of Memberships sold for the day</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfRSAMembeshipIssuedTillDate
+                            <span>Total No Of RSA Membership sold for the day</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfHAMembeshipIssuedTillDate
+                            <span>Total No Of HA Membership sold for the day</span>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="flexBox">
+                    <li>
+                        <div class="inner">
+                            @Model.NoOfRSAplusCRMembeshipIssuedForTheDay
+                            <span>Total No Of RSA+ CR  sold for the day</span>
+                        </div>
+                    </li>
+
+                </ul>
+            }
+        }
+
+
+
     </div>
-    <div>
+    <div style="display:none;">
         <ul class="graphList flexBox">
             <li class="fullWidth">
                 <div class="inner">

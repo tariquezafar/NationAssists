@@ -137,7 +137,7 @@ namespace DbOperation
             return output;
         }
 
-        public MethodOutput<Users> GetUsers(int UserId, int UserTypeId,int UserReferenceId, string UserCode, string UserName)
+        public MethodOutput<Users> GetUsers(int UserId, int UserTypeId,int UserReferenceId, string UserCode, string UserName, int CreateBy )
         {
             MethodOutput<Users> output = new MethodOutput<Users>();
             List<Users> objLst = new List<Users>();
@@ -145,7 +145,7 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[5];
+                SqlParameter[] objListSqlParam = new SqlParameter[7];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@UserId";
                 objListSqlParam[0].Value = UserId;
@@ -167,6 +167,10 @@ namespace DbOperation
                 objListSqlParam[4] = new SqlParameter();
                 objListSqlParam[4].ParameterName = "@UserName";
                 objListSqlParam[4].Value = UserName;
+
+                objListSqlParam[5] = new SqlParameter();
+                objListSqlParam[5].ParameterName = "@CreatedBy";
+                objListSqlParam[5].Value = CreateBy;
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_GetUsers", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
@@ -199,7 +203,10 @@ namespace DbOperation
                         EmergencyContactPersonName = x.Field<string>("EmergencyContactPersonName"),
                         Remarks = x.Field<string>("Remarks"),
                         UserCode = x.Field<string>("UserCode"),
-                        SourceName=x.Field<string>("SourceName")
+                        SourceName=x.Field<string>("SourceName"),
+                        CPR_Expiry_Date = x.Field<string>("CPR_Expiry_Date"),
+                        PASSPORT_Expiry_Date = x.Field<string>("PASSPORT_Expiry_Date"),
+                        Date_OF_Joining = x.Field<string>("Date_OF_Joining")
 
                     }).ToList();
 
@@ -288,6 +295,11 @@ namespace DbOperation
 
                     }).ToList();
 
+                    output.DataList = objLst;
+                    output.ErrorMessage = string.Empty;
+                }
+                else
+                {
                     output.DataList = objLst;
                     output.ErrorMessage = string.Empty;
                 }

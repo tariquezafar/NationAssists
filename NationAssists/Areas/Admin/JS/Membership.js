@@ -72,8 +72,8 @@ function GetAllServices() {
 function BindMembership() {
     if ($("#BrokerTypeId").val() != "" && $("#BrokerId").val() != "0" && $("#ServiceId").val() != "0") {
         var SelectedService = $("#ServiceId option:selected").text();
-        var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-        if (ServiceCode == "HAP") {
+        var ServiceCode = SelectedService.substring(SelectedService.lastIndexOf('(') + 1, SelectedService.lastIndexOf(')'));
+        if (ServiceCode == "HA") {
             $('.RAS').hide();
             $('.HAS').show();
 
@@ -205,8 +205,8 @@ function ValidateForm() {
     }
     if ($("#BrokerTypeId").val() != "" && $("#BrokerId").val() != "0" && $("#ServiceId").val() != "0") {
         var SelectedService = $("#ServiceId option:selected").text();
-        var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-        if (ServiceCode == "HAP") {
+        var ServiceCode = SelectedService.substring(SelectedService.lastIndexOf('(') + 1, SelectedService.lastIndexOf(')'));
+        if (ServiceCode == "HA") {
 
             if ($("#txtRiskAddress").val() == "") {
                 IsValid = false;
@@ -295,17 +295,19 @@ function EditMember(e) {
             $("#txtTypeOfService").val(Jdata.TypeOfService);
 
 
-            var IssueDate = new Date(parseFloat(Jdata.IssueDate.substring(Jdata.IssueDate.indexOf('(') + 1, Jdata.IssueDate.indexOf(')'))));
-            $("#txtIssueDate").val(formatDate(IssueDate));
+            //var IssueDate = new Date(parseFloat(Jdata.IssueDate.substring(Jdata.IssueDate.indexOf('(') + 1, Jdata.IssueDate.indexOf(')'))));
+            //$("#txtIssueDate").val(formatDate(IssueDate));
             
 
-            var EffectiveDate = new Date(parseFloat(Jdata.EffectiveDate.substring(Jdata.EffectiveDate.indexOf('(') + 1, Jdata.EffectiveDate.indexOf(')'))));
-            $("#txtEffectiveDate").val(formatDate(EffectiveDate));
+            //var EffectiveDate = new Date(parseFloat(Jdata.EffectiveDate.substring(Jdata.EffectiveDate.indexOf('(') + 1, Jdata.EffectiveDate.indexOf(')'))));
+            //$("#txtEffectiveDate").val(formatDate(EffectiveDate));
 
-            var ExpiryDate = new Date(parseFloat(Jdata.ExpiryDate.substring(Jdata.EffectiveDate.indexOf('(') + 1, Jdata.ExpiryDate.indexOf(')'))));
-            $("#txtExpiryDate").val(formatDate(ExpiryDate));
+            //var ExpiryDate = new Date(parseFloat(Jdata.ExpiryDate.substring(Jdata.EffectiveDate.indexOf('(') + 1, Jdata.ExpiryDate.indexOf(')'))));
+            //$("#txtExpiryDate").val(formatDate(ExpiryDate));
 
-       
+            $("#txtIssueDate").val(Jdata.Issue_Date);
+            $("#txtEffectiveDate").val(Jdata.Effective_Date);
+            $("#txtExpiryDate").val(Jdata.Expiry_Date);
             //$('input[name="chkService"][type="checkbox"]').prop("checked", false);
         
 
@@ -349,6 +351,55 @@ function SearchMembership() {
         }
     });
     
+}
+
+function SendGenerateCertificate(e) {
+
+    if (e.EmailId != null && e.EmailId != "") {
+        var objMembership = {
+            PackageId: e.PackageId,
+            PackageName: e.PackageName,
+            IssueDate: e.IssueDate,
+            EffectiveDate: e.EffectiveDate,
+            ExpiryDate: e.ExpiryDate,
+            InsuredName: e.InsuredName,
+            VehicleRegistrationNo: e.VehicleRegistrationNo,
+            ChassisNo: e.ChassisNo,
+            VehicleMake: e.VehicleMake,
+            VehicleYear: e.VehicleYear,
+            RiskAddress: e.RiskAddress,
+            MembershipReferenceNo: e.MembershipReferenceNo,
+            EmailId: e.EmailId
+        };
+
+
+
+        var pUrl = "/Admin/Brokers/SendGeneratedCertificate/";
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            url: pUrl,
+            data: JSON.stringify(objMembership),
+            success: function (data) {
+                debugger;
+
+                if (data.Error == null || data.Error=="") {
+                    alert("Certificate send successfully");
+
+                }
+                else {
+                    alert("Opps! some error occured.");
+                }
+
+            },
+            error: function (data) {
+            }
+        });
+    }
+    else {
+        alert("Customer Email doesnot exists.");
+    }
 }
 
 

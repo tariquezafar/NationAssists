@@ -38,7 +38,11 @@ namespace DbOperation
                     dtServ = ds.Tables[0];
                     objServiceCatPrice.PriceOption = Convert.ToString(dtServ.Rows[0]["Pricing_option"]);
                     objServiceCatPrice.PriceCount = Convert.ToInt32(dtServ.Rows[0]["PRICE_COUNT"]);
-                    dt= ds.Tables[1];
+                    objServiceCatPrice.AgreementStartDate = Convert.ToString(dtServ.Rows[0]["AgreementStartDate"]);
+                    objServiceCatPrice.AgreementEndDate = Convert.ToString(dtServ.Rows[0]["AgreementEndDate"]);
+              
+                    objServiceCatPrice.PriceCount = Convert.ToInt32(dtServ.Rows[0]["PRICE_COUNT"]);
+                    dt = ds.Tables[1];
                     if (  dt.Rows.Count > 0 )
                     {
                         if (objServiceCatPrice.PriceOption == "SB")
@@ -53,6 +57,9 @@ namespace DbOperation
                                 EndDate = x.Field<DateTime?>("EndDate"),
                                 IsActive = x.Field<bool?>("IsActive") == null ? false : x.Field<bool?>("IsActive"),
                                 Created_Date = x.Field<DateTime?>("CREATED_DATE"),
+                                Start_Date = x.Field<string>("Start_Date"),
+                                End_Date = x.Field<string>("End_Date"),
+                                CreatedDate = x.Field<string>("CreatedDate")
 
                             }).ToList();
                             
@@ -76,6 +83,9 @@ namespace DbOperation
                                             IsActive = Convert.ToBoolean(item["IsActive"]),
                                             Price = Convert.ToDecimal(item["Price"]),
                                             SubCategoryName= Convert.ToString(item["SUBCAT_NAME"]),
+                                            Start_Date =Convert.ToString(item["Start_Date"]),
+                                            End_Date = Convert.ToString(item["End_Date"]),
+                                            CreatedDate = Convert.ToString(item["CreatedDate"]),
 
                                         }) ;
                                     }

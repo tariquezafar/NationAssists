@@ -8,12 +8,15 @@ namespace DataEngine
 {
     public class Service
     {
-      public int       ServiceId    {get;set;}
-      public string         ServiceCode  {get;set;}
-      public string         ServiceName  {get;set;}
-      public bool IsActive { get; set; }
+        public int ServiceId { get; set; }
+        public string ServiceCode { get; set; }
+        public string ServiceName { get; set; }
+        public bool IsActive { get; set; }
 
         public decimal Price { get; set; }
         public string PackageCode { get; set; }
+
+        public DateTime ContractStartDate { get; set; }
+        public DateTime ContractEndDate { get; set; }
     }
 }

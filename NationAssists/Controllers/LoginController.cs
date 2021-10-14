@@ -31,10 +31,13 @@ namespace NationAssists.Controllers
                     {
                         Session["CustomerId"] = Convert.ToString(objLoginOutput.CustomerDetail.CustomerId);
                         Session["CustomerName"] = Convert.ToString(objLoginOutput.CustomerDetail.Name);
+                       Session["CustomerEmail"] = Convert.ToString(objLogin.EmailId);
                         Session["IsHavingMembership"] = Convert.ToBoolean(objLoginOutput.CustomerDetail.IsHavingMembership);
                         Session["AccountType"] = Convert.ToString(objLoginOutput.CustomerDetail.AccountType);
                         Session["CPRNumber"] = Convert.ToString(objLoginOutput.CustomerDetail.NationalId);
                         Session["Customer"] = objLoginOutput.CustomerDetail;
+                        Session["SourceType"] = Convert.ToString(objLoginOutput.CustomerDetail.Source_Type);
+                        Session["SourceName"] = Convert.ToString(objLoginOutput.CustomerDetail.Source_Name);
                     }
                     else
                     {

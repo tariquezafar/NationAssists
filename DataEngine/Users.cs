@@ -52,6 +52,14 @@ namespace DataEngine
 
         public string UserTypeCode { get; set;}
 
+        public DateTime CreatedDate { get; set; }
+
+        public int? CreatedBy { get; set; }
+        public string CPR_Expiry_Date { get; set; }
+        public string PASSPORT_Expiry_Date { get; set; }
+        public string Date_OF_Joining { get; set; }
+
+        public int SourceId { get; set; }
     }
 
     public class UserType

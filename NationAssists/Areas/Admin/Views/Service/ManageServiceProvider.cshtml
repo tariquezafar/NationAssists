@@ -10,7 +10,7 @@
     <div class="mainHd">Manage Service Provider</div>
     <ul class="dbForm flexBox" id="dvDetail">
         <li class="oneThird">
-            <span class="fieldHd" id="lblServiceProviderName">Company Name </span>
+            <span class="fieldHd" id="lblServiceProviderName">Company Name** </span>
             <input type="text" class="formInput" id="txtFirstName" maxlength="255" placeholder="Company Name">
         </li>
         <li class="oneThird" style="display:none;">
@@ -22,7 +22,7 @@
             <input type="text" class="formInput" id="txtLastName" maxlength="255" placeholder="Last Name">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblMobileNo">Mobile No </span>
+            <span class="fieldHd" id="lblMobileNo">Mobile No** </span>
             <input type="text" class="formInput" id="txtMobileNo" maxlength="15" placeholder="Mobile No" minlength="8" onclick="RestrictAlphabetAndSpace('txtMobileNo')">
         </li>
         <li class="oneThird">
@@ -31,7 +31,7 @@
         </li>
 
         <li class="oneThird">
-            <span class="fieldHd" id="lblContactPersonName">Contact Person Name </span>
+            <span class="fieldHd" id="lblContactPersonName">Contact Person Name** </span>
             <input type="text" class="formInput" id="txtContactPersonName" maxlength="255" placeholder="Contact Person Name">
         </li>
         <li class="oneThird">
@@ -56,15 +56,15 @@
             <input type="text" class="formInput" id="txtEscalationLandlineNo" maxlength="15" placeholder="Escalation Landline No" onclick="RestrictAlphabetAndSpace('txtEscalationLandlineNo')">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblEmailID">Email ID </span>
+            <span class="fieldHd" id="lblEmailID">Email ID** </span>
             <input type="text" class="formInput" id="txtEmailId" maxlength="500" placeholder="Email ID">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblPassword">Admin User Password </span>
+            <span class="fieldHd" id="lblPassword">Admin User Password** </span>
             <input type="password" class="formInput" id="txtPassword" maxlength="50" placeholder="Password">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblCRNumber">CR Number </span>
+            <span class="fieldHd" id="lblCRNumber">CR Number** </span>
             <input type="text" class="formInput" id="txtCRNumber" maxlength="500" placeholder="CR Number">
         </li>
         <li class="oneThird">
@@ -72,13 +72,13 @@
             <textarea class="formInput" id="txtOfficeAddress" maxlength="500" placeholder="Office Address"></textarea>
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblAggreementStartDate">Agreement Start Date </span>
-            <input type="datetime-local" class="formInput" id="txtAggreementStartDate">
+            <span class="fieldHd" id="lblAggreementStartDate">Agreement Start Date** </span>
+            <input type="text" class="formInput datePicker" id="txtAggreementStartDate">
         </li>
 
         <li class="oneThird">
-            <span class="fieldHd" id="lblAggreementEndDate">Agreement End Date </span>
-            <input type="datetime-local" class="formInput" id="txtAggreementEndDate">
+            <span class="fieldHd" id="lblAggreementEndDate">Agreement End Date** </span>
+            <input type="text" class="formInput datePicker" id="txtAggreementEndDate">
         </li>
         <li class="oneThird">
             <span class="fieldHd">Pricing Option</span>
@@ -88,7 +88,7 @@
             </div>
         </li>
         <li class="fullWidth">
-            <span class="fieldHd">Service Opted</span>
+            <span class="fieldHd">Service Opted**</span>
             <div>
                 @if (Model.ServiceProviderServicesOpted != null && Model.ServiceProviderServicesOpted.Any())
                 {

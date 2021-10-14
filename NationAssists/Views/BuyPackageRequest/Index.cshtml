@@ -24,7 +24,7 @@
                    "Select Service", new { @class = "formInput", @onchange = "BindMembership()" })*@
                 </li>
 
-                @if (Model.Package.ServiceCode != "HAP")
+                @if (Model.Package.ServiceCode != "HA")
                 {
                     <li class="oneThird RAS">
                         <span class="fieldHd" id="lblVehicleRegistrationNo">Vehicle RegistrationNo </span>
@@ -53,7 +53,7 @@
                 }
 
 
-                @if (Model.Package.ServiceCode == "HAP")
+                @if (Model.Package.ServiceCode == "HA")
                 {
                     <li class="oneThird">
                         <span class="fieldHd" id="lblRiskAddress">Risk Address</span>

@@ -9,12 +9,12 @@
     <div class="mainHd">Manage Service SubCategory</div>
     <ul class="dbForm flexBox">
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Service </span>
+            <span class="fieldHd" id="lblService">Service** </span>
             @*<input type="text" class="formInput">*@
             @Html.DropDownListFor(m => m.ServiceId, Model.GetAllServices(), "--select-", new { @class = "formInput",@onchange= "BindCategory()" })
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblSubCategoryName">Sub Category Name </span>
+            <span class="fieldHd" id="lblSubCategoryName">Sub Category Name** </span>
             @*<input type="text" class="formInput">*@
             @Html.TextBox("txtSubCategoryName", Model.Name, new { @class = "formInput", @id = "txtSubCategoryName", maxlength = 100, style = "width:200px; Font-size: 20px;" })
         </li>

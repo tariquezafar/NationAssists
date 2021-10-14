@@ -51,11 +51,7 @@ $(".biNextStep").click(function () {
         $("#txtMobileNo").focus();
     }
     else {
-        $('.gi').removeClass('active');
-        $('.bi').addClass('active');
-
-        $('#generalInfo').hide(0);
-        $('#businessInfo').show(0);
+        SubmitRegistration('', 0, '');
     }
 });
 
@@ -203,11 +199,12 @@ function SubmitRegistration(AccountSubType, BrokerId, Customer_Reference_Code) {
         MobileNo: $("#txtMobileNo").val(),
         NationalId: $("#txtNationalId").val(),
         Gender: $("#ddlGender").val(),
-        BrokerId: BrokerId,
-        AccountType: $("#ddlAccountType").val(),
-        AccountSubType: AccountSubType,
+        //BrokerId: BrokerId,
+        //AccountType: $("#ddlAccountType").val(),
+        //AccountSubType: AccountSubType,
         Password: $("#txtPassword").val(),
-        Customer_Reference_Code:Customer_Reference_Code
+        //Customer_Reference_Code: Customer_Reference_Code,
+        IsCustomerCreatedFromCRM:false
     };
     var pUrl = "/Register/SaveCustomer/";
     $.ajax({
@@ -229,6 +226,9 @@ function SubmitRegistration(AccountSubType, BrokerId, Customer_Reference_Code) {
                 }
                 else if (data.DuplicateMobile) {
                     alert("Mobile No already exists.");
+                }
+                else if (data.DuplicateCPR) {
+                    alert("C.P.R Number No already exists.");
                 }
                 else {
                     alert("Opps! some error occured.");

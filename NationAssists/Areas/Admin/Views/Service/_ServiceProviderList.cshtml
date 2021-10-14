@@ -12,7 +12,7 @@
 
 
                         <tr>
-
+                            <th>Operation</th>
                             <th>SNo.</th>
                             <th>SP Code</th>
                             <th>Name</th>
@@ -21,7 +21,7 @@
                             <th>CR Number</th>
                             <th>Aggreement Start Date</th>
                             <th>Aggreement End Date</th>
-                            <th>Operation</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -29,14 +29,6 @@
                         {
                             i = i + 1;
                         <tr>
-                            <td> <span class="blueClr">@i </span></td>
-                            <td>@item.ServiceProviderCode</td>
-                            <td>@(item.FirstName +" "+ Convert.ToString(item.MiddleName)+ " "+ Convert.ToString(item.LastName))</td>
-                            <td>@item.EmailId</td>
-                            <td>@item.MobileNo</td>
-                            <td>@item.CRNumber</td>
-                            <td>@(Convert.ToDateTime( item.ServiceProviderAgreementFromDate).ToString("dd-MMM-yyyy"))</td>
-                            <td>@(Convert.ToDateTime( item.ServiceProviderAgreementToDate).ToString("dd-MMM-yyyy"))</td>
                             <td>
 
                                 <a data-id="@item.ServiceProviderId" onclick="EditServiceProvider(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp; &nbsp;
@@ -45,6 +37,15 @@
                                     <a data-id="@item.ServiceProviderId" onclick="DeleteServiceProvider(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
                                 }
                             </td>
+                            <td> <span class="blueClr">@i </span></td>
+                            <td>@item.ServiceProviderCode</td>
+                            <td>@(item.FirstName +" "+ Convert.ToString(item.MiddleName)+ " "+ Convert.ToString(item.LastName))</td>
+                            <td>@item.EmailId</td>
+                            <td>@item.MobileNo</td>
+                            <td>@item.CRNumber</td>
+                            <td>@(Convert.ToDateTime( item.ServiceProviderAgreementFromDate).ToString("dd-MMM-yyyy"))</td>
+                            <td>@(Convert.ToDateTime( item.ServiceProviderAgreementToDate).ToString("dd-MMM-yyyy"))</td>
+
 
                         </tr>
                         }

@@ -10,7 +10,7 @@ namespace DataEngine
     public class Membership
     {
         public Int64 MembershipId { get; set; }
-        public int SourceId { get; set; }
+        public int? SourceId { get; set; }
         public int PackageId { get; set; }
         public string Branch { get; set; }
         public string PolicyType { get; set; }
@@ -47,7 +47,9 @@ namespace DataEngine
         public string SourceType { get; set; }
 
         public string MembershipReferenceNo { get; set; }
-
+        public string Issue_Date { get; set; }
+        public string Effective_Date { get; set; }
+        public string Expiry_Date { get; set; }
     }
 
     public class ExcelData

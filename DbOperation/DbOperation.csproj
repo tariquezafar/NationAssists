@@ -44,6 +44,7 @@
     <Compile Include="OpBrokerPrice.cs" />
     <Compile Include="OpCommon.cs" />
     <Compile Include="OpCustomer.cs" />
+    <Compile Include="OpDashboard.cs" />
     <Compile Include="OpEmail.cs" />
     <Compile Include="OpLogin.cs" />
     <Compile Include="OpMembership.cs" />

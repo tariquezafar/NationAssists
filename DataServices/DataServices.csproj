@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.10.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.10.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
@@ -48,7 +51,9 @@
     <Compile Include="BrokerService.cs" />
     <Compile Include="CommonServices.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="DashboardService.cs" />
     <Compile Include="EmailServices.cs" />
+    <Compile Include="EmailTemplate.cs" />
     <Compile Include="LoginServices.cs" />
     <Compile Include="MembershipServices.cs" />
     <Compile Include="Models\ErrorMessageType.cs" />

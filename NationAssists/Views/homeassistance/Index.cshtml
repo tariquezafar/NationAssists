@@ -4,19 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="innerBanner" style="background: url(images/home_assistance_banner_bg.jpg) no-repeat center top;">
+<div class="innerBanner" style="background: url(../images/home_assistance_banner_bg.jpg) no-repeat center top;">
     <div class="container flexBox itemCenter">
-        <div><img src="~/images/home_assistance_banner.png" alt="" class="bannerIcon"> Home Assistance</div>
+        <div><img src="../images/home_assistance_banner.png" alt="" class="bannerIcon"> Home Assistance</div>
     </div>
 </div>
 <div class="whtBg pt60 pb60">
     <div class="container">
         <div class="flexBox">
-            <div class="serviceLft"><img src="~/images/home_assistance_img.jpg" alt=""></div>
+            <div class="serviceLft"><img src="../images/home_assistance_img.jpg" alt=""></div>
             <div class="serviceRgt">
-                <span class="large">Whether it's taking care of your emergency plumbing, electrical, being locked out of your home including loss or theft of key and breakage of external glazing, our Home experts are ready to get your job done.  We are here to help if you need a one-off repair or service of your home appliances too!</span><br><br>
-                Nation Assist undertakes to provide Emergency Repair Service to  secure  the  dwelling  and  prevent  further  damage  and/or losses  occurring.  The company extends  emergency  services subject  to  terms,  conditions,  exclusions  and  deﬁnitions  as described herein.<br><br>
+                <span class="large">Whether it’s taking care of your emergency plumbing, electrical, being locked out of your home including loss or theft of key and breakage of external glazing, our Home experts are ready to get your job done.  We are there to keep your home running smoothly!</span><br><br>
+                Nation Assist undertakes to provide Emergency Repair Service to  secure  the  dwelling  and  prevent  further  damage  and/or losses  occurring.  The company extends  emergency  services subject  to  terms,  conditions,  exclusions  and  deﬁnitions  as described in our product wording.<br><br>
                 We are there to keep your home running smoothly!
+<div><a href="@(Session["CustomerId"] ==null ?"/Login?LoginType=Customer":"/BuyOnline")" class="bannerBtn"> Buy Online</a></div>
             </div>
         </div>
     </div>

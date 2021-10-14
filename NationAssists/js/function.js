@@ -25,21 +25,20 @@ $(document).ready(function () {
 
 	$(".showMoreLink").click(function (moreNav) {
 		moreNav.stopPropagation();
-		$(this).next('.moreLinkPopup').show('300');
-	//	$(this).next('.moreLinkPopup').slideToggle('300');
+		$(this).next('.moreLinkPopup').slideToggle('300');
 	});
-	//$(".moreLinkPopup").click(function (moreNav) {
-	//	moreNav.stopPropagation();
-	//});
+	$(".moreLinkPopup").click(function (moreNav) {
+		moreNav.stopPropagation();
+	});
 	$("body").click(function () {
 		$('.moreLinkPopup').hide();
 	});
 	
 
-	//$(".popupLinks .arrow").click(function () {
-	//	$('.popupLinks .inner').slideToggle(0);
-	//	$(this).toggleClass('active');
-	//});
+	$(".popupLinks .arrow").click(function () {
+		$('.popupLinks .inner').slideToggle(0);
+		$(this).toggleClass('active');
+	});
 	
 	$(".showSearch").click(function () {
 		$('#searchBox').slideToggle(300);

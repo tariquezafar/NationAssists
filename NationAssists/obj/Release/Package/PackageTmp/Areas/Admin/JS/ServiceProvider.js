@@ -195,20 +195,22 @@ function EditServiceProvider(e) {
                 $("#txtOfficeAddress").val(Jdata.OfficeLocationAddress);
                 $("#txtPhoneNo").val(Jdata.PhoneNo);
                 $("#txtEscalationEmailId").val(Jdata.Escalation_Person_EmailId);
-                var AgreementFromDate = new Date(parseFloat(Jdata.ServiceProviderAgreementFromDate.substring(Jdata.ServiceProviderAgreementFromDate.indexOf('(') + 1, Jdata.ServiceProviderAgreementFromDate.indexOf(')'))));
-                $("#txtAggreementStartDate").val(formatDateWithTime(AgreementFromDate));
-                //$("#txtAggreementStartDate").val(new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString());
+                //var AgreementFromDate = new Date(parseFloat(Jdata.ServiceProviderAgreementFromDate.substring(Jdata.ServiceProviderAgreementFromDate.indexOf('(') + 1, Jdata.ServiceProviderAgreementFromDate.indexOf(')'))));
+                //$("#txtAggreementStartDate").val(formatDate(AgreementFromDate));
+                ////$("#txtAggreementStartDate").val(new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString());
 
-                var AgreementEndDate = new Date(parseFloat(Jdata.ServiceProviderAgreementToDate.substring(Jdata.ServiceProviderAgreementToDate.indexOf('(') + 1, Jdata.ServiceProviderAgreementToDate.indexOf(')'))));
-                $("#txtAggreementEndDate").val(formatDateWithTime(AgreementEndDate));
+                //var AgreementEndDate = new Date(parseFloat(Jdata.ServiceProviderAgreementToDate.substring(Jdata.ServiceProviderAgreementToDate.indexOf('(') + 1, Jdata.ServiceProviderAgreementToDate.indexOf(')'))));
+                //$("#txtAggreementEndDate").val(formatDate(AgreementEndDate));
+                $("#txtAggreementStartDate").val(Jdata.Agg_Start_Date);
+                $("#txtAggreementEndDate").val(Jdata.Agg_End_Date);
 
                 $("#hdnServiceProviderID").val(Jdata.ServiceProviderId);
                 //$('input[name="chkService"][type="checkbox"]').prop("checked", false);
                 if (Jdata.SelectedServiceOpted != null) {
-
+                    var ArrSelectedServiceOpted = Jdata.SelectedServiceOpted.split(',');
                     $('input[name="chkService"][type="checkbox"]').each(function (index) {
                         item = $(this);
-                        if (Jdata.SelectedServiceOpted.indexOf(item.val()) != -1) {
+                        if (ArrSelectedServiceOpted.includes(item.val())) {
                             item.attr('checked', true);
                         }
                     });

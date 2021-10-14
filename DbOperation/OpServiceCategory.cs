@@ -145,6 +145,10 @@ namespace DbOperation
                 objListSqlParam[3].ParameterName = "@IsActive";
                 objListSqlParam[3].Value = objService.IsActive;
 
+                objListSqlParam[4] = new SqlParameter();
+                objListSqlParam[4].ParameterName = "@PackageCode";
+                objListSqlParam[4].Value = objService.PackageCode;
+
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_SaveService", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
@@ -180,6 +184,7 @@ namespace DbOperation
                         IsActive = x.Field<bool>("IsActive"),
                         ServiceName = x.Field<string>("ServiceName"),
                         PackageCode = x.Field<string>("PackageCode"),
+                      
                     }).ToList();
 
                     output.DataList = objLst;

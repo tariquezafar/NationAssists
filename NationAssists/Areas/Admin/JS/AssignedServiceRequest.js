@@ -24,10 +24,12 @@
     $("#hdnSubCategoryId").val(e.ServiceSubCategoryId);
     $("#txtCustomerName").val(e.Customer_Name);
     $("#txtCustomerEmailId").val(e.EmailId);
-    
+    $("#hdnTicketNo").val(e.TicketNo);
+    $("#hdnSourceType").val(e.SourceType);
+    $("#hdnSourceName").val(e.SourceName);
     var SelectedService = e.ServiceName;
     var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-    if (ServiceCode == "HAP") {
+    if (ServiceCode == "HA") {
         $('.RAP').hide();
         $('.HAP').show();
 
@@ -55,7 +57,12 @@ function SaveServiceAllocation() {
             ServicePrice: 0,
             ServicePriceId: 0,
             ServiceAllocationId: $("#hdnServiceAllocationId").val(),
-
+            CustomerName: $("#txtCustomerName").val(),
+            CustomerEmail: $("#txtCustomerEmailId").val(),
+            ServiceType: $("#txtServiceType").val(),
+            SourceType: $("#hdnSourceType").val(),
+            SourceName: $("#hdnSourceName").val(),
+            TicketNo: $("#hdnTicketNo").val()
         };
 
         var pUrl = "/Admin/ServiceRequest/SaveServiceAllocation/";

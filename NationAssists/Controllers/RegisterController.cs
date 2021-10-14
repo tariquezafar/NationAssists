@@ -32,12 +32,25 @@ namespace NationAssists.Controllers
                 if (objMO.ErrorMessage == "" && objMO.Data!="" )
                 {
                     // Get Mail Template
-                    List<string> ToEmail = new List<string> { objCustomer.EmailId,"t.zafar007@gmail.com" };
+                    List<string> ToEmail = new List<string> { objCustomer.EmailId };
                     Dictionary<string, string> objTempValues = new Dictionary<string, string>();
-                    objTempValues.Add("UserName", (objCustomer.FirstName + " " + objCustomer.LastName));
-                    objTempValues.Add("URL", Request.Url.Authority + "/EmailVerification?"+objMO.Data);
+                    if (objCustomer.IsCustomerCreatedFromCRM)
+                    {
+                        objTempValues.Add("CustomerName", (objCustomer.FirstName + " " + objCustomer.LastName));
+                        objTempValues.Add("UserName", objCustomer.EmailId);
+                        objTempValues.Add("Password", objCustomer.NationalId);
+                        objTempValues.Add("LoginURL", Request.Url.Authority + "/Login?LoginType=Customer") ;
+                        objEmailService.MailSent(ToEmail, objTempValues, "CUSTOMER_WELCOME");
+                    }
+                    else
+                    {
+                        objTempValues.Add("UserName", (objCustomer.FirstName + " " + objCustomer.LastName));
+                        objTempValues.Add("URL", Request.Url.Authority + "/EmailVerification?" + objMO.Data);
+                        objEmailService.MailSent(ToEmail, objTempValues, "EMAILVERIFICATION");
+                    }
+                    
 
-                    IsSaved = objEmailService.MailSent(ToEmail,objTempValues, "EMAILVERIFICATION");
+                 
                 }
                
             }
@@ -47,7 +60,7 @@ namespace NationAssists.Controllers
                 IsSaved = false;
                 strMsg = ex.Message;
             }
-            return Json(new { Result = IsSaved, Msg = strMsg, DuplicateEmail = objMO.ErrorMessage == SqlOutput.Duplicate_Email ? true : false, DuplicateMobile = objMO.ErrorMessage == SqlOutput.Duplicate_Mobile ? true : false }, JsonRequestBehavior.AllowGet);
+            return Json(new { Result = IsSaved, Msg = strMsg, DuplicateEmail = objMO.ErrorMessage == SqlOutput.Duplicate_Email ? true : false, DuplicateMobile = objMO.ErrorMessage == SqlOutput.Duplicate_Mobile ? true : false,DuplicateCPR=objMO.ErrorMessage ==SqlOutput.Duplicate_CPR ?true:false}, JsonRequestBehavior.AllowGet);
         }
 
 

@@ -8,6 +8,7 @@ namespace DataEngine
 {
     public class Customer
     {
+        public DateTime CreatedDate { get; set; }
      public int   CustomerId             {get;set;}
      public string   FirstName              {get;set;}
      public string   MiddleName             {get;set;}
@@ -37,5 +38,11 @@ namespace DataEngine
         public bool IsHavingMembership { get; set; }
 
         public List<Membership> MembershipList { get; set; }
+
+        public string Source_Name { get; set; }
+
+        public string Source_Type { get; set; }
+
+        public bool IsCustomerCreatedFromCRM { get; set; }
     }
 }

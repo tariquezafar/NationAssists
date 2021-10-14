@@ -33,9 +33,9 @@
                             table += "<tbody>";
                             JData.ServiceProviderPrice.ServiceSubCategoryPriceList.forEach(function ( e,i) {
                                 var tbody = "<tr>";
-                                var StarDate = formatDateWithAMPM(parseFloat(e.StartDate.substring(e.StartDate.indexOf('(') + 1, e.StartDate.indexOf(')'))));
-                                var EndDate = formatDateWithAMPM(parseFloat(e.EndDate.substring(e.EndDate.indexOf('(') + 1, e.EndDate.indexOf(')'))));
-                                var CreatedDate = formatDateWithAMPM(parseFloat(e.Created_Date.substring(e.Created_Date.indexOf('(') + 1, e.Created_Date.indexOf(')'))));
+                                var StarDate = e.Start_Date; //formatDate(parseFloat(e.StartDate.substring(e.StartDate.indexOf('(') + 1, e.StartDate.indexOf(')'))));
+                                var EndDate = e.End_Date; //formatDate(parseFloat(e.EndDate.substring(e.EndDate.indexOf('(') + 1, e.EndDate.indexOf(')'))));
+                                var CreatedDate = e.CreatedDate; //formatDate(parseFloat(e.Created_Date.substring(e.Created_Date.indexOf('(') + 1, e.Created_Date.indexOf(')'))));
                                 tbody += "<td>" + (i + 1) + "</td>";
                               
                                 tbody += "<td>" + e.Price + "</td>";
@@ -84,13 +84,28 @@ function GetAllServices() {
                 $('.pb').hide();
                 $('#tblPriceList').html('');
                 var jData = JSON.parse(data);
-                $("#ServiceId").html(""); // clear before appending new list
-                if (jData != null && jData.length > 0) {
-                    $("#ServiceId").append($('<option></option>').val(0).html("--Select Services--"));
-                    $.each(jData, function (i, service) {
-                        $("#ServiceId").append(
-                            $('<option></option>').val(service.ServiceId).html(service.ServiceName));
-                    });
+                if (jData.ServiceProviderId != null) {
+                    //var AgreementFromDate = new Date(parseFloat(jData.ServiceProviderAgreementFromDate.substring(jData.ServiceProviderAgreementFromDate.indexOf('(') + 1, jData.ServiceProviderAgreementFromDate.indexOf(')'))));
+                    //$("#hdnAgreementStartDate").val(formatDate(AgreementFromDate));
+                    ////$("#txtAggreementStartDate").val(new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString());
+                    //$("#txtAgreementStartDate").val($("#hdnAgreementStartDate").val());
+                    //var AgreementEndDate = new Date(parseFloat(jData.ServiceProviderAgreementToDate.substring(jData.ServiceProviderAgreementToDate.indexOf('(') + 1, jData.ServiceProviderAgreementToDate.indexOf(')'))));
+                    //$("#hdnAgreementEndDate").val(formatDate(AgreementEndDate));
+                    //$("#txtAgreementEndDate").val($("#hdnAgreementEndDate").val());
+                    $("#hdnAgreementStartDate").val(jData.Agg_Start_Date);
+                    $("#txtAgreementStartDate").val($("#hdnAgreementStartDate").val());
+                    $("#hdnAgreementEndDate").val(jData.Agg_End_Date);
+                    $("#txtAgreementEndDate").val($("#hdnAgreementEndDate").val());
+                    $("#ServiceId").html(""); // clear before appending new list
+                    if (jData.ServiceProviderServicesOpted != null && jData.ServiceProviderServicesOpted.length > 0) {
+                        console.log(jData);
+                      
+                        $("#ServiceId").append($('<option></option>').val(0).html("--Select Services--"));
+                        $.each(jData.ServiceProviderServicesOpted, function (i, service) {
+                            $("#ServiceId").append(
+                                $('<option></option>').val(service.ServiceId).html(service.Name));
+                        });
+                    }
                 }
             }
         });
@@ -189,12 +204,23 @@ function ValidateForm() {
                 IsValid = false;
                 strErrMsg += "Please enter End Date for Row No " + (i + 1) + ". \n";
             }
+            if ($(e).find('input[name="txtStartDate"]').val() != "" && $("#hdnAgreementStartDate").val() != "" && $("#hdnAgreementEndDate").val() != "" && ((Date.parse($(e).find('input[name="txtStartDate"]').val()) <= Date.parse($("#hdnAgreementStartDate").val())) || (Date.parse($(e).find('input[name="txtStartDate"]').val()) > Date.parse($("#hdnAgreementEndDate").val())))) {
+                IsValid = false;
+                strErrMsg += "Start Date is less than Service provider Agreement start date  or greater than Service provider Agreement End date for Row No.  " + (i + 1) + ". \n";
+            }
+
+            if ($(e).find('input[name="txtEndDate"]').val() != "" && $("#hdnAgreementStartDate").val() != "" && $("#hdnAgreementEndDate").val() != "" && ((Date.parse($(e).find('input[name="txtEndDate"]').val()) <= Date.parse($("#hdnAgreementStartDate").val())) || (Date.parse($(e).find('input[name="txtEndDate"]').val()) > Date.parse($("#hdnAgreementEndDate").val())))) {
+                IsValid = false;
+                strErrMsg += "End Date is less than Service provider Agreement start date  or greater than Service provider Agreement End date  for Row No.  " + (i + 1) + ". \n";
+            }
 
             if ($(e).find('input[name="txtEndDate"]').val() != "" && $(e).find('input[name="txtStartDate"]').val() != "" && Date.parse($(e).find('input[name="txtEndDate"]').val()) <= Date.parse($(e).find('input[name="txtStartDate"]').val())) {
 
                 IsValid = false;
                 strErrMsg += "End Date should be greater than start date for Row No " + (i + 1)+" \n";
             }
+
+
         });
     }
 
@@ -210,6 +236,16 @@ function ValidateForm() {
         if ($("#txtEndDate").val() == "") {
             IsValid = false;
             strErrMsg += "Please select end date.";
+        }
+
+        if ($("#txtStartDate").val() != "" && $("#hdnAgreementStartDate").val() != "" && $("#hdnAgreementEndDate").val() != "" && ((Date.parse($("#txtStartDate").val()) <= Date.parse($("#hdnAgreementStartDate").val())) || (Date.parse($("#txtStartDate").val()) > Date.parse($("#hdnAgreementEndDate").val())))) {
+            IsValid = false;
+            strErrMsg += "Start Date is less than Service provider Agreement start date  or greater than Service provider Agreement End date . \n";
+        }
+
+        if ($("#txtEndDate").val() != "" && $("#hdnAgreementStartDate").val() != "" && $("#hdnAgreementEndDate").val() != "" && ((Date.parse($("#txtEndDate").val()) <= Date.parse($("#hdnAgreementStartDate").val())) || (Date.parse($("#txtEndDate").val()) > Date.parse($("#hdnAgreementEndDate").val())))) {
+            IsValid = false;
+            strErrMsg += "End Date is  less than Service provider Agreement start date  or greater than Service provider Agreement End date . \n";
         }
         if ($("#txtEndDate").val() != "" && $("#txtStartDate").val() != "" && Date.parse($("#txtAggreementEndDate").val()) <= Date.parse($("#txtStartDate").val())) {
 

@@ -54,5 +54,8 @@ namespace DataEngine
         public List<ServiceProviderServiceArea> ServiceProviderAreas { get; set; }
         public List<ServiceSubCategoryPrice> ServiceProviderPriceList { get; set; }
 
+        public DateTime CreatedDate { get; set; }
+        public string Agg_Start_Date { get; set; }
+        public string Agg_End_Date { get; set; }
     }
 }

@@ -113,7 +113,7 @@ function ValidateForm() {
     if ($("#PackageId").val() != "0") {
 
         var ServiceCode = $('#hdnPackageCode').val();
-        if (ServiceCode == "HAP") {
+        if (ServiceCode == "HA") {
 
             if ($("#txtRiskAddress").val() == "") {
 
@@ -255,6 +255,7 @@ function ShowServiceEnrollmentDetail(e) {
     $("#hdnBlockId").val(e.BlockId);
     BindGovernotes();
     var ServiceCode = e.ServiceCode;
+    $("#hdnPackageCode").val(ServiceCode);
     $("#txtChassisNo").val(e.ChessisNo);
     $("#txtVehicleType").val(e.ModelType);
     $("#txtNoOfLocation").val(e.NoOfLocation);
@@ -267,7 +268,7 @@ function ShowServiceEnrollmentDetail(e) {
     $("#txtYearOfConstruction").val(e.YearOfConstruction);
     $("#txtVehicleYear").val(e.YearOfManufacture);
     $("#txtApproverRemarks").val(e.ApproverRemarks);
-    if (ServiceCode == "HAP") {
+    if (ServiceCode == "HA") {
         $(".HAS").show();
         $(".RAS").hide();
 

@@ -132,3 +132,7 @@ D:\Tarique\NationAssists\NationAssists\NationAssists\obj\Debug\ICardPrinter.dll
 D:\Tarique\NationAssists\NationAssists\NationAssists\obj\Debug\ICardPrinter.pdb
 D:\Tarique\NationAssists\NationAssists\NationAssists\bin\DocumentFormat.OpenXml.dll
 D:\Tarique\NationAssists\NationAssists\NationAssists\bin\DocumentFormat.OpenXml.xml
+D:\Tarique\NationAssists\NationAssists\NationAssists\bin\BouncyCastle.Crypto.dll
+D:\Tarique\NationAssists\NationAssists\NationAssists\bin\itextsharp.dll
+D:\Tarique\NationAssists\NationAssists\NationAssists\bin\itextsharp.xml
+D:\Tarique\NationAssists\NationAssists\NationAssists\bin\itextsharp.xmlworker.dll

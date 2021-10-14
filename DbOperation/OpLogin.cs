@@ -46,7 +46,9 @@ namespace DbOperation
                             AccountType = Convert.ToString(dt.Rows[0]["AccountType"]),
                             IsHavingMembership = Convert.ToBoolean(dt.Rows[0]["IsHavingMembership"]),
                             NationalId = Convert.ToString(dt.Rows[0]["NationalId"]),
-                            Password = Convert.ToString(dt.Rows[0]["Password"])
+                            Password = Convert.ToString(dt.Rows[0]["Password"]),
+                            Source_Name = Convert.ToString(dt.Rows[0]["Source_Name"]),
+                            Source_Type= Convert.ToString(dt.Rows[0]["SourceType"]),
                         };
                     }
                     else
@@ -60,7 +62,9 @@ namespace DbOperation
                             RoleName = Convert.ToString(dt.Rows[0]["Role"]),
                             UserTypeCode = Convert.ToString(dt.Rows[0]["UserTypeCode"]),
                             UserReferenceId = Convert.ToInt32(dt.Rows[0]["UserReferenceId"]),
-                           Password = Convert.ToString(dt.Rows[0]["Password"])
+                           Password = Convert.ToString(dt.Rows[0]["Password"]),
+                           SourceName = Convert.ToString(dt.Rows[0]["BrokerName"]),
+                            SourceId= Convert.ToInt32(dt.Rows[0]["BrokerId"]),
                         };
                     }
 

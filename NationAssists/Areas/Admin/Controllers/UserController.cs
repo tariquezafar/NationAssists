@@ -35,7 +35,7 @@ namespace NationAssists.Areas.Admin.Controllers
                 objUser.Name = "";
                 objUser.IsActive = false;
               
-                objUser.UsersList = GetUsers(0,0,0,string.Empty,string.Empty);
+                objUser.UsersList = GetUsers(0,0,0,string.Empty,string.Empty, Convert.ToInt32(Session["UserId"]));
                 return View(objUser);
             }
             else
@@ -47,14 +47,23 @@ namespace NationAssists.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetUserDetail(int UserId)
         {
-            List<Users> objUser = GetUsers(UserId,0,0, string.Empty, string.Empty);
-            return Json(objUser[0], JsonRequestBehavior.AllowGet);
+            List<Users> objUser = new List<Users>();
+            if (Session["UserId"] != null)
+            {
+               objUser = GetUsers(UserId, 0, 0, string.Empty, string.Empty,Convert.ToInt32(Session["UserId"]));
+                return Json(objUser[0], JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(objUser, JsonRequestBehavior.AllowGet);
+            }
+           
         }
-        public List<Users> GetUsers(int UserId, int UserTypeId, int UserReferenceId, string UserCode, string UserName)
+        public List<Users> GetUsers(int UserId, int UserTypeId, int UserReferenceId, string UserCode, string UserName ,int CreateBy)
         {
             MethodOutput<Users> objMO = new MethodOutput<Users>();
             UserServices obj = new UserServices();
-            objMO = obj.GetUsers(UserId, UserTypeId, UserReferenceId, UserCode, UserName);
+            objMO = obj.GetUsers(UserId, UserTypeId, UserReferenceId, UserCode, UserName, CreateBy);
             return objMO.DataList;
         }
 
@@ -88,10 +97,19 @@ namespace NationAssists.Areas.Admin.Controllers
             List<Users> objList = new List<Users>();
             try
             {
-                objList = this.GetUsers(UserId, UserTypeId, UserReferenceId, UserCode, UserName);
-                mUser objUsers = new mUser();
-                objUsers.UsersList = objList;
-                return PartialView("_UserList", objUsers);
+                if (Session["UserId"] != null)
+                {
+
+                    objList = this.GetUsers(UserId, UserTypeId, UserReferenceId, UserCode, UserName,Convert.ToInt32(Session["UserId"]));
+                    mUser objUsers = new mUser();
+                    objUsers.UsersList = objList;
+
+                    return PartialView("_UserList", objUsers);
+                }
+                else
+                {
+                    return Json(new { ErrorMsg = "Login Exipred" }, JsonRequestBehavior.AllowGet);
+                }
             }
             catch (Exception ex)
             {

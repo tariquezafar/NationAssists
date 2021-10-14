@@ -39,16 +39,58 @@ namespace DataServices
                     if (string.IsNullOrEmpty(item.ErrorMessage))
                     {
                         OpMembership objMembership = new OpMembership();
-                        MethodOutput<string> objOp = new MethodOutput<string>();
-                        objOp = objMembership.MemembershipBulkInsert(item, SourceId, UserID);
-                        if (objOp.RowAffected > 0)
+                        if (objEUR.sheetName == "HA")
                         {
-                            objEUR.ErrorMessage = string.Empty;
+                          
+                            MethodOutput<string> objOp = new MethodOutput<string>();
+                            objOp = objMembership.MemembershipBulkInsert(item, SourceId, UserID);
+                            if (objOp.RowAffected > 0)
+                            {
+                                objEUR.ErrorMessage = string.Empty;
 
+                            }
+                            else
+                            {
+                                objEUR.ErrorMessage = objOp.ErrorMessage;
+                            }
                         }
                         else
                         {
-                            objEUR.ErrorMessage = objOp.ErrorMessage;
+                            //validate Chassis No
+                            bool IsValidChassisNo = true;
+                            int i = 1;
+                            foreach (DataRow itemVal in item.dt.Rows)
+                            {
+                                MethodOutput<bool> objValidationOp = new MethodOutput<bool>();
+                                objValidationOp = objMembership.CheckDuplicateChassisNo(itemVal["Chassis No"].ToString(),Convert.ToDateTime( itemVal["Eff. Date"].ToString()));
+                                if (string.IsNullOrEmpty( objValidationOp.ErrorMessage))
+                                {
+                                    IsValidChassisNo = objValidationOp.Data;
+                                    if (IsValidChassisNo == false)
+                                    {
+                                        objEUR.ErrorMessage = "Chassis no already exist for Row no :"+i;
+                                       
+                                        break;
+                                    }
+                                    i++;
+                                }
+
+                            }
+
+                            if (string.IsNullOrEmpty(objEUR.ErrorMessage))
+                            {
+                                MethodOutput<string> objOp = new MethodOutput<string>();
+                                objOp = objMembership.MemembershipBulkInsert(item, SourceId, UserID);
+                                if (objOp.RowAffected > 0)
+                                {
+                                    objEUR.ErrorMessage = string.Empty;
+
+                                }
+                                else
+                                {
+                                    objEUR.ErrorMessage = objOp.ErrorMessage;
+                                }
+                            }
                         }
                     }
                     else

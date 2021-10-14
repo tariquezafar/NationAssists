@@ -64,7 +64,7 @@
                 <input type="hidden" id="hdnSourceId" />
                 <input type="hidden" id="hdnSourceTypeCode" />
                 <button class="formBtn" onclick="SaveCustomer()">Complete Registration</button>
-                <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/RaiseServiceRequest/'">Back</button>
+                <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/RaiseServiceRequest'">Back</button>
             </div>
         </div>
     </div>
@@ -172,9 +172,14 @@
 
 
         <input type="hidden" id="hdnCustomerId" value="0" />
+        <input type="hidden" id="hdnCustomerName" value="" />
+        <input type="hidden" id="hdnCustomerEmail" value="" />
+        <input type="hidden" id="hdnSourceName" value="" />
+        <input type="hidden" id="hdnIsSignUpCompleted" value="0" />
+        <input type="hidden" id="hdnMembershipId" value="0" />
         <div class="tac">
             <button class="formBtn regNextStep" onclick="SubmitServiceRequest()">Submit</button>
-            <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/RaiseServiceRequest/'">Back</button>
+            <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/RaiseServiceRequest'">Back</button>
         </div>
 
 

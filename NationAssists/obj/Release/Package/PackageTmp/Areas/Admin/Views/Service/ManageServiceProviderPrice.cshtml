@@ -9,11 +9,11 @@
     <div class="mainHd">Manage Service Provider Price</div>
     <ul class="dbForm flexBox">
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Service Provider </span>
+            <span class="fieldHd" id="lblService">Service Provider** </span>
             @Html.DropDownListFor(m => m.ServiceProviderId, Model.GetAllServiceProvider(), "--select-", new { @class = "formInput", @onchange = "GetAllServices()" })
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblService">Service </span>
+            <span class="fieldHd" id="lblService">Service** </span>
             @Html.DropDownListFor(m => m.ServiceId,
            new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceId", "ServiceName"),
                   "Select Service", new { @class = "formInput", @onchange = "BindServiceSubCategoryPriceList()" })
@@ -25,22 +25,32 @@
                 <label><input type="radio" name="PricingOption" class="radioInpt" disabled="disabled" checked="checked" value="SB"> Service Based</label>
             </div>
         </li>
+        <li class="oneThird">
+            <span class="fieldHd">Agreement Start Date</span>
+            <input type="text" class="formInput" id="txtAgreementStartDate" disabled="disabled">
+        </li>
+        <li class="oneThird">
+            <span class="fieldHd">Agreement End Date</span>
+            <input type="text" class="formInput" id="txtAgreementEndDate" disabled="disabled">
+        </li>
         <li class="oneThird pb" style="display:none;">
-            <span class="fieldHd" id="lblServicePrice">Price </span>
+            <span class="fieldHd" id="lblServicePrice">Price** </span>
             <input type="number" class="formInput" id="txtPrice" placeholder="Price">
         </li>
         <li class="oneThird pb" style="display:none;">
-            <span class="fieldHd" id="lblStartDate">Start Date </span>
-            <input type="datetime-local" class="formInput" id="txtStartDate">
+            <span class="fieldHd" id="lblStartDate">Start Date** </span>
+
+            <input type="text" class="formInput datePicker" id="txtStartDate">
         </li>
         <li class="oneThird pb" style="display:none;">
-            <span class="fieldHd" id="lblEndDate">End Date </span>
-            <input type="datetime-local" class="formInput" id="txtEndDate">
+            <span class="fieldHd" id="lblEndDate">End Date** </span>
+            <input type="text" class="formInput datePicker" id="txtEndDate">
         </li>
     </ul>
    
     <div>
-
+        <input type="hidden" id="hdnAgreementStartDate" value=""/>
+        <input type="hidden" id="hdnAgreementEndDate" value="" />
         <button type="button" class="btnSave dbformBtn mr10" onclick="return SaveServiceProviderPrice();">Save</button>
         <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Service/ManageServiceProviderPrice/'">Reset</button>
 

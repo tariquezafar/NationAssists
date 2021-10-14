@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataServices;
+using System.Configuration;
 
 namespace NationAssists.Areas.Admin.Controllers
 {
@@ -19,11 +20,44 @@ namespace NationAssists.Areas.Admin.Controllers
         {
             if (Session["UserId"] != null)
             {
+               
                 mASR.StartDate = DateTime.Now.AddMonths(-1).ToString("dd/MMM/yyyy");
                 mASR.EndDate = DateTime.Now.ToString("dd/MMM/yyyy");
                 int UserId = Convert.ToInt32(Session["UserId"]);
                 mASR.UserId= Convert.ToInt32(Session["UserId"]);
-                mASR.ServiceRequestList = BindServiceRequestList(0, "", "", 0, "", DateTime.Now.AddMonths(-1), DateTime.Now,UserId);
+                if (Request.QueryString.Keys.Count > 0)
+                {
+                    int ServiceRequestStatusId = 0;
+                    string StrService = string.Empty;
+                    int ServiceAllocationStatusId = 0;
+                    if (Request.QueryString["Status"] != null)
+                    {
+                        
+                         ServiceRequestStatusId = (int)Enum.Parse(typeof(ServiceRequestStatusEnum), (Convert.ToString(Request.QueryString["Status"])));
+                    }
+                    if (Request.QueryString["Service"] != null)
+                    {
+                        StrService = Request.QueryString["Service"];
+                    }
+
+                    if (Request.QueryString["AllocationStatus"] != null)
+                    {
+                       
+                        ServiceAllocationStatusId = (int)Enum.Parse(typeof(ServiceRequestAllocationStatusEnum), (Convert.ToString(Request.QueryString["AllocationStatus"])));
+                    }
+                    
+                    
+                    mASR.ServiceRequestStatusId = ServiceRequestStatusId;
+                    mASR.ServiceAllocationStatusId = ServiceAllocationStatusId;
+                    mASR.Service = StrService;
+                    mASR.ServiceRequestList = BindServiceRequestList(ServiceRequestStatusId, "", "", 0, "", null, null, UserId,StrService,ServiceAllocationStatusId);
+                }
+                else
+                {
+                    mASR.Service = "";
+                    mASR.ServiceRequestList = BindServiceRequestList(0, "", "", 0, "", null, null, UserId,string.Empty,0);
+                }
+                
                 return View(mASR);
             }
             else
@@ -33,11 +67,11 @@ namespace NationAssists.Areas.Admin.Controllers
         }
 
         public List<ServiceRequest> BindServiceRequestList(int ServiceRequestStatusId,
-           string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime StartDate, DateTime EndDate, int UserId)
+           string TicketNo, string AccountType, int BrokerId, string AccountSubType, DateTime ? StartDate, DateTime ? EndDate, int UserId,string Service,int ServiceAllocationStatusId)
         {
             ServiceRequestService objSR = new ServiceRequestService();
             MethodOutput<ServiceRequest> objLst = new MethodOutput<ServiceRequest>();
-            objLst = objSR.BindAllServiceRequest(ServiceRequestStatusId, TicketNo, AccountType, BrokerId, AccountSubType, StartDate, EndDate, UserId);
+            objLst = objSR.BindAllServiceRequest(ServiceRequestStatusId, TicketNo, AccountType, BrokerId, AccountSubType, StartDate, EndDate, UserId,Service,ServiceAllocationStatusId);
             return objLst.DataList;
         }
 
@@ -52,7 +86,7 @@ namespace NationAssists.Areas.Admin.Controllers
                 int UserId = Convert.ToInt32(Session["UserId"]);
 
                 objLst = BindServiceRequestList(objSearchSR.ServiceRequestStatusId, objSearchSR.TicketNo,
-                    objSearchSR.AccountType, objSearchSR.BrokerId, objSearchSR.AccountSubType, objSearchSR.StartDate, objSearchSR.EndDate, UserId);
+                    objSearchSR.AccountType, objSearchSR.BrokerId, objSearchSR.AccountSubType, objSearchSR.StartDate, objSearchSR.EndDate, UserId,objSearchSR.Service,objSearchSR.ServiceAllocationStatusId);
                 objSRSearchResult.ServiceRequestList = objLst;
                 return PartialView("_ServiceRequestList", objSRSearchResult);
             }
@@ -129,6 +163,32 @@ namespace NationAssists.Areas.Admin.Controllers
                 objSA.AcceptedBy= Convert.ToInt32(Session["UserId"]);
                 ServiceRequestService obj = new ServiceRequestService();
                 objMO = obj.SaveServiceRequestAllocation(objSA);
+                if (objMO.ErrorMessage == string.Empty && !string.IsNullOrEmpty( objSA.CustomerEmail))
+                {
+                    string ServiceEmailId = ConfigurationManager.AppSettings["ServiceEmailID"];
+                    EmailServices objEmailService = new EmailServices();
+                    Dictionary<string, string> objTempValues = new Dictionary<string, string>();
+                    string CustomerName = objSA.CustomerName;
+                    string CustomerEmail = objSA.CustomerEmail;
+                    string ServiceType = objSA.ServiceType;
+                    string SourceName = objSA.SourceName;
+                    string TicketNo = objSA.TicketNo;
+                    List<string> ToEmail = new List<string> { CustomerEmail};
+                    if (objSA.ServiceAllocationStatus == (int)ServiceRequestAllocationStatusEnum.Accepted)
+                    {
+                        objTempValues.Add("TicketNo", TicketNo);
+                        objTempValues.Add("CustomerName", CustomerName);
+                        objEmailService.MailSent(ToEmail, objTempValues, "ALLOCATE_SERVICE_REQUEST");
+                    }
+                    else if (objSA.ServiceAllocationStatus == (int)ServiceRequestAllocationStatusEnum.Closed)
+                    {
+                        objTempValues.Add("CustomerName", CustomerName);
+                        objTempValues.Add("ServiceType", ServiceType);
+                        objTempValues.Add("SourceName", SourceName);
+                        objTempValues.Add("TicketNo", TicketNo);
+                        objEmailService.MailSent(ToEmail, objTempValues, "CLOSED_SERVICE_REQUEST");
+                    }
+                }
                 IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
                 strMsg = objMO.ErrorMessage;
             }
@@ -153,9 +213,25 @@ namespace NationAssists.Areas.Admin.Controllers
                 Users objUser = (Users)Session["User"];
                 if ( objUser.UserReferenceId != 0)
                 {
-                    mASR.AllocateServiceRequestList = GetAllocationList(objUser.UserReferenceId);
+                    int ServiceAllocationStatusId = 0;
+                    string StrService = string.Empty;
+                    if (Request.QueryString["Service"] != null)
+                    {
+                        StrService = Request.QueryString["Service"];
+                    }
+
+                    if (Request.QueryString["AllocationStatus"] != null)
+                    {
+
+                        ServiceAllocationStatusId = (int)Enum.Parse(typeof(ServiceRequestAllocationStatusEnum), (Convert.ToString(Request.QueryString["AllocationStatus"])));
+                    }
+
+                    mASR.AllocateServiceRequestList = GetAllocationList(objUser.UserReferenceId, ServiceAllocationStatusId, StrService);
                     mASR.UserList = GetAssignedUser(Convert.ToInt32(Session["UserId"]));
                     ViewBag.AllocateServiceRequestList = mASR;
+                    mASR.ServiceProviderId = objUser.UserReferenceId;
+                    mASR.ServiceAllocationStatusId = ServiceAllocationStatusId;
+                    mASR.Service = StrService;
                     return View(mASR);
                 }
                 else
@@ -169,16 +245,36 @@ namespace NationAssists.Areas.Admin.Controllers
             }
         }
 
-        public List<ServiceRequest> GetAllocationList(int ServiceProviderId)
+        public List<ServiceRequest> GetAllocationList(int ServiceProviderId,int ServiceAllocationStatusId, string Service)
         {
             ServiceRequestService objSR = new ServiceRequestService();
             MethodOutput<ServiceRequest> objLst = new MethodOutput<ServiceRequest>();
-            objLst = objSR.BindAllocation(ServiceProviderId);
+            objLst = objSR.BindAllocation(ServiceProviderId,ServiceAllocationStatusId, Service);
             ViewBag.ErrorMessage = objLst.ErrorMessage;
             return objLst.DataList;
         }
 
 
+        public ActionResult SearchAllocation(int ServiceProviderId, int ServiceAllocationStatusId, string Service)
+        {
+            string strError = string.Empty;
+            List<ServiceRequest> objLst = new List<ServiceRequest>();
+            try
+            {
+                objLst = this.GetAllocationList(ServiceProviderId, ServiceAllocationStatusId, Service);
+                AllocateServiceRequest objMB = new Models.AllocateServiceRequest();
+                objMB.AllocateServiceRequestList = objLst;
+                return PartialView("_AllocateServiceRequestList", objMB);
+            }
+            catch (Exception ex)
+            {
+
+                strError = ex.Message;
+            }
+
+            return Json(new { ErrorMsg = strError }, JsonRequestBehavior.AllowGet);
+        }
+    
         public ActionResult AssignedServiceRequest()
         {
             if (Session["UserId"] != null)
@@ -221,11 +317,11 @@ namespace NationAssists.Areas.Admin.Controllers
             return Json(objCUS.DataList, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult BindServiceByCPRNumber(string CPRNumber)
+        public ActionResult BindServiceByCPRNumber(string CPRNumber, Int64 MembershipId)
         {
             ServiceRequestService objSRS = new ServiceRequestService();
             MethodOutput<Service> objCUS = new MethodOutput<Service>();
-            objCUS = objSRS.BindServicesByCPRNumber(CPRNumber);
+            objCUS = objSRS.BindServicesByCPRNumber(CPRNumber, MembershipId);
             return Json(objCUS.DataList, JsonRequestBehavior.AllowGet);
         }
 
@@ -282,6 +378,26 @@ namespace NationAssists.Areas.Admin.Controllers
                 objSA.AcceptedBy = Convert.ToInt32(Session["UserId"]);
                 ServiceRequestService obj = new ServiceRequestService();
                 objMO = obj.UpdateServiceRequest(objSA);
+                if (objMO.ErrorMessage == string.Empty && !string.IsNullOrEmpty(objSA.CustomerEmail))
+                {
+                    string ServiceEmailId = ConfigurationManager.AppSettings["ServiceEmailID"];
+                    EmailServices objEmailService = new EmailServices();
+                    Dictionary<string, string> objTempValues = new Dictionary<string, string>();
+                    string CustomerName = objSA.CustomerName;
+                    string CustomerEmail = objSA.CustomerEmail;
+                    string ServiceType = objSA.ServiceType;
+                    string SourceName = objSA.SourceName;
+                    string TicketNo = objSA.TicketNo;
+                    List<string> ToEmail = new List<string> { CustomerEmail};
+                    if (objSA.Action.ToUpper() == "CLOSED")
+                    {
+                        objTempValues.Add("CustomerName", CustomerName);
+                        objTempValues.Add("ServiceType", ServiceType);
+                        objTempValues.Add("SourceName", SourceName);
+                        objTempValues.Add("TicketNo", TicketNo);
+                        objEmailService.MailSent(ToEmail, objTempValues, "CLOSED_SERVICE_REQUEST");
+                    }
+                }
                 IsSaved = objMO.ErrorMessage == string.Empty ? true : false;
                 strMsg = objMO.ErrorMessage;
             }

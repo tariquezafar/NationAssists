@@ -17,9 +17,9 @@
                     {
                         <th>Sub Category Name</th>
                     }
-                    <th>Price</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
+                <th>Price**</th>
+                <th>Start Date**</th>
+                <th>End Date**</th>
 
 
                 </tr>
@@ -30,8 +30,8 @@
                 {
                     i = i + 1;
                     var PriceHistory = Model.BrokerPriceList.Where(x => x.SubCategoryId == item.SubCategoryId && x.IsActive == false).ToList(); ;
-                    string strtDate = item.StartDate != null ? Convert.ToDateTime(item.StartDate).ToString("yyyy-MM-ddThh:mm") : Convert.ToString(item.StartDate);
-                    string EndDate = item.EndDate != null ? Convert.ToDateTime(item.EndDate).ToString("yyyy-MM-ddThh:mm") : Convert.ToString(item.EndDate);
+                    string strtDate = item.StartDate != null ? Convert.ToDateTime(item.StartDate).ToString("dd-MMM-yyyy") : Convert.ToString(item.StartDate);
+                    string EndDate = item.EndDate != null ? Convert.ToDateTime(item.EndDate).ToString("dd-MMM-yyyy") : Convert.ToString(item.EndDate);
                     <tr>
                         <td>@i</td>
 
@@ -39,9 +39,9 @@
                         {
                             <td>@item.SubCategoryName  <input type="hidden" id="SubCategoryId" value="@item.SubCategoryId" /></td>
                         }
-                        <td>  @Html.TextBox("txtPrice", item.Price, new { @class = "cmstext", @id = "txtPrice_" + i, @name = "Price", maxlength = 100, style = "width:200px; Font-size: 20px;", @type = "number" })</td>
-                        <td>@Html.TextBox("txtStartDate", strtDate, new { @class = "cmstext", @id = "txtStartDate_" + i, maxlength = 255, style = "width:200px; Font-size: 15px;", @placeholder = "Start Date", @type = "datetime-local" }) &nbsp;</td>
-                        <td>@Html.TextBox("txtEndDate", EndDate, new { @class = "cmstext", @id = "txtEndDate_" + i, maxlength = 255, style = "width:200px; Font-size: 15px;", @placeholder = "End Date", @type = "datetime-local" }) &nbsp;</td>
+                        <td>  @Html.TextBox("txtPrice", item.Price, new { @class = "formInput", @id = "txtPrice_" + i, @name = "Price", maxlength = 100, style = "width:200px; Font-size: 20px;", @type = "number" })</td>
+                        <td>@Html.TextBox("txtStartDate", strtDate, new { @class = "formInput datePicker", @id = "txtStartDate_" + i, maxlength = 255, style = "width:200px; Font-size: 15px;", @placeholder = "Start Date", @type = "text" }) &nbsp;</td>
+                        <td>@Html.TextBox("txtEndDate", EndDate, new { @class = "formInput datePicker", @id = "txtEndDate_" + i, maxlength = 255, style = "width:200px; Font-size: 15px;", @placeholder = "End Date", @type = "text" }) &nbsp;</td>
 
                         @*<td>
                                 <a href="javascript:void(0);" class="anchorDetail"  category-id="@item.ServiceSubCategoryId"  service-provider-id="@item.ServiceProviderId"  onclick="ViewPriceHistory(this)">Details</a>
@@ -65,3 +65,6 @@ else
 }
 
 
+<script>
+    $('.datePicker').datetimepicker({ format: 'd/M/Y', timepicker: false });
+</script>

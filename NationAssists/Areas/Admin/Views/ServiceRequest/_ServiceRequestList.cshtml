@@ -12,6 +12,7 @@
 
             <thead>
                 <tr>
+                    <th>View</th>
                     <th>SNo.</th>
                     <th>Ticket No</th>
                     <th>Service Name</th>
@@ -22,7 +23,7 @@
                     <th>Assigned To</th>
                     <th>Service Requested Date</th>
                     <th>Status</th>
-                    <th>View</th>
+
 
                 </tr>
             <thead>
@@ -33,6 +34,11 @@
 
 
                 <tr>
+                    <td>
+
+                        <a data-id="@item.ServiceRequestId" onclick="ShowServiceRequestDetail(@Newtonsoft.Json.JsonConvert.SerializeObject( item))"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+
+                    </td>
                     <td><span class="blueClr">@i</span></td>
                     <td>@item.TicketNo</td>
                     <td>@item.ServiceName</td>
@@ -43,11 +49,7 @@
                     <td>@Convert.ToString(item.AssignedToUser)</td>
                     <td>@item.ServiceRequestedDate.ToString("dd-MMM-yyyy")</td>
                     <td>@item.Status_Name</td>
-                    <td>
 
-                        <a data-id="@item.ServiceRequestId" onclick="ShowServiceRequestDetail(@Newtonsoft.Json.JsonConvert.SerializeObject( item))"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
-
-                    </td>
 
                 </tr>
                 }

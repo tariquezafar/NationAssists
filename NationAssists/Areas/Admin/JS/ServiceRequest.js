@@ -26,9 +26,12 @@
     
     $("#txtCustomerName").val(e.Customer_Name);
     $("#txtCustomerEmailId").val(e.EmailId);
+    $("#hdnTicketNo").val(e.TicketNo);
+    $("#hdnSourceType").val(e.SourceType);
+    $("#hdnSourceName").val(e.SourceName);
     var SelectedService = e.ServiceName;
     var ServiceCode = SelectedService.substring(SelectedService.indexOf('(') + 1, SelectedService.indexOf(')'));
-    if (ServiceCode == "HAP") {
+    if (ServiceCode == "HA") {
         $('.RAP').hide();
         $('.HAP').show();
 
@@ -254,8 +257,10 @@ function SearchServiceRequest() {
             AccountType: $("#ddlAccountType").val() == "0" ? "" : $("#ddlAccountType").val(),
             AccountSubType: $("#ddlSourceType").val() == "0" ? "" : $("#ddlSourceType").val(),
             BrokerId: $("#ddlSource").val(),
-            StartDate: $("#txtStartDate").val(),
-            EndDate: $("#txtEndDate").val()
+            StartDate: $("#txtStartDate").val() == "" ? null : $("#txtStartDate").val(),
+            EndDate: $("#txtEndDate").val() == "" ? null : $("#txtEndDate").val(),
+            Service: $("#Service").val(),
+            ServiceAllocationStatusId: $("#ServiceAllocationStatusId").val() == "" ? "0" : $("#ServiceAllocationStatusId").val()
         };
 
         var pUrl = "/Admin/ServiceRequest/SearchServiceRequest";
@@ -312,8 +317,13 @@ function UpdateServiceRequest() {
             ServiceRequestId: $("#hdnServiceRequestID").val(),
             AssignedToUser: $("#AssignedTo").val(),
             AssignmentRemarks: $("#txtAssignmentRemarks").val(),
-            Remarks: $("input[name='rdAction']:checked").val() == "Closed" ? $("#txtClosingRemarks").val() : $("#txtUpdatedRemarks").val()
-
+            Remarks: $("input[name='rdAction']:checked").val() == "Closed" ? $("#txtClosingRemarks").val() : $("#txtUpdatedRemarks").val(),
+            CustomerName: $("#txtCustomerName").val(),
+            CustomerEmail: $("#txtCustomerEmailId").val(),
+            ServiceType: $("#txtServiceType").val(),
+            SourceType: $("#hdnSourceType").val(),
+            SourceName: $("#hdnSourceName").val(),
+            TicketNo: $("#hdnTicketNo").val()
 
         };
 

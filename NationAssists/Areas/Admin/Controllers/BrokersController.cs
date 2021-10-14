@@ -10,6 +10,9 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.IO;
 using System.Threading.Tasks;
+using NationAssists.Models;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace NationAssists.Areas.Admin.Controllers
 {
@@ -25,6 +28,7 @@ namespace NationAssists.Areas.Admin.Controllers
             if (Session["UserId"] != null)
             {
                 objBrokerModel.BrokerOptedServices = objBrokerModel.GetAllServices();
+               
                 objBrokerModel.BrokerList = this.GetAllBrokers(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
                 return View(objBrokerModel);
             }
@@ -34,6 +38,21 @@ namespace NationAssists.Areas.Admin.Controllers
             }
         }
 
+
+        public ActionResult SourceList()
+        {
+            if (Session["UserId"] != null)
+            {
+                objBrokerModel.BrokerOptedServices = objBrokerModel.GetAllServices();
+
+                objBrokerModel.BrokerList = this.GetAllBrokers(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+                return View(objBrokerModel);
+            }
+            else
+            {
+                return Redirect("../../Home");
+            }
+        }
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult SaveBroker()
@@ -230,7 +249,8 @@ namespace NationAssists.Areas.Admin.Controllers
 
                 if (objBrokerPrice.PriceOption == "SB")
                 {
-                    return PartialView("_BrokerPriceList", objBrokerPrice);
+                 return PartialView("_BrokerPriceList", objBrokerPrice);
+                    
                 }
 
             }
@@ -281,15 +301,19 @@ namespace NationAssists.Areas.Admin.Controllers
 
             return Json(new { Result = IsSaved, Msg = strMsg }, JsonRequestBehavior.AllowGet);
         }
+
+
         #endregion
 
         #region Membership
 
         public ActionResult ManageMembership()
         {
-            if (Session["UserId"] != null)
+            if (Session["UserId"] != null && Session["User"] != null)
             {
-                objMM.MembershipList = BindMemberShip(0, 0, 0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+                Users objUser = (Users)Session["User"];
+              
+                objMM.MembershipList = BindMemberShip(objUser.UserReferenceId, 0, 0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
 
                 return View(objMM);
             }
@@ -297,10 +321,6 @@ namespace NationAssists.Areas.Admin.Controllers
 
                 return Redirect("../../Home");
         }
-
-
-
-
 
         public ActionResult SaveMemberShip(Membership objMembership)
         {
@@ -367,6 +387,224 @@ namespace NationAssists.Areas.Admin.Controllers
                 strError = ex.Message;
             }
             return Json(new { Error=strError},JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GenerateCertificate( int PackageId,DateTime ? IssueDate, DateTime ? EffectiveDate, DateTime ? ExpiryDate, string MembershipReferenceNo,string InsuredName, string RiskAddress,string PackageName,string VehicleRegistrationNo,string VehicleMake,string ChassisNo,int? VehicleYear)
+        {
+            string strError = string.Empty;
+            try
+            {
+                string CertificateFolderPath = ConfigurationManager.AppSettings["CerificateTemplatePath"];
+                string CertificatePath = string.Empty;
+                if (PackageId == 1)
+                {
+                    CertificatePath = Path.Combine(CertificateFolderPath, "RSA_Certificate.html");
+                }
+                else if (PackageId == 11)
+                {
+                    CertificatePath = Path.Combine(CertificateFolderPath, "HA_Certificate.html");
+                }
+                else
+                {
+                    CertificatePath = Path.Combine(CertificateFolderPath, "RSACR_Certificate.html");
+                }
+
+                using (StreamReader str = new StreamReader(CertificatePath))
+                {
+                    string HtmlText = str.ReadToEnd();
+
+                    HtmlText = HtmlText.Replace("@IssueDate", Convert.ToDateTime(IssueDate).ToString("dd-MMM-yyyy"));
+                    HtmlText = HtmlText.Replace("@FromDate", Convert.ToDateTime(EffectiveDate).ToString("dd-MMM-yyyy"));
+                    HtmlText = HtmlText.Replace("@ToDate", Convert.ToDateTime(ExpiryDate).ToString("dd-MMM-yyyy"));
+                    HtmlText = HtmlText.Replace("@CertificateNo", MembershipReferenceNo);
+                    HtmlText = HtmlText.Replace("@CustomerName", InsuredName.ToUpper());
+                    if (PackageId == 11)
+                    {
+                        HtmlText = HtmlText.Replace("@RiskAddress", RiskAddress);
+                    }
+                    else
+                    {
+                        if (PackageId != 1)
+                        {
+                            HtmlText = HtmlText.Replace("@CarReplacement", PackageName);
+                        }
+                        HtmlText = HtmlText.Replace("@VehicleRegistrationNo", VehicleRegistrationNo);
+                        HtmlText = HtmlText.Replace("@Make", VehicleMake);
+                        HtmlText = HtmlText.Replace("@ChassisNo", ChassisNo);
+                        HtmlText = HtmlText.Replace("@ManufacturingYear", VehicleYear.ToString());
+
+                    }
+
+                    iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(PageSize.A4, 10f, 10f, 40f, 0f);
+                    //string imageFilePath = Server.MapPath("../../") + "/images/Watermark1.png";
+
+                    //iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageFilePath);
+                    ////jpg.ScaleToFit(3000, 770);
+
+                    ////If you want to choose image as background then,
+
+                    //jpg.Alignment = iTextSharp.text.Image.DIV;
+
+                    //If you want to give absolute/specified fix position to image.
+                   // jpg.SetAbsolutePosition(100, 69);
+                    
+                    using (MemoryStream stream = new System.IO.MemoryStream())
+                    {
+                        try
+                        {
+                            StringReader sr = new StringReader(HtmlText);
+
+                            PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                            pdfDoc.Open();
+                     
+
+                            iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                            //pdfDoc.Add(jpg);
+                            pdfDoc.Close();
+
+                            byte[] arrDoc = stream.ToArray();
+                            return File(arrDoc, "application/pdf", MembershipReferenceNo + ".pdf");
+
+                        }
+                        catch (Exception ex)
+                        {
+                            pdfDoc.Close();
+                            strError = ex.Message;
+                        }
+                        finally
+                        {
+                            stream.Flush();
+                            stream.Close();
+                        }
+                    }
+
+                    str.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                strError = ex.Message;
+            }
+
+            return Json(new { Error =strError},JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SendGeneratedCertificate(Membership objMembership)
+        {
+            string strError = string.Empty;
+            try
+            {
+                string CertificateFolderPath = ConfigurationManager.AppSettings["CerificateTemplatePath"];
+                string CertificatePath = string.Empty;
+                if (objMembership.PackageId == 1)
+                {
+                    CertificatePath = Path.Combine(CertificateFolderPath, "RSA_Certificate.html");
+                }
+                else if (objMembership.PackageId == 11)
+                {
+                    CertificatePath = Path.Combine(CertificateFolderPath, "HA_Certificate.html");
+                }
+                else
+                {
+                    CertificatePath = Path.Combine(CertificateFolderPath, "RSACR_Certificate.html");
+                }
+
+                StreamReader str = new StreamReader(CertificatePath);
+                string HtmlText = str.ReadToEnd();
+
+                HtmlText = HtmlText.Replace("@IssueDate", Convert.ToDateTime(objMembership.IssueDate).ToString("dd-MMM-yyyy"));
+                HtmlText = HtmlText.Replace("@FromDate", Convert.ToDateTime(objMembership.EffectiveDate).ToString("dd-MMM-yyyy"));
+                HtmlText = HtmlText.Replace("@ToDate", Convert.ToDateTime(objMembership.ExpiryDate).ToString("dd-MMM-yyyy"));
+                HtmlText = HtmlText.Replace("@CertificateNo", objMembership.MembershipReferenceNo);
+                HtmlText = HtmlText.Replace("@CustomerName", objMembership.InsuredName);
+                if (objMembership.PackageId == 11)
+                {
+                    HtmlText = HtmlText.Replace("@RiskAddress", objMembership.RiskAddress);
+                }
+                else
+                {
+                    if (objMembership.PackageId != 1)
+                    {
+                        HtmlText = HtmlText.Replace("@CarReplacement", objMembership.PackageName);
+                    }
+                    HtmlText = HtmlText.Replace("@VehicleRegistrationNo", objMembership.VehicleRegistrationNo);
+                    HtmlText = HtmlText.Replace("@Make", objMembership.VehicleMake);
+                    HtmlText = HtmlText.Replace("@ChassisNo", objMembership.ChassisNo);
+                    HtmlText = HtmlText.Replace("@ManufacturingYear", objMembership.VehicleYear.ToString());
+
+                }
+
+                iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(PageSize.A4, 10f, 10f, 100f, 0f);
+
+                using (MemoryStream stream = new System.IO.MemoryStream())
+                {
+                    try
+                    {
+                        StringReader sr = new StringReader(HtmlText);
+
+                        PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                        pdfDoc.Open();
+                        iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                        pdfDoc.Close();
+                        byte[] bytes = stream.ToArray();
+                        MemoryStream ms = new MemoryStream(bytes);
+                    
+                        string strTempPath = Path.GetTempPath();
+                        DirectoryInfo di = new DirectoryInfo(string.Format("{0}/{1}", strTempPath, Session.SessionID));
+                        if (!di.Exists)
+                        {
+                            di.Create();
+                        }
+                        string path = Path.Combine(strTempPath, Session.SessionID, objMembership.MembershipReferenceNo.Replace("/", "_") + ".pdf");
+                        if (!System.IO.File.Exists(path))
+                        {
+                            using (FileStream outputFileStream = new FileStream(path, FileMode.Create))
+                            {
+                                ms.CopyTo(outputFileStream);
+                            }
+                        }
+
+                        EmailServices objES = new EmailServices();
+                        string CustomerName = objMembership.InsuredName;
+                        string DownloadURL = string.Empty;
+                        if (objMembership.PackageId == 1)
+                        {
+                            DownloadURL = Request.Url.Authority + "/DownloadDocument/Nation Assist Roadside Assistance.pdf";
+                        }
+                        else if (objMembership.PackageId == 11)
+                        {
+                            DownloadURL = Request.Url.Authority + "/DownloadDocument/Nation Assist Home Assistance.pdf";
+                        }
+                        else
+                        {
+                            DownloadURL = Request.Url.Authority + "/DownloadDocument/Nation Assist Roadside and Car Replacement.pdf";
+                        }
+
+                        Dictionary<string, string> objTempValues = new Dictionary<string, string>();
+                        objTempValues.Add("CustomerName", CustomerName);
+                        objTempValues.Add("DownloadURL", DownloadURL);
+                        objTempValues.Add("MembershipRefNo", objMembership.MembershipReferenceNo);
+                        objTempValues.Add("CertificatePath", path);
+                        EmailServices objEmailService = new EmailServices();
+                        List<string> ToEmail = new List<string> { objMembership.EmailId };
+                        objEmailService.MailSent(ToEmail, objTempValues, "SERVICE_ENROLLMENT", true, null);
+                        strError = string.Empty;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        pdfDoc.Close();
+                        strError = ex.Message;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                strError = ex.Message;
+            }
+            return Json(new { Error = strError }, JsonRequestBehavior.AllowGet);
         }
         #endregion
         #region Membership Upload
@@ -449,6 +687,12 @@ namespace NationAssists.Areas.Admin.Controllers
         }
         #endregion
 
-
+        public ActionResult BindServiceOptedForBroker(int BrokerId)
+        {
+            MethodOutput<Broker> objMO = new MethodOutput<Broker>();
+            CommonServices obj = new CommonServices();
+            objMO = obj.BindServiceOptedForPriceByBrokerId(BrokerId);
+            return Json(objMO.Data, JsonRequestBehavior.AllowGet);
+        }
     }
 }

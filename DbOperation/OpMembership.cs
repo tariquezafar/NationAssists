@@ -207,9 +207,9 @@ namespace DbOperation
                 {
                     objLst = dt.AsEnumerable().Select(x => new Membership
                     {
-                        SourceType= x.Field<string>("Broker_Type"),
+                        SourceType = x.Field<string>("Broker_Type"),
                         Branch = x.Field<string>("Branch"),
-                        ChassisNo= x.Field<string>("ChassisNo"),
+                        ChassisNo = x.Field<string>("ChassisNo"),
                         CPRNumber = x.Field<string>("CPRNumber"),
                         CreatedBy = x.Field<int?>("CreatedBy"),
                         EmailId = x.Field<string>("EmailId"),
@@ -222,7 +222,7 @@ namespace DbOperation
                         MembershipId = x.Field<long>("MembershipId"),
                         MobileNo = x.Field<string>("MobileNo"),
                         ModifiedBy = x.Field<int?>("ModifiedBy"),
-                   //     ModifiedByUser = x.Field<string>("ModifiedByUser"),
+                        //     ModifiedByUser = x.Field<string>("ModifiedByUser"),
                         ModifiedDate = x.Field<DateTime?>("ModifiedDate"),
                         NoOfLocation = x.Field<int?>("NoOfLocation"),
                         PackageId = x.Field<int>("PackageId"),
@@ -239,7 +239,10 @@ namespace DbOperation
                         VehicleReplacement = x.Field<bool>("VehicleReplacement"),
                         VehicleType = x.Field<string>("VehicleType"),
                         VehicleYear = x.Field<int?>("VehicleYear"),
-                        MembershipReferenceNo=x.Field<string>("MembershipReferenceNo")
+                        MembershipReferenceNo = x.Field<string>("MembershipReferenceNo"),
+                        Issue_Date = x.Field<string>("Issue_Date"),
+                        Effective_Date = x.Field<string>("Effective_Date"),
+                        Expiry_Date = x.Field<string>("Expiry_Date")
                     }).ToList();
 
                     output.DataList = objLst;
@@ -406,7 +409,7 @@ namespace DbOperation
                         if (string.IsNullOrEmpty( Convert.ToString(dr["Packages"])) && Convert.ToString(dr["Packages"]).ToUpper() == ServiceEnum.NO.ToString())
                         {
                             dr["VehicleReplacement"] = false;
-                            dr["PackageId"] = 2;
+                            dr["PackageId"] = 1;
                         }
                         else
                         {
@@ -420,7 +423,7 @@ namespace DbOperation
                     else
                     {
                         dr["VehicleReplacement"] = false;
-                        dr["PackageId"] = 3;
+                        dr["PackageId"] = 11;
                     }
                 }
 
@@ -451,20 +454,58 @@ namespace DbOperation
 
             return output;
         }
+
+        public MethodOutput<bool> CheckDuplicateChassisNo(string ChassisNo, DateTime StartDate)
+
+        {
+            MethodOutput<bool> objOutPut = new MethodOutput<bool>();
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlParameter[] objListSqlParam = new SqlParameter[3];
+
+                objListSqlParam[0] = new SqlParameter();
+                objListSqlParam[0].ParameterName = "@ChassisNo";
+                objListSqlParam[0].Value = ChassisNo;
+
+                objListSqlParam[1] = new SqlParameter();
+                objListSqlParam[1].ParameterName = "@PolicyStartDate";
+                objListSqlParam[1].Value = StartDate;
+
+                dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_ValidateDuplicateMemebership", objListSqlParam).Tables[0];
+                if (dt.Rows.Count > 0  )
+                {
+                    objOutPut.Data = Convert.ToString(dt.Rows[0]["DUP_CHASSIS"]) == "1" ? false : true;
+                }
+                else
+                {
+                    objOutPut.Data = false;
+                }
+               
+            }
+            catch (Exception ex)
+            {
+
+                objOutPut.ErrorMessage = ex.Message;
+
+            }
+
+            return objOutPut;
+        }
     }
 
     public enum ServiceEnum
     {
         NO = 1,
         SC8=2,
-        SC10=4 ,
-        SC15 = 5,
-        MC8=6,
-        MC10=7,
-        MC15 = 8,
-        LC8=9,
-        LC10=10,
-        LC15=11
+        SC10=3 ,
+        SC15 = 4,
+        MC8=5,
+        MC10=6,
+        MC15 = 7,
+        LC8=8,
+        LC10=9,
+        LC15=10
        
     }
 }

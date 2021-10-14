@@ -4,15 +4,44 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@{
+    DataEngine.Users objUSer = new DataEngine.Users();
+    if (Session["User"] != null)
+    {
+        objUSer = (DataEngine.Users)Session["User"];
+
+    }
+}
 <div class="dashboardCon transition">
     <div class="mainHd">Manage User</div>
     <ul class="dbForm flexBox">
         <li class="oneThird">
-            <span class="fieldHd" id="lblUserType">User Type </span>
-            @Html.DropDownListFor(m => m.UserTypeId, Model.GetAllUserType(), "--Select-", new { @class = "formInput", @onchange = "BindUserTypeDetail()" })
+            <span class="fieldHd" id="lblUserType">User Type** </span>
+            @if (objUSer != null && objUSer.UserTypeCode == "EMP")
+            {
+                if (objUSer.RoleName == "Admin")
+                {
+                    @Html.DropDownListFor(m => m.UserTypeId, Model.GetAllUserType(), "--Select-", new { @class = "formInput", @onchange = "BindUserTypeDetail()" })
+                }
+                else
+                {
+                    <select id="UserTypeId" class="formInput" onchange = "BindUserTypeDetail()">
+                        <option>--Select--</option>
+                        <option value="1">Employee</option>
+                    </select>
+                }
+            }
+            else
+            {
+                <select id="UserTypeId" class="formInput" onchange = "BindUserTypeDetail()">
+                    <option>--Select--</option>
+                    <option value="@objUSer.UserTypeId">@objUSer.UserTypeName</option>
+                </select>
+            }
+
         </li>
         <li class="oneThird" style="display:none;" id="liUserType">
-            <span class="fieldHd" id="lblUserDetail">User Type </span>
+            <span class="fieldHd" id="lblUserDetail">User Type** </span>
             @Html.DropDownListFor(m => m.UserReferenceId,
            new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceProviderId", "SERVICE_PROVIDER_NAME"),
                   "Select Service", new { @class = "formInput" })
@@ -22,7 +51,7 @@
             @Html.DropDownListFor(m => m.BranchId, Model.GetAllBranches(), "--Select-", new { @class = "formInput" })
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblUserName">Employee Name </span>
+            <span class="fieldHd" id="lblUserName">Employee Name** </span>
             <input type="text" class="formInput" id="txtUserName" placeholder="Name">
         </li>
         <li class="oneThird">
@@ -31,7 +60,7 @@
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblUserName">CPR Expiry Date </span>
-            <input type="date" class="formInput" id="txtCPRExpiryDate" />
+            <input type="text" class="formInput datePicker" id="txtCPRExpiryDate">
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblUserName">Passport Number </span>
@@ -39,14 +68,14 @@
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblUserName">Passport Expiry Date </span>
-            <input type="date" class="formInput" id="txtPassportExpiryDate" />
+            <input type="text" class="formInput datePicker" id="txtPassportExpiryDate">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblUserName">Contact Address (Home Country) </span>
+            <span class="fieldHd" id="lblUserName"> Contact Address (Local) ** </span>
             <textarea type="text" class="formInput" id="txtContactAddressHomeCountry" placeholder="Contact Address (Home Country)"></textarea>
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblUserName">Contact Address (Local) </span>
+            <span class="fieldHd" id="lblUserName">Contact Address (Home Country) </span>
             <textarea type="text" class="formInput" id="txtContactAddressLocal" placeholder="Contact Address (Local)"></textarea>
         </li>
         <li class="oneThird">
@@ -54,19 +83,19 @@
             <input type="text" class="formInput" id="txtVisaNumber" placeholder="Visa Number">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblPassword">Password </span>
+            <span class="fieldHd" id="lblPassword">Password** </span>
             <input type="password" class="formInput" id="txtPassword" minlength="8">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblEmailId">Email ID </span>
+            <span class="fieldHd" id="lblEmailId">Email ID** </span>
             <input type="email" class="formInput" id="txtEmailId">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblMobileNo">Employee Mobile Number (Home Country) </span>
-            <input type="text" class="formInput" id="txtMobileNo"  maxlength="15" minlength="8" onclick="RestrictAlphabetAndSpace('txtMobileNo')">
+            <span class="fieldHd" id="lblMobileNo">Employee Mobile Number (Local)** </span>
+            <input type="text" class="formInput" id="txtMobileNo" maxlength="15" minlength="8" onclick="RestrictAlphabetAndSpace('txtMobileNo')">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblMobileNo">Employee Mobile Number (Local) </span>
+            <span class="fieldHd" id="lblMobileNo"> Employee Mobile Number (Home Country) </span>
             <input type="text" class="formInput" id="txtMobileNoLocal" maxlength="15" minlength="8" onclick="RestrictAlphabetAndSpace('txtMobileNoLocal')">
         </li>
         <li class="oneThird">
@@ -75,15 +104,15 @@
         </li>
         <li class="oneThird">
             <span class="fieldHd" id="lblUserName">Date of Joining </span>
-            <input type="date" class="formInput" id="txtDateOfJoining">
+            <input type="text" class="formInput datePicker" id="txtDateOfJoining">
         </li>
 
         <li class="oneThird">
             <span class="fieldHd" id="lblPhoneNo">Phone No </span>
-            <input type="text" class="formInput" id="txtPhoneNo"  maxlength="15" minlength="8" onclick="RestrictAlphabetAndSpace('txtPhoneNo')">
+            <input type="text" class="formInput" id="txtPhoneNo" maxlength="15" minlength="8" onclick="RestrictAlphabetAndSpace('txtPhoneNo')">
         </li>
         <li class="oneThird">
-            <span class="fieldHd" id="lblRole">Role </span>
+            <span class="fieldHd" id="lblRole">Role** </span>
             @Html.DropDownListFor(m => m.RoleId, Model.GetAllRoles(), "--Select-", new { @class = "formInput" })
         </li>
         <li class="oneThird">
@@ -101,7 +130,7 @@
         </li>
         <li class="oneThird">
             <span class="fieldHd">User Code</span>
-            <input type="text"  class="formInput" id="txtUserCode" placeholder="User Code">
+            <input type="text" class="formInput" id="txtUserCode" placeholder="User Code">
         </li>
     </ul>
     <div>
@@ -111,12 +140,12 @@
         <button type="submit" class="btnSave dbformBtn mr10" onclick="return SearchUser();">Search</button>
 
     </div>
-    <div class="dbTable" id="tblUsers" >
+    <div class="dbTable" id="tblUsers">
         @Html.Partial("~/Areas/Admin/Views/User/_UserList.cshtml", Model);
     </div>
 </div>
-        
-      
-        <script type="text/javascript" src="~/Areas/Admin/JS/User.js"></script>
+
+
+<script type="text/javascript" src="~/Areas/Admin/JS/User.js"></script>
 
 

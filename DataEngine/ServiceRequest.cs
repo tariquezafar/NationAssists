@@ -69,6 +69,16 @@ namespace DataEngine
         public string EmailId { get; set; }
         public string AssignedToUser { get; set; }
         public string ServiceAllocationRemarks { get; set; }
+        public string AcceptanceRemark { get; set; }
+        public string ReasonForRejection { get; set; }
+        public int? AssignedToUserId { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string SourceType { get; set; }
+        public string SourceName { get; set; }
+
+        public bool IsRequestedFromCustomer { get; set; }
+
+        public Int64 MembershipId { get; set; }
     }
 
     public class ServiceRequestStatus
@@ -98,16 +108,16 @@ namespace DataEngine
 
     public class ServiceAllocation
     {
-     public Int64   ServiceAllocationId           {get;set;}
-     public Int64   ServiceRequestId              {get;set;}
-     public int   ServiceProviderId             {get;set;}
-     public int   ServiceId                     {get;set;}
-     public int   ServiceSubCategoryId          {get;set;}
-     public DateTime   ServiceAllocationDate         {get;set;}
-     public int   ServiceAllocationStatus       {get;set;}
-     public bool   IsActive                      {get;set;}
-     public DateTime   CreatedDate                   {get;set;}
-     public DateTime ModifyDate { get; set; }
+        public Int64 ServiceAllocationId { get; set; }
+        public Int64 ServiceRequestId { get; set; }
+        public int ServiceProviderId { get; set; }
+        public int ServiceId { get; set; }
+        public int ServiceSubCategoryId { get; set; }
+        public DateTime ServiceAllocationDate { get; set; }
+        public int ServiceAllocationStatus { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifyDate { get; set; }
         public int? AssignedToUser { get; set; }
 
         public string Remarks { get; set; }
@@ -122,6 +132,15 @@ namespace DataEngine
         public string AssignmentRemarks { get; set; }
 
         public int AcceptedBy { get; set; }
+
+        public string CustomerName { get; set; }
+        public string CustomerEmail { get; set; }
+
+        public string ServiceType { get; set; }
+        public string SourceName { get; set; }
+        public string SourceType { get; set; }
+
+        public string TicketNo { get; set; }
     }
 
     public class ServiceAllocationStatus
@@ -134,6 +153,7 @@ namespace DataEngine
 
     public class CustomerStatus
     {
+        public Int64 MembershipId { get; set; }
         public bool IsHavingMembership { get; set; }
         
         public bool IsMemberShipExpired { get; set; }
@@ -155,6 +175,11 @@ namespace DataEngine
         public string EffectiveDate { get; set; }
 
         public string ExpiryDate { get; set; }
+
+        public string CustomerName { get; set; }
+
+        public string CustomerEmail { get; set; }
+        public string ServiceName { get; set; }
     }
 
     public class ServiceRemarks

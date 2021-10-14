@@ -16,6 +16,17 @@
                 @Html.DropDownListFor(m => m.ServiceRequestStatusId, Model.GetAllServiceRequestStatus(), "--select-", new { @class = "formInput", })
             </li>
             <li class="oneThird">
+                <span class="fieldHd">Service Allocation Status </span>
+                @Html.DropDownListFor(m => m.ServiceAllocationStatusId, Model.BindServiceAllocationStatus(), "--select-", new { @class = "formInput", })
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">
+                    Service
+                </span>
+                @Html.DropDownListFor(m => m.Service, Model.BindService(), "--select-", new { @class = "formInput", })
+
+            </li>
+            <li class="oneThird">
                 <span class="fieldHd" id="lblService">Ticket No </span>
                 <input type="text" id="txtTicketNo" class="formInput" />
             </li>
@@ -41,18 +52,18 @@
             <li class="oneThird" id="liSource" style="display:none;">
                 <span class="fieldHd">Source</span>
                 <select class="formSelect" id="ddlSource">
-                    <option value="0" >Select</option>
+                    <option value="0">Select</option>
 
                 </select>
             </li>
             <li class="oneThird">
                 <span class="fieldHd">Start Date</span>
-                <input type="text" id="txtStartDate" class="formInput datePicker" value="@Model.StartDate" />
+                <input type="text" id="txtStartDate" class="formInput datePicker" />
             </li>
 
             <li class="oneThird">
                 <span class="fieldHd">End Date</span>
-                <input type="text" id="txtEndDate" class="formInput datePicker" value="@Model.EndDate" />
+                <input type="text" id="txtEndDate" class="formInput datePicker" />
             </li>
         </ul>
         <div>
@@ -195,6 +206,9 @@
                     <input type="hidden" id="hdnUserID" value="@Model.UserId" />
                     <input type="hidden" id="hdnServiceRequestID" value="0" />
                     <input type="hidden" id="hdnServiceAllocationID" value="0" />
+                    <input id="hdnTicketNo" type="hidden" value="" />
+                    <input id="hdnSourceType" type="hidden" value="" />
+                    <input id="hdnSourceName" type="hidden" value="" />
                     <button class="formBtn regNextStep" id="BtnUpdate" onclick="UpdateServiceRequest()">Update</button>
                     <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/ServiceRequest/'">Back</button>
 

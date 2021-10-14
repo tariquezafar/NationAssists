@@ -11,7 +11,7 @@
 
 
                 <tr>
-
+                    <th>Operation</th>
                     <th>SNo.</th>
                     <th>Source Code</th>
                     <th>Source Name</th>
@@ -20,7 +20,7 @@
                     <th>Aggreement Start Date</th>
                     <th>Aggreement End Date</th>
                     <th>Status</th>
-                    <th>Operation</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +28,11 @@
                 {
                     i = i + 1;
                 <tr>
+                    <td>
+
+                        <a data-id="@item.BrokerId" onclick="EditBroker(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
+                        &nbsp; <a data-id="@item.BrokerId" onclick="DeleteBrokers(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
+                    </td>
                     <td> <span class="blueClr">@i </span></td>
 
                     <td>@item.BrokerCode</td>
@@ -37,11 +42,7 @@
                     <td>@(Convert.ToDateTime( item.Agreement_Start_Date).ToString("dd-MMM-yyyy"))</td>
                     <td>@(Convert.ToDateTime( item.Agreement_End_Date).ToString("dd-MMM-yyyy"))</td>
                     <td>@(item.IsActive == true ? "Active": "In Active")</td>
-                    <td>
 
-                        <a data-id="@item.BrokerId" onclick="EditBroker(this)"><img src="~/images/edit.gif" title="Edit" alt="Edit" align="EDIT" /></a> &nbsp;
-                        &nbsp; <a data-id="@item.BrokerId" onclick="DeleteBrokers(this);"><img src="~/images/icon-delete.gif" title="Delete" alt="Delete" /></a>
-                    </td>
 
                 </tr>
                 }

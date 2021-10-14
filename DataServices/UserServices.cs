@@ -17,10 +17,10 @@ namespace DataServices
             return obj.SaveUsers(users);
         }
 
-        public MethodOutput<Users> GetUsers(int UserId, int UserTypeId, int UserReferenceId, string UserCode, string UserName)
+        public MethodOutput<Users> GetUsers(int UserId, int UserTypeId, int UserReferenceId, string UserCode, string UserName,int CreateBy)
         {
             OpUsers obj = new OpUsers();
-            return obj.GetUsers( UserId, UserTypeId, UserReferenceId,  UserCode, UserName);
+            return obj.GetUsers( UserId, UserTypeId, UserReferenceId,  UserCode, UserName,CreateBy);
         }
 
         public MethodOutput<string> DeleteUsers(int UserId)

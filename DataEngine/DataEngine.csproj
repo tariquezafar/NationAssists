@@ -55,6 +55,7 @@
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="DashboardModel.cs" />
     <Compile Include="EmailConfiguration.cs" />
     <Compile Include="Membership.cs" />
     <Compile Include="MethodOutput.cs" />

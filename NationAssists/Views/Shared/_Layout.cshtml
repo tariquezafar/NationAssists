@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="~/css/slick.css" type="text/css">
     <link rel="stylesheet" href="~/css/stylesheet.css" type="text/css">
     <link rel="stylesheet" href="~/css/responsive.css" type="text/css">
-    <link rel="stylesheet" href="~/Content/css/NationAssists/stylesheet.css" type="text/css">
+    @*<link rel="stylesheet" href="~/Content/css/NationAssists/stylesheet.css" type="text/css">*@
     <link rel="stylesheet" href="~/css/jquery.datetimepicker.css" type="text/css"/>
 
     <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/Login.js"></script>
+    @*<script src="~/js/Login.js"></script>*@
     <script src="~/js/Common.js"></script>
 
     <script src="~/js/function.js"></script>
@@ -31,33 +31,14 @@
 <body>
     <div class="mainCon">
         @Html.Partial("_Header")
-        @RenderBody();
+        @RenderBody()
         @Html.Partial("_Footer")
     </div>
 
    
 
-    @*<script>
-            $('.testimonialSlider').slick({
-                dots: true,
-                speed: 600,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: false,
-                autoplay: false,
-            });
-            $('.bannerSlider').slick({
-                dots: false,
-                speed: 600,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: false,
-                autoplay: true,
-            });
 
-
-
-        </script>*@
+        
 
     <script>
         $('.datePicker').datetimepicker({ format: 'd/M/Y', timepicker: false });

@@ -108,6 +108,12 @@ function ValidateForm() {
         IsValid = false;
         strErrMsg += "Please enter Mobile No. \n";
     }
+   
+
+    if ($('#txtPassword').val() == "") {
+        IsValid = false;
+        strErrMsg += "Please enter Password. \n";
+    }
     if ($("#txtLandlineNo").val() != "" && $("#txtLandlineNo").val().length < 8) {
 
         IsValid = false;
@@ -201,9 +207,13 @@ function ValidateForm() {
 
 function EditBroker(e) {
 
-
+    var scrollPos = $("#dvDetail").offset().top;
+    $(window).scrollTop(scrollPos);
+    $('body').data("IsLoaderRequired", true);
+    $loading.show();
     var BrokerId = $(e).attr("data-id");
     var pUrl = "/Admin/Brokers/GetBrokerDetail?BrokerId=" + BrokerId;
+    setTimeout(function () {
     $.ajax({
         type: "Get",
         url: pUrl,
@@ -229,21 +239,24 @@ function EditBroker(e) {
             $("#txtOfficeLocationAddress").val(Jdata.Office_Location_Address);
             $("#txtOfficePostalAddress").val(Jdata.Office_Postal_Address);
             $("#txtPhoneNo").val(Jdata.PhoneNo);
-            var AgreementFromDate = new Date(parseFloat(Jdata.Agreement_Start_Date.substring(Jdata.Agreement_Start_Date.indexOf('(') + 1, Jdata.Agreement_Start_Date.indexOf(')'))));
-            $("#txtAggreementStartDate").val(formatDate(AgreementFromDate));
-            //$("#txtAggreementStartDate").val(new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString());
+            //var AgreementFromDate = new Date(parseFloat(Jdata.Agreement_Start_Date.substring(Jdata.Agreement_Start_Date.indexOf('(') + 1, Jdata.Agreement_Start_Date.indexOf(')'))));
+            //$("#txtAggreementStartDate").val(formatDate(AgreementFromDate));
+            ////$("#txtAggreementStartDate").val(new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString());
 
-            var AgreementEndDate = new Date(parseFloat(Jdata.Agreement_End_Date.substring(Jdata.Agreement_End_Date.indexOf('(') + 1, Jdata.Agreement_End_Date.indexOf(')'))));
-            $("#txtAggreementEndDate").val(formatDate(AgreementEndDate));
+            //var AgreementEndDate = new Date(parseFloat(Jdata.Agreement_End_Date.substring(Jdata.Agreement_End_Date.indexOf('(') + 1, Jdata.Agreement_End_Date.indexOf(')'))));
+            //$("#txtAggreementEndDate").val(formatDate(AgreementEndDate));
+
+            $("#txtAggreementStartDate").val(Jdata.Agg_Start_Date);
+            $("#txtAggreementEndDate").val(Jdata.Agg_End_Date);
 
             $("#hdnBrokerID").val(Jdata.BrokerId);
             $("#txtRemarks").val(Jdata.Remarks);
             //$('input[name="chkService"][type="checkbox"]').prop("checked", false);
             if (Jdata.SelectedServiceOpted != null) {
-
+                var ArrSelectedServiceOpted = Jdata.SelectedServiceOpted.split(',');
                 $('input[name="chkService"][type="checkbox"]').each(function (index) {
                     item = $(this);
-                    if (Jdata.SelectedServiceOpted.indexOf(item.val()) != -1) {
+                    if (ArrSelectedServiceOpted.includes(item.val())) {
                         item.attr('checked', true);
                     }
                 });
@@ -264,12 +277,12 @@ function EditBroker(e) {
             $("#chkIsActive").prop("checked", Jdata.IsActive);
             
             $("#txtCRNumber").val(Jdata.CRNumber);
-            if (Jdata.CRExpiryDate != null && Jdata.CRExpiryDate != "") {
+            //if (Jdata.CRExpiryDate != null && Jdata.CRExpiryDate != "") {
 
-                var CRExpiryDate = new Date(parseFloat(Jdata.CRExpiryDate.substring(Jdata.CRExpiryDate.indexOf('(') + 1, Jdata.CRExpiryDate.indexOf(')'))));
-                $("#txtCRExpiryDate").val(formatDate( CRExpiryDate));
-            }
-            
+            //    var CRExpiryDate = new Date(parseFloat(Jdata.CRExpiryDate.substring(Jdata.CRExpiryDate.indexOf('(') + 1, Jdata.CRExpiryDate.indexOf(')'))));
+            //    $("#txtCRExpiryDate").val(formatDate( CRExpiryDate));
+            //}
+            $("#txtCRExpiryDate").val(Jdata.CPR_Expiry_Date);
             $("#txtVATRegistrationNumber").val(Jdata.VATRegistrationNumber);
             $("#txtLandlineNo").val(Jdata.Landline);
             $("#txtEscalationLandlineNo").val(Jdata.EscalationLandlineNo);
@@ -280,19 +293,21 @@ function EditBroker(e) {
             if (lstBrokerServiceCommissionPayable.length > 0) {
                 $.each(lstBrokerServiceCommissionPayable, function (i, e) {
                     $("#txtCommissionPaybable_" + e.ServiceId).val(e.Commission_Paybable);
-                    var Commission_StartDate = new Date(parseFloat(e.Commission_StartDate.substring(e.Commission_StartDate.indexOf('(') + 1, e.Commission_StartDate.indexOf(')'))));
-                    $("#txtCommissionStartDate_" + e.ServiceId).val(formatDate(Commission_StartDate));
+                    //var Commission_StartDate = new Date(parseFloat(e.Commission_StartDate.substring(e.Commission_StartDate.indexOf('(') + 1, e.Commission_StartDate.indexOf(')'))));
+                    //$("#txtCommissionStartDate_" + e.ServiceId).val(formatDate(Commission_StartDate));
 
-                    var Commission_EndDate = new Date(parseFloat(e.Commission_EndDate.substring(e.Commission_EndDate.indexOf('(') + 1, e.Commission_EndDate.indexOf(')'))));
-                    $("#txtCommissionEndDate_" + e.ServiceId).val(formatDate(Commission_EndDate));
-                    
+                    //var Commission_EndDate = new Date(parseFloat(e.Commission_EndDate.substring(e.Commission_EndDate.indexOf('(') + 1, e.Commission_EndDate.indexOf(')'))));
+                    //$("#txtCommissionEndDate_" + e.ServiceId).val(formatDate(Commission_EndDate));
+
+                    $("#txtCommissionStartDate_" + e.ServiceId).val(e.Commission_Start_Date);
+                    $("#txtCommissionEndDate_" + e.ServiceId).val(e.Commission_End_Date);
                 });
             }
         },
         error: function (data) {
         }
     });
-
+    }, 1000);
 }
 
 $("#fileInput").on("change", function () {
@@ -329,22 +344,22 @@ function chkatchtbl() {
     }
 }
 
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+//function formatDate(date) {
+//    var d = new Date(date),
+//        month = '' + (d.getMonth() + 1),
+//        day = '' + d.getDate(),
+//        year = d.getFullYear();
    
 
 
-    if (month.length < 2)
-        month = '0' + month;
-    if (day.length < 2)
-        day = '0' + day;
+//    if (month.length < 2)
+//        month = '0' + month;
+//    if (day.length < 2)
+//        day = '0' + day;
 
-    return [year, month, day].join('-');
+//    return [year, month, day].join('-');
     
-}
+//}
 
 function DeleteBrokers(e) {
     if (confirm("Are you sure you want to delete  this Source ?")) {

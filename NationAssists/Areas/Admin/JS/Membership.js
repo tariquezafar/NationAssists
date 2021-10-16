@@ -1,8 +1,8 @@
-﻿function BindBroker() {
-    if ($("#BrokerTypeId").val() != "") {
+﻿function BindBroker(id,e) {
+    if ($(id).val() != "") {
 
-        var UserTypeId = $("#BrokerTypeId").val();
-        var UserType = $("#BrokerTypeId").val();
+        var UserTypeId = $(id).val();
+        var UserType = $(id).val();
         $("#ServiceId").html("'<option value='0'>--Select--</option>'");
      
             var pUrl = "/Admin/Brokers/BindBroker?UserType=" + UserType;
@@ -16,17 +16,17 @@
                 async: false,
                 success: function (data) {
 
-                    $("#BrokerId").html(""); // clear before appending new list
+                    $('#' + e).html(""); // clear before appending new list
                     var jData = JSON.parse(data);
                     if (jData != null && jData.length > 0) {
-                        $("#BrokerId").append($('<option></option>').val(0).html("--Select--"));
+                        $('#' + e).append($('<option></option>').val(0).html("--Select--"));
                         $.each(jData, function (i, service) {
-                            $("#BrokerId").append(
+                            $('#' + e).append(
                                 $('<option></option>').val(service.ServiceProviderId).html(service.FirstName));
                         });
 
                         if ($("#hdnSourceId").val() != "0") {
-                            $("#BrokerId").val($("#hdnSourceId").val());
+                            $('#' + e).val($("#hdnSourceId").val());
                             GetAllServices();  
                         }
                     }
@@ -314,7 +314,8 @@ function EditMember(e) {
 
             $("#btnAdd").html("Update");
             $("input[type=radio][name=VehicleReplacement][value=" + (Jdata.VehicleReplacement == true ?"YES":"NO") + "]").prop("checked", true);
-            
+            $('#dvDetail').hide();
+            $('#dvMembershipDetail').show();
         },
         error: function (data) {
         }
@@ -322,19 +323,20 @@ function EditMember(e) {
 
 }
 function SearchMembership() {
-    var SourceType = $("#BrokerTypeId").val();
-    var SourceId = $("#BrokerId").val() == "" ? 0 : parseInt($("#BrokerId").val());
-    var PackageId = $("#ServiceId").val() == "" ? 0 : parseInt($("#ServiceId").val());
-    var CPRNumber = $("#txtCPRNumber").val();
-    var PolicyType = $("#txtPolicyType").val();
-    var PolicyNo = $("#txtPolicyNo").val();
-    var InsuredName = $("#txtInsuredName").val();
-    var MobileNo = $("#txtMobileNo").val();
-    var EmailId = $("#txtEmailId").val();
-    var VehicleRegistrationNo = $("#txtVehicleRegistrationNo").val();
-    var ChassisNo = $("#txtChassisNo").val();
+    var SourceType = $("#ddlBrokerTypeId").val();
+    var SourceId = $("#ddlBrokerId").val() == "" ? 0 : parseInt($("#ddlBrokerId").val());
+    var PackageId = 0;
+    var CPRNumber = $("#CPRNumber").val();
+    var PolicyType = $("#PolicyType").val();
+    var PolicyNo = $("#PolicyNo").val();
+    var InsuredName = $("#InsuredName").val();
+    var MobileNo = $("#MobileNo").val();
+    var EmailId = $("#EmailId").val();
+    var VehicleRegistrationNo = $("#VehicleRegistrationNo").val();
+    var ChassisNo = $("#ChassisNo").val();
+    var Service = $("#Service").val();
 
-    var pUrl = "/Admin/Brokers/SearchMemberShip?SourceType=" + SourceType + "&SourceId=" + SourceId + "&PackageId=" + PackageId + "&CPRNumber=" + CPRNumber + "&PolicyType=" + PolicyType + "&PolicyNo=" + PolicyNo + "&InsuredName=" + InsuredName + "&MobileNo=" + MobileNo + "&EmailId=" + EmailId + "&VehicleRegistrationNo=" + VehicleRegistrationNo + "&ChassisNo=" + ChassisNo;
+    var pUrl = "/Admin/Brokers/SearchMemberShip?SourceType=" + SourceType + "&SourceId=" + SourceId + "&PackageId=" + PackageId + "&CPRNumber=" + CPRNumber + "&PolicyType=" + PolicyType + "&PolicyNo=" + PolicyNo + "&InsuredName=" + InsuredName + "&MobileNo=" + MobileNo + "&EmailId=" + EmailId + "&VehicleRegistrationNo=" + VehicleRegistrationNo + "&ChassisNo=" + ChassisNo + "&Service=" + Service;
     $.ajax({
         type: "Get",
         url: pUrl,
@@ -400,6 +402,12 @@ function SendGenerateCertificate(e) {
     else {
         alert("Customer Email doesnot exists.");
     }
+}
+
+
+function AddMemmbership() {
+    $("#dvDetail").hide();
+    $("#dvMembershipDetail").show();
 }
 
 

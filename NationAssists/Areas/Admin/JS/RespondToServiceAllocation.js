@@ -56,7 +56,7 @@
     else {
         $("#btnSave").show();
     }
-
+    $("#dvDetail").hide();
 }
 
 

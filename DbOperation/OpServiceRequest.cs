@@ -409,7 +409,7 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[2];
+                SqlParameter[] objListSqlParam = new SqlParameter[3];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@ServiceProviderId";
                 objListSqlParam[0].Value = ServiceProviderId;
@@ -417,6 +417,10 @@ namespace DbOperation
                 objListSqlParam[1] = new SqlParameter();
                 objListSqlParam[1].ParameterName = "@ServiceAllocationStatusId";
                 objListSqlParam[1].Value = ServiceAllocationStatusId;
+
+                objListSqlParam[2] = new SqlParameter();
+                objListSqlParam[2].ParameterName = "@Service";
+                objListSqlParam[2].Value = Service;
 
 
 
@@ -469,8 +473,8 @@ namespace DbOperation
                         AssignedToUserId= x.Field<int?>("AssignedToUser"),
 
                     }).ToList();
-
-                    objOutput.DataList = string.IsNullOrEmpty(Service) ? objLstService : (Service == "HA" ? objLstService.Where(x => x.ServiceId == 11).ToList() : (Service == "RA" ? objLstService.Where(x => x.ServiceId == 1).ToList() : objLstService.Where(x => (x.ServiceId != 1 && x.ServiceId != 11)).ToList()));
+                    objOutput.DataList = objLstService;
+                   // objOutput.DataList = string.IsNullOrEmpty(Service) ? objLstService : (Service == "HA" ? objLstService.Where(x => x.ServiceId == 11).ToList() : (Service == "RA" ? objLstService.Where(x => x.ServiceId == 1).ToList() : objLstService.Where(x => (x.ServiceId != 1 && x.ServiceId != 11)).ToList()));
                     objOutput.ErrorMessage = string.Empty;
                 }
             }
@@ -569,7 +573,7 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[9];
+                SqlParameter[] objListSqlParam = new SqlParameter[10];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@ServiceRequestStatusId";
                 objListSqlParam[0].Value = ServiceRequestStatusId;
@@ -606,6 +610,10 @@ namespace DbOperation
                 objListSqlParam[8] = new SqlParameter();
                 objListSqlParam[8].ParameterName = "@ServiceAllocationStatusId";
                 objListSqlParam[8].Value = ServiceAllocationStatusId;
+
+                objListSqlParam[9] = new SqlParameter();
+                objListSqlParam[9].ParameterName = "@Service";
+                objListSqlParam[9].Value = Service;
 
 
 
@@ -659,7 +667,8 @@ namespace DbOperation
                         SourceName = x.Field<string>("SourceName")
                     }).ToList();
 
-                    objOutput.DataList =string.IsNullOrEmpty(Service)? objLstService :(Service=="HA" ? objLstService.Where(x=>x.ServiceId==11).ToList():(Service=="RA" ? objLstService.Where(x => x.ServiceId == 1).ToList(): objLstService.Where(x=>(x.ServiceId !=1 && x.ServiceId!=11 )).ToList()));
+                    objOutput.DataList = objLstService;
+                    //objOutput.DataList =string.IsNullOrEmpty(Service)? objLstService :(Service=="HA" ? objLstService.Where(x=>x.ServiceId==11).ToList():(Service=="RA" ? objLstService.Where(x => x.ServiceId == 1).ToList(): objLstService.Where(x=>(x.ServiceId !=1 && x.ServiceId!=11 )).ToList()));
                     objOutput.ErrorMessage = string.Empty;
                 }
             }

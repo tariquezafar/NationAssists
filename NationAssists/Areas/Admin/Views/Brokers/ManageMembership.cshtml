@@ -13,147 +13,261 @@
 }
 <div class="dashboardCon transition">
     <div class="mainHd">Manage Membership</div>
-    <ul class="dbForm flexBox">
-        <li class="oneThird">
-            <span class="fieldHd" id="lblUserType">Source Type** </span>
-            @if (objUSer != null && objUSer.UserTypeCode == "EMP")
-            {
-                <select id="BrokerTypeId" class="formInput" onchange="BindBroker()">
 
-                    <option value="">--Select--</option>
-                    <option value="AG">Agent</option>
-                    <option value="IC">Insurance Company</option>
-                    <option value="IB">Insurance Brokers</option>
-                    <option value="AD">Auto Dealers</option>
-                    <option value="BA">Banks</option>
-                    <option value="OS">Other sources</option>
+    <div id="dvDetail">
+        <ul class="form flexBox">
+            <li class="oneThird">
+                <span class="fieldHd" id="lblUserType">Source Type </span>
+                @if (objUSer != null && objUSer.UserTypeCode == "EMP")
+                {
+                    <select id="ddlBrokerTypeId" class="formInput" onchange="BindBroker(this,'ddlBrokerId')">
 
-                </select>
-            }
-            else
-            {
-        <select id="BrokerTypeId" class="formInput" >
+                        <option value="">--Select--</option>
+                        <option value="AG">Agent</option>
+                        <option value="IC">Insurance Company</option>
+                        <option value="IB">Insurance Brokers</option>
+                        <option value="AD">Auto Dealers</option>
+                        <option value="BA">Banks</option>
+                        <option value="OS">Other sources</option>
 
-            <option value="">--Select--</option>
-            <option value="@objUSer.UserTypeCode">@objUSer.UserTypeName</option>
+                    </select>
+                }
+                else
+                {
+                    <select id="ddlBrokerTypeId" class="formInput">
 
-        </select>
-            }
-        </li>
-        <li class="oneThird">
-            <span class="fieldHd" id="lblService">Source** </span>
-            @if (objUSer != null && objUSer.UserTypeCode == "EMP")
-            {
-                @Html.DropDownListFor(m => m.BrokerId,
-                      new SelectList(Enumerable.Empty<SelectListItem>(), "BrokerId", "BrokerName"),
-                             "Select Source", new { @class = "formInput", @onchange = "GetAllServices()" })
-            }
-            else
-            {
-                <select id="BrokerId" class="formInput" onchange="GetAllServices()">
+                        <option value="">--Select--</option>
+                        <option value="@objUSer.UserTypeCode" selected="selected">@objUSer.UserTypeName</option>
 
-                    <option value="">--Select--</option>
-                    <option value="@objUSer.SourceId">@objUSer.SourceName</option>
+                    </select>
+                }
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblService">Source</span>
+                @if (objUSer != null && objUSer.UserTypeCode == "EMP")
+                {
+                    @*@Html.DropDownListFor(m => m.BrokerId,
+                new SelectList(Enumerable.Empty<SelectListItem>(), "BrokerId", "BrokerName"),
+                       "Select Source", new { @class = "formInput", @onchange = "GetAllServices()" })*@
+                    <select id="ddlBrokerId" class="formInput">
 
-                </select>
-            }
-        </li>
-        <li class="oneThird">
-            <span class="fieldHd" id="lblService">Package** </span>
-            @Html.DropDownListFor(m => m.ServiceId,
-           new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceId", "ServiceName"),
-                  "Select Service", new { @class = "formInput", @onchange = "BindMembership()" })
-        </li>
+                        <option value="">--Select--</option>
 
-        <li class="oneThird">
-            <span class="fieldHd" id="lblBrokerName">Branch** </span>
-            <input type="text" class="formInput" id="txtBranch" maxlength="1000" placeholder="Branch">
-        </li>
-        <li class="oneThird">
-            <span class="fieldHd" id="lblBrokerName">CPR Number** </span>
-            <input type="text" class="formInput" id="txtCPRNumber" maxlength="50" placeholder="CPR Number">
-        </li>
-        <li class="oneThird RAS">
-            <span class="fieldHd" id="lblBrokerName">Policy Type </span>
-            <input type="text" class="formInput" id="txtPolicyType" placeholder="Policy Type">
-        </li>
-        <li class="oneThird">
-            <span class="fieldHd" id="lblBrokerName">PolicyNo** </span>
 
-            <input type="text" class="formInput" id="txtPolicyNo" maxlength="50" placeholder="PolicyNo">
-        </li>
+                    </select>
+                }
+                else
+                {
+                    <select id="ddlBrokerId" class="formInput">
 
-        <li class="oneThird">
-            <span class="fieldHd" id="lblMobileNo">IssueDate** </span>
-            <input type="text" class="formInput datePicker" id="txtIssueDate" />
-        </li>
-        <li class="oneThird">
+                        <option value="">--Select--</option>
+                        <option value="@objUSer.SourceId" selected="selected">@objUSer.SourceName</option>
 
-            <span class="fieldHd" id="lblLandlineNo">Effective Date** </span>
-            <input type="text" class="formInput datePicker" id="txtEffectiveDate" />
+                    </select>
+                }
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd">
+                    Service
+                </span>
+                @Html.DropDownListFor(m => m.Service, Model.BindService(), "--select-", new { @class = "formInput", })
 
-        </li>
-        <li class="oneThird">
-            <span class="fieldHd" id="lblEmailID">Expiry Date** </span>
-            <input type="text" class="formInput datePicker" id="txtExpiryDate" />
-        </li>
-        <li class="oneThird">
-            <span class="fieldHd" id="lblInsuredName">Insured Name** </span>
-            <input type="text" class="formInput" id="txtInsuredName" maxlength="50" placeholder="InsuredName" />
-        </li>
-        <li class="oneThird">
-            <span class="fieldHd" id="lblMobileNo">Mobile No </span>
-            <input type="text" class="formInput" id="txtMobileNo" maxlength="20" placeholder="MobileNo" onclick="RestrictAlphabetAndSpace('txtMobileNo')" />
-        </li>
-        <li class="oneThird">
-            <span class="fieldHd" id="lblEmailId">Email Id </span>
-            <input type="text" class="formInput" id="txtEmailId" maxlength="500" placeholder="EmailId" />
-        </li>
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblBrokerName">CPR Number </span>
+                <input type="text" class="formInput" id="CPRNumber" maxlength="50" placeholder="CPR Number">
+            </li>
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblBrokerName">Policy Type </span>
+                <input type="text" class="formInput" id="PolicyType" placeholder="Policy Type">
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblBrokerName">PolicyNo </span>
 
-        <li class="oneThird RAS">
-            <span class="fieldHd" id="lblVehicleRegistrationNo">Vehicle RegistrationNo** </span>
-            <input type="text" class="formInput" id="txtVehicleRegistrationNo" maxlength="50" placeholder="VehicleRegistrationNo">
-        </li>
-        <li class="oneThird RAS">
-            <span class="fieldHd" id="lblChassisNo">Chassis No** </span>
-            <input type="text" class="formInput" id="txtChassisNo" placeholder="ChassisNo" maxlength="50">
-        </li>
-        <li class="oneThird RAS">
-            <span class="fieldHd" id="lblVehicleMake">Vehicle Make </span>
-            <input type="text" class="formInput" id="txtVehicleMake" maxlength="500" placeholder="Vehicle Make" />
-        </li>
-        <li class="oneThird RAS">
-            <span class="fieldHd" id="lblVehicleType">Vehicle Type </span>
-            <input type="text" class="formInput" id="txtVehicleType" maxlength="500" placeholder="Vehicle Type" />
-        </li>
-        <li class="oneThird RAS">
-            <span class="fieldHd" id="lblVehicleBody">Vehicle Body </span>
-            <input type="text" class="formInput" id="txtVehicleBody" maxlength="500" placeholder="Vehicle Body" />
-        </li>
-        <li class="oneThird RAS">
-            <span class="fieldHd" id="lblVehicleYear">Vehicle Year**</span>
-            <input type="text" id="txtVehicleYear" class="formInput" maxlength="4" placeholder="Vehicle Year" onclick="RestrictAlphabetAndSpace('txtVehicleYear')" />
-        </li>
-        <li class="oneThird RAS">
-            <span class="fieldHd" id="lblVehicleReplacement">Vehicle Replacement</span>
-            <div class="optBox flexBox">
-                <label><input type="radio" name="VehicleReplacement" class="radioInpt" value="YES"> YES</label>
-                <label><input type="radio" name="VehicleReplacement" class="radioInpt" checked="checked" value="NO"> NO</label>
+                <input type="text" class="formInput" id="PolicyNo" maxlength="50" placeholder="PolicyNo">
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblInsuredName">Insured Name </span>
+                <input type="text" class="formInput" id="InsuredName" maxlength="50" placeholder="InsuredName" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblMobileNo">Mobile No </span>
+                <input type="text" class="formInput" id="MobileNo" maxlength="20" placeholder="MobileNo" onclick="RestrictAlphabetAndSpace('txtMobileNo')" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblEmailId">Email Id </span>
+                <input type="text" class="formInput" id="EmailId" maxlength="500" placeholder="EmailId" />
+            </li>
+
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblVehicleRegistrationNo">Vehicle RegistrationNo </span>
+                <input type="text" class="formInput" id="VehicleRegistrationNo" maxlength="50" placeholder="VehicleRegistrationNo">
+            </li>
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblChassisNo">Chassis No </span>
+                <input type="text" class="formInput" id="ChassisNo" placeholder="ChassisNo" maxlength="50">
+            </li>
+
+            <li class="oneThird">
+                <span class="fieldHd">Start Date</span>
+                <input type="text" id="txtStartDate" class="formInput datePicker" />
+            </li>
+
+            <li class="oneThird">
+                <span class="fieldHd">End Date</span>
+                <input type="text" id="txtEndDate" class="formInput datePicker" />
+            </li>
+        </ul>
+        <div>
+            <div class="tac">
+                <button class="formBtn regNextStep" onclick="return SearchMembership();">Search</button>
+                <button type="button" class="btnReset dbformBtn mr10" onclick="AddMemmbership();">Add</button>
             </div>
-        </li>
-        <li class="oneThird HAS">
-            <span class="fieldHd" id="lblRiskAddress">Risk Address</span>
-            <textarea id="txtRiskAddress" class="formInput" placeholder="RiskAddress"></textarea>
-        </li>
-        <li class="oneThird HAS">
-            <span class="fieldHd" id="lblNoOfLocation">No Of Location </span>
-            <input type="text" class="formInput" id="txtNoOfLocation" maxlength="4" placeholder="No of Location" onclick="RestrictAlphabetAndSpace('txtNoOfLocation')" />
-        </li>
+           
+        </div>
+    </div>
+    <div id="dvMembershipDetail" style="display:none;">
+        <ul class="dbForm flexBox">
+            <li class="oneThird">
+                <span class="fieldHd" id="lblUserType">Source Type** </span>
+                @if (objUSer != null && objUSer.UserTypeCode == "EMP")
+                {
+                    <select id="BrokerTypeId" class="formInput" onchange="BindBroker(this,'BrokerId')">
 
-        <li class="oneThird HAS">
-            <span class="fieldHd" id="lblAggreementEndDate">Type Of Service </span>
-            <input type="text" class="formInput" id="txtTypeOfService" maxlength="500" placeholder="Type Of Service" />
-        </li>
+                        <option value="">--Select--</option>
+                        <option value="AG">Agent</option>
+                        <option value="IC">Insurance Company</option>
+                        <option value="IB">Insurance Brokers</option>
+                        <option value="AD">Auto Dealers</option>
+                        <option value="BA">Banks</option>
+                        <option value="OS">Other sources</option>
+
+                    </select>
+                }
+                else
+                {
+                    <select id="BrokerTypeId" class="formInput">
+
+                        <option value="">--Select--</option>
+                        <option value="@objUSer.UserTypeCode">@objUSer.UserTypeName</option>
+
+                    </select>
+                }
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblService">Source** </span>
+                @if (objUSer != null && objUSer.UserTypeCode == "EMP")
+                {
+                    @Html.DropDownListFor(m => m.BrokerId,
+                          new SelectList(Enumerable.Empty<SelectListItem>(), "BrokerId", "BrokerName"),
+                                 "Select Source", new { @class = "formInput", @onchange = "GetAllServices()" })
+                }
+                else
+                {
+                    <select id="BrokerId" class="formInput" onchange="GetAllServices()">
+
+                        <option value="">--Select--</option>
+                        <option value="@objUSer.SourceId">@objUSer.SourceName</option>
+
+                    </select>
+                }
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblService">Package** </span>
+                @Html.DropDownListFor(m => m.ServiceId,
+               new SelectList(Enumerable.Empty<SelectListItem>(), "ServiceId", "ServiceName"),
+                      "Select Service", new { @class = "formInput", @onchange = "BindMembership()" })
+            </li>
+
+            <li class="oneThird">
+                <span class="fieldHd" id="lblBrokerName">Branch** </span>
+                <input type="text" class="formInput" id="txtBranch" maxlength="1000" placeholder="Branch">
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblBrokerName">CPR Number** </span>
+                <input type="text" class="formInput" id="txtCPRNumber" maxlength="50" placeholder="CPR Number">
+            </li>
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblBrokerName">Policy Type </span>
+                <input type="text" class="formInput" id="txtPolicyType" placeholder="Policy Type">
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblBrokerName">PolicyNo** </span>
+
+                <input type="text" class="formInput" id="txtPolicyNo" maxlength="50" placeholder="PolicyNo">
+            </li>
+
+            <li class="oneThird">
+                <span class="fieldHd" id="lblMobileNo">IssueDate** </span>
+                <input type="text" class="formInput datePicker" id="txtIssueDate" />
+            </li>
+            <li class="oneThird">
+
+                <span class="fieldHd" id="lblLandlineNo">Effective Date** </span>
+                <input type="text" class="formInput datePicker" id="txtEffectiveDate" />
+
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblEmailID">Expiry Date** </span>
+                <input type="text" class="formInput datePicker" id="txtExpiryDate" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblInsuredName">Insured Name** </span>
+                <input type="text" class="formInput" id="txtInsuredName" maxlength="50" placeholder="InsuredName" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblMobileNo">Mobile No </span>
+                <input type="text" class="formInput" id="txtMobileNo" maxlength="20" placeholder="MobileNo" onclick="RestrictAlphabetAndSpace('txtMobileNo')" />
+            </li>
+            <li class="oneThird">
+                <span class="fieldHd" id="lblEmailId">Email Id </span>
+                <input type="text" class="formInput" id="txtEmailId" maxlength="500" placeholder="EmailId" />
+            </li>
+
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblVehicleRegistrationNo">Vehicle RegistrationNo** </span>
+                <input type="text" class="formInput" id="txtVehicleRegistrationNo" maxlength="50" placeholder="VehicleRegistrationNo">
+            </li>
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblChassisNo">Chassis No** </span>
+                <input type="text" class="formInput" id="txtChassisNo" placeholder="ChassisNo" maxlength="50">
+            </li>
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblVehicleMake">Vehicle Make </span>
+                <input type="text" class="formInput" id="txtVehicleMake" maxlength="500" placeholder="Vehicle Make" />
+            </li>
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblVehicleType">Vehicle Type </span>
+                <input type="text" class="formInput" id="txtVehicleType" maxlength="500" placeholder="Vehicle Type" />
+            </li>
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblVehicleBody">Vehicle Body </span>
+                <input type="text" class="formInput" id="txtVehicleBody" maxlength="500" placeholder="Vehicle Body" />
+            </li>
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblVehicleYear">Vehicle Year**</span>
+                <input type="text" id="txtVehicleYear" class="formInput" maxlength="4" placeholder="Vehicle Year" onclick="RestrictAlphabetAndSpace('txtVehicleYear')" />
+            </li>
+            <li class="oneThird RAS">
+                <span class="fieldHd" id="lblVehicleReplacement">Vehicle Replacement</span>
+                <div class="optBox flexBox">
+                    <label><input type="radio" name="VehicleReplacement" class="radioInpt" value="YES"> YES</label>
+                    <label><input type="radio" name="VehicleReplacement" class="radioInpt" checked="checked" value="NO"> NO</label>
+                </div>
+            </li>
+            <li class="oneThird HAS">
+                <span class="fieldHd" id="lblRiskAddress">Risk Address</span>
+                <textarea id="txtRiskAddress" class="formInput" placeholder="RiskAddress"></textarea>
+            </li>
+            <li class="oneThird HAS">
+                <span class="fieldHd" id="lblNoOfLocation">No Of Location </span>
+                <input type="text" class="formInput" id="txtNoOfLocation" maxlength="4" placeholder="No of Location" onclick="RestrictAlphabetAndSpace('txtNoOfLocation')" />
+            </li>
+
+            <li class="oneThird HAS">
+                <span class="fieldHd" id="lblAggreementEndDate">Type Of Service </span>
+                <input type="text" class="formInput" id="txtTypeOfService" maxlength="500" placeholder="Type Of Service" />
+            </li>
 
 
 
@@ -161,15 +275,16 @@
 
 
 
-    </ul>
-    <div>
-        <input type="hidden" id="hdnMembershipId" value="0" />
-        <input type="hidden" id="hdnSourceId" value="0" />
-        <input type="hidden" id="hdnPackageId" value="0" />
-        <button type="button" class="btnSave dbformBtn mr10" id="btnAdd" onclick="return SaveMembership();">Save</button>
-        <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Brokers/ManageMembership/'">Reset</button>
-        <button type="button" class="btnSave dbformBtn mr10" onclick="return SearchMembership();">Search</button>
+        </ul>
+        <div>
+            <input type="hidden" id="hdnMembershipId" value="0" />
+            <input type="hidden" id="hdnSourceId" value="0" />
+            <input type="hidden" id="hdnPackageId" value="0" />
+            <button type="button" class="btnSave dbformBtn mr10" id="btnAdd" onclick="return SaveMembership();">Save</button>
+            <button type="button" class="btnReset dbformBtn mr10" onclick="window.location.href = '/admin/Brokers/ManageMembership/'">Reset</button>
+            @*<button type="button" class="btnSave dbformBtn mr10" onclick="return SearchMembership();">Search</button>*@
 
+        </div>
     </div>
     <div class="dbTable" id="tblMembership">
 

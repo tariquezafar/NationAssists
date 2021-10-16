@@ -74,7 +74,7 @@
 
             </ul>
 
-            <ul class="flexBox" onclick="window.location.href='/admin/ServiceRequest/index?Status=Pending&Service=CR'">
+            <ul class="flexBox" >
                 <li>
                     <div class="inner">
                         @Model.TotalNoOfPendingCRServiceRequest
@@ -220,25 +220,25 @@
             if (objUSer.RoleName == "Admin")
             {
                 <ul class="flexBox">
-                    <li>
+                    <li onclick="window.location.href='/admin/Brokers/ManageMembership'">
                         <div class="inner">
                             @Model.TotalNoOfMembeshipIssuedTillDate
                             <span>Total No of Memberships issued till date</span>
                         </div>
                     </li>
-                    <li>
+                    <li  onclick="window.location.href='/admin/Brokers/ManageMembership?Service=RA'">
                         <div class="inner">
                             @Model.NoOfRSAMembeshipIssuedTillDate
                             <span>Total No Of RSA Membership sold till date</span>
                         </div>
                     </li>
-                    <li>
+                    <li onclick="window.location.href='/admin/Brokers/ManageMembership?Service=HA'">
                         <div class="inner">
                             @Model.NoOfHAMembeshipIssuedTillDate
                             <span>Total No Of HA Membership sold till date</span>
                         </div>
                     </li>
-                    <li>
+                    <li onclick="window.location.href='/admin/Brokers/ManageMembership?Service=CR'">
                         <div class="inner">
                             @Model.NoOfRSAplusCRMembeshipIssuedTillDate
                             <span>Total No Of RSA+ CR  sold till date</span>
@@ -246,33 +246,33 @@
                     </li>
                 </ul>
                 <ul class="flexBox">
-                    <li>
+                    <li onclick="window.location.href='/admin/Brokers/ManageMembership?DateType=Month'">
                         <div class="inner">
                             @Model.NoOfMembershipSoldForTheMonth
                             <span>Total No. of Membership sold for the month</span>
                         </div>
                     </li>
-                    <li>
+                    <li onclick ="window.location.href='/admin/Brokers/ManageMembership?DateType=Day'">
                         <div class="inner">
                             @Model.TotalNoOfMembeshipIssuedForTheDay
                             <span>Total No of Memberships sold for the day</span>
                         </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            @Model.NoOfRSAMembeshipIssuedTillDate
-                            <span>Total No Of RSA Membership sold for the day</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            @Model.NoOfHAMembeshipIssuedTillDate
-                            <span>Total No Of HA Membership sold for the day</span>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                        <li onclick="window.location.href='/admin/Brokers/ManageMembership?Service=RA&DateType=Day'">
+                            <div class="inner">
+                                @Model.NoOfRSAMembeshipIssuedForTheDay
+                                <span>Total No Of RSA Membership sold for the day</span>
+                            </div>
+                        </li>
+                        <li onclick ="window.location.href='/admin/Brokers/ManageMembership?Service=HA&DateType=Day'">
+                            <div class="inner">
+                                @Model.NoOfHAMembeshipIssuedForTheDay
+                                <span>Total No Of HA Membership sold for the day</span>
+                            </div>
+                            </li>
+</ul>
                 <ul class="flexBox">
-                    <li>
+                    <li onclick ="window.location.href='/admin/Brokers/ManageMembership?Service=CR&DateType=Day'">
                         <div class="inner">
                             @Model.NoOfRSAplusCRMembeshipIssuedForTheDay
                             <span>Total No Of RSA+ CR  sold for the day</span>
@@ -329,13 +329,13 @@
                     </li>
                     <li>
                         <div class="inner">
-                            @Model.NoOfRSAMembeshipIssuedTillDate
+                            @Model.NoOfRSAMembeshipIssuedForTheDay
                             <span>Total No Of RSA Membership sold for the day</span>
                         </div>
                     </li>
                     <li>
                         <div class="inner">
-                            @Model.NoOfHAMembeshipIssuedTillDate
+                            @Model.NoOfHAMembeshipIssuedForTheDay
                             <span>Total No Of HA Membership sold for the day</span>
                         </div>
                     </li>

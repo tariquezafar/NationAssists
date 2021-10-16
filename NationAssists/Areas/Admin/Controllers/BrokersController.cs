@@ -312,8 +312,18 @@ namespace NationAssists.Areas.Admin.Controllers
             if (Session["UserId"] != null && Session["User"] != null)
             {
                 Users objUser = (Users)Session["User"];
-              
-                objMM.MembershipList = BindMemberShip(objUser.UserReferenceId, 0, 0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+                string StrService = string.Empty;
+                if (Request.QueryString.Keys.Count > 0)
+                {
+
+                    if (Request.QueryString["Service"] != null)
+                    {
+                        StrService = Request.QueryString["Service"];
+                    }
+                }
+
+                objMM.Service = StrService;
+                objMM.MembershipList = BindMemberShip(objUser.UserReferenceId, 0, 0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, StrService,null,null);
 
                 return View(objMM);
             }
@@ -351,31 +361,31 @@ namespace NationAssists.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetMembershipDetail(Int64 MembershipId)
         {
-            List<Membership> objMember = BindMemberShip(0, 0, MembershipId, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+            List<Membership> objMember = BindMemberShip(0, 0, MembershipId, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty,string.Empty,null,null);
             return Json(objMember[0], JsonRequestBehavior.AllowGet);
         }
 
-        public List<Membership> BindMemberShip(int SourceId, int PackageId, Int64 MembershipId, string CPRNumber, string PolicyType, string PolicyNo, string InsuredName, string MobileNo, string EmailId, string VehicleRegistrationNo, string ChassisNo, string SourceType)
+        public List<Membership> BindMemberShip(int SourceId, int PackageId, Int64 MembershipId, string CPRNumber, string PolicyType, string PolicyNo, string InsuredName, string MobileNo, string EmailId, string VehicleRegistrationNo, string ChassisNo, string SourceType, string service, DateTime? StartDate, DateTime? EndDate)
         {
 
             List<Membership> objMembershiplist = new List<Membership>();
             MethodOutput<Membership> objMO = new MethodOutput<Membership>();
             MembershipServices obj = new MembershipServices();
             objMO = obj.GetAllMemberShip(SourceId, PackageId, MembershipId, CPRNumber, PolicyType, PolicyNo, InsuredName
-            , MobileNo, EmailId, VehicleRegistrationNo, ChassisNo, SourceType);
+            , MobileNo, EmailId, VehicleRegistrationNo, ChassisNo, SourceType,service,StartDate,EndDate);
             objMembershiplist = objMO.DataList;
 
 
             return objMembershiplist;
         }
 
-        public ActionResult SearchMemberShip(string SourceType,int SourceId, int PackageId, string CPRNumber, string PolicyType, string PolicyNo, string InsuredName, string MobileNo, string EmailId, string VehicleRegistrationNo, string ChassisNo)
+        public ActionResult SearchMemberShip(string SourceType,int SourceId, int PackageId, string CPRNumber, string PolicyType, string PolicyNo, string InsuredName, string MobileNo, string EmailId, string VehicleRegistrationNo, string ChassisNo,string Service,string StartDate,string EndDate)
         {
             string strError = string.Empty;
             try
             {
                 List<Membership> objList = new List<Membership>();
-                objList = this.BindMemberShip(SourceId, PackageId, 0, CPRNumber, PolicyType, PolicyNo, InsuredName, MobileNo,EmailId,VehicleRegistrationNo,ChassisNo,SourceType);
+                objList = this.BindMemberShip(SourceId, PackageId, 0, CPRNumber, PolicyType, PolicyNo, InsuredName, MobileNo,EmailId,VehicleRegistrationNo,ChassisNo,SourceType,Service,Convert.ToDateTime(StartDate),Convert.ToDateTime(EndDate));
                 mMembership objMem = new mMembership();
                 objMem.MembershipList = objList;
                 return PartialView("_MembershipList", objMem);

@@ -85,12 +85,12 @@ namespace NationAssists.Areas.Admin.Controllers
                     #region Service Provider
                     if (objUsers.UserTypeCode == "SP")
                     {
-                        objDashBoard.NoOfRSAServiceRequestAccepted = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus > 1 && x.ServiceAllocationStatus != 3 && x.ServiceId==1).ToList().Count;
-                        objDashBoard.NoOfCRServiceRequestAccepted = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus > 1 && x.ServiceAllocationStatus != 3 && x.ServiceId != 1 && x.ServiceId!=11).ToList().Count;
-                        objDashBoard.NoOfHAServiceRequestAccepted = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus > 1 && x.ServiceAllocationStatus != 3 && x.ServiceId != 1 && x.ServiceId ==11).ToList().Count;
+                        objDashBoard.NoOfRSAServiceRequestAccepted = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus== (int)ServiceRequestAllocationStatusEnum.Accepted && x.ServiceId==1).ToList().Count;
+                        objDashBoard.NoOfCRServiceRequestAccepted = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus == (int)ServiceRequestAllocationStatusEnum.Accepted && x.ServiceId != 1 && x.ServiceId!=11).ToList().Count;
+                        objDashBoard.NoOfHAServiceRequestAccepted = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus== (int)ServiceRequestAllocationStatusEnum.Accepted && x.ServiceId != 1 && x.ServiceId ==11).ToList().Count;
                         objDashBoard.NoOfServiceRequestAllocated = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId).ToList().Count;
                         objDashBoard.NoOfServiceRequestPending = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus== (int)ServiceRequestStatusEnum.Open).ToList().Count;
-                        objDashBoard.NoOfServiceRequestAccepted = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus >1 && x.ServiceAllocationStatus!=3).ToList().Count;
+                        objDashBoard.NoOfServiceRequestAccepted = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus == (int)ServiceRequestAllocationStatusEnum.Accepted).ToList().Count;
                         objDashBoard.NoOfServiceRequestAllocatedToday = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && Convert.ToDateTime( x.CreatedDate)==DateTime.Now.Date).ToList().Count;
                         objDashBoard.NoOfServiceRequestClosed = objDM.ServiceAllocationList.Where(x => x.ServiceProviderId == objUsers.UserReferenceId && x.ServiceAllocationStatus == (int)ServiceRequestStatusEnum.Closed).ToList().Count;
                       

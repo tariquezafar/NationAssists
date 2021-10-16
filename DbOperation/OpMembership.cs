@@ -145,7 +145,7 @@ namespace DbOperation
         }
 
         public MethodOutput<Membership> GetAllMemberShip(int SourceId,int PackageId, Int64 MembershipId,string CPRNumber ,string PolicyType,string PolicyNo,string InsuredName
-            ,string MobileNo,string EmailId,string VehicleRegistrationNo,string ChassisNo,string SourceType)
+            ,string MobileNo,string EmailId,string VehicleRegistrationNo,string ChassisNo,string SourceType,string service, DateTime? StartDate, DateTime? EndDate)
         {
             MethodOutput<Membership> output = new MethodOutput<Membership>();
             List<Membership> objLst = new List<Membership>();
@@ -153,7 +153,7 @@ namespace DbOperation
             {
 
                 DataTable dt = new DataTable();
-                SqlParameter[] objListSqlParam = new SqlParameter[15];
+                SqlParameter[] objListSqlParam = new SqlParameter[18];
                 objListSqlParam[0] = new SqlParameter();
                 objListSqlParam[0].ParameterName = "@SourceId";
                 objListSqlParam[0].Value = SourceId;
@@ -201,6 +201,18 @@ namespace DbOperation
                 objListSqlParam[12] = new SqlParameter();
                 objListSqlParam[12].ParameterName = "@SourceType";
                 objListSqlParam[12].Value = SourceType;
+
+                objListSqlParam[13] = new SqlParameter();
+                objListSqlParam[13].ParameterName = "@service";
+                objListSqlParam[13].Value = service;
+
+                objListSqlParam[14] = new SqlParameter();
+                objListSqlParam[14].ParameterName = "@StartDate";
+                objListSqlParam[14].Value = StartDate;
+
+                objListSqlParam[15] = new SqlParameter();
+                objListSqlParam[15].ParameterName = "@EndDate";
+                objListSqlParam[15].Value = EndDate;
 
                 dt = SqlHelper.ExecuteDataset(SqlHelper.ConnectionString, CommandType.StoredProcedure, "usp_ShowAllMemberShip", objListSqlParam).Tables[0];
                 if (dt.Rows.Count > 0)

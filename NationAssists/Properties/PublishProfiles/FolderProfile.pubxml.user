@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <History>True|2021-10-14T09:42:22.6027993Z;True|2021-10-14T14:52:26.6432537+05:30;True|2021-10-06T14:36:30.7863768+05:30;True|2021-10-04T10:16:20.1847615+05:30;True|2021-10-01T20:33:51.4632128+05:30;True|2021-09-30T23:45:14.3082889+05:30;True|2021-09-29T10:57:50.1716068+05:30;True|2021-09-28T11:05:16.7446073+05:30;True|2021-09-27T16:44:11.8407857+05:30;True|2021-09-26T23:51:02.8455563+05:30;True|2021-09-23T11:46:33.0425211+05:30;True|2021-09-19T11:15:32.9032848+05:30;True|2021-09-19T00:08:33.2995370+05:30;True|2021-09-19T00:04:32.0694294+05:30;True|2021-09-15T09:50:33.5818597+05:30;True|2021-09-13T13:51:28.7185868+05:30;True|2021-09-13T10:13:11.9458159+05:30;True|2021-09-08T14:57:35.0930403+05:30;True|2021-09-07T22:26:07.7290076+05:30;True|2021-09-06T10:17:31.7348469+05:30;True|2021-09-03T14:41:05.7106950+05:30;True|2021-08-26T15:18:57.7124201+05:30;True|2021-08-25T10:35:32.4334268+05:30;True|2021-08-23T10:24:03.3886211+05:30;True|2021-08-21T20:49:45.1752284+05:30;True|2021-08-20T15:20:34.1315553+05:30;True|2021-08-17T16:00:37.3920459+05:30;True|2021-08-16T08:53:32.4090494+05:30;True|2021-08-15T14:49:04.5639430+05:30;True|2021-08-12T10:10:13.7448359+05:30;True|2021-08-11T10:12:22.1690310+05:30;True|2021-08-10T10:23:00.5200685+05:30;True|2021-08-09T10:13:22.7527250+05:30;True|2021-08-07T13:07:34.9870541+05:30;True|2021-08-06T19:27:10.8255130+05:30;True|2021-08-06T09:54:49.4956396+05:30;True|2021-08-05T21:34:33.6111351+05:30;True|2021-07-30T10:35:38.7716349+05:30;True|2021-07-27T13:15:30.1031229+05:30;True|2021-07-27T11:35:38.7754471+05:30;True|2021-07-24T18:10:17.0579283+05:30;True|2021-07-22T21:01:33.9755341+05:30;True|2021-07-20T08:40:48.8384944+05:30;True|2021-07-20T08:33:46.3150479+05:30;True|2021-07-20T08:14:44.6166590+05:30;True|2021-07-20T08:00:12.3462435+05:30;True|2021-07-19T14:56:09.5616026+05:30;True|2021-07-16T21:48:53.0426927+05:30;True|2021-07-13T10:23:06.7871679+05:30;True|2021-07-10T20:10:07.7854913+05:30;True|2021-07-08T19:41:45.0928130+05:30;True|2021-07-05T13:38:54.5315665+05:30;True|2021-06-30T20:55:28.4101182+05:30;True|2021-06-29T15:03:27.9555306+05:30;True|2021-06-23T22:06:42.5099214+05:30;True|2021-06-22T21:57:06.6113393+05:30;True|2021-06-20T12:07:30.7396319+05:30;True|2021-06-17T10:19:51.0547981+05:30;True|2021-06-17T10:18:36.0811070+05:30;True|2021-06-12T18:37:20.6729253+05:30;True|2021-06-10T14:22:41.3959216+05:30;True|2021-06-10T09:22:01.2022957+05:30;True|2021-06-09T14:53:33.7458854+05:30;True|2021-06-07T22:10:34.1029701+05:30;True|2021-06-05T11:43:56.6805351+05:30;True|2021-06-03T20:44:45.6947974+05:30;True|2021-05-29T20:39:06.5711970+05:30;False|2021-05-29T15:22:39.9762977+05:30;False|2021-05-29T15:21:22.4078550+05:30;False|2021-05-29T15:19:25.6278529+05:30;False|2021-05-29T15:11:56.9806338+05:30;False|2021-05-29T14:48:00.1646295+05:30;False|2021-05-29T14:46:36.1714360+05:30;</History>
-    <_PublishTargetUrl>D:\Tarique\NationAssists-Publish\14_10_2021_1</_PublishTargetUrl>
+    <History>True|2021-10-16T11:56:06.9246085Z;True|2021-10-14T15:12:22.6027993+05:30;True|2021-10-14T14:52:26.6432537+05:30;True|2021-10-06T14:36:30.7863768+05:30;True|2021-10-04T10:16:20.1847615+05:30;True|2021-10-01T20:33:51.4632128+05:30;True|2021-09-30T23:45:14.3082889+05:30;True|2021-09-29T10:57:50.1716068+05:30;True|2021-09-28T11:05:16.7446073+05:30;True|2021-09-27T16:44:11.8407857+05:30;True|2021-09-26T23:51:02.8455563+05:30;True|2021-09-23T11:46:33.0425211+05:30;True|2021-09-19T11:15:32.9032848+05:30;True|2021-09-19T00:08:33.2995370+05:30;True|2021-09-19T00:04:32.0694294+05:30;True|2021-09-15T09:50:33.5818597+05:30;True|2021-09-13T13:51:28.7185868+05:30;True|2021-09-13T10:13:11.9458159+05:30;True|2021-09-08T14:57:35.0930403+05:30;True|2021-09-07T22:26:07.7290076+05:30;True|2021-09-06T10:17:31.7348469+05:30;True|2021-09-03T14:41:05.7106950+05:30;True|2021-08-26T15:18:57.7124201+05:30;True|2021-08-25T10:35:32.4334268+05:30;True|2021-08-23T10:24:03.3886211+05:30;True|2021-08-21T20:49:45.1752284+05:30;True|2021-08-20T15:20:34.1315553+05:30;True|2021-08-17T16:00:37.3920459+05:30;True|2021-08-16T08:53:32.4090494+05:30;True|2021-08-15T14:49:04.5639430+05:30;True|2021-08-12T10:10:13.7448359+05:30;True|2021-08-11T10:12:22.1690310+05:30;True|2021-08-10T10:23:00.5200685+05:30;True|2021-08-09T10:13:22.7527250+05:30;True|2021-08-07T13:07:34.9870541+05:30;True|2021-08-06T19:27:10.8255130+05:30;True|2021-08-06T09:54:49.4956396+05:30;True|2021-08-05T21:34:33.6111351+05:30;True|2021-07-30T10:35:38.7716349+05:30;True|2021-07-27T13:15:30.1031229+05:30;True|2021-07-27T11:35:38.7754471+05:30;True|2021-07-24T18:10:17.0579283+05:30;True|2021-07-22T21:01:33.9755341+05:30;True|2021-07-20T08:40:48.8384944+05:30;True|2021-07-20T08:33:46.3150479+05:30;True|2021-07-20T08:14:44.6166590+05:30;True|2021-07-20T08:00:12.3462435+05:30;True|2021-07-19T14:56:09.5616026+05:30;True|2021-07-16T21:48:53.0426927+05:30;True|2021-07-13T10:23:06.7871679+05:30;True|2021-07-10T20:10:07.7854913+05:30;True|2021-07-08T19:41:45.0928130+05:30;True|2021-07-05T13:38:54.5315665+05:30;True|2021-06-30T20:55:28.4101182+05:30;True|2021-06-29T15:03:27.9555306+05:30;True|2021-06-23T22:06:42.5099214+05:30;True|2021-06-22T21:57:06.6113393+05:30;True|2021-06-20T12:07:30.7396319+05:30;True|2021-06-17T10:19:51.0547981+05:30;True|2021-06-17T10:18:36.0811070+05:30;True|2021-06-12T18:37:20.6729253+05:30;True|2021-06-10T14:22:41.3959216+05:30;True|2021-06-10T09:22:01.2022957+05:30;True|2021-06-09T14:53:33.7458854+05:30;True|2021-06-07T22:10:34.1029701+05:30;True|2021-06-05T11:43:56.6805351+05:30;True|2021-06-03T20:44:45.6947974+05:30;True|2021-05-29T20:39:06.5711970+05:30;False|2021-05-29T15:22:39.9762977+05:30;False|2021-05-29T15:21:22.4078550+05:30;False|2021-05-29T15:19:25.6278529+05:30;False|2021-05-29T15:11:56.9806338+05:30;False|2021-05-29T14:48:00.1646295+05:30;False|2021-05-29T14:46:36.1714360+05:30;</History>
+    <_PublishTargetUrl>D:\Tarique\NationAssists-Publish\16_10_2021</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/Admin/JS/AllocateServiceRequest.js">
@@ -39,13 +39,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/22/2021 15:24:09</publishTime>
     </File>
     <File Include="Areas/Admin/JS/Membership.js">
-      <publishTime>09/30/2021 15:18:12</publishTime>
+      <publishTime>10/16/2021 10:49:19</publishTime>
     </File>
     <File Include="Areas/Admin/JS/RaiseServiceRequest.js">
       <publishTime>10/01/2021 20:17:36</publishTime>
     </File>
     <File Include="Areas/Admin/JS/RespondToServiceAllocation.js">
-      <publishTime>10/14/2021 14:13:08</publishTime>
+      <publishTime>10/15/2021 22:35:35</publishTime>
     </File>
     <File Include="Areas/Admin/JS/Service.js">
       <publishTime>08/24/2021 15:00:43</publishTime>
@@ -87,7 +87,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/02/2021 14:38:03</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Brokers/ManageMembership.cshtml">
-      <publishTime>10/06/2021 14:34:53</publishTime>
+      <publishTime>10/16/2021 11:59:07</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Brokers/SourceList.cshtml">
       <publishTime>10/07/2021 23:00:07</publishTime>
@@ -105,7 +105,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/29/2021 14:45:56</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Dashboard/Index.cshtml">
-      <publishTime>10/14/2021 14:49:55</publishTime>
+      <publishTime>10/16/2021 11:55:45</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Service/AddServiceSubCategory.cshtml">
       <publishTime>05/29/2021 16:19:28</publishTime>
@@ -237,16 +237,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/06/2021 14:36:23</publishTime>
     </File>
     <File Include="bin/DataServices.dll">
-      <publishTime>10/14/2021 15:12:18</publishTime>
+      <publishTime>10/16/2021 17:25:56</publishTime>
     </File>
     <File Include="bin/DataServices.pdb">
-      <publishTime>10/14/2021 15:12:18</publishTime>
+      <publishTime>10/16/2021 17:25:57</publishTime>
     </File>
     <File Include="bin/DbOperation.dll">
-      <publishTime>10/14/2021 15:12:18</publishTime>
+      <publishTime>10/16/2021 17:25:55</publishTime>
     </File>
     <File Include="bin/DbOperation.pdb">
-      <publishTime>10/14/2021 15:12:18</publishTime>
+      <publishTime>10/16/2021 17:25:55</publishTime>
     </File>
     <File Include="bin/DocumentFormat.OpenXml.dll">
       <publishTime>02/28/2020 19:59:18</publishTime>
@@ -258,10 +258,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/05/2017 15:26:25</publishTime>
     </File>
     <File Include="bin/ICardPrinter.dll">
-      <publishTime>10/14/2021 15:12:20</publishTime>
+      <publishTime>10/16/2021 17:25:58</publishTime>
     </File>
     <File Include="bin/ICardPrinter.pdb">
-      <publishTime>10/14/2021 15:12:20</publishTime>
+      <publishTime>10/16/2021 17:25:58</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
       <publishTime>08/27/2020 11:20:20</publishTime>
@@ -1557,7 +1557,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/16/2021 21:46:07</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/23/2021 11:46:28</publishTime>
+      <publishTime>10/16/2021 17:26:00</publishTime>
     </File>
   </ItemGroup>
 </Project>

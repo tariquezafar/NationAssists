@@ -37,3 +37,9 @@ D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.csproj.CoreComp
 D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.dll
 D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.pdb
 D:\Tarique\NationAssists\NationAssists\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
+D:\NationAssists\Utility\bin\Debug\Utility.dll
+D:\NationAssists\Utility\bin\Debug\Utility.pdb
+D:\NationAssists\Utility\obj\Debug\Utility.csproj.AssemblyReference.cache
+D:\NationAssists\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+D:\NationAssists\Utility\obj\Debug\Utility.dll
+D:\NationAssists\Utility\obj\Debug\Utility.pdb

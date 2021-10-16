@@ -32,3 +32,15 @@ D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.csproj.Co
 D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.dll
 D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.pdb
 D:\Tarique\NationAssists\NationAssists\DataEngine\obj\Debug\DataEngine.csprojAssemblyReference.cache
+D:\NationAssists\DataEngine\bin\Debug\DataEngine.dll.config
+D:\NationAssists\DataEngine\bin\Debug\DataEngine.dll
+D:\NationAssists\DataEngine\bin\Debug\DataEngine.pdb
+D:\NationAssists\DataEngine\bin\Debug\EntityFramework.dll
+D:\NationAssists\DataEngine\bin\Debug\EntityFramework.SqlServer.dll
+D:\NationAssists\DataEngine\bin\Debug\EntityFramework.xml
+D:\NationAssists\DataEngine\bin\Debug\EntityFramework.SqlServer.xml
+D:\NationAssists\DataEngine\obj\Debug\DataEngine.csproj.AssemblyReference.cache
+D:\NationAssists\DataEngine\obj\Debug\DataEngine.csproj.CoreCompileInputs.cache
+D:\NationAssists\DataEngine\obj\Debug\DataEngine.csproj.CopyComplete
+D:\NationAssists\DataEngine\obj\Debug\DataEngine.dll
+D:\NationAssists\DataEngine\obj\Debug\DataEngine.pdb

@@ -56,3 +56,15 @@ D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Debug\DbOperation.csproj.
 D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Debug\DbOperation.csproj.CopyComplete
 D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Debug\DbOperation.dll
 D:\Tarique\NationAssists\NationAssists\DbOperation\obj\Debug\DbOperation.pdb
+D:\NationAssists\DbOperation\bin\Debug\DbOperation.dll
+D:\NationAssists\DbOperation\bin\Debug\DbOperation.pdb
+D:\NationAssists\DbOperation\bin\Debug\DataEngine.dll
+D:\NationAssists\DbOperation\bin\Debug\Utility.dll
+D:\NationAssists\DbOperation\bin\Debug\DataEngine.pdb
+D:\NationAssists\DbOperation\bin\Debug\DataEngine.dll.config
+D:\NationAssists\DbOperation\bin\Debug\Utility.pdb
+D:\NationAssists\DbOperation\obj\Debug\DbOperation.csproj.AssemblyReference.cache
+D:\NationAssists\DbOperation\obj\Debug\DbOperation.csproj.CoreCompileInputs.cache
+D:\NationAssists\DbOperation\obj\Debug\DbOperation.csproj.CopyComplete
+D:\NationAssists\DbOperation\obj\Debug\DbOperation.dll
+D:\NationAssists\DbOperation\obj\Debug\DbOperation.pdb
